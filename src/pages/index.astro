@@ -618,19 +618,19 @@ import Layout from '../layouts/Layout.astro';
   <div class="success-header">
     <div class="success-icon"><span>&#10003;</span></div>
     <div class="success-title">Your Privacy Policy is Ready</div>
-    <div class="success-sub">Download it, copy the text, or use it right away</div>
+    <div class="success-sub">Download it, copy the URL, or use it right away</div>
   </div>
 
   <!-- Hosted URL -->
   <div id="hosted-url-card" class="hosted-url-card" style="display:none">
     <div class="hosted-label">Hosted Policy URL</div>
-    <div class="hosted-url" id="result-hosted-url"></div>
+    <a class="hosted-url" id="result-hosted-url" href="#" target="_blank" rel="noopener noreferrer"></a>
     <div class="hosted-hint">You can link to this URL from your app store listing or website.</div>
   </div>
 
   <!-- Export buttons -->
   <div class="export-buttons">
-    <button id="btn-copy" class="btn btn-secondary" type="button">Copy Text</button>
+    <button id="btn-copy" class="btn btn-secondary" type="button">Copy URL</button>
     <button id="btn-dl-html" class="btn btn-primary" type="button">Download HTML</button>
     <button id="btn-dl-text" class="btn btn-secondary" type="button">Download Text</button>
   </div>
@@ -1612,7 +1612,9 @@ import Layout from '../layouts/Layout.astro';
     if (resultData.policyId) {
       var hostedCard = $('#hosted-url-card');
       hostedCard.style.display = 'block';
-      $('#result-hosted-url').textContent = API_BASE + '/policy/' + resultData.policyId;
+      var hostedUrl = API_BASE + '/policy/' + resultData.policyId;
+      $('#result-hosted-url').textContent = hostedUrl;
+      $('#result-hosted-url').href = hostedUrl;
     }
 
     // Google Play Helper
@@ -1646,11 +1648,11 @@ import Layout from '../layouts/Layout.astro';
 
   // ===== EXPORT HANDLERS =====
   function handleCopy() {
-    var text = resultData.policyText || $('#policy-preview').textContent;
-    navigator.clipboard.writeText(text).then(function() {
+    var url = $('#result-hosted-url').href;
+    navigator.clipboard.writeText(url).then(function() {
       var btn = $('#btn-copy');
       btn.textContent = 'Copied!';
-      setTimeout(function() { btn.textContent = 'Copy Text'; }, 2500);
+      setTimeout(function() { btn.textContent = 'Copy URL'; }, 2500);
     }).catch(function() {});
   }
 
