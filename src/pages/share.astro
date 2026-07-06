@@ -1,0 +1,459 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Your Privacy Policy - BuildPrivacyPolicy" description="View, download, or copy your generated privacy policy.">
+
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <div class="logo-icon"><span>B</span></div>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+</div>
+
+<div id="share-container" class="share-container">
+  <!-- Loading state -->
+  <div id="loading-state" class="loading-state">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Loading your policy...</div>
+  </div>
+
+  <!-- Error state -->
+  <div id="error-state" class="error-state" style="display:none">
+    <div class="error-icon">!</div>
+    <div class="error-title">Policy Not Found</div>
+    <div class="error-msg" id="error-msg">The policy you're looking for could not be found. It may have been removed or the link may be invalid.</div>
+    <a href="/" class="back-link">Generate a new privacy policy</a>
+  </div>
+
+  <!-- Results state -->
+  <div id="results-state" style="display:none">
+    <!-- Success header -->
+    <div class="success-header">
+      <div class="success-icon">
+        <span>&#10003;</span>
+      </div>
+      <div class="success-title">Your Privacy Policy</div>
+      <div class="success-sub">Download it, copy the text, or use it right away</div>
+    </div>
+
+    <!-- Hosted URL -->
+    <div class="hosted-url-card">
+      <div class="hosted-label">Hosted Policy URL</div>
+      <div class="hosted-url" id="hosted-url"></div>
+      <div class="hosted-hint">You can link to this URL from your app store listing or website.</div>
+    </div>
+
+    <!-- Export buttons -->
+    <div class="export-buttons">
+      <button id="btn-copy" class="btn btn-secondary" onclick="handleCopy()">Copy Text</button>
+      <button id="btn-download-html" class="btn btn-primary" onclick="handleDownloadHtml()">Download HTML</button>
+      <button id="btn-download-text" class="btn btn-secondary" onclick="handleDownloadText()">Download Text</button>
+    </div>
+
+    <!-- Warnings -->
+    <div id="warnings-section" class="warnings-section" style="display:none">
+      <div class="warnings-title">Review before publishing</div>
+      <div id="warnings-list"></div>
+    </div>
+
+    <!-- Policy preview -->
+    <div class="policy-preview-card">
+      <div class="preview-label">Privacy Policy Preview</div>
+      <div id="policy-preview" class="policy-content"></div>
+    </div>
+
+    <!-- Google Play Helper -->
+    <div id="google-play-section" class="policy-preview-card" style="display:none">
+      <div class="preview-label">Google Play Data Safety Helper</div>
+      <div id="google-play-content" class="policy-content"></div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="disclaimer">
+      <strong>Disclaimer:</strong> This privacy policy is generated from the answers you provided. It is not legal advice. You are responsible for ensuring the policy accurately reflects your app's behavior and complies with applicable laws and platform requirements.
+    </div>
+  </div>
+</div>
+
+</Layout>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-link:hover { text-decoration: none; }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    background: #2563EB;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-icon span {
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+
+  .share-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 24px 16px 80px;
+  }
+
+  /* Loading */
+  .loading-state {
+    text-align: center;
+    padding: 80px 0;
+  }
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #E5E7EB;
+    border-top-color: #2563EB;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 16px;
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  .loading-text {
+    font-size: 15px;
+    color: #6B7280;
+  }
+
+  /* Error */
+  .error-state {
+    text-align: center;
+    padding: 80px 0;
+  }
+  .error-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #FEF2F2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 28px;
+    color: #DC2626;
+    font-weight: 700;
+  }
+  .error-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 8px;
+  }
+  .error-msg {
+    font-size: 15px;
+    color: #6B7280;
+    margin-bottom: 24px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+  }
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 24px;
+    background: #2563EB;
+    color: white;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .back-link:hover {
+    background: #1D4ED8;
+    text-decoration: none;
+  }
+
+  /* Success */
+  .success-header {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .success-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #ECFDF5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+  }
+  .success-icon span {
+    font-size: 28px;
+    color: #059669;
+  }
+  .success-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+  .success-sub {
+    font-size: 15px;
+    color: #6B7280;
+    margin-top: 6px;
+  }
+
+  /* Hosted URL */
+  .hosted-url-card {
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .hosted-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #9CA3AF;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .hosted-url {
+    font-size: 14px;
+    color: #2563EB;
+    font-weight: 500;
+    word-break: break-all;
+    margin-bottom: 6px;
+  }
+  .hosted-hint {
+    font-size: 12px;
+    color: #9CA3AF;
+  }
+
+  /* Export buttons */
+  .export-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid;
+    font-family: inherit;
+  }
+  .btn-primary {
+    background: #2563EB;
+    color: white;
+    border-color: #2563EB;
+  }
+  .btn-primary:hover { background: #1D4ED8; }
+  .btn-secondary {
+    background: white;
+    color: #374151;
+    border-color: #D1D5DB;
+  }
+  .btn-secondary:hover {
+    background: #F9FAFB;
+    border-color: #9CA3AF;
+  }
+
+  /* Warnings */
+  .warnings-section {
+    background: #FFFBEB;
+    border: 1px solid #FDE68A;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+  }
+  .warnings-title {
+    font-weight: 600;
+    color: #92400E;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  .warning-item {
+    font-size: 13px;
+    color: #78350F;
+    margin-bottom: 4px;
+    padding-left: 16px;
+    position: relative;
+  }
+  .warning-item::before {
+    content: '\2022';
+    position: absolute;
+    left: 0;
+  }
+
+  /* Policy preview */
+  .policy-preview-card {
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .preview-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #9CA3AF;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+  }
+  .policy-content {
+    font-family: -apple-system, system-ui, sans-serif;
+    line-height: 1.7;
+    color: #1a1a1a;
+    font-size: 15px;
+  }
+
+  /* Disclaimer */
+  .disclaimer {
+    background: #F9FAFB;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #6B7280;
+    line-height: 1.6;
+  }
+</style>
+
+<script is:inline>
+  var API_BASE = 'https://api.buildprivacypolicy.com';
+  var policyData = null;
+
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var id = params.get('id');
+
+    if (!id) {
+      showError('No policy ID provided. Please use a valid share link.');
+      return;
+    }
+
+    document.getElementById('hosted-url').textContent = API_BASE + '/policy/' + id;
+
+    fetch(API_BASE + '/api/policy/' + id)
+      .then(function(res) {
+        if (!res.ok) throw new Error('Policy not found');
+        return res.json();
+      })
+      .then(function(data) {
+        policyData = data;
+        showResults(data);
+      })
+      .catch(function(err) {
+        showError(err.message || 'Failed to load the policy.');
+      });
+  })();
+
+  function showError(msg) {
+    document.getElementById('loading-state').style.display = 'none';
+    document.getElementById('error-state').style.display = 'block';
+    if (msg) document.getElementById('error-msg').textContent = msg;
+  }
+
+  function showResults(data) {
+    document.getElementById('loading-state').style.display = 'none';
+    document.getElementById('results-state').style.display = 'block';
+
+    if (data.policyHtml) {
+      document.getElementById('policy-preview').innerHTML = data.policyHtml;
+    } else if (data.policyText) {
+      document.getElementById('policy-preview').textContent = data.policyText;
+    }
+
+    if (data.warnings && data.warnings.length > 0) {
+      document.getElementById('warnings-section').style.display = 'block';
+      var list = document.getElementById('warnings-list');
+      data.warnings.forEach(function(w) {
+        var div = document.createElement('div');
+        div.className = 'warning-item';
+        div.textContent = w;
+        list.appendChild(div);
+      });
+    }
+
+    if (data.googlePlayHtml) {
+      document.getElementById('google-play-section').style.display = 'block';
+      document.getElementById('google-play-content').innerHTML = data.googlePlayHtml;
+    }
+  }
+
+  function handleCopy() {
+    if (!policyData) return;
+    var text = policyData.policyText || document.getElementById('policy-preview').textContent;
+    navigator.clipboard.writeText(text).then(function() {
+      var btn = document.getElementById('btn-copy');
+      btn.textContent = 'Copied!';
+      setTimeout(function() { btn.textContent = 'Copy Text'; }, 2500);
+    }).catch(function() {});
+  }
+
+  function handleDownloadHtml() {
+    if (!policyData) return;
+    var html = policyData.standaloneHtml || policyData.policyHtml || '';
+    var blob = new Blob([html], {type: 'text/html'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'privacy-policy.html';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function handleDownloadText() {
+    if (!policyData) return;
+    var text = policyData.policyText || '';
+    var blob = new Blob([text], {type: 'text/plain'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'privacy-policy.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+</script>

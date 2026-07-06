@@ -1,0 +1,1707 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+
+<!-- Sticky Header -->
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <div class="logo-icon"><span>B</span></div>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+  <div id="step-indicator" class="step-indicator">Step 1 of 8</div>
+</div>
+
+<!-- Error Toast -->
+<div id="error-toast" class="error-toast" style="display:none"></div>
+
+<!-- Hero Section -->
+<div class="hero-section">
+  <div class="hero-inner">
+    <h1 class="hero-title">Privacy Policy Generator</h1>
+    <div class="hero-features">
+      <div class="hero-feature">
+        <div class="hero-feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <span class="hero-feature-text">Free Generate</span>
+      </div>
+      <div class="hero-feature">
+        <div class="hero-feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <span class="hero-feature-text">Free Host</span>
+      </div>
+      <div class="hero-feature">
+        <div class="hero-feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </div>
+        <span class="hero-feature-text">Free Download</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======= BUILDER MODE ======= -->
+<div id="builder-mode">
+<div class="builder-container">
+
+  <!-- S01: App Basics -->
+  <div id="s1" data-section="1" class="form-card">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div>
+        <div class="section-title">App Basics</div>
+        <div class="section-sub">Your app, developer info, and platforms</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">App name <span class="required">*</span></label>
+      <input data-field="appName" placeholder="e.g. My Cool App" class="text-input" />
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Developer or company name <span class="required">*</span></label>
+      <input data-field="developerName" placeholder="e.g. Acme Studios" class="text-input" />
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Privacy contact email <span class="required">*</span></label>
+      <input data-field="privacyEmail" placeholder="privacy@example.com" type="email" class="text-input" />
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Platforms <span class="required">*</span></label>
+      <div class="chip-container" data-chip-field="platforms" data-mode="multi">
+        <div class="chip" data-value="android_google_play">Android - Google Play</div>
+        <div class="chip" data-value="android_other_store">Android - Other</div>
+        <div class="chip" data-value="ios_app_store">iOS - App Store</div>
+        <div class="chip" data-value="ipad_macos_other_apple">iPadOS / macOS / Other</div>
+        <div class="chip" data-value="web_app">Web App / PWA</div>
+        <div class="chip" data-value="other">Other</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">App profile <span class="required">*</span></label>
+      <div class="field-hint">We'll prefill answers based on your choice</div>
+      <div class="chip-container" data-chip-field="appProfile" data-mode="single">
+        <div class="chip" data-value="no_data">Simple app - no data</div>
+        <div class="chip" data-value="basic_utility">Basic utility</div>
+        <div class="chip" data-value="analytics_crash">Analytics &amp; crash reporting</div>
+        <div class="chip" data-value="login_account">Login / account-based</div>
+        <div class="chip" data-value="ads_supported">Ad-supported</div>
+        <div class="chip" data-value="commerce_subscription">E-commerce / subscription</div>
+        <div class="chip" data-value="social_content">Social / UGC</div>
+        <div class="chip" data-value="health_fitness">Health / fitness</div>
+        <div class="chip" data-value="kids_education">Kids / education</div>
+        <div class="chip" data-value="finance_sensitive">Finance / sensitive</div>
+        <div class="chip" data-value="custom">Custom / not sure</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">What does the app do? <span class="required">*</span></label>
+      <textarea data-field="appDescription" placeholder="In one sentence..." rows="2" class="text-input textarea-input"></textarea>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Regions <span class="required">*</span></label>
+      <div class="chip-container" data-chip-field="regions" data-mode="multi">
+        <div class="chip" data-value="worldwide">Worldwide</div>
+        <div class="chip" data-value="eu_uk_ch">EU / UK / Switzerland</div>
+        <div class="chip" data-value="us">United States</div>
+        <div class="chip" data-value="california">California</div>
+        <div class="chip" data-value="brazil">Brazil</div>
+        <div class="chip" data-value="canada">Canada</div>
+        <div class="chip" data-value="turkey">Turkey</div>
+        <div class="chip" data-value="india">India</div>
+        <div class="chip" data-value="selected_countries">Selected countries</div>
+        <div class="chip" data-value="private_internal">Private / internal</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S02: Audience & Accounts -->
+  <div data-section="2" class="form-card">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div>
+        <div class="section-title">Audience &amp; Accounts</div>
+        <div class="section-sub">Age, login, and account deletion</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Who is the app for? <span class="required">*</span></label>
+      <div class="chip-container" data-chip-field="targetAudience" data-mode="single">
+        <div class="chip" data-value="adults_18_plus">Adults only (18+)</div>
+        <div class="chip" data-value="teens_13_plus">Users 13+</div>
+        <div class="chip" data-value="general_not_child_directed">General audience</div>
+        <div class="chip" data-value="mixed_with_children">Mixed, may include children</div>
+        <div class="chip" data-value="child_directed">Directed to children</div>
+        <div class="chip" data-value="school_or_enterprise">School / enterprise</div>
+        <div class="chip" data-value="unknown">Not sure</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Does the app have user accounts? <span class="required">*</span></label>
+      <div class="chip-container" data-chip-field="accountMode" data-mode="single">
+        <div class="chip" data-value="no_account">No account / login</div>
+        <div class="chip" data-value="optional_account">Optional account</div>
+        <div class="chip" data-value="required_account">Required account</div>
+        <div class="chip" data-value="third_party_login_only">Third-party login only</div>
+        <div class="chip" data-value="external_account_only">External account only</div>
+        <div class="chip" data-value="unknown">Not sure</div>
+      </div>
+    </div>
+
+    <div id="cond-accountDeletion" class="conditional-section" style="display:none">
+      <div class="field-group">
+        <label class="field-label">How can users delete their account?</label>
+        <div class="chip-container" data-chip-field="accountDeletionPath" data-mode="single">
+          <div class="chip" data-value="full_in_app">Delete in app</div>
+          <div class="chip" data-value="in_app_link_to_web">In-app link to web</div>
+          <div class="chip" data-value="web_form">Web form</div>
+          <div class="chip" data-value="email_request">Email request</div>
+          <div class="chip" data-value="manual_support_request">Manual support</div>
+          <div class="chip" data-value="not_available">Not available yet</div>
+          <div class="chip" data-value="unknown">Not sure</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="cond-deletionUrl" class="conditional-section" style="display:none">
+      <div class="field-group">
+        <label class="field-label">Account deletion URL</label>
+        <div class="field-hint">Required by Google Play if your app has accounts</div>
+        <input data-field="accountDeletionUrl" placeholder="https://example.com/delete-account" type="url" class="text-input" />
+      </div>
+    </div>
+  </div>
+
+  <!-- S03: Data Collection -->
+  <div data-section="3" class="form-card">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div>
+        <div class="section-title">Data Collection</div>
+        <div class="section-sub">What data your app collects and why</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Does personal data leave the device? <span class="required">*</span></label>
+      <div class="field-hint">Include data from your code AND any SDKs</div>
+      <div class="chip-container" data-chip-field="dataLeavesDevice" data-mode="single">
+        <div class="chip" data-value="no_personal_data">No personal data</div>
+        <div class="chip" data-value="local_only">Stays on device</div>
+        <div class="chip" data-value="yes_developer">Sent to developer</div>
+        <div class="chip" data-value="yes_sdks">Sent to SDKs</div>
+        <div class="chip" data-value="yes_both">Developer + third parties</div>
+        <div class="chip" data-value="unknown">Not sure</div>
+      </div>
+    </div>
+
+    <div id="cond-dataDetails" class="conditional-section" style="display:none">
+      <div class="field-group">
+        <label class="field-label">Which data types are collected? <span class="required">*</span></label>
+        <div class="chip-container" data-chip-field="dataCategories" data-mode="multi">
+          <div class="chip" data-value="approx_location">Approx. location</div>
+          <div class="chip" data-value="precise_location">Precise location</div>
+          <div class="chip" data-value="name">Name</div>
+          <div class="chip" data-value="email">Email</div>
+          <div class="chip" data-value="phone">Phone</div>
+          <div class="chip" data-value="address">Address</div>
+          <div class="chip" data-value="user_ids">User IDs</div>
+          <div class="chip" data-value="payment_info">Payment info</div>
+          <div class="chip" data-value="purchase_history">Purchases</div>
+          <div class="chip" data-value="health_fitness">Health/fitness</div>
+          <div class="chip" data-value="messages">Messages/chat</div>
+          <div class="chip" data-value="photos_videos">Photos/videos</div>
+          <div class="chip" data-value="audio_voice">Audio/voice</div>
+          <div class="chip" data-value="files_docs">Files/docs</div>
+          <div class="chip" data-value="contacts">Contacts</div>
+          <div class="chip" data-value="calendar">Calendar</div>
+          <div class="chip" data-value="app_activity">App activity</div>
+          <div class="chip" data-value="web_browsing">Web browsing</div>
+          <div class="chip" data-value="installed_apps">Installed apps</div>
+          <div class="chip" data-value="crash_logs">Crash logs</div>
+          <div class="chip" data-value="diagnostics">Diagnostics</div>
+          <div class="chip" data-value="device_ids">Device IDs / IP</div>
+          <div class="chip" data-value="government_id">Government ID</div>
+          <div class="chip" data-value="biometrics">Biometrics</div>
+          <div class="chip" data-value="other">Other</div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Why is this data used?</label>
+        <div class="chip-container" data-chip-field="dataPurposes" data-mode="multi">
+          <div class="chip" data-value="app_functionality">App functionality</div>
+          <div class="chip" data-value="account_management">Account management</div>
+          <div class="chip" data-value="analytics">Analytics</div>
+          <div class="chip" data-value="crash_performance">Crash reporting</div>
+          <div class="chip" data-value="customer_support">Support</div>
+          <div class="chip" data-value="developer_communications">Communications</div>
+          <div class="chip" data-value="advertising_marketing">Advertising</div>
+          <div class="chip" data-value="personalization">Personalization</div>
+          <div class="chip" data-value="payments">Payments</div>
+          <div class="chip" data-value="security_fraud">Security/fraud</div>
+          <div class="chip" data-value="legal_compliance">Legal compliance</div>
+          <div class="chip" data-value="user_to_user">User-to-user</div>
+          <div class="chip" data-value="ai_feature">AI features</div>
+          <div class="chip" data-value="other">Other</div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Who receives this data?</label>
+        <div class="chip-container" data-chip-field="dataRecipients" data-mode="multi">
+          <div class="chip" data-value="none">No external recipient</div>
+          <div class="chip" data-value="developer_team">Internal team</div>
+          <div class="chip" data-value="cloud_hosting">Cloud hosting</div>
+          <div class="chip" data-value="analytics_provider">Analytics</div>
+          <div class="chip" data-value="crash_provider">Crash reporting</div>
+          <div class="chip" data-value="ad_network">Ad network</div>
+          <div class="chip" data-value="payment_processor">Payment processor</div>
+          <div class="chip" data-value="auth_provider">Auth provider</div>
+          <div class="chip" data-value="support_provider">Support</div>
+          <div class="chip" data-value="messaging_provider">Messaging</div>
+          <div class="chip" data-value="ai_provider">AI provider</div>
+          <div class="chip" data-value="maps_location_provider">Maps/location</div>
+          <div class="chip" data-value="other_users_public">Other users</div>
+          <div class="chip" data-value="legal_authorities">Legal authorities</div>
+          <div class="chip" data-value="business_transfer">Business transfer</div>
+          <div class="chip" data-value="other">Other</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S04: SDKs & Permissions -->
+  <div data-section="4" class="form-card">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div>
+        <div class="section-title">SDKs &amp; Permissions</div>
+        <div class="section-sub">Third-party code and device access</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Third-party SDKs / services <span class="required">*</span></label>
+      <div class="field-hint">Include all libraries in your app</div>
+      <div class="chip-container" data-chip-field="thirdPartySdks" data-mode="multi">
+        <div class="chip" data-value="none">None</div>
+        <div class="chip" data-value="firebase_analytics">Firebase Analytics</div>
+        <div class="chip" data-value="firebase_crashlytics">Firebase Crashlytics</div>
+        <div class="chip" data-value="firebase_auth">Firebase Auth</div>
+        <div class="chip" data-value="firebase_fcm">Firebase FCM</div>
+        <div class="chip" data-value="google_mobile_ads">AdMob</div>
+        <div class="chip" data-value="google_play_billing">Play Billing / IAP</div>
+        <div class="chip" data-value="maps">Maps SDK</div>
+        <div class="chip" data-value="social_login">Social Login</div>
+        <div class="chip" data-value="meta_sdk">Meta/Facebook SDK</div>
+        <div class="chip" data-value="attribution">Attribution SDK</div>
+        <div class="chip" data-value="onesignal">OneSignal</div>
+        <div class="chip" data-value="sentry_bugsnag">Sentry/Bugsnag</div>
+        <div class="chip" data-value="stripe_paypal">Stripe/PayPal</div>
+        <div class="chip" data-value="revenuecat">RevenueCat</div>
+        <div class="chip" data-value="cloud_backend">Cloud Backend</div>
+        <div class="chip" data-value="ai_provider">AI Provider</div>
+        <div class="chip" data-value="other">Other</div>
+        <div class="chip" data-value="unknown">Not sure</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Device permissions <span class="required">*</span></label>
+      <div class="chip-container" data-chip-field="permissions" data-mode="multi">
+        <div class="chip" data-value="none">None</div>
+        <div class="chip" data-value="camera">Camera</div>
+        <div class="chip" data-value="microphone">Microphone</div>
+        <div class="chip" data-value="photos_media">Photos/media</div>
+        <div class="chip" data-value="files_storage">Files/storage</div>
+        <div class="chip" data-value="approx_location">Approx. location</div>
+        <div class="chip" data-value="precise_location">Precise location</div>
+        <div class="chip" data-value="background_location">Background location</div>
+        <div class="chip" data-value="contacts">Contacts</div>
+        <div class="chip" data-value="calendar">Calendar</div>
+        <div class="chip" data-value="sms_call_logs">SMS/call logs</div>
+        <div class="chip" data-value="nearby_bluetooth">Bluetooth</div>
+        <div class="chip" data-value="notifications">Notifications</div>
+        <div class="chip" data-value="health">Health</div>
+        <div class="chip" data-value="biometrics">Biometrics</div>
+        <div class="chip" data-value="motion_fitness">Motion/fitness</div>
+        <div class="chip" data-value="advertising_id">Advertising ID</div>
+        <div class="chip" data-value="accessibility">Accessibility</div>
+        <div class="chip" data-value="installed_apps">Installed apps</div>
+        <div class="chip" data-value="clipboard">Clipboard</div>
+        <div class="chip" data-value="other">Other</div>
+        <div class="chip" data-value="unknown">Not sure</div>
+      </div>
+    </div>
+
+    <div id="cond-bgCollection" class="conditional-section" style="display:none">
+      <div class="field-group">
+        <label class="field-label">Background or unexpected data collection?</label>
+        <div class="field-hint">Does collection happen when users wouldn't expect it?</div>
+        <div class="chip-container" data-chip-field="backgroundCollection" data-mode="single">
+          <div class="chip" data-value="no">No - obvious from features</div>
+          <div class="chip" data-value="yes">Yes - background/not obvious</div>
+          <div class="chip" data-value="sensitive_only">Sensitive permissions only</div>
+          <div class="chip" data-value="unknown">Not sure</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="cond-consent" class="conditional-section" style="display:none">
+      <div class="field-group">
+        <label class="field-label">Consent mechanisms used</label>
+        <div class="chip-container" data-chip-field="consentControls" data-mode="multi">
+          <div class="chip" data-value="os_runtime_permission">OS permission prompt</div>
+          <div class="chip" data-value="in_app_prominent_disclosure">In-app disclosure</div>
+          <div class="chip" data-value="checkbox_toggle">Checkbox/toggle</div>
+          <div class="chip" data-value="apple_att">Apple ATT prompt</div>
+          <div class="chip" data-value="cookie_consent">Cookie consent</div>
+          <div class="chip" data-value="parent_consent">Parent consent</div>
+          <div class="chip" data-value="school_org_consent">School/org consent</div>
+          <div class="chip" data-value="not_needed">Not needed</div>
+          <div class="chip" data-value="none">None currently</div>
+          <div class="chip" data-value="unknown">Not sure</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S05: Ads & Analytics -->
+  <div data-section="5" class="form-card">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div>
+        <div class="section-title">Ads &amp; Analytics</div>
+        <div class="section-sub">Advertising, tracking, and messaging</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Ads and tracking <span class="required">*</span></label>
+      <div class="chip-container" data-chip-field="adsTracking" data-mode="single">
+        <div class="chip" data-value="no_ads">No ads, no tracking</div>
+        <div class="chip" data-value="contextual_ads">Contextual ads only</div>
+        <div class="chip" data-value="personalized_ads">Personalized ads</div>
+        <div class="chip" data-value="attribution_only">Attribution only</div>
+        <div class="chip" data-value="remarketing">Remarketing</div>
+        <div class="chip" data-value="data_broker_or_sale_share">Data sale/share</div>
+        <div class="chip" data-value="unknown">Not sure</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Marketing messages <span class="required">*</span></label>
+      <div class="chip-container" data-chip-field="marketingMessages" data-mode="multi">
+        <div class="chip" data-value="none">No marketing</div>
+        <div class="chip" data-value="service_only">Service messages only</div>
+        <div class="chip" data-value="email_marketing">Email marketing</div>
+        <div class="chip" data-value="push_marketing">Push notifications</div>
+        <div class="chip" data-value="sms_marketing">SMS/WhatsApp</div>
+        <div class="chip" data-value="in_app_promotions">In-app promotions</div>
+        <div class="chip" data-value="unknown">Not sure</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S06: Security & Retention -->
+  <div data-section="6" class="form-card">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div>
+        <div class="section-title">Security &amp; Retention</div>
+        <div class="section-sub">How data is protected and how long it's kept</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Is data encrypted in transit? <span class="required">*</span></label>
+      <div class="chip-container" data-chip-field="encryption" data-mode="single">
+        <div class="chip" data-value="yes_https">Yes - HTTPS/TLS</div>
+        <div class="chip" data-value="no">No</div>
+        <div class="chip" data-value="not_applicable_local_only">N/A - local only</div>
+        <div class="chip" data-value="unknown">Not sure</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">How long is data kept? <span class="required">*</span></label>
+      <div class="chip-container" data-chip-field="retention" data-mode="single">
+        <div class="chip" data-value="no_server_storage">No server storage</div>
+        <div class="chip" data-value="until_account_deleted">Until account deleted</div>
+        <div class="chip" data-value="while_needed_backup_90">As needed + 90d backup</div>
+        <div class="chip" data-value="fixed_period">Fixed period</div>
+        <div class="chip" data-value="legal_business_need">Legal/business need</div>
+        <div class="chip" data-value="unknown">Not sure</div>
+      </div>
+    </div>
+
+    <div id="cond-retentionPeriod" class="conditional-section" style="display:none">
+      <div class="field-group">
+        <label class="field-label">Specify retention period</label>
+        <input data-field="retentionPeriod" placeholder="e.g. 12 months, 2 years" class="text-input" />
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">How can users manage their data? <span class="required">*</span></label>
+      <div class="chip-container" data-chip-field="userRequestMethod" data-mode="multi">
+        <div class="chip" data-value="privacy_email">Privacy email</div>
+        <div class="chip" data-value="web_form">Web form</div>
+        <div class="chip" data-value="in_app_settings">In-app settings</div>
+        <div class="chip" data-value="account_deletion_page">Deletion page</div>
+        <div class="chip" data-value="app_store_controls">App store controls</div>
+        <div class="chip" data-value="not_available">Not available</div>
+        <div class="chip" data-value="unknown">Not sure</div>
+      </div>
+    </div>
+
+    <div id="cond-storageRegion" class="conditional-section" style="display:none">
+      <div class="field-group">
+        <label class="field-label">Where is data stored?</label>
+        <div class="chip-container" data-chip-field="storageRegion" data-mode="single">
+          <div class="chip" data-value="no_server_storage">No server storage</div>
+          <div class="chip" data-value="user_country_only">User's country only</div>
+          <div class="chip" data-value="eu_eea">EU/EEA</div>
+          <div class="chip" data-value="us">United States</div>
+          <div class="chip" data-value="global_cloud">Global cloud</div>
+          <div class="chip" data-value="other">Other</div>
+          <div class="chip" data-value="unknown">Not sure</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S07: High-Risk Checks -->
+  <div data-section="7" class="form-card">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <div>
+        <div class="section-title">High-Risk Checks</div>
+        <div class="section-sub">Sensitive data, children, and AI</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Any high-risk or regulated data? <span class="required">*</span></label>
+      <div class="chip-container" data-chip-field="highRiskData" data-mode="multi">
+        <div class="chip" data-value="none">None</div>
+        <div class="chip" data-value="health_medical">Health/medical</div>
+        <div class="chip" data-value="financial_payment">Financial/payment</div>
+        <div class="chip" data-value="government_id">Government ID</div>
+        <div class="chip" data-value="biometric">Biometric</div>
+        <div class="chip" data-value="precise_background_location">Background location</div>
+        <div class="chip" data-value="children">Children's data</div>
+        <div class="chip" data-value="contacts_messages">Contacts/messages</div>
+        <div class="chip" data-value="sensitive_content">Sensitive content</div>
+        <div class="chip" data-value="special_categories">Special categories</div>
+        <div class="chip" data-value="employment_education">Employment/education</div>
+        <div class="chip" data-value="unknown">Not sure</div>
+      </div>
+    </div>
+
+    <div id="cond-children" class="conditional-section" style="display:none">
+      <div class="field-group">
+        <label class="field-label">Children's privacy model</label>
+        <div class="chip-container" data-chip-field="childrenCompliance" data-mode="single">
+          <div class="chip" data-value="not_child_directed">Not child-directed</div>
+          <div class="chip" data-value="no_personal_data">No personal data</div>
+          <div class="chip" data-value="parent_consent">Parent consent</div>
+          <div class="chip" data-value="school_consent">School consent</div>
+          <div class="chip" data-value="mixed_age_controls">Mixed age controls</div>
+          <div class="chip" data-value="not_ready">Not ready</div>
+          <div class="chip" data-value="unknown">Not sure</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">AI features <span class="required">*</span></label>
+      <div class="chip-container" data-chip-field="aiUse" data-mode="single">
+        <div class="chip" data-value="no_ai">No AI</div>
+        <div class="chip" data-value="on_device_only">On-device only</div>
+        <div class="chip" data-value="ai_provider_no_training">AI provider, no training</div>
+        <div class="chip" data-value="ai_provider_may_train">AI provider, may train</div>
+        <div class="chip" data-value="own_model_training">Own model training</div>
+        <div class="chip" data-value="unknown">Not sure</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S08: Output & Declaration -->
+  <div data-section="8" class="form-card">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <div>
+        <div class="section-title">Output &amp; Declaration</div>
+        <div class="section-sub">Choose outputs and confirm</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">What should we generate?</label>
+      <div class="chip-container" data-chip-field="outputs" data-mode="multi">
+        <div class="chip selected" data-value="privacy_policy">Privacy Policy</div>
+        <div class="chip" data-value="google_play_data_safety_helper">Google Play Helper</div>
+        <div class="chip" data-value="apple_privacy_label_helper">Apple Privacy Helper</div>
+        <div class="chip" data-value="in_app_disclosure">In-app Disclosure</div>
+        <div class="chip" data-value="account_deletion_page">Account Deletion Page</div>
+        <div class="chip" data-value="sdk_permission_checklist">SDK Checklist</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Policy language</label>
+      <div class="chip-container" data-chip-field="language" data-mode="single">
+        <div class="chip selected" data-value="en">English</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Final confirmation <span class="required">*</span></label>
+      <div class="field-hint">You must check all boxes to generate</div>
+
+      <div class="decl-item" data-decl="declAccurate">
+        <div class="decl-checkbox"><span class="decl-check"></span></div>
+        <span class="decl-text">I confirm the answers describe the app's real behavior.</span>
+      </div>
+      <div class="decl-item" data-decl="declSdks">
+        <div class="decl-checkbox"><span class="decl-check"></span></div>
+        <span class="decl-text">I checked third-party SDKs/services or will verify them before publishing.</span>
+      </div>
+      <div class="decl-item" data-decl="declLegal">
+        <div class="decl-checkbox"><span class="decl-check"></span></div>
+        <span class="decl-text">I understand this is not legal advice and not a substitute for a qualified lawyer.</span>
+      </div>
+      <div class="decl-item" data-decl="declUpdate">
+        <div class="decl-checkbox"><span class="decl-check"></span></div>
+        <span class="decl-text">I will update the policy and store answers when the app changes.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Turnstile + Generate Button -->
+  <div class="generate-section">
+    <div class="cf-turnstile" data-sitekey="0x4AAAAAABfMKCaGGVbA8GWd" data-callback="onTurnstileSuccess" data-theme="light" data-size="normal"></div>
+    <button id="generate-btn" class="generate-btn" type="button">
+      Generate Privacy Policy
+    </button>
+    <div class="generate-sub">Free &middot; No signup &middot; Instant</div>
+  </div>
+
+</div>
+</div>
+
+<!-- ======= RESULTS VIEW ======= -->
+<div id="results-mode" style="display:none">
+<div class="results-container">
+
+  <!-- Back button -->
+  <div id="back-to-edit" class="back-btn">
+    <span class="back-arrow">&larr;</span> Back to editor
+  </div>
+
+  <!-- Success header -->
+  <div class="success-header">
+    <div class="success-icon"><span>&#10003;</span></div>
+    <div class="success-title">Your Privacy Policy is Ready</div>
+    <div class="success-sub">Download it, copy the text, or use it right away</div>
+  </div>
+
+  <!-- Hosted URL -->
+  <div id="hosted-url-card" class="hosted-url-card" style="display:none">
+    <div class="hosted-label">Hosted Policy URL</div>
+    <div class="hosted-url" id="result-hosted-url"></div>
+    <div class="hosted-hint">You can link to this URL from your app store listing or website.</div>
+  </div>
+
+  <!-- Export buttons -->
+  <div class="export-buttons">
+    <button id="btn-copy" class="btn btn-secondary" type="button">Copy Text</button>
+    <button id="btn-dl-html" class="btn btn-primary" type="button">Download HTML</button>
+    <button id="btn-dl-text" class="btn btn-secondary" type="button">Download Text</button>
+  </div>
+
+  <!-- Warnings -->
+  <div id="result-warnings" class="warnings-section" style="display:none">
+    <div class="warnings-title">Review before publishing</div>
+    <div id="warnings-list"></div>
+  </div>
+
+  <!-- Policy preview -->
+  <div class="policy-preview-card">
+    <div class="preview-label">Privacy Policy Preview</div>
+    <div id="policy-preview" class="policy-content"></div>
+  </div>
+
+  <!-- Google Play Helper -->
+  <div id="google-play-card" class="policy-preview-card" style="display:none">
+    <div class="preview-label">Google Play Data Safety Helper</div>
+    <div id="google-play-content" class="policy-content"></div>
+  </div>
+
+  <!-- Disclaimer -->
+  <div class="disclaimer">
+    <strong>Disclaimer:</strong> This privacy policy is generated from the answers you provided. It is not legal advice. You are responsible for ensuring the policy accurately reflects your app's behavior and complies with applicable laws and platform requirements.
+  </div>
+
+</div>
+</div>
+
+</Layout>
+
+<style>
+  /* Header */
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-link:hover { text-decoration: none; }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    background: #2563EB;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-icon span {
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+  .step-indicator {
+    font-size: 13px;
+    color: #6B7280;
+    background: #F3F4F6;
+    padding: 5px 14px;
+    border-radius: 16px;
+    font-weight: 500;
+  }
+
+  /* Error toast */
+  .error-toast {
+    position: fixed;
+    top: 72px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 200;
+    background: #FEF2F2;
+    color: #991B1B;
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: 1px solid #FECACA;
+    font-size: 14px;
+    max-width: 480px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    animation: fadeUp 0.3s ease;
+  }
+
+  /* Builder container */
+  .builder-container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 24px 16px 80px;
+  }
+
+  /* Intro */
+  /* Hero */
+  .hero-section {
+    max-height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #2563EB 0%, #1E40AF 100%);
+    padding: 20px 16px;
+    box-sizing: border-box;
+  }
+  .hero-inner {
+    text-align: center;
+    max-width: 700px;
+    width: 100%;
+  }
+  .hero-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: -0.5px;
+    margin: 0 0 16px;
+  }
+  .hero-features {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .hero-feature {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hero-feature-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+  .hero-feature-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+  }
+  @media (max-width: 500px) {
+    .hero-features { gap: 16px; }
+    .hero-feature-icon { width: 30px; height: 30px; }
+    .hero-feature-icon svg { width: 16px; height: 16px; }
+    .hero-feature-text { font-size: 13px; }
+    .hero-title { font-size: 18px; }
+  }
+
+  /* Form cards */
+  .form-card {
+    background: white;
+    border-radius: 12px;
+    padding: 28px 28px 8px;
+    margin-bottom: 14px;
+    border: 1px solid #E5E7EB;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .section-num {
+    min-width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: #EFF6FF;
+    color: #2563EB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .section-title {
+    font-weight: 700;
+    font-size: 17px;
+    color: #111827;
+  }
+  .section-sub {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-top: 1px;
+  }
+
+  /* Fields */
+  .field-group {
+    margin-bottom: 20px;
+  }
+  .field-label {
+    display: block;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+  .field-hint {
+    font-size: 12px;
+    color: #9CA3AF;
+    margin-bottom: 8px;
+  }
+  .required {
+    color: #DC2626;
+  }
+
+  /* Text inputs */
+  .text-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    font-family: inherit;
+    background: white;
+    color: #111827;
+  }
+  .textarea-input {
+    resize: vertical;
+  }
+
+  /* Chips */
+  .chip-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 14px;
+    border-radius: 18px;
+    cursor: pointer;
+    font-size: 13px;
+    background: white;
+    color: #374151;
+    border: 1.5px solid #D1D5DB;
+    user-select: none;
+    transition: all 0.15s ease;
+    font-family: inherit;
+  }
+  .chip:hover {
+    filter: brightness(0.93);
+  }
+  .chip.selected {
+    background: #2563EB;
+    color: white;
+    border-color: #2563EB;
+  }
+
+  /* Conditional sections */
+  .conditional-section {
+    overflow: hidden;
+  }
+
+  /* Declarations */
+  .decl-item {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: #FAFAFA;
+    border: 1px solid #F3F4F6;
+  }
+  .decl-item:hover {
+    background: #F3F4F6;
+  }
+  .decl-checkbox {
+    min-width: 18px;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    border: 2px solid #D1D5DB;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+  }
+  .decl-item.checked .decl-checkbox {
+    border-color: #2563EB;
+    background: #2563EB;
+  }
+  .decl-check {
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    display: none;
+  }
+  .decl-item.checked .decl-check {
+    display: inline;
+  }
+  .decl-text {
+    font-size: 13px;
+    color: #374151;
+    line-height: 1.5;
+  }
+
+  /* Generate button */
+  .generate-section {
+    text-align: center;
+    padding: 8px 0 24px;
+  }
+  .generate-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 48px;
+    background: #2563EB;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    letter-spacing: -0.2px;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.25);
+    transition: background 0.15s ease;
+  }
+  .generate-btn:hover {
+    background: #1D4ED8;
+  }
+  .generate-btn:active {
+    transform: scale(0.98);
+  }
+  .generate-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  .generate-sub {
+    font-size: 12px;
+    color: #9CA3AF;
+    margin-top: 10px;
+  }
+
+  /* Results container */
+  .results-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 24px 16px 80px;
+    animation: fadeUp 0.4s ease;
+  }
+
+  /* Back button */
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #6B7280;
+    margin-bottom: 20px;
+  }
+  .back-btn:hover {
+    background: #F3F4F6;
+    color: #111827;
+  }
+  .back-arrow {
+    font-size: 18px;
+  }
+
+  /* Success header */
+  .success-header {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .success-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #ECFDF5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+  }
+  .success-icon span {
+    font-size: 28px;
+    color: #059669;
+  }
+  .success-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+  .success-sub {
+    font-size: 15px;
+    color: #6B7280;
+    margin-top: 6px;
+  }
+
+  /* Hosted URL card */
+  .hosted-url-card {
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .hosted-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #9CA3AF;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .hosted-url {
+    font-size: 14px;
+    color: #2563EB;
+    font-weight: 500;
+    word-break: break-all;
+    margin-bottom: 6px;
+  }
+  .hosted-hint {
+    font-size: 12px;
+    color: #9CA3AF;
+  }
+
+  /* Export buttons */
+  .export-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid;
+    font-family: inherit;
+    transition: all 0.15s ease;
+  }
+  .btn-primary {
+    background: #2563EB;
+    color: white;
+    border-color: #2563EB;
+  }
+  .btn-primary:hover { background: #1D4ED8; }
+  .btn-secondary {
+    background: white;
+    color: #374151;
+    border-color: #D1D5DB;
+  }
+  .btn-secondary:hover {
+    background: #F9FAFB;
+    border-color: #9CA3AF;
+  }
+
+  /* Warnings */
+  .warnings-section {
+    background: #FFFBEB;
+    border: 1px solid #FDE68A;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+  }
+  .warnings-title {
+    font-weight: 600;
+    color: #92400E;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  /* Policy preview */
+  .policy-preview-card {
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .preview-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #9CA3AF;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+  }
+  .policy-content {
+    font-family: -apple-system, system-ui, sans-serif;
+    line-height: 1.7;
+    color: #1a1a1a;
+    font-size: 15px;
+  }
+
+  /* Disclaimer */
+  .disclaimer {
+    background: #F9FAFB;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #6B7280;
+    line-height: 1.6;
+  }
+</style>
+
+<script is:inline>
+(function() {
+  var API_BASE = 'https://api.buildprivacypolicy.com';
+
+  // ===== STATE =====
+  var state = {
+    appName: '', developerName: '', privacyEmail: '',
+    platforms: [], appProfile: '', appDescription: '', regions: [],
+    targetAudience: '', accountMode: '', accountDeletionPath: '', accountDeletionUrl: '',
+    dataLeavesDevice: '', dataCategories: [], dataPurposes: [], dataRecipients: [],
+    thirdPartySdks: [], permissions: [], backgroundCollection: '', consentControls: [],
+    adsTracking: '', marketingMessages: [],
+    encryption: '', retention: '', retentionPeriod: '', userRequestMethod: [], storageRegion: '',
+    highRiskData: [], childrenCompliance: '', aiUse: '',
+    outputs: ['privacy_policy'], language: 'en',
+    declAccurate: false, declSdks: false, declLegal: false, declUpdate: false
+  };
+
+  // Result data
+  var resultData = {
+    policyHtml: '', policyText: '', standaloneHtml: '', googlePlayHtml: '',
+    warnings: [], policyId: ''
+  };
+
+  var turnstileToken = '';
+  var errorTimeout = null;
+
+  // ===== PRESETS =====
+  var presets = {
+    no_data: {
+      dataLeavesDevice: 'no_personal_data', dataCategories: [], dataPurposes: [], dataRecipients: [],
+      thirdPartySdks: ['none'], permissions: ['none'], adsTracking: 'no_ads',
+      marketingMessages: ['none'], encryption: 'not_applicable_local_only', retention: 'no_server_storage',
+      highRiskData: ['none'], aiUse: 'no_ai', consentControls: ['not_needed'],
+      accountMode: 'no_account', backgroundCollection: 'no'
+    },
+    basic_utility: {
+      dataLeavesDevice: 'no_personal_data', dataCategories: [], dataPurposes: [], dataRecipients: [],
+      thirdPartySdks: ['none'], permissions: ['none'], adsTracking: 'no_ads',
+      marketingMessages: ['none'], encryption: 'not_applicable_local_only', retention: 'no_server_storage',
+      highRiskData: ['none'], aiUse: 'no_ai'
+    },
+    analytics_crash: {
+      dataLeavesDevice: 'yes_sdks',
+      thirdPartySdks: ['firebase_analytics', 'firebase_crashlytics'],
+      dataCategories: ['app_activity', 'crash_logs', 'diagnostics', 'device_ids'],
+      dataPurposes: ['analytics', 'crash_performance'],
+      dataRecipients: ['analytics_provider', 'crash_provider'],
+      adsTracking: 'no_ads', encryption: 'yes_https', retention: 'while_needed_backup_90',
+      marketingMessages: ['none'], highRiskData: ['none'], backgroundCollection: 'no'
+    },
+    login_account: {
+      accountMode: 'required_account', dataLeavesDevice: 'yes_developer',
+      dataCategories: ['email', 'user_ids'],
+      dataPurposes: ['account_management', 'app_functionality'],
+      dataRecipients: ['developer_team', 'cloud_hosting'],
+      thirdPartySdks: ['firebase_auth', 'cloud_backend'],
+      encryption: 'yes_https', retention: 'until_account_deleted',
+      adsTracking: 'no_ads', marketingMessages: ['none'], highRiskData: ['none']
+    },
+    ads_supported: {
+      dataLeavesDevice: 'yes_both',
+      thirdPartySdks: ['google_mobile_ads', 'firebase_analytics', 'firebase_crashlytics'],
+      dataCategories: ['device_ids', 'app_activity', 'crash_logs', 'diagnostics'],
+      dataPurposes: ['advertising_marketing', 'analytics', 'crash_performance'],
+      dataRecipients: ['ad_network', 'analytics_provider', 'crash_provider'],
+      adsTracking: 'personalized_ads', encryption: 'yes_https',
+      retention: 'while_needed_backup_90', marketingMessages: ['none'], highRiskData: ['none']
+    },
+    commerce_subscription: {
+      accountMode: 'required_account', dataLeavesDevice: 'yes_both',
+      thirdPartySdks: ['firebase_analytics', 'stripe_paypal', 'cloud_backend'],
+      dataCategories: ['email', 'user_ids', 'payment_info', 'purchase_history'],
+      dataPurposes: ['app_functionality', 'account_management', 'payments', 'analytics'],
+      dataRecipients: ['developer_team', 'cloud_hosting', 'payment_processor', 'analytics_provider'],
+      encryption: 'yes_https', retention: 'until_account_deleted',
+      adsTracking: 'no_ads', marketingMessages: ['service_only'], highRiskData: ['financial_payment']
+    },
+    social_content: {
+      accountMode: 'required_account', dataLeavesDevice: 'yes_developer',
+      dataCategories: ['email', 'user_ids', 'photos_videos', 'messages'],
+      dataPurposes: ['app_functionality', 'account_management', 'user_to_user'],
+      dataRecipients: ['developer_team', 'cloud_hosting', 'other_users_public'],
+      thirdPartySdks: ['firebase_auth', 'firebase_fcm', 'cloud_backend'],
+      encryption: 'yes_https', retention: 'until_account_deleted',
+      adsTracking: 'no_ads', highRiskData: ['sensitive_content']
+    },
+    health_fitness: {
+      dataLeavesDevice: 'yes_developer',
+      dataCategories: ['health_fitness', 'email', 'user_ids'],
+      dataPurposes: ['app_functionality', 'account_management'],
+      dataRecipients: ['developer_team', 'cloud_hosting'],
+      encryption: 'yes_https', highRiskData: ['health_medical'],
+      thirdPartySdks: ['cloud_backend'], retention: 'until_account_deleted'
+    },
+    kids_education: {
+      targetAudience: 'child_directed', dataLeavesDevice: 'no_personal_data',
+      thirdPartySdks: ['none'], adsTracking: 'no_ads', highRiskData: ['children'],
+      marketingMessages: ['none'], permissions: ['none']
+    },
+    finance_sensitive: {
+      accountMode: 'required_account', dataLeavesDevice: 'yes_developer',
+      dataCategories: ['email', 'user_ids', 'payment_info', 'government_id'],
+      dataPurposes: ['app_functionality', 'account_management', 'security_fraud', 'legal_compliance'],
+      dataRecipients: ['developer_team', 'cloud_hosting', 'payment_processor'],
+      encryption: 'yes_https', highRiskData: ['financial_payment', 'government_id'],
+      thirdPartySdks: ['cloud_backend', 'stripe_paypal'], retention: 'legal_business_need'
+    }
+  };
+
+  // ===== DOM HELPERS =====
+  function $(sel) { return document.querySelector(sel); }
+  function $$(sel) { return document.querySelectorAll(sel); }
+
+  function showError(msg) {
+    var toast = $('#error-toast');
+    toast.textContent = msg;
+    toast.style.display = 'block';
+    if (errorTimeout) clearTimeout(errorTimeout);
+    errorTimeout = setTimeout(function() {
+      toast.style.display = 'none';
+    }, 5000);
+  }
+
+  function hideError() {
+    $('#error-toast').style.display = 'none';
+  }
+
+  // ===== CHIP RENDERING =====
+  function updateChipUI(field) {
+    var containers = $$('[data-chip-field="' + field + '"]');
+    containers.forEach(function(container) {
+      var mode = container.getAttribute('data-mode');
+      var chips = container.querySelectorAll('.chip');
+      chips.forEach(function(chip) {
+        var val = chip.getAttribute('data-value');
+        var isSelected;
+        if (mode === 'single') {
+          isSelected = state[field] === val;
+        } else {
+          isSelected = (state[field] || []).indexOf(val) !== -1;
+        }
+        if (isSelected) {
+          chip.classList.add('selected');
+        } else {
+          chip.classList.remove('selected');
+        }
+      });
+    });
+  }
+
+  function updateAllChips() {
+    var fields = [];
+    $$('[data-chip-field]').forEach(function(c) {
+      var f = c.getAttribute('data-chip-field');
+      if (fields.indexOf(f) === -1) fields.push(f);
+    });
+    fields.forEach(updateChipUI);
+  }
+
+  // ===== CONDITIONAL VISIBILITY =====
+  function updateConditionals() {
+    var s = state;
+    var hasAccount = s.accountMode && s.accountMode !== 'no_account';
+    var collectsData = s.dataLeavesDevice && ['no_personal_data', 'local_only', ''].indexOf(s.dataLeavesDevice) === -1;
+    var sensitivePerms = (s.permissions || []).some(function(p) {
+      return ['precise_location', 'background_location', 'contacts', 'sms_call_logs', 'health', 'camera', 'microphone', 'photos_media', 'audio_voice'].indexOf(p) !== -1;
+    });
+    var showChildren = ['mixed_with_children', 'child_directed', 'school_or_enterprise', 'unknown'].indexOf(s.targetAudience) !== -1;
+
+    toggle('cond-accountDeletion', hasAccount);
+    toggle('cond-deletionUrl', hasAccount && (s.platforms || []).indexOf('android_google_play') !== -1);
+    toggle('cond-dataDetails', collectsData);
+    toggle('cond-bgCollection', collectsData || sensitivePerms);
+    toggle('cond-consent',
+      s.backgroundCollection === 'yes' || s.backgroundCollection === 'sensitive_only' || s.backgroundCollection === 'unknown' ||
+      s.adsTracking === 'personalized_ads' || s.adsTracking === 'remarketing' || showChildren
+    );
+    toggle('cond-retentionPeriod', s.retention === 'fixed_period');
+    toggle('cond-storageRegion', collectsData);
+    toggle('cond-children', showChildren);
+  }
+
+  function toggle(id, show) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = show ? 'block' : 'none';
+  }
+
+  // ===== DECLARATION CHECKBOX =====
+  function updateDeclUI() {
+    $$('.decl-item').forEach(function(item) {
+      var field = item.getAttribute('data-decl');
+      if (state[field]) {
+        item.classList.add('checked');
+      } else {
+        item.classList.remove('checked');
+      }
+    });
+  }
+
+  // ===== TEXT INPUT SYNC =====
+  function syncTextInputs() {
+    $$('input[data-field], textarea[data-field]').forEach(function(el) {
+      var f = el.getAttribute('data-field');
+      if (state[f] !== undefined && el.value !== state[f]) {
+        el.value = state[f];
+      }
+    });
+  }
+
+  // ===== APPLY PRESET =====
+  function applyPreset(profile) {
+    if (!presets[profile]) return;
+    var p = presets[profile];
+    for (var key in p) {
+      if (p.hasOwnProperty(key)) {
+        state[key] = Array.isArray(p[key]) ? p[key].slice() : p[key];
+      }
+    }
+    updateAllChips();
+    updateConditionals();
+    updateDeclUI();
+    syncTextInputs();
+  }
+
+  // ===== EVENT DELEGATION =====
+  document.addEventListener('click', function(e) {
+    // Chip click
+    var chip = e.target.closest('.chip');
+    if (chip) {
+      var container = chip.closest('[data-chip-field]');
+      if (!container) return;
+      var field = container.getAttribute('data-chip-field');
+      var mode = container.getAttribute('data-mode');
+      var val = chip.getAttribute('data-value');
+      if (!field || !val) return;
+
+      hideError();
+
+      if (mode === 'single') {
+        // Toggle: click selected => deselect, click other => select
+        state[field] = state[field] === val ? '' : val;
+        // If appProfile changed, apply preset
+        if (field === 'appProfile' && state[field]) {
+          applyPreset(state[field]);
+        }
+      } else {
+        // Multi-select with exclusive logic
+        var excl = ['none', 'not_needed'];
+        var cur = (state[field] || []).slice();
+        if (excl.indexOf(val) !== -1) {
+          // Clicking exclusive: toggle it, clear others
+          state[field] = cur.indexOf(val) !== -1 ? [] : [val];
+        } else {
+          // Clicking non-exclusive: remove any exclusive items first
+          var filtered = cur.filter(function(x) { return excl.indexOf(x) === -1; });
+          var idx = filtered.indexOf(val);
+          if (idx !== -1) {
+            filtered.splice(idx, 1);
+          } else {
+            filtered.push(val);
+          }
+          state[field] = filtered;
+        }
+      }
+
+      updateChipUI(field);
+      updateConditionals();
+      return;
+    }
+
+    // Declaration checkbox click
+    var declItem = e.target.closest('.decl-item');
+    if (declItem) {
+      var declField = declItem.getAttribute('data-decl');
+      if (declField) {
+        hideError();
+        state[declField] = !state[declField];
+        updateDeclUI();
+      }
+      return;
+    }
+
+    // Back to edit
+    if (e.target.closest('#back-to-edit')) {
+      $('#results-mode').style.display = 'none';
+      $('#builder-mode').style.display = 'block';
+      $('#step-indicator').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    // Generate button
+    if (e.target.closest('#generate-btn')) {
+      handleGenerate();
+      return;
+    }
+
+    // Copy button
+    if (e.target.closest('#btn-copy')) {
+      handleCopy();
+      return;
+    }
+
+    // Download HTML
+    if (e.target.closest('#btn-dl-html')) {
+      handleDownloadHtml();
+      return;
+    }
+
+    // Download Text
+    if (e.target.closest('#btn-dl-text')) {
+      handleDownloadText();
+      return;
+    }
+  });
+
+  // Text input handling
+  document.addEventListener('input', function(e) {
+    var field = e.target.getAttribute('data-field');
+    if (field && state.hasOwnProperty(field)) {
+      state[field] = e.target.value;
+      hideError();
+    }
+  });
+
+  // ===== TURNSTILE CALLBACK =====
+  window.onTurnstileSuccess = function(token) {
+    turnstileToken = token;
+  };
+
+  // ===== GENERATE =====
+  function handleGenerate() {
+    var s = state;
+
+    // Validation
+    if (!s.appName || !s.appName.trim()) { showError('Please enter the app name'); return; }
+    if (!s.developerName || !s.developerName.trim()) { showError('Please enter the developer name'); return; }
+    if (!s.privacyEmail || !s.privacyEmail.trim()) { showError('Please enter a privacy email'); return; }
+    if (!s.platforms || !s.platforms.length) { showError('Please select at least one platform'); return; }
+    if (!s.appDescription || !s.appDescription.trim()) { showError('Please describe what the app does'); return; }
+    if (!s.regions || !s.regions.length) { showError('Please select at least one region'); return; }
+    if (!s.declAccurate || !s.declSdks || !s.declLegal || !s.declUpdate) {
+      showError('Please check all declaration boxes in Step 8');
+      return;
+    }
+
+    var btn = $('#generate-btn');
+    btn.disabled = true;
+    btn.textContent = 'Generating...';
+
+    var payload = {
+      appName: s.appName.trim(),
+      developerName: s.developerName.trim(),
+      privacyEmail: s.privacyEmail.trim(),
+      platforms: s.platforms,
+      appProfile: s.appProfile,
+      appDescription: s.appDescription.trim(),
+      regions: s.regions,
+      targetAudience: s.targetAudience,
+      accountMode: s.accountMode,
+      accountDeletionPath: s.accountDeletionPath,
+      accountDeletionUrl: s.accountDeletionUrl,
+      dataLeavesDevice: s.dataLeavesDevice,
+      dataCategories: s.dataCategories,
+      dataPurposes: s.dataPurposes,
+      dataRecipients: s.dataRecipients,
+      thirdPartySdks: s.thirdPartySdks,
+      permissions: s.permissions,
+      backgroundCollection: s.backgroundCollection,
+      consentControls: s.consentControls,
+      adsTracking: s.adsTracking,
+      marketingMessages: s.marketingMessages,
+      encryption: s.encryption,
+      retention: s.retention,
+      retentionPeriod: s.retentionPeriod,
+      userRequestMethod: s.userRequestMethod,
+      storageRegion: s.storageRegion,
+      highRiskData: s.highRiskData,
+      childrenCompliance: s.childrenCompliance,
+      aiUse: s.aiUse,
+      outputs: s.outputs,
+      language: s.language,
+      declAccurate: s.declAccurate,
+      declSdks: s.declSdks,
+      declLegal: s.declLegal,
+      declUpdate: s.declUpdate,
+      turnstileToken: turnstileToken
+    };
+
+    fetch(API_BASE + '/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function(res) {
+      if (!res.ok) {
+        return res.json().then(function(data) {
+          throw new Error(data.error || data.message || 'Generation failed');
+        }).catch(function(parseErr) {
+          if (parseErr.message && parseErr.message !== 'Generation failed') throw parseErr;
+          throw new Error('Server error (' + res.status + ')');
+        });
+      }
+      return res.json();
+    })
+    .then(function(data) {
+      btn.disabled = false;
+      btn.textContent = 'Generate Privacy Policy';
+
+      resultData.policyHtml = data.policyHtml || '';
+      resultData.policyText = data.policyText || '';
+      resultData.standaloneHtml = data.standaloneHtml || data.policyHtml || '';
+      resultData.googlePlayHtml = data.googlePlayHtml || '';
+      resultData.warnings = data.warnings || [];
+      resultData.policyId = data.uuid || '';
+
+      showResults();
+    })
+    .catch(function(err) {
+      btn.disabled = false;
+      btn.textContent = 'Generate Privacy Policy';
+      showError(err.message || 'Generation failed. Please try again.');
+    });
+  }
+
+  // ===== SHOW RESULTS =====
+  function showResults() {
+    $('#builder-mode').style.display = 'none';
+    $('#step-indicator').style.display = 'none';
+    $('#results-mode').style.display = 'block';
+
+    // Policy preview
+    if (resultData.policyHtml) {
+      $('#policy-preview').innerHTML = resultData.policyHtml;
+    } else if (resultData.policyText) {
+      $('#policy-preview').textContent = resultData.policyText;
+    }
+
+    // Hosted URL
+    if (resultData.policyId) {
+      var hostedCard = $('#hosted-url-card');
+      hostedCard.style.display = 'block';
+      $('#result-hosted-url').textContent = API_BASE + '/policy/' + resultData.policyId;
+    }
+
+    // Google Play Helper
+    if (resultData.googlePlayHtml && state.outputs.indexOf('google_play_data_safety_helper') !== -1) {
+      $('#google-play-card').style.display = 'block';
+      $('#google-play-content').innerHTML = resultData.googlePlayHtml;
+    }
+
+    // Warnings
+    if (resultData.warnings.length > 0) {
+      var warningsEl = $('#result-warnings');
+      warningsEl.style.display = 'block';
+      var listEl = $('#warnings-list');
+      listEl.innerHTML = '';
+      resultData.warnings.forEach(function(w) {
+        var div = document.createElement('div');
+        div.style.cssText = 'font-size:13px;color:#78350F;margin-bottom:4px;padding-left:16px;position:relative';
+        div.innerHTML = '<span style="position:absolute;left:0">•</span>' + escapeHtml(w);
+        listEl.appendChild(div);
+      });
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  // ===== EXPORT HANDLERS =====
+  function handleCopy() {
+    var text = resultData.policyText || $('#policy-preview').textContent;
+    navigator.clipboard.writeText(text).then(function() {
+      var btn = $('#btn-copy');
+      btn.textContent = 'Copied!';
+      setTimeout(function() { btn.textContent = 'Copy Text'; }, 2500);
+    }).catch(function() {});
+  }
+
+  function handleDownloadHtml() {
+    var html = resultData.standaloneHtml || resultData.policyHtml;
+    if (!html) return;
+    var blob = new Blob([html], { type: 'text/html' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'privacy-policy-' + (state.appName || 'app').toLowerCase().replace(/[^a-z0-9]+/g, '-') + '.html';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function handleDownloadText() {
+    var text = resultData.policyText;
+    if (!text) return;
+    var blob = new Blob([text], { type: 'text/plain' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'privacy-policy-' + (state.appName || 'app').toLowerCase().replace(/[^a-z0-9]+/g, '-') + '.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  // ===== INTERSECTION OBSERVER FOR STEP INDICATOR =====
+  var observer = new IntersectionObserver(function(entries) {
+    for (var i = 0; i < entries.length; i++) {
+      if (entries[i].isIntersecting && entries[i].intersectionRatio > 0.15) {
+        var step = parseInt(entries[i].target.getAttribute('data-section'));
+        if (step) {
+          $('#step-indicator').textContent = 'Step ' + step + ' of 8';
+        }
+      }
+    }
+  }, { threshold: 0.15, rootMargin: '-60px 0px 0px 0px' });
+
+  // Observe sections after DOM is ready
+  setTimeout(function() {
+    $$('[data-section]').forEach(function(el) {
+      observer.observe(el);
+    });
+  }, 300);
+
+  // Initialize: set default selected chips
+  updateAllChips();
+  updateConditionals();
+  updateDeclUI();
+
+})();
+</script>
+
