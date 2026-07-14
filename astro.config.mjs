@@ -6,5 +6,13 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://buildprivacypolicy.com',
   trailingSlash: 'always',
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      filter: (page) => page !== 'https://buildprivacypolicy.com/share/',
+      serialize: (item) => {
+        item.lastmod = new Date();
+        return item;
+      },
+    }),
+  ],
 });
