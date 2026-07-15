@@ -728,6 +728,12 @@ import Layout from '../layouts/Layout.astro';
   }
 
   /* Builder container */
+  /* CLS guard (desktop CWV fix): reserve the builder's final space up front so
+     late-rendering content inside it cannot shift the initial viewport layout.
+     The form's natural height far exceeds 100vh, so this never changes visuals. */
+  #builder-mode {
+    min-height: 100vh;
+  }
   .builder-container {
     max-width: 680px;
     margin: 0 auto;
@@ -950,6 +956,13 @@ import Layout from '../layouts/Layout.astro';
   .generate-section {
     text-align: center;
     padding: 8px 0 24px;
+  }
+  /* CLS guard: the Cloudflare Turnstile widget (data-size="normal") renders a
+     300x65 iframe asynchronously — it is the only dynamically injected in-flow
+     element inside #builder-mode. Reserve its box so the injection cannot shift
+     the generate button or anything below it. */
+  .cf-turnstile {
+    min-height: 65px;
   }
   .generate-btn {
     display: inline-flex;
