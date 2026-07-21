@@ -746,14 +746,18 @@ import Layout from '../layouts/Layout.astro';
 
   /* Intro */
   /* Hero */
+  /* CLS guard (desktop CWV fix): lock the hero to a fixed height so that
+     font-swap reflow (DM Sans replacing system fallback) cannot change its
+     rendered height and shift #builder-mode below it. */
   .hero-section {
-    max-height: 20vh;
+    height: 20vh;
     display: flex;
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, #2563EB 0%, #1E40AF 100%);
     padding: 20px 16px;
     box-sizing: border-box;
+    overflow: hidden;
   }
   .hero-inner {
     text-align: center;
@@ -998,7 +1002,7 @@ import Layout from '../layouts/Layout.astro';
   }
   .generate-sub {
     font-size: 12px;
-    color: #9CA3AF;
+    color: #6B7280;
     margin-top: 10px;
   }
 

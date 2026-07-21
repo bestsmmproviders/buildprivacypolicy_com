@@ -42,9 +42,9 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" /></noscript>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=optional" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=optional" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=optional" rel="stylesheet" /></noscript>
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   </head>
   <body>
@@ -56,6 +56,11 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
         <a href="/privacy-policy/">Privacy Policy</a>
         <span class="footer-sep">&middot;</span>
         <a href="/terms/">Terms of Service</a>
+      </div>
+      <div class="footer-resources">
+        <a href="/resources/how-to-write-privacy-policy-for-app/">App Privacy Policy Guide</a>
+        <span class="footer-sep">&middot;</span>
+        <a href="/resources/wix-privacy-policy-generator/">Wix Privacy Policy Generator</a>
       </div>
       <div class="footer-copy">&copy; 2026 BuildPrivacyPolicy by HorizonTD</div>
     </footer>
@@ -113,9 +118,19 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
     margin: 0 8px;
     color: #D1D5DB;
   }
+  .footer-resources {
+    margin-bottom: 8px;
+  }
+  .footer-resources a {
+    color: #6B7280;
+    font-size: 13px;
+  }
+  .footer-resources a:hover {
+    color: #2563EB;
+  }
   .footer-copy {
     font-size: 12px;
-    color: #9CA3AF;
+    color: #6B7280;
     margin-top: 4px;
   }
 </style>

@@ -4,6 +4,7 @@ import Layout from '../../../layouts/Layout.astro';
 const title = "Wix Privacy Policy Generator - Free Generator for Wix Sites";
 const description = "Generate a free privacy policy for your Wix website. Learn what to include, why Wix sites need one, and how to add a privacy policy to your Wix site in minutes.";
 const publishDate = "2026-07-18";
+const modifiedDate = "2026-07-21";
 ---
 
 <Layout title={title} description={description}>
@@ -17,15 +18,16 @@ const publishDate = "2026-07-18";
   </div>
 </div>
 
+<main>
 <article class="page-container">
   <div class="page-card">
     <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
     <h1>Wix Privacy Policy Generator</h1>
     <p class="last-updated">Published July 18, 2026</p>
 
-    <p>Wix does not include a built-in privacy policy generator. To create a privacy policy for your Wix website, you need a third-party generator that asks about your site's data practices and produces a compliant document you can add to your pages. A <a href="https://buildprivacypolicy.com/">free privacy policy generator for your Wix site</a> walks you through a step-by-step form covering data collection, third-party services, and applicable laws, then gives you a ready-to-publish policy in minutes with no signup required.</p>
+    <p>Wix does not ship a built-in privacy policy generator. The platform gives you a cookie consent banner and some GDPR toggles in the dashboard, but those are not substitutes for a full privacy policy document. To get one, you need a third-party tool. A <a href="https://buildprivacypolicy.com/">free privacy policy generator for your Wix site</a> asks targeted questions about your site's data practices, the third-party services you use (Google Analytics, Mailchimp, Stripe, Facebook Pixel, and so on), and which privacy laws apply to your visitors, then outputs a ready-to-publish policy you can paste into a Wix page. No signup, no payment.</p>
 
-    <p>Whether you run a Wix portfolio site, blog, online store, or service business, privacy laws and platform best practices expect you to have a privacy policy. This guide explains why your Wix site needs one, what it should cover, how to add it, and how to generate one quickly.</p>
+    <p>This guide covers the full picture for Wix site owners: why you need a privacy policy even if Wix does not force one on you, what the document must include to satisfy the GDPR and CCPA, how to add it to your Wix site step by step, and how to generate one in minutes rather than drafting from scratch.</p>
 
     <nav class="toc">
       <p class="toc-title">Contents</p>
@@ -41,112 +43,112 @@ const publishDate = "2026-07-18";
 
     <h2 id="built-in">Does Wix Have a Built-in Privacy Policy Generator</h2>
 
-    <p>No. Wix provides website-building tools, templates, and hosting, but it does not offer a built-in tool that generates a privacy policy for you. Wix's own support documentation directs users to create their own privacy policy or use a third-party app from the Wix App Market.</p>
+    <p>No. Wix gives you a drag-and-drop site builder, hosting, and templates, but it does not generate a privacy policy tailored to your specific data practices. Wix's own support articles say the same thing: create your own policy or install a third-party app from the Wix App Market.</p>
 
-    <p>Wix does include a cookie consent banner feature and some GDPR-related settings in its dashboard, but these are not substitutes for a full privacy policy. A cookie banner tells visitors about cookies; a privacy policy covers all personal data your site collects, why it collects it, who receives it, and what rights users have.</p>
+    <p>What Wix does offer is a cookie consent banner and a handful of GDPR toggles under Settings > Privacy & Cookies. These handle one narrow slice of compliance: informing visitors about cookies and collecting opt-in consent. They do not replace a full privacy policy, which needs to cover every type of personal data your site collects (not just cookies), explain why you collect it, name the third parties that receive it, and spell out the rights visitors have under the GDPR, CCPA, and other applicable laws.</p>
 
-    <p>The Wix App Market lists a few third-party privacy-related apps (such as Clawdia AI), but most are limited in scope or require a paid subscription for full functionality. A standalone privacy policy generator that covers all major regulations is the more practical choice for most Wix site owners.</p>
+    <p>The Wix App Market does list privacy-related apps like Clawdia AI and FLAVOR's Privacy Policy, but most generate only a basic template or lock full regulatory coverage behind a monthly subscription. For Wix site owners who need a policy that covers the GDPR, CCPA, PIPEDA, and COPPA out of the box, a standalone generator that produces a complete document for free is the more practical path.</p>
 
     <h2 id="why-needed">Why Wix Sites Need a Privacy Policy</h2>
 
-    <p>Even though Wix does not force you to publish a privacy policy, multiple external requirements make it effectively mandatory for nearly every Wix website:</p>
+    <p>Wix does not enforce a privacy policy requirement itself, but four external forces make one effectively mandatory for nearly every Wix website.</p>
 
-    <ul>
-      <li><strong>Privacy laws.</strong> The GDPR (EU/UK), CCPA/CPRA (California), PIPEDA (Canada), LGPD (Brazil), and other regulations require any website that collects personal data from residents of those jurisdictions to publish a clear, accessible privacy policy. Fines for non-compliance can be substantial.</li>
-      <li><strong>Wix's own terms.</strong> Wix's Terms of Use require users to comply with all applicable laws. If your site collects personal information from visitors in regulated regions, you are obligated to have a privacy policy under Wix's own agreement.</li>
-      <li><strong>Third-party services.</strong> If your Wix site uses Google Analytics, Facebook Pixel, Mailchimp, or any advertising or tracking tool, those services typically require you to disclose their use in a privacy policy.</li>
-      <li><strong>Visitor trust.</strong> Users are more likely to engage with a site that is transparent about data handling. A visible privacy policy signals professionalism and builds confidence, particularly for e-commerce sites that handle payment information.</li>
-    </ul>
+    <p><strong>Privacy laws apply based on where your visitors are, not where you are.</strong> If a shopper in Berlin lands on your Wix store, the GDPR applies to that visit. A visitor from Los Angeles triggers the CCPA. Canadian traffic brings PIPEDA into scope. Each of these laws requires you to publish a clear, publicly accessible privacy policy explaining what data you collect and why. Penalties for non-compliance are not theoretical: GDPR fines have reached tens of millions of euros for transparency failures alone.</p>
 
-    <p>In short, if your Wix site collects any personal data at all, including email addresses through a contact form, IP addresses through analytics, or payment details through an online store, you need a privacy policy.</p>
+    <p><strong>Wix's own Terms of Use create an indirect requirement.</strong> Section 11 of the Wix Terms of Use states that users must comply with all applicable laws when operating their sites. If your site collects personal information from visitors in the EU, California, Canada, or Brazil, you need a privacy policy to satisfy those laws, and by extension, to stay within Wix's terms.</p>
+
+    <p><strong>Third-party services you plug into Wix demand disclosure.</strong> Google Analytics requires you to disclose its use in a privacy policy and explain how visitor data is processed. The same goes for Facebook Pixel, Mailchimp, Stripe, PayPal, and most advertising or email-marketing integrations. If you install any of these through the Wix dashboard or embed their code, your privacy policy needs to name them.</p>
+
+    <p><strong>Visitors check before they buy.</strong> For Wix stores selling products or services, a visible privacy policy in the footer and checkout flow signals that you handle payment data and personal information responsibly. Sites that skip it look amateurish at best and untrustworthy at worst, which directly affects conversion rates.</p>
 
     <h2 id="what-to-include">What to Include in a Wix Privacy Policy</h2>
 
-    <p>A compliant privacy policy for a Wix website should cover each of the following areas:</p>
+    <p>A compliant privacy policy for a Wix website needs to cover ten areas. For a deeper look at structuring each section, read our <a href="/resources/how-to-write-privacy-policy-for-app/">step-by-step guide to writing a privacy policy</a>.</p>
 
     <ul>
-      <li><strong>Types of data collected.</strong> List every category of personal data your site handles: names, email addresses, phone numbers, IP addresses, device identifiers, payment information, and any data collected by embedded forms or third-party tools.</li>
-      <li><strong>Purpose of collection.</strong> Explain why each data type is collected. Common purposes for Wix sites include responding to contact form submissions, processing orders, sending marketing emails, running analytics, and displaying targeted advertising.</li>
-      <li><strong>Third-party services.</strong> Identify every external service that receives visitor data. For a typical Wix site, this may include Wix's own analytics, Google Analytics, payment processors (Stripe, PayPal), email marketing platforms (Mailchimp, Wix Email Marketing), and advertising networks.</li>
-      <li><strong>Cookies and tracking.</strong> Describe the cookies your site uses, including first-party cookies set by Wix and third-party cookies from analytics or advertising tools. Explain how visitors can manage cookie preferences.</li>
-      <li><strong>User rights.</strong> Outline the rights visitors have under applicable laws: the right to access their data, correct inaccuracies, request deletion, opt out of marketing, and withdraw consent.</li>
-      <li><strong>Data retention.</strong> State how long you keep personal data and under what circumstances it is deleted.</li>
-      <li><strong>Security measures.</strong> Describe how data is protected. Wix provides HTTPS/TLS encryption by default, which is worth mentioning alongside any additional measures you take.</li>
-      <li><strong>Children's privacy.</strong> If your site is not directed at children under 13, state that clearly. If it may attract younger users, explain your COPPA compliance measures.</li>
-      <li><strong>Contact information.</strong> Provide a way for visitors to reach you with privacy-related questions, typically an email address.</li>
-      <li><strong>Policy updates.</strong> Explain how visitors will be notified when the policy changes.</li>
+      <li><strong>Types of data collected.</strong> Go beyond the obvious. Yes, your contact form captures names and email addresses. But Wix Analytics also logs IP addresses, browser type, referring URLs, pages visited, and session duration automatically. If you use Wix Stores, you collect shipping addresses, billing details, and purchase history. Wix Bookings captures appointment times tied to customer records. List every category, including data collected by the platform itself.</li>
+      <li><strong>Purpose of collection.</strong> Tie each data type to a specific reason: "We collect your email address to respond to contact form submissions" or "We use Google Analytics to measure which pages visitors view most often." Avoid blanket statements like "to improve our services."</li>
+      <li><strong>Third-party services.</strong> Name every external service that receives visitor data. A typical Wix site might use Wix Analytics (built in), Google Analytics (added via Wix's Marketing Integrations), Stripe or PayPal (for payments), Mailchimp or Wix Email Marketing (for newsletters), and Facebook Pixel or Google Ads (for retargeting). Each one processes visitor data and must be disclosed.</li>
+      <li><strong>Cookies and tracking.</strong> Wix sets its own first-party cookies for session management, login persistence, and analytics. If you have added Google Analytics, Facebook Pixel, or an advertising integration, those set third-party cookies as well. Your policy should list the cookie categories (essential, analytics, advertising) and explain how visitors can manage preferences through the Wix cookie banner or their browser settings.</li>
+      <li><strong>User rights.</strong> Under the GDPR, visitors can access, correct, delete, and port their data, and withdraw consent at any time. Under the CCPA, California residents can request disclosure of collected data and opt out of its sale. Your policy must list the applicable rights and explain how visitors can exercise them, typically by emailing you directly.</li>
+      <li><strong>Data retention.</strong> State how long you keep each type of data. Contact form submissions might be retained for 12 months; purchase records might be kept for 7 years for tax compliance. If you use Wix's CRM, note that contact records persist until you manually delete them.</li>
+      <li><strong>Security measures.</strong> Wix provides HTTPS/TLS encryption on all sites by default and holds PCI DSS certification for payment processing. Mention these alongside any additional measures you take, such as two-factor authentication on your Wix dashboard or restricted staff permissions.</li>
+      <li><strong>Children's privacy.</strong> If your site does not target children under 13, state that explicitly. If it might attract younger users (educational content, children's products), explain your COPPA compliance measures, including parental consent mechanisms.</li>
+      <li><strong>Contact information.</strong> Provide a dedicated email address for privacy inquiries. If the GDPR applies and your organization meets the threshold, name your Data Protection Officer as well.</li>
+      <li><strong>Policy updates.</strong> Explain how visitors will learn about changes: an updated "last modified" date at the top of the policy, an email to subscribers, or a banner on the site. The GDPR expects notification before material changes take effect.</li>
     </ul>
 
     <h2 id="how-to-add">How to Add a Privacy Policy to Your Wix Site</h2>
 
-    <p>Once you have your privacy policy text, adding it to your Wix website takes a few steps:</p>
+    <p>Once you have your privacy policy text ready, getting it onto your Wix site takes about five minutes.</p>
 
     <ol class="steps-list">
-      <li><strong>Create a new page.</strong> In the Wix Editor, open the Pages panel (Menus and Pages) and click Add Page. Name it "Privacy Policy."</li>
-      <li><strong>Add a text element.</strong> On the new page, add a Text element from the Add panel. Paste your privacy policy content into the text box.</li>
-      <li><strong>Format the content.</strong> Use headings, bullet lists, and paragraph breaks to make the policy easy to scan. Clear formatting helps visitors find the information they need and satisfies regulatory requirements for accessibility.</li>
-      <li><strong>Link it in the footer.</strong> Add a link to your Privacy Policy page in the site footer so it appears on every page. In the Wix Editor, edit the footer section and add a text link or menu item pointing to your Privacy Policy page.</li>
-      <li><strong>Link it in forms.</strong> If your site has contact forms, checkout pages, or email signup forms, add a link to the privacy policy near the submit button. This is a best practice and a requirement under some regulations.</li>
-      <li><strong>Publish.</strong> Save and publish your site. Verify that the privacy policy page loads correctly and that the footer link works on both desktop and mobile.</li>
+      <li><strong>Create a new page.</strong> In the Wix Editor, click Menus and Pages in the left panel, then click Add Page at the bottom. Name it "Privacy Policy." Open the page settings (three-dot menu), go to Page Info, and toggle "Hide from menu" so it does not clutter your navigation bar but remains accessible via direct link.</li>
+      <li><strong>Add your policy text.</strong> On the new page, add a Text element from the Add panel (or use Embed Code > Embed HTML if you have an HTML version). Paste your privacy policy content into the text box.</li>
+      <li><strong>Format for readability.</strong> Break the policy into sections with clear headings (H2 for main sections, H3 for subsections). Use bullet lists for data types and user rights. Keep paragraphs short. Visitors scan privacy policies; dense walls of text discourage reading and can frustrate regulators reviewing for transparency.</li>
+      <li><strong>Link it in the footer.</strong> Edit your site footer in the Wix Editor and add a text element with the words "Privacy Policy" linked to the new page. The footer appears on every page of your site, which satisfies the GDPR's requirement that the policy be continuously accessible.</li>
+      <li><strong>Link it near forms and checkout.</strong> Place a privacy policy link next to the submit button on every contact form, email signup form, and newsletter opt-in. If you use Wix Stores, go to Dashboard > Settings > eCommerce & Finance > Store policies and paste the policy text into the Privacy Policy field so it appears at checkout step 4 ("Review and place order").</li>
+      <li><strong>Publish and test.</strong> Click Publish, then open your site on both a desktop browser and a phone. Confirm the footer link resolves, the page renders cleanly on mobile, and the checkout policy text displays correctly if you have a store.</li>
     </ol>
 
-    <p>For Wix sites using Wix Stores or Wix Bookings, also add the privacy policy link in the checkout flow where customers enter personal or payment information.</p>
+    <p>If your site uses Wix Bookings, add the privacy policy link in the booking confirmation flow as well, since that is where customers submit their name, email, and phone number.</p>
 
     <h2 id="generator">Using BuildPrivacyPolicy's Generator for Wix</h2>
 
-    <p>Writing a privacy policy from scratch requires knowledge of multiple privacy regulations and an understanding of every data flow on your website. A privacy policy generator simplifies this by walking you through structured questions and producing a compliant document automatically.</p>
+    <p>Drafting a privacy policy from scratch means cross-referencing GDPR articles, CCPA disclosure requirements, COPPA rules, and Wix-specific data flows, then stitching them into a single coherent document. That is a lot of legal surface area for a Wix site owner who just wants to sell candles or book photography sessions.</p>
 
-    <p>BuildPrivacyPolicy's generator is built for this. You can <a href="https://buildprivacypolicy.com/">generate a privacy policy</a> for your Wix site by answering a step-by-step form that covers:</p>
+    <p>A generator compresses that work into a guided form. You can <a href="https://buildprivacypolicy.com/">generate a privacy policy</a> for your Wix site by answering questions that cover:</p>
 
     <ul>
-      <li>Your website name and contact information</li>
-      <li>Which platforms your site runs on (select Web App / PWA for Wix)</li>
-      <li>What data your site collects and why</li>
-      <li>Which third-party services and SDKs your site uses</li>
-      <li>How data is stored, secured, and retained</li>
-      <li>Which privacy regulations apply based on your visitors' locations</li>
+      <li>Your website name and a contact email for privacy inquiries</li>
+      <li>Which platform your site runs on (select Web App / PWA for a Wix site)</li>
+      <li>The specific data types your site collects: names, email addresses, payment information, IP addresses, device identifiers, and so on</li>
+      <li>Which third-party services you use: Google Analytics, Facebook Pixel, Stripe, PayPal, Mailchimp, Wix Email Marketing, or others</li>
+      <li>How long you retain data and what security measures are in place</li>
+      <li>Where your visitors are located, which determines whether the GDPR, CCPA, PIPEDA, LGPD, or COPPA apply</li>
     </ul>
 
-    <p>The generator produces a privacy policy you can host for free, download as HTML, or copy as plain text to paste into your Wix page. There is no signup, no account, and no payment required. The entire process takes a few minutes.</p>
+    <p>The generator outputs a privacy policy you can host for free on BuildPrivacyPolicy's servers, download as HTML to paste into a Wix Embed Code element, or copy as plain text to drop into a Wix Text element. No signup, no account creation, no payment. The whole process takes a few minutes from start to published page.</p>
 
-    <p>This approach ensures no required section is missed and the output is structured for compliance with the GDPR, CCPA, COPPA, PIPEDA, and other major regulations. It is not a substitute for legal advice, but for most Wix site owners it covers the practical requirements and produces a document that is far more accurate than copying a generic template.</p>
+    <p>The output covers each required section across the GDPR, CCPA, COPPA, PIPEDA, and other major regulations. It is not a substitute for a lawyer's review if your site handles sensitive health data or children's information, but for the vast majority of Wix site owners running portfolios, blogs, service businesses, and small e-commerce stores, it produces a document that is specific to your setup and far more accurate than copying a generic template from someone else's site.</p>
 
     <h2 id="faq">Frequently Asked Questions</h2>
 
     <div class="faq-list">
       <div class="faq-item">
         <h3>Does Wix have a privacy policy generator?</h3>
-        <p>No. Wix does not include a built-in privacy policy generator. It provides cookie consent tools and GDPR-related dashboard settings, but you need a third-party generator or a manually written policy to have a complete privacy policy on your Wix site.</p>
+        <p>No. Wix provides a cookie consent banner and GDPR-related dashboard toggles, but it does not generate a full privacy policy tailored to your site's data practices. You need either a third-party generator or a manually drafted policy to cover the GDPR, CCPA, and other applicable laws.</p>
       </div>
 
       <div class="faq-item">
         <h3>Do I need a privacy policy on my Wix website?</h3>
-        <p>Yes, in almost all cases. If your Wix site collects any personal data, whether through contact forms, analytics, e-commerce transactions, email signups, or advertising tools, privacy laws such as the GDPR and CCPA require you to publish a privacy policy. Wix's own Terms of Use also require you to comply with all applicable laws.</p>
+        <p>In almost every case, yes. If your Wix site collects any personal data at all, through contact forms, Wix Analytics, Google Analytics, e-commerce transactions, email signups, or advertising pixels, the GDPR and CCPA require a published privacy policy. Wix's own Terms of Use also require you to comply with all applicable privacy laws, which creates an indirect mandate for the policy itself.</p>
       </div>
 
       <div class="faq-item">
         <h3>How do I add a privacy policy to my Wix site?</h3>
-        <p>Create a new page in the Wix Editor, paste your privacy policy text into a text element, and link to that page from your site's footer. Also add links near contact forms and checkout pages where personal data is collected.</p>
+        <p>Create a new page in the Wix Editor via Menus and Pages > Add Page, name it "Privacy Policy," paste your policy text into a Text or Embed HTML element, then link to that page from your site footer. For Wix Stores, also paste the policy text into Dashboard > Settings > eCommerce & Finance > Store policies so it appears during checkout.</p>
       </div>
 
       <div class="faq-item">
         <h3>Is a privacy policy generator free?</h3>
-        <p>Some are, some are not. BuildPrivacyPolicy offers a completely free privacy policy generator with no signup, no payment, and no restrictions. You can generate, host, and download your policy at no cost.</p>
+        <p>Some generators are free, others charge a monthly fee. BuildPrivacyPolicy is completely free: no signup, no payment, no word limits. You can generate a policy, host it at no cost, and download it as HTML or plain text to paste into your Wix page.</p>
       </div>
 
       <div class="faq-item">
         <h3>What privacy laws apply to Wix websites?</h3>
-        <p>The laws that apply depend on where your visitors are located, not where your business is based. Common regulations include the GDPR (EU/UK visitors), CCPA/CPRA (California visitors), PIPEDA (Canadian visitors), LGPD (Brazilian visitors), and COPPA (if your site may be accessed by children under 13).</p>
+        <p>The applicable laws depend on where your visitors are, not where your business operates. If EU or UK residents visit your site, the GDPR applies. California visitors trigger the CCPA/CPRA. Canadian visitors bring PIPEDA into scope. Brazilian visitors are covered by the LGPD. If your site may be accessed by children under 13, COPPA applies regardless of where your business is based.</p>
       </div>
 
       <div class="faq-item">
         <h3>Do I need a separate cookie policy for my Wix site?</h3>
-        <p>A separate cookie policy is not always required, but many regulations, particularly the GDPR, expect detailed cookie disclosures. At a minimum, your privacy policy should describe what cookies your site uses and how visitors can manage them. Wix provides a built-in cookie consent banner that can help with the consent side, but the disclosure itself belongs in your privacy policy.</p>
+        <p>Not necessarily, but detailed cookie disclosures are expected under the GDPR and ePrivacy Directive. At a minimum, your privacy policy should list the cookie categories your site uses (essential, analytics, advertising), name the services that set them (Wix, Google Analytics, Facebook Pixel), and explain how visitors can manage preferences. Wix's built-in cookie banner handles the consent mechanism, but the written disclosure belongs in your privacy policy document.</p>
       </div>
     </div>
 
   </div>
 </article>
+</main>
 
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
@@ -154,7 +156,7 @@ const publishDate = "2026-07-18";
   "headline": "Wix Privacy Policy Generator",
   "description": description,
   "datePublished": publishDate,
-  "dateModified": publishDate,
+  "dateModified": modifiedDate,
   "author": {
     "@type": "Organization",
     "name": "BuildPrivacyPolicy",
@@ -180,7 +182,7 @@ const publishDate = "2026-07-18";
       "name": "Does Wix have a privacy policy generator?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. Wix does not include a built-in privacy policy generator. It provides cookie consent tools and GDPR-related dashboard settings, but you need a third-party generator or a manually written policy to have a complete privacy policy on your Wix site."
+        "text": "No. Wix provides a cookie consent banner and GDPR-related dashboard toggles, but it does not generate a full privacy policy tailored to your site's data practices. You need either a third-party generator or a manually drafted policy to cover the GDPR, CCPA, and other applicable laws."
       }
     },
     {
@@ -188,7 +190,7 @@ const publishDate = "2026-07-18";
       "name": "Do I need a privacy policy on my Wix website?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, in almost all cases. If your Wix site collects any personal data, whether through contact forms, analytics, e-commerce transactions, email signups, or advertising tools, privacy laws such as the GDPR and CCPA require you to publish a privacy policy. Wix's own Terms of Use also require you to comply with all applicable laws."
+        "text": "In almost every case, yes. If your Wix site collects any personal data at all through contact forms, analytics, e-commerce transactions, email signups, or advertising pixels, the GDPR and CCPA require a published privacy policy. Wix's own Terms of Use also require you to comply with all applicable privacy laws."
       }
     },
     {
@@ -196,7 +198,7 @@ const publishDate = "2026-07-18";
       "name": "How do I add a privacy policy to my Wix site?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Create a new page in the Wix Editor, paste your privacy policy text into a text element, and link to that page from your site's footer. Also add links near contact forms and checkout pages where personal data is collected."
+        "text": "Create a new page in the Wix Editor via Menus and Pages, name it Privacy Policy, paste your policy text into a Text or Embed HTML element, then link to that page from your site footer. For Wix Stores, also paste the policy text into Dashboard > Settings > eCommerce and Finance > Store policies so it appears during checkout."
       }
     },
     {
@@ -204,7 +206,7 @@ const publishDate = "2026-07-18";
       "name": "Is a privacy policy generator free?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Some are, some are not. BuildPrivacyPolicy offers a completely free privacy policy generator with no signup, no payment, and no restrictions. You can generate, host, and download your policy at no cost."
+        "text": "Some generators are free, others charge a monthly fee. BuildPrivacyPolicy is completely free with no signup, no payment, and no word limits. You can generate a policy, host it at no cost, and download it as HTML or plain text."
       }
     },
     {
@@ -212,7 +214,7 @@ const publishDate = "2026-07-18";
       "name": "What privacy laws apply to Wix websites?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The laws that apply depend on where your visitors are located, not where your business is based. Common regulations include the GDPR (EU/UK visitors), CCPA/CPRA (California visitors), PIPEDA (Canadian visitors), LGPD (Brazilian visitors), and COPPA (if your site may be accessed by children under 13)."
+        "text": "The applicable laws depend on where your visitors are, not where your business operates. If EU or UK residents visit your site, the GDPR applies. California visitors trigger the CCPA/CPRA. Canadian visitors bring PIPEDA into scope. Brazilian visitors are covered by the LGPD. If your site may be accessed by children under 13, COPPA applies regardless of where your business is based."
       }
     },
     {
@@ -220,7 +222,7 @@ const publishDate = "2026-07-18";
       "name": "Do I need a separate cookie policy for my Wix site?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A separate cookie policy is not always required, but many regulations, particularly the GDPR, expect detailed cookie disclosures. At a minimum, your privacy policy should describe what cookies your site uses and how visitors can manage them. Wix provides a built-in cookie consent banner that can help with the consent side, but the disclosure itself belongs in your privacy policy."
+        "text": "Not necessarily, but detailed cookie disclosures are expected under the GDPR and ePrivacy Directive. At a minimum, your privacy policy should list the cookie categories your site uses, name the services that set them, and explain how visitors can manage preferences. Wix's built-in cookie banner handles consent, but the written disclosure belongs in your privacy policy."
       }
     }
   ]
@@ -283,6 +285,7 @@ const publishDate = "2026-07-18";
   }
   .breadcrumb a {
     color: #6B7280;
+    text-decoration: underline;
   }
   .page-card h1 {
     font-size: 28px;
@@ -330,6 +333,7 @@ const publishDate = "2026-07-18";
   }
   .page-card a {
     color: #2563EB;
+    text-decoration: underline;
   }
   .page-card strong {
     font-weight: 600;
