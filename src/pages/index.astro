@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout>
+<Layout turnstile={true}>
 
 <!-- Sticky Header -->
 <div class="sticky-header">
@@ -663,6 +663,31 @@ import Layout from '../layouts/Layout.astro';
 </div>
 </div>
 
+<!-- ======= GUIDES & TOOLS ======= -->
+<div class="guides-section">
+  <div class="guides-container">
+    <h2 class="guides-title">Guides &amp; Tools</h2>
+    <p class="guides-intro">Once you've generated your policy, these resources help you tailor it to the platform you're publishing on.</p>
+    <div class="guides-grid">
+      <div class="form-card guide-card">
+        <p><a href="/resources/how-to-write-privacy-policy-for-app/">This step-by-step breakdown of what an app's privacy policy must cover</a> walks through Google Play Data Safety and App Store Privacy Label requirements before you submit your listing.</p>
+      </div>
+      <div class="form-card guide-card">
+        <p>Building on Wix? <a href="/resources/wix-privacy-policy-generator/">Here's how Wix site owners add a privacy policy to their site</a>, since Wix's dashboard only offers a cookie banner, not a full policy.</p>
+      </div>
+      <div class="form-card guide-card">
+        <p>Running a Shopify store? <a href="/resources/shopify-privacy-policy-generator/">See why Shopify's built-in template often falls short</a> and what a store-specific policy needs to include instead.</p>
+      </div>
+      <div class="form-card guide-card">
+        <p>Selling on Etsy? <a href="/resources/etsy-privacy-policy-generator/">Learn what Etsy sellers should disclose to buyers</a>, even though Etsy itself doesn't require a shop-level privacy policy.</p>
+      </div>
+      <div class="form-card guide-card">
+        <p>Not sure which rules apply to you? <a href="/tools/privacy-law-checker/">Answer a few quick questions in the privacy law applicability checker</a> to see exactly which regulations govern your data practices.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 </main>
 
 </Layout>
@@ -1002,7 +1027,7 @@ import Layout from '../layouts/Layout.astro';
   }
   .generate-sub {
     font-size: 12px;
-    color: #6B7280;
+    color: #4B5563;
     margin-top: 10px;
   }
 
@@ -1179,6 +1204,49 @@ import Layout from '../layouts/Layout.astro';
     font-size: 13px;
     color: #6B7280;
     line-height: 1.6;
+  }
+
+  /* Guides & Tools */
+  .guides-section {
+    background: #F5F6F8;
+    padding: 8px 16px 48px;
+  }
+  .guides-container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .guides-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+    margin-bottom: 6px;
+  }
+  .guides-intro {
+    font-size: 14px;
+    color: #6B7280;
+    margin-bottom: 20px;
+    max-width: 640px;
+  }
+  .guides-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .guide-card {
+    margin-bottom: 0;
+    padding: 20px 22px;
+  }
+  .guide-card p {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.6;
+  }
+  .guide-card p a {
+    font-weight: 600;
+  }
+  @media (max-width: 700px) {
+    .guides-grid { grid-template-columns: 1fr; }
   }
 </style>
 
