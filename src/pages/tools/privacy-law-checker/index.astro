@@ -300,6 +300,11 @@ const publishDate = "2026-07-23";
 
       formDiv.style.display = 'none';
       resultsDiv.style.display = 'block';
+
+      // GA4 dataLayer: result shown. Only a match count is sent — no answers or PII.
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'tool_complete', laws_matched: applicable.length });
+
       resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 

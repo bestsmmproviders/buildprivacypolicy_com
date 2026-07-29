@@ -1276,6 +1276,27 @@ import Layout from '../layouts/Layout.astro';
 
   var turnstileToken = '';
   var errorTimeout = null;
+  var generatorStarted = false;
+  var lastTrackedStep = 0;
+
+  // ===== ANALYTICS (GA4 dataLayer) =====
+  // dataLayer pushes only: no PII, no user-entered content — step numbers/counts/labels only.
+  function pushEvent(name, params) {
+    window.dataLayer = window.dataLayer || [];
+    var evt = { event: name };
+    if (params) {
+      for (var k in params) {
+        if (params.hasOwnProperty(k)) evt[k] = params[k];
+      }
+    }
+    window.dataLayer.push(evt);
+  }
+
+  function trackGeneratorStart() {
+    if (generatorStarted) return;
+    generatorStarted = true;
+    pushEvent('generator_start');
+  }
 
   // ===== PRESETS =====
   var presets = {
@@ -1487,6 +1508,7 @@ import Layout from '../layouts/Layout.astro';
       var val = chip.getAttribute('data-value');
       if (!field || !val) return;
 
+      trackGeneratorStart();
       hideError();
 
       if (mode === 'single') {
@@ -1526,6 +1548,7 @@ import Layout from '../layouts/Layout.astro';
     if (declItem) {
       var declField = declItem.getAttribute('data-decl');
       if (declField) {
+        trackGeneratorStart();
         hideError();
         state[declField] = !state[declField];
         updateDeclUI();
@@ -1571,6 +1594,7 @@ import Layout from '../layouts/Layout.astro';
   document.addEventListener('input', function(e) {
     var field = e.target.getAttribute('data-field');
     if (field && state.hasOwnProperty(field)) {
+      trackGeneratorStart();
       state[field] = e.target.value;
       hideError();
     }
@@ -1667,6 +1691,8 @@ import Layout from '../layouts/Layout.astro';
       resultData.warnings = data.warnings || [];
       resultData.policyId = data.uuid || '';
 
+      pushEvent('generator_complete');
+
       showResults();
     })
     .catch(function(err) {
@@ -1696,6 +1722,7 @@ import Layout from '../layouts/Layout.astro';
       var hostedUrl = API_BASE + '/policy/' + resultData.policyId;
       $('#result-hosted-url').textContent = hostedUrl;
       $('#result-hosted-url').href = hostedUrl;
+      pushEvent('policy_host');
     }
 
     // Google Play Helper
@@ -1729,6 +1756,7 @@ import Layout from '../layouts/Layout.astro';
 
   // ===== EXPORT HANDLERS =====
   function handleCopy() {
+    pushEvent('policy_copy');
     var url = $('#result-hosted-url').href;
     navigator.clipboard.writeText(url).then(function() {
       var btn = $('#btn-copy');
@@ -1740,6 +1768,7 @@ import Layout from '../layouts/Layout.astro';
   function handleDownloadHtml() {
     var html = resultData.standaloneHtml || resultData.policyHtml;
     if (!html) return;
+    pushEvent('policy_download', { format: 'html' });
     var blob = new Blob([html], { type: 'text/html' });
     var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
@@ -1752,6 +1781,7 @@ import Layout from '../layouts/Layout.astro';
   function handleDownloadText() {
     var text = resultData.policyText;
     if (!text) return;
+    pushEvent('policy_download', { format: 'text' });
     var blob = new Blob([text], { type: 'text/plain' });
     var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
@@ -1768,6 +1798,10 @@ import Layout from '../layouts/Layout.astro';
         var step = parseInt(entries[i].target.getAttribute('data-section'));
         if (step) {
           $('#step-indicator').textContent = 'Step ' + step + ' of 8';
+          if (step !== lastTrackedStep) {
+            lastTrackedStep = step;
+            pushEvent('generator_step', { step_number: step });
+          }
         }
       }
     }
