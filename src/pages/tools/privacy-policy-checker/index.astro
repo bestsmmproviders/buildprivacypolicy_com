@@ -1,0 +1,1021 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const title = "Privacy Policy Checker - Completeness & Readability Score | BuildPrivacyPolicy";
+const description = "Free privacy policy checker: paste your policy, select the laws that apply, and get a completeness score with a clause-by-clause checklist of what is missing. Your text never leaves the browser.";
+const publishDate = "2026-08-01";
+---
+
+<Layout title={title} description={description}>
+
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="128" height="128" rx="28" fill="#1E3A5F"/><path d="M64 24C64 24 40 34 32 38V62C32 82 46 98 64 104C82 98 96 82 96 62V38C88 34 64 24 64 24Z" fill="#2E5A8F" stroke="#5B9BD5" stroke-width="2.5"/><path d="M52 64L60 72L78 54" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+</div>
+
+<main>
+<article class="page-container">
+  <div class="page-card">
+    <p class="breadcrumb"><a href="/">Home</a> &rsaquo; <a href="/tools/privacy-law-checker/">Tools</a></p>
+    <h1>Privacy Policy Completeness Checker</h1>
+    <p class="last-updated">Published August 1, 2026</p>
+
+    <p>Paste your privacy policy below, select the data-protection laws that apply to your app or website, and get an instant completeness score. The checker scans your text against the required clauses for each selected regulation and returns a pass-or-missing checklist so you can see exactly what needs fixing. It also reports word count and a Flesch reading-ease score so you know whether your policy is understandable to a typical reader.</p>
+
+    <p class="privacy-note"><strong>Your text stays private.</strong> This tool runs entirely in your browser. The policy text you paste is never sent to any server.</p>
+
+    <div class="tool-container">
+      <div class="tool-form" id="checker-form">
+        <div class="form-group">
+          <label for="policy-text">Paste your privacy policy</label>
+          <textarea id="policy-text" rows="10" placeholder="Paste the full text of your privacy policy here..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Which laws apply to you? <span class="label-hint">Select all that apply. Not sure? <a href="/tools/privacy-law-checker/">Check which laws apply</a>.</span></label>
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" name="law" value="gdpr" />
+              <span>GDPR</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="law" value="ccpa" />
+              <span>CCPA / CPRA</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="law" value="pipeda" />
+              <span>PIPEDA</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="law" value="lgpd" />
+              <span>LGPD</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="law" value="coppa" />
+              <span>COPPA</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="children-select">Does your audience include children under 13?</label>
+          <select id="children-select">
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+          </select>
+        </div>
+
+        <button type="button" class="check-btn" id="check-btn" disabled>Check My Privacy Policy</button>
+      </div>
+
+      <div class="tool-results" id="results" style="display:none;">
+        <div class="score-section" id="score-section"></div>
+        <div class="stats-row" id="stats-row"></div>
+        <h2 class="results-heading">Clause-by-Clause Checklist</h2>
+        <div id="results-list"></div>
+        <div class="result-cta" id="result-cta"></div>
+        <button type="button" class="reset-btn" id="reset-btn">Start Over</button>
+      </div>
+    </div>
+
+    <h2 id="how-to-use">How to Use This Tool</h2>
+
+    <p>Copy the full text of your existing privacy policy and paste it into the text box above. Then check every law that applies to your user base &mdash; if you are unsure, use the <a href="/tools/privacy-law-checker/">privacy law applicability checker</a> first. If your app or website is directed at children or knowingly collects data from users under 13, set the children dropdown to "Yes." Click "Check My Privacy Policy" to see your score, a clause-by-clause breakdown showing which required disclosures are present and which are missing, plus a readability rating. If your score is low, you can <a href="/">generate a complete privacy policy</a> that covers every clause automatically.</p>
+
+    <h2 id="what-the-score-means">What the Completeness Score Means</h2>
+
+    <p>The completeness score is the percentage of required clauses your policy covers for the laws you selected. A clause counts as "present" when the checker finds language in your policy that addresses that topic &mdash; for example, a mention of "data retention" or "how long we keep" satisfies the retention-period clause. The score is not a legal audit: it tells you whether the right topics are addressed, not whether the legal wording is perfect. A policy that scores 100% still needs review by someone who understands your specific data practices. A policy that scores below 60% is almost certainly missing disclosures that regulators expect to see.</p>
+
+    <p>The Flesch reading-ease score measures how easy your policy is to read. Most privacy policies land between 20 and 40, which is university-level difficulty. Regulators increasingly expect plain-language disclosures, so a score above 40 is a reasonable target. The word count is included because policies under 500 words are usually too thin to cover the required topics, while policies over 5,000 words may bury important disclosures in unnecessary length.</p>
+
+    <h2 id="clauses-checked">Clauses This Tool Checks</h2>
+
+    <p>The checker evaluates twelve disclosure categories drawn from the text of the five supported regulations. Each law requires a different subset of these clauses, and the checklist labels every item with the specific law that mandates it:</p>
+
+    <ul class="clause-list">
+      <li><strong>Lawful basis for processing</strong> &mdash; required by GDPR and LGPD. Your policy must state the legal ground for each type of data processing (consent, contract, legitimate interest, etc.).</li>
+      <li><strong>Categories of data collected</strong> &mdash; required by all five laws. List the types of personal data you collect (name, email, IP address, device identifiers, etc.).</li>
+      <li><strong>Data retention period</strong> &mdash; required by GDPR, CCPA/CPRA, PIPEDA, and LGPD. State how long you keep each category of data or the criteria used to determine the retention period.</li>
+      <li><strong>Third-party sharing</strong> &mdash; required by all five laws. Disclose which categories of third parties receive user data and for what purpose.</li>
+      <li><strong>International data transfers</strong> &mdash; required by GDPR and LGPD. If data crosses borders, explain the safeguards in place (adequacy decisions, standard contractual clauses, etc.).</li>
+      <li><strong>User rights</strong> &mdash; required by all five laws. Describe the rights users have (access, deletion, correction, portability, opt-out) and how to exercise them.</li>
+      <li><strong>"Do Not Sell or Share" opt-out</strong> &mdash; required by CCPA/CPRA. Provide an opt-out mechanism and clear disclosure about the sale or sharing of personal information.</li>
+      <li><strong>Children's data practices</strong> &mdash; required by COPPA. Describe parental consent mechanisms, what data is collected from children, and parents' right to review and delete it.</li>
+      <li><strong>Cookies and tracking technologies</strong> &mdash; required by GDPR. Explain what cookies and similar technologies you use and their purpose.</li>
+      <li><strong>Security measures</strong> &mdash; required by GDPR, PIPEDA, and LGPD. Describe the technical and organizational measures that protect user data.</li>
+      <li><strong>Contact information</strong> &mdash; required by all five laws. Provide a way for users to reach you about privacy concerns (email, postal address, DPO contact).</li>
+      <li><strong>Effective date</strong> &mdash; required by all five laws. Show when the policy was last updated or when it takes effect.</li>
+    </ul>
+
+    <p>If you find your policy is missing several clauses, the fastest path to compliance is to <a href="/resources/how-to-write-privacy-policy-for-app/">read our guide on what an app privacy policy must include</a> and then use the <a href="/">privacy policy generator</a> to create a new policy that covers every required disclosure automatically.</p>
+
+    <h2 id="faq">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Does this tool store or transmit the privacy policy I paste?</h3>
+        <p>No. The entire analysis runs in JavaScript inside your browser. Your policy text is never sent to any server, stored in any database, or shared with any third party. You can verify this by disconnecting from the internet before running the check.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Is a 100% completeness score the same as legal compliance?</h3>
+        <p>No. The score tells you whether your policy text mentions the topics each law requires. It does not evaluate whether the wording is legally accurate, whether your stated practices match your actual practices, or whether sector-specific regulations (like HIPAA) impose additional requirements. Use this tool as a gap-finder, not as a substitute for qualified legal review.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Why does my policy score differently when I select more laws?</h3>
+        <p>Each law requires a different set of clauses. When you select additional laws, the total number of required clauses increases. If your policy already covers those clauses, the score stays high. If the newly selected law requires clauses your policy does not address, the score drops. For example, adding COPPA introduces a children's data clause that many policies lack.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What is a good Flesch reading-ease score for a privacy policy?</h3>
+        <p>Most privacy policies score between 20 and 40, which means they require a university-level reading ability. Regulators like the UK ICO and CNIL encourage plain-language policies. A score above 40 indicates your policy is more accessible than average. Extremely high scores (above 70) are unusual for legal documents and may indicate oversimplification.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I use this tool for a privacy policy that is not yet published?</h3>
+        <p>Yes. Because you paste the text directly rather than entering a URL, you can check draft policies before they go live. This is useful for reviewing a policy during development or before submitting an app to the App Store or Google Play.</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+</main>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Privacy Policy Completeness Checker",
+  "description": description,
+  "url": "https://buildprivacypolicy.com/tools/privacy-policy-checker/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "datePublished": publishDate
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does this tool store or transmit the privacy policy I paste?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The entire analysis runs in JavaScript inside your browser. Your policy text is never sent to any server, stored in any database, or shared with any third party. You can verify this by disconnecting from the internet before running the check."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a 100% completeness score the same as legal compliance?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The score tells you whether your policy text mentions the topics each law requires. It does not evaluate whether the wording is legally accurate, whether your stated practices match your actual practices, or whether sector-specific regulations impose additional requirements. Use this tool as a gap-finder, not as a substitute for qualified legal review."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my policy score differently when I select more laws?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Each law requires a different set of clauses. When you select additional laws, the total number of required clauses increases. If your policy already covers those clauses, the score stays high. If the newly selected law requires clauses your policy does not address, the score drops."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a good Flesch reading-ease score for a privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most privacy policies score between 20 and 40, which means they require a university-level reading ability. Regulators encourage plain-language policies. A score above 40 indicates your policy is more accessible than average."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this tool for a privacy policy that is not yet published?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Because you paste the text directly rather than entering a URL, you can check draft policies before they go live. This is useful for reviewing a policy during development or before submitting an app to the App Store or Google Play."
+      }
+    }
+  ]
+})} />
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var policyText = document.getElementById('policy-text');
+    var checkBtn = document.getElementById('check-btn');
+    var resetBtn = document.getElementById('reset-btn');
+    var resultsDiv = document.getElementById('results');
+    var resultsList = document.getElementById('results-list');
+    var formDiv = document.getElementById('checker-form');
+    var scoreSection = document.getElementById('score-section');
+    var statsRow = document.getElementById('stats-row');
+    var resultCta = document.getElementById('result-cta');
+    var childrenSelect = document.getElementById('children-select');
+
+    // Clause definitions: id, label, keyword patterns, which laws require it
+    var clauses = [
+      {
+        id: 'lawful_basis',
+        label: 'Lawful basis for processing',
+        laws: ['gdpr', 'lgpd'],
+        patterns: ['lawful basis', 'legal basis', 'legitimate interest', 'legal ground', 'processing ground', 'basis for processing', 'contractual necessity', 'legal obligation', 'vital interest', 'public interest', 'performance of a contract']
+      },
+      {
+        id: 'data_categories',
+        label: 'Categories of data collected',
+        laws: ['gdpr', 'ccpa', 'pipeda', 'lgpd', 'coppa'],
+        patterns: ['personal data', 'personal information', 'categories of data', 'types of data', 'data we collect', 'information we collect', 'what we collect', 'information you provide', 'automatically collected', 'data you provide', 'categories of personal', 'types of information']
+      },
+      {
+        id: 'retention',
+        label: 'Data retention period',
+        laws: ['gdpr', 'ccpa', 'pipeda', 'lgpd'],
+        patterns: ['retention', 'how long', 'retain your', 'retain personal', 'storage period', 'keep your', 'deletion schedule', 'data retention', 'retained for', 'stored for', 'retention period', 'retain data', 'kept for']
+      },
+      {
+        id: 'third_party',
+        label: 'Third-party sharing',
+        laws: ['gdpr', 'ccpa', 'pipeda', 'lgpd', 'coppa'],
+        patterns: ['third party', 'third-party', 'share your', 'disclose your', 'service provider', 'data processor', 'subprocessor', 'share personal', 'sharing of', 'disclosed to', 'share information', 'vendors', 'partners who']
+      },
+      {
+        id: 'international_transfers',
+        label: 'International data transfers',
+        laws: ['gdpr', 'lgpd'],
+        patterns: ['international transfer', 'cross-border', 'transfer of data', 'data transfer', 'outside the e', 'outside the eu', 'outside the european', 'adequacy decision', 'standard contractual clause', 'transferred to', 'transfer personal', 'transferred outside', 'transfers of personal']
+      },
+      {
+        id: 'user_rights',
+        label: 'User rights (access, deletion, portability)',
+        laws: ['gdpr', 'ccpa', 'pipeda', 'lgpd', 'coppa'],
+        patterns: ['right to access', 'right to delete', 'right to erasure', 'right to rectification', 'right to portability', 'data portability', 'right to correct', 'right to know', 'right to opt', 'subject access request', 'your rights', 'exercise your rights', 'right to restrict', 'right to object', 'rights of data subject', 'request deletion', 'request access']
+      },
+      {
+        id: 'do_not_sell',
+        label: '"Do Not Sell or Share" opt-out',
+        laws: ['ccpa'],
+        patterns: ['do not sell', 'do not share', 'opt out of sale', 'opt-out of the sale', 'sale of personal', 'right to opt out', 'do not sell or share', 'opt out of sharing', 'selling personal', 'sharing personal information']
+      },
+      {
+        id: 'children_data',
+        label: "Children's data practices",
+        laws: ['coppa'],
+        patterns: ['children', 'child', 'under 13', 'under thirteen', 'minor', 'parental consent', 'parent or guardian', 'coppa', "children's privacy", "children's personal", 'verifiable parental', 'directed to children', 'aimed at children']
+      },
+      {
+        id: 'cookies',
+        label: 'Cookies and tracking technologies',
+        laws: ['gdpr'],
+        patterns: ['cookie', 'cookies', 'tracking technolog', 'web beacon', 'pixel tag', 'local storage', 'session storage', 'tracking pixel', 'analytics cookie', 'cookie policy', 'similar technologies']
+      },
+      {
+        id: 'security',
+        label: 'Security measures',
+        laws: ['gdpr', 'pipeda', 'lgpd'],
+        patterns: ['security', 'protect your', 'safeguard', 'encryption', 'encrypted', 'security measure', 'technical and organizational', 'data protection measure', 'secure your', 'security of your', 'protect personal', 'access controls', 'organizational measures']
+      },
+      {
+        id: 'contact',
+        label: 'Contact information',
+        laws: ['gdpr', 'ccpa', 'pipeda', 'lgpd', 'coppa'],
+        patterns: ['contact us', 'contact information', 'email us', 'write to us', 'data protection officer', 'privacy officer', 'dpo', 'reach us', 'questions about', 'privacy inquir', 'privacy concern', 'contact detail', 'send us']
+      },
+      {
+        id: 'effective_date',
+        label: 'Effective date',
+        laws: ['gdpr', 'ccpa', 'pipeda', 'lgpd', 'coppa'],
+        patterns: ['effective date', 'last updated', 'last modified', 'effective as of', 'updated on', 'date of this', 'revision date', 'last revised']
+      }
+    ];
+
+    // Law display names
+    var lawNames = {
+      gdpr: 'GDPR',
+      ccpa: 'CCPA/CPRA',
+      pipeda: 'PIPEDA',
+      lgpd: 'LGPD',
+      coppa: 'COPPA'
+    };
+
+    // Update check button state
+    function updateCheckBtn() {
+      var hasText = policyText.value.trim().length > 50;
+      var hasLaw = document.querySelectorAll('input[name="law"]:checked').length > 0;
+      checkBtn.disabled = !(hasText && hasLaw);
+    }
+
+    policyText.addEventListener('input', updateCheckBtn);
+    document.querySelectorAll('input[name="law"]').forEach(function(cb) {
+      cb.addEventListener('change', function() {
+        // Auto-check COPPA if children dropdown is Yes
+        if (childrenSelect.value === 'yes') {
+          var coppaCb = document.querySelector('input[name="law"][value="coppa"]');
+          if (coppaCb && !coppaCb.checked) {
+            coppaCb.checked = true;
+          }
+        }
+        updateCheckBtn();
+      });
+    });
+    childrenSelect.addEventListener('change', function() {
+      if (this.value === 'yes') {
+        var coppaCb = document.querySelector('input[name="law"][value="coppa"]');
+        if (coppaCb && !coppaCb.checked) {
+          coppaCb.checked = true;
+          updateCheckBtn();
+        }
+      }
+    });
+
+    // Flesch reading ease
+    function countSyllables(word) {
+      word = word.toLowerCase().replace(/[^a-z]/g, '');
+      if (word.length <= 3) return 1;
+      word = word.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '');
+      word = word.replace(/^y/, '');
+      var m = word.match(/[aeiouy]{1,2}/g);
+      return m ? m.length : 1;
+    }
+
+    function fleschScore(text) {
+      var sentences = text.split(/[.!?]+/).filter(function(s) { return s.trim().length > 0; });
+      var words = text.split(/\s+/).filter(function(w) { return w.replace(/[^a-zA-Z]/g, '').length > 0; });
+      if (sentences.length === 0 || words.length === 0) return 0;
+      var totalSyllables = 0;
+      words.forEach(function(w) { totalSyllables += countSyllables(w); });
+      var score = 206.835 - 1.015 * (words.length / sentences.length) - 84.6 * (totalSyllables / words.length);
+      return Math.max(0, Math.min(100, Math.round(score)));
+    }
+
+    function readingBand(score) {
+      if (score >= 90) return { label: 'Very Easy', color: '#059669' };
+      if (score >= 80) return { label: 'Easy', color: '#059669' };
+      if (score >= 70) return { label: 'Fairly Easy', color: '#16A34A' };
+      if (score >= 60) return { label: 'Standard', color: '#CA8A04' };
+      if (score >= 50) return { label: 'Fairly Difficult', color: '#D97706' };
+      if (score >= 30) return { label: 'Difficult', color: '#EA580C' };
+      return { label: 'Very Difficult', color: '#DC2626' };
+    }
+
+    function scoreColor(pct) {
+      if (pct >= 80) return '#059669';
+      if (pct >= 60) return '#CA8A04';
+      if (pct >= 40) return '#D97706';
+      return '#DC2626';
+    }
+
+    function scoreLabel(pct) {
+      if (pct >= 80) return 'Strong coverage';
+      if (pct >= 60) return 'Fair coverage';
+      if (pct >= 40) return 'Needs improvement';
+      return 'Significant gaps';
+    }
+
+    // Check button handler
+    checkBtn.addEventListener('click', function() {
+      var text = policyText.value.trim();
+      var lower = text.toLowerCase();
+      var selectedLaws = [];
+      document.querySelectorAll('input[name="law"]:checked').forEach(function(cb) {
+        selectedLaws.push(cb.value);
+      });
+
+      // Determine required clauses for selected laws
+      var requiredClauses = [];
+      clauses.forEach(function(clause) {
+        var isRequired = false;
+        var requiringLaws = [];
+        clause.laws.forEach(function(law) {
+          if (selectedLaws.indexOf(law) !== -1) {
+            isRequired = true;
+            requiringLaws.push(law);
+          }
+        });
+        if (isRequired) {
+          requiredClauses.push({
+            id: clause.id,
+            label: clause.label,
+            patterns: clause.patterns,
+            requiringLaws: requiringLaws
+          });
+        }
+      });
+
+      // Check each clause
+      var matched = 0;
+      var clauseResults = [];
+      requiredClauses.forEach(function(clause) {
+        var found = false;
+        for (var i = 0; i < clause.patterns.length; i++) {
+          if (lower.indexOf(clause.patterns[i]) !== -1) {
+            found = true;
+            break;
+          }
+        }
+        if (found) matched++;
+        clauseResults.push({
+          label: clause.label,
+          found: found,
+          laws: clause.requiringLaws
+        });
+      });
+
+      // Calculate score
+      var total = requiredClauses.length;
+      var pct = total > 0 ? Math.round((matched / total) * 100) : 0;
+
+      // Word count
+      var words = text.split(/\s+/).filter(function(w) { return w.length > 0; });
+      var wordCount = words.length;
+
+      // Flesch score
+      var flesch = fleschScore(text);
+      var band = readingBand(flesch);
+
+      // Render score
+      var sc = scoreColor(pct);
+      scoreSection.innerHTML =
+        '<div class="score-ring-wrap">' +
+          '<svg class="score-ring" viewBox="0 0 120 120">' +
+            '<circle cx="60" cy="60" r="52" fill="none" stroke="#E5E7EB" stroke-width="10"/>' +
+            '<circle cx="60" cy="60" r="52" fill="none" stroke="' + sc + '" stroke-width="10" ' +
+              'stroke-dasharray="' + (2 * Math.PI * 52) + '" ' +
+              'stroke-dashoffset="' + ((1 - pct / 100) * 2 * Math.PI * 52) + '" ' +
+              'stroke-linecap="round" transform="rotate(-90 60 60)" />' +
+          '</svg>' +
+          '<div class="score-number">' + pct + '</div>' +
+        '</div>' +
+        '<div class="score-meta">' +
+          '<span class="score-label" style="color:' + sc + '">' + scoreLabel(pct) + '</span>' +
+          '<span class="score-detail">' + matched + ' of ' + total + ' required clauses found</span>' +
+        '</div>';
+
+      // Render stats
+      statsRow.innerHTML =
+        '<div class="stat-card">' +
+          '<span class="stat-value">' + wordCount.toLocaleString() + '</span>' +
+          '<span class="stat-label">Words</span>' +
+        '</div>' +
+        '<div class="stat-card">' +
+          '<span class="stat-value" style="color:' + band.color + '">' + flesch + '</span>' +
+          '<span class="stat-label">Flesch Score &middot; ' + band.label + '</span>' +
+        '</div>';
+
+      // Render checklist
+      resultsList.innerHTML = '';
+      // Sort: missing first, then found
+      clauseResults.sort(function(a, b) {
+        if (a.found === b.found) return 0;
+        return a.found ? 1 : -1;
+      });
+
+      clauseResults.forEach(function(r) {
+        var lawTags = r.laws.map(function(l) {
+          return '<span class="law-tag">' + lawNames[l] + '</span>';
+        }).join(' ');
+
+        var card = document.createElement('div');
+        card.className = 'clause-card ' + (r.found ? 'clause-pass' : 'clause-missing');
+        card.innerHTML =
+          '<div class="clause-status">' +
+            (r.found
+              ? '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#059669"/><path d="M6 10.5L8.5 13L14 7.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+              : '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#DC2626"/><path d="M7 7L13 13M13 7L7 13" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>') +
+          '</div>' +
+          '<div class="clause-info">' +
+            '<span class="clause-label">' + r.label + '</span>' +
+            '<span class="clause-status-text">' + (r.found ? 'Found' : 'Missing') + '</span>' +
+          '</div>' +
+          '<div class="clause-laws">' + lawTags + '</div>';
+
+        resultsList.appendChild(card);
+      });
+
+      // CTA
+      var missing = total - matched;
+      if (missing > 0) {
+        resultCta.innerHTML =
+          '<p>Your policy is missing ' + missing + ' required clause' + (missing > 1 ? 's' : '') + '. ' +
+          'You can <a href="/">generate a complete privacy policy</a> that covers every disclosure automatically, or ' +
+          '<a href="/resources/how-to-write-privacy-policy-for-app/">read our guide</a> to add the missing sections yourself.</p>';
+      } else {
+        resultCta.innerHTML =
+          '<p>Your policy covers all required clauses for the selected laws. Consider having a qualified attorney review the wording to confirm accuracy. ' +
+          'If you need to update your policy later, you can always <a href="/">regenerate it</a> with the latest requirements.</p>';
+      }
+
+      formDiv.style.display = 'none';
+      resultsDiv.style.display = 'block';
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'tool_complete', score: pct, clauses_matched: matched, clauses_total: total });
+
+      resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Reset
+    resetBtn.addEventListener('click', function() {
+      policyText.value = '';
+      document.querySelectorAll('input[name="law"]').forEach(function(cb) { cb.checked = false; });
+      childrenSelect.value = 'no';
+      checkBtn.disabled = true;
+      resultsDiv.style.display = 'none';
+      formDiv.style.display = 'block';
+      scoreSection.innerHTML = '';
+      statsRow.innerHTML = '';
+      resultsList.innerHTML = '';
+      resultCta.innerHTML = '';
+      formDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</Layout>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-link:hover {
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+  .page-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 16px 80px;
+  }
+  .page-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px 36px;
+    border: 1px solid #E5E7EB;
+  }
+  .breadcrumb {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 16px;
+  }
+  .breadcrumb a {
+    color: #6B7280;
+    text-decoration: underline;
+  }
+  .page-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .last-updated {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 24px;
+  }
+  .page-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .page-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  .page-card p {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .page-card a {
+    color: #2563EB;
+    text-decoration: underline;
+  }
+  .page-card strong {
+    font-weight: 600;
+  }
+  .page-card ul {
+    margin: 0 0 14px 0;
+    padding-left: 20px;
+  }
+  .page-card li {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 10px;
+  }
+
+  .privacy-note {
+    background: #F0FDF4;
+    border: 1px solid #BBF7D0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 14px !important;
+    color: #166534 !important;
+    margin-bottom: 20px;
+  }
+
+  /* Tool form */
+  .tool-container {
+    margin: 28px 0 12px;
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    padding: 28px 24px;
+  }
+  .form-group {
+    margin-bottom: 24px;
+  }
+  .form-group > label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 8px;
+  }
+  .label-hint {
+    font-weight: 400;
+    color: #6B7280;
+    font-size: 13px;
+  }
+  .label-hint a {
+    color: #2563EB;
+    text-decoration: underline;
+  }
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    background: white;
+    color: #111827;
+    resize: vertical;
+    line-height: 1.6;
+  }
+  .form-group textarea:focus {
+    border-color: #2563EB;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+    outline: none;
+  }
+  .form-group select {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 15px;
+    font-family: inherit;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    background: white;
+    color: #111827;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236B7280' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 6l3.5 4 3.5-4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+  }
+  .form-group select:focus {
+    border-color: #2563EB;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+    outline: none;
+  }
+
+  /* Checkboxes */
+  .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: white;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    transition: border-color 0.15s, background 0.15s;
+    user-select: none;
+  }
+  .checkbox-label:hover {
+    border-color: #2563EB;
+    background: #F0F7FF;
+  }
+  .checkbox-label:has(input:checked) {
+    border-color: #2563EB;
+    background: #EFF6FF;
+    color: #1E40AF;
+  }
+  .checkbox-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #2563EB;
+    cursor: pointer;
+  }
+
+  /* Check button */
+  .check-btn {
+    width: 100%;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    color: white;
+    background: #2563EB;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .check-btn:hover:not(:disabled) {
+    background: #1D4ED8;
+  }
+  .check-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Results */
+  .results-heading {
+    margin-top: 28px !important;
+    margin-bottom: 16px !important;
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+  }
+
+  /* Score ring */
+  .score-section {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 20px;
+  }
+  .score-ring-wrap {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+  }
+  .score-ring {
+    width: 120px;
+    height: 120px;
+  }
+  .score-number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    font-weight: 700;
+    color: #111827;
+  }
+  .score-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .score-label {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .score-detail {
+    font-size: 14px;
+    color: #6B7280;
+  }
+
+  /* Stats */
+  .stats-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .stat-card {
+    flex: 1;
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .stat-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111827;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: #6B7280;
+  }
+
+  /* Clause cards */
+  .clause-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+  .clause-card.clause-missing {
+    border-left: 3px solid #DC2626;
+  }
+  .clause-card.clause-pass {
+    border-left: 3px solid #059669;
+  }
+  .clause-status {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+  }
+  .clause-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+  .clause-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111827;
+  }
+  .clause-status-text {
+    font-size: 12px;
+    color: #6B7280;
+  }
+  .clause-missing .clause-status-text {
+    color: #DC2626;
+    font-weight: 600;
+  }
+  .clause-pass .clause-status-text {
+    color: #059669;
+  }
+  .clause-laws {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+  .law-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #2563EB;
+    background: #EFF6FF;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .result-cta {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: #EFF6FF;
+    border-radius: 8px;
+  }
+  .result-cta p {
+    font-size: 14px !important;
+    color: #1E40AF;
+    margin-bottom: 0 !important;
+  }
+  .result-cta a {
+    color: #1E40AF;
+    font-weight: 600;
+  }
+
+  .reset-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    color: #374151;
+    background: white;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .reset-btn:hover {
+    background: #F9FAFB;
+  }
+
+  /* FAQ */
+  .faq-list {
+    margin-top: 8px;
+  }
+  .faq-item {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 20px;
+    margin-bottom: 8px;
+  }
+  .faq-item h3 {
+    margin-top: 0;
+  }
+  .faq-item p {
+    margin-bottom: 8px;
+  }
+
+  /* Clause description list */
+  .clause-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  .clause-list li {
+    padding-left: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .page-card {
+      padding: 24px 18px;
+    }
+    .tool-container {
+      padding: 20px 16px;
+    }
+    .score-section {
+      flex-direction: column;
+      text-align: center;
+      gap: 12px;
+    }
+    .score-meta {
+      align-items: center;
+    }
+    .stats-row {
+      flex-direction: column;
+    }
+    .clause-card {
+      flex-wrap: wrap;
+    }
+    .clause-laws {
+      width: 100%;
+      margin-top: 4px;
+      padding-left: 32px;
+    }
+    .checkbox-group {
+      flex-direction: column;
+    }
+  }
+</style>
