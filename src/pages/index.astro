@@ -690,6 +690,26 @@ import Layout from '../layouts/Layout.astro';
 
 </main>
 
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Privacy Policy Generator",
+  "description": "Generate a free, comprehensive privacy policy for your app. Works for Google Play, App Store, and web apps. No signup required.",
+  "url": "https://buildprivacypolicy.com/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  }
+})} />
+
 </Layout>
 
 <style>
