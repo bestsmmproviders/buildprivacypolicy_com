@@ -1811,7 +1811,12 @@ import Layout from '../layouts/Layout.astro';
     URL.revokeObjectURL(url);
   }
 
-  // ===== INTERSECTION OBSERVER FOR STEP INDICATOR =====
+  // ===== DEFERRED INITIALISATION =====
+  // The hero H1 (LCP element) does not depend on this script.
+  // Defer DOM-mutating init (chip UI, conditionals, declarations,
+  // IntersectionObserver) to idle time so it does not block first paint
+  // or cause forced reflow during page load.
+
   var observer = new IntersectionObserver(function(entries) {
     for (var i = 0; i < entries.length; i++) {
       if (entries[i].isIntersecting && entries[i].intersectionRatio > 0.15) {
@@ -1827,17 +1832,33 @@ import Layout from '../layouts/Layout.astro';
     }
   }, { threshold: 0.15, rootMargin: '-60px 0px 0px 0px' });
 
-  // Observe sections after DOM is ready
-  setTimeout(function() {
+  var initialized = false;
+  function init() {
+    if (initialized) return;
+    initialized = true;
+
+    // Batch all DOM writes together — no geometry reads between them —
+    // to avoid forced-reflow (layout thrash).
+    updateAllChips();
+    updateConditionals();
+    updateDeclUI();
+
     $$('[data-section]').forEach(function(el) {
       observer.observe(el);
     });
-  }, 300);
+  }
 
-  // Initialize: set default selected chips
-  updateAllChips();
-  updateConditionals();
-  updateDeclUI();
+  // Schedule via requestIdleCallback (fallback: setTimeout 1ms)
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(init);
+  } else {
+    setTimeout(init, 1);
+  }
+
+  // Guarantee init before first user interaction
+  ['click', 'focusin', 'touchstart'].forEach(function(evt) {
+    document.addEventListener(evt, init, { capture: true, passive: true });
+  });
 
 })();
 </script>
