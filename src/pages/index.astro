@@ -682,7 +682,28 @@ import Layout from '../layouts/Layout.astro';
         <p>Selling on Etsy? <a href="/resources/etsy-privacy-policy-generator/">Learn what Etsy sellers should disclose to buyers</a>, even though Etsy itself doesn't require a shop-level privacy policy.</p>
       </div>
       <div class="form-card guide-card">
+        <p>Not sure if you even need one? <a href="/resources/do-i-need-a-privacy-policy-for-my-website/">Find out whether your website legally requires a privacy policy</a> based on the data it collects through forms, analytics, and third-party scripts.</p>
+      </div>
+      <div class="form-card guide-card">
+        <p>Building on Squarespace? <a href="/resources/squarespace-privacy-policy-generator/">What a Squarespace site needs in its privacy policy</a> — Squarespace doesn't include a built-in generator, so you'll need a standalone tool.</p>
+      </div>
+      <div class="form-card guide-card">
+        <p>Running an online store? <a href="/resources/privacy-policy-for-ecommerce-website/">What an e-commerce privacy policy should cover beyond the basics</a>, from payment data and order history to tracking pixels and remarketing tags.</p>
+      </div>
+      <div class="form-card guide-card">
+        <p>Dropshipping? <a href="/resources/privacy-policy-for-dropshipping-website/">Why dropshipping stores face unique privacy disclosure requirements</a> — your policy must explain how customer data flows to fulfillment suppliers.</p>
+      </div>
+      <div class="form-card guide-card">
+        <p>Running a photography site? <a href="/resources/privacy-policy-for-photography-website/">What photographers should include in a website privacy policy</a>, covering client data, model releases, EXIF metadata, and gallery integrations.</p>
+      </div>
+    </div>
+    <h3 class="guides-subtitle">Tools</h3>
+    <div class="guides-grid guides-grid-tools">
+      <div class="form-card guide-card">
         <p>Not sure which rules apply to you? <a href="/tools/privacy-law-checker/">Answer a few quick questions in the privacy law applicability checker</a> to see exactly which regulations govern your data practices.</p>
+      </div>
+      <div class="form-card guide-card">
+        <p>Already have a policy? <a href="/tools/privacy-policy-checker/">Paste it into the completeness checker to find gaps</a> — it scans your text against GDPR, CCPA, and other frameworks and returns a clause-by-clause score.</p>
       </div>
     </div>
   </div>
@@ -1264,6 +1285,12 @@ import Layout from '../layouts/Layout.astro';
   }
   .guide-card p a {
     font-weight: 600;
+  }
+  .guides-subtitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: #374151;
+    margin: 24px 0 12px;
   }
   @media (max-width: 700px) {
     .guides-grid { grid-template-columns: 1fr; }
