@@ -1,0 +1,984 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const title = "App Store Privacy Requirements Checker - BuildPrivacyPolicy";
+const description = "Free tool: select the app stores you publish to and the data your app collects, then get each store's privacy-policy requirements and the disclosure clauses you need.";
+const publishDate = "2026-08-15";
+---
+
+<Layout title={title} description={description}>
+
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="128" height="128" rx="28" fill="#1E3A5F"/><path d="M64 24C64 24 40 34 32 38V62C32 82 46 98 64 104C82 98 96 82 96 62V38C88 34 64 24 64 24Z" fill="#2E5A8F" stroke="#5B9BD5" stroke-width="2.5"/><path d="M52 64L60 72L78 54" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+</div>
+
+<main>
+<article class="page-container">
+  <div class="page-card">
+    <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Tools</p>
+    <h1>App Store Privacy Requirements Checker</h1>
+    <p class="last-updated">Published August 15, 2026</p>
+
+    <p>Every app store has its own privacy-policy requirements, and getting them wrong can delay your launch or get your app rejected. Select the stores you publish to and the data types your app collects below to see exactly what each store demands, which extra declarations you need to file, and a merged checklist of privacy-policy clauses that cover all of them at once.</p>
+
+    <div class="tool-container">
+      <div class="tool-form" id="checker-form">
+        <div class="form-section">
+          <label class="section-label">Which app stores do you publish to?</label>
+          <p class="section-hint">Select all that apply.</p>
+          <div class="chip-group" id="store-chips">
+            <button type="button" class="chip" data-store="google_play">Google Play</button>
+            <button type="button" class="chip" data-store="apple_app_store">Apple App Store</button>
+            <button type="button" class="chip" data-store="amazon_alexa">Amazon Alexa Skills</button>
+            <button type="button" class="chip" data-store="meta_facebook">Meta / Facebook App</button>
+            <button type="button" class="chip" data-store="chrome_web_store">Chrome Web Store</button>
+            <button type="button" class="chip" data-store="microsoft_store">Microsoft Store</button>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <label class="section-label">What data does your app collect?</label>
+          <p class="section-hint">Select all that apply.</p>
+          <div class="chip-group" id="data-chips">
+            <button type="button" class="chip" data-dtype="device_identifiers">Device identifiers</button>
+            <button type="button" class="chip" data-dtype="location">Location</button>
+            <button type="button" class="chip" data-dtype="contacts">Contacts</button>
+            <button type="button" class="chip" data-dtype="photos_media">Photos / media</button>
+            <button type="button" class="chip" data-dtype="health">Health data</button>
+            <button type="button" class="chip" data-dtype="financial">Financial data</button>
+            <button type="button" class="chip" data-dtype="voice_recordings">Voice recordings</button>
+            <button type="button" class="chip" data-dtype="analytics_crash">Analytics / crash logs</button>
+            <button type="button" class="chip" data-dtype="ad_sdks">Third-party ad SDKs</button>
+            <button type="button" class="chip" data-dtype="account_linking">Account linking</button>
+          </div>
+        </div>
+
+        <button type="button" class="check-btn" id="check-btn" disabled>Check Store Requirements</button>
+      </div>
+
+      <div class="tool-results" id="results" style="display:none;">
+        <h2 class="results-heading">Store Requirements</h2>
+        <div id="store-results"></div>
+
+        <h2 class="results-heading checklist-heading">Privacy Policy Clause Checklist</h2>
+        <div id="clause-checklist"></div>
+
+        <div class="copy-section">
+          <button type="button" class="copy-btn" id="copy-btn">Copy Plain-Text Summary</button>
+          <span class="copy-confirm" id="copy-confirm" style="display:none;">Copied!</span>
+        </div>
+
+        <div id="plain-text-output" style="display:none;"></div>
+
+        <button type="button" class="reset-btn" id="reset-btn">Start Over</button>
+      </div>
+    </div>
+
+    <h2 id="how-to-use">How to Use This Tool</h2>
+
+    <p>Start by selecting every app store where you distribute your app. Then pick the data types your app collects from users. Hit "Check Store Requirements" to get a per-store breakdown of what each marketplace demands: where to submit your privacy-policy URL, whether you need to fill out an additional data-disclosure form, and which of your selected data types trigger extra declarations. Below the store cards you will find a merged clause checklist that lists every section your privacy policy needs to satisfy all selected stores at once. Use the "Copy Plain-Text Summary" button to paste the results into a ticket or doc. When you are ready to build the actual policy, <a href="https://buildprivacypolicy.com/">generate a policy that covers these clauses</a> with our free generator.</p>
+
+    <h2 id="why-stores-enforce-privacy-rules">Why App Stores Enforce Privacy Rules</h2>
+
+    <p>App stores act as gatekeepers between developers and users. Google, Apple, Amazon, Meta, Microsoft, and Chrome all require a publicly accessible privacy policy before they will list your app. The policy is not just a legal formality; each store reviews it during submission and can reject or remove your app if the policy is missing, outdated, or inconsistent with your actual data practices.</p>
+
+    <p>Google Play requires every app to link a privacy-policy URL in the Play Console and complete a Data Safety form that declares exactly which data types the app collects, whether data is shared with third parties, and whether users can request deletion. Apple mandates a privacy-policy link in App Store Connect and requires developers to fill out Privacy Nutrition Labels that appear on the app's product page. Amazon Alexa Skills must include a privacy-policy URL in the Alexa Developer Console, with extra scrutiny for skills that access voice recordings or location. Meta requires a privacy-policy URL in the App Dashboard and runs periodic Data Use Checkups for apps that access Facebook user data. The Chrome Web Store asks for a privacy-policy URL in the developer dashboard and a Privacy Practices disclosure tied to the extension's permissions. Microsoft Store requires a privacy-policy URL in Partner Center for any app that collects personal data or uses network access.</p>
+
+    <p>Getting the requirements right before submission saves rejection cycles and keeps your release timeline on track. For a deeper walkthrough of writing the policy itself, read our <a href="/resources/how-to-write-privacy-policy-for-app/">full guide to app privacy policies</a>.</p>
+
+    <h2 id="faq">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Do all app stores require a privacy policy?</h3>
+        <p>Yes. Google Play, Apple App Store, Amazon Alexa Skills, Meta, Chrome Web Store, and Microsoft Store all require a publicly accessible privacy-policy URL before they will publish your app or extension. Even if your app collects no personal data, most stores still require the policy link to be present.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What is a Data Safety form on Google Play?</h3>
+        <p>The Data Safety form is a declaration you fill out in the Google Play Console that tells users what data your app collects, whether it is shared with third parties, and whether users can request deletion. Google displays this information on your app's store listing. The form must be consistent with your privacy policy, and discrepancies can lead to enforcement action.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What are Apple Privacy Nutrition Labels?</h3>
+        <p>Privacy Nutrition Labels are the data-disclosure cards that appear on your app's App Store product page. You fill them out in App Store Connect by declaring each data type your app collects, the purpose of collection, and whether the data is linked to the user's identity. Apple reviews these labels during app review and may reject apps where the labels contradict the app's actual behavior.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I use one privacy policy for multiple app stores?</h3>
+        <p>Yes. A single well-written privacy policy can satisfy every store's requirements as long as it covers all the clauses each store demands. This tool's merged clause checklist is designed to help you build exactly that: one policy document that addresses every selected store's rules in a single place.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What happens if my privacy policy is inconsistent with my store declarations?</h3>
+        <p>Inconsistencies between your privacy policy and your store-level declarations (Data Safety form, Nutrition Labels, etc.) are one of the most common reasons for app rejection or removal. Stores cross-check your policy against your declarations and your app's actual behavior. Keep all three aligned to avoid review delays.</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+</main>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "App Store Privacy Requirements Checker",
+  "description": description,
+  "url": "https://buildprivacypolicy.com/tools/app-store-privacy-requirements/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "datePublished": publishDate
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do all app stores require a privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Google Play, Apple App Store, Amazon Alexa Skills, Meta, Chrome Web Store, and Microsoft Store all require a publicly accessible privacy-policy URL before they will publish your app or extension. Even if your app collects no personal data, most stores still require the policy link to be present."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a Data Safety form on Google Play?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Data Safety form is a declaration you fill out in the Google Play Console that tells users what data your app collects, whether it is shared with third parties, and whether users can request deletion. Google displays this information on your app's store listing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are Apple Privacy Nutrition Labels?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Privacy Nutrition Labels are the data-disclosure cards that appear on your app's App Store product page. You fill them out in App Store Connect by declaring each data type your app collects, the purpose of collection, and whether the data is linked to the user's identity."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use one privacy policy for multiple app stores?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. A single well-written privacy policy can satisfy every store's requirements as long as it covers all the clauses each store demands."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if my privacy policy is inconsistent with my store declarations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Inconsistencies between your privacy policy and your store-level declarations are one of the most common reasons for app rejection or removal. Stores cross-check your policy against your declarations and your app's actual behavior."
+      }
+    }
+  ]
+})} />
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+
+    /* ───── CONSTANT TABLES ───── */
+
+    var STORE_RULES = {
+      google_play: {
+        name: 'Google Play',
+        policyRequirement: 'A publicly accessible privacy-policy URL is required for every app published on Google Play.',
+        submissionLocation: 'Google Play Console → Store Listing → Privacy Policy URL',
+        extraForm: 'Data Safety form (Play Console → App Content → Data Safety)',
+        extraFormDescription: 'Declares what data your app collects, whether it is shared, and whether users can request deletion. Displayed on your store listing.',
+        dataDeclarations: {
+          device_identifiers: 'Declare "Device or other IDs" in the Data Safety form.',
+          location: 'Declare "Location" (approximate and/or precise) in the Data Safety form.',
+          contacts: 'Declare "Contacts" in the Data Safety form.',
+          photos_media: 'Declare "Photos and videos" in the Data Safety form.',
+          health: 'Declare "Health and fitness" in the Data Safety form. Google may require additional review for health-related apps.',
+          financial: 'Declare "Financial info" in the Data Safety form.',
+          voice_recordings: 'Declare "Audio" → "Voice or sound recordings" in the Data Safety form.',
+          analytics_crash: 'Declare "App info and performance" → "Diagnostics" in the Data Safety form.',
+          ad_sdks: 'Declare "Device or other IDs" and indicate data is shared for "Advertising" purposes. List each ad SDK in the Data Safety form.',
+          account_linking: 'Declare "Personal info" (name, email address) in the Data Safety form.'
+        }
+      },
+      apple_app_store: {
+        name: 'Apple App Store',
+        policyRequirement: 'A privacy-policy URL is required for every app submitted to the App Store. Apple will reject submissions without one.',
+        submissionLocation: 'App Store Connect → App Information → Privacy Policy URL',
+        extraForm: 'Privacy Nutrition Labels (App Store Connect → App Privacy)',
+        extraFormDescription: 'Declares each data type collected, the purpose, and whether data is linked to the user\'s identity. Shown on the app\'s product page.',
+        dataDeclarations: {
+          device_identifiers: 'Declare "Identifiers" → "Device ID" in the Privacy Nutrition Label.',
+          location: 'Declare "Location" (Precise Location and/or Coarse Location) in the Privacy Nutrition Label.',
+          contacts: 'Declare "Contacts" in the Privacy Nutrition Label.',
+          photos_media: 'Declare "User Content" → "Photos or Videos" in the Privacy Nutrition Label.',
+          health: 'Declare "Health & Fitness" in the Privacy Nutrition Label. Apps accessing HealthKit must explain the usage in the app description.',
+          financial: 'Declare "Financial Info" in the Privacy Nutrition Label.',
+          voice_recordings: 'Declare "User Content" → "Audio Data" in the Privacy Nutrition Label.',
+          analytics_crash: 'Declare "Diagnostics" → "Crash Data" and "Performance Data" in the Privacy Nutrition Label.',
+          ad_sdks: 'Declare "Identifiers" and link to "Third-Party Advertising" purpose. Implement App Tracking Transparency (ATT) prompt before tracking.',
+          account_linking: 'Declare "Contact Info" (Name, Email Address) in the Privacy Nutrition Label.'
+        }
+      },
+      amazon_alexa: {
+        name: 'Amazon Alexa Skills',
+        policyRequirement: 'A privacy-policy URL is required for every Alexa skill that collects personal data or uses account linking. Recommended for all published skills.',
+        submissionLocation: 'Alexa Developer Console → Distribution → Privacy & Compliance → Privacy Policy URL',
+        extraForm: 'None (no separate data-disclosure form)',
+        extraFormDescription: 'Amazon does not require a separate data form, but the certification team reviews your privacy policy during skill submission.',
+        dataDeclarations: {
+          device_identifiers: 'Your privacy policy must disclose collection of device identifiers if the skill accesses them.',
+          location: 'Declare location access in the skill manifest and explain location data use in your privacy policy.',
+          contacts: 'If your skill uses the Contacts API, disclose this in your privacy policy and request user permission at runtime.',
+          photos_media: 'Not typically applicable for Alexa skills. If your skill integrates with a screen device for media, disclose it in your policy.',
+          health: 'Health-related skills require additional Amazon certification review. Your privacy policy must detail health data handling.',
+          financial: 'Skills handling purchases or financial data must disclose this in the privacy policy. In-skill purchasing has separate Amazon requirements.',
+          voice_recordings: 'Critical for Alexa: disclose that voice interactions are processed by Amazon. If your skill stores utterance data, your privacy policy must explain what is stored, why, and how users can delete it.',
+          analytics_crash: 'If you collect analytics from skill usage, disclose the data types and purposes in your privacy policy.',
+          ad_sdks: 'Alexa skills do not support traditional ad SDKs. If your skill references third-party services, disclose them.',
+          account_linking: 'Account linking requires a privacy-policy URL. Disclose what account data is accessed and how it is used.'
+        }
+      },
+      meta_facebook: {
+        name: 'Meta / Facebook App',
+        policyRequirement: 'A privacy-policy URL is required for every app registered on the Meta for Developers platform.',
+        submissionLocation: 'Meta for Developers → App Dashboard → Settings → Basic → Privacy Policy URL',
+        extraForm: 'Data Use Checkup (periodic review in App Dashboard)',
+        extraFormDescription: 'Meta requires periodic re-certification of how your app uses Facebook user data. Failure to complete the checkup can result in API access being revoked.',
+        dataDeclarations: {
+          device_identifiers: 'Disclose use of device identifiers in your privacy policy. If using Meta Pixel or SDK, declare the tracking in your policy.',
+          location: 'If your app accesses user location via the Graph API, disclose it in your privacy policy and in the Data Use Checkup.',
+          contacts: 'Accessing friend lists or contacts via the Graph API requires disclosure in the Data Use Checkup and your privacy policy.',
+          photos_media: 'If your app accesses user photos or videos via the Graph API, disclose this and explain the purpose in your Data Use Checkup.',
+          health: 'Health data collected through a Meta-integrated app must be disclosed. Meta restricts use of health data for advertising.',
+          financial: 'If your app processes payments through Meta Pay or accesses financial information, disclose it in your privacy policy.',
+          voice_recordings: 'If your app records or processes voice through a Meta integration, disclose this in your privacy policy.',
+          analytics_crash: 'If you use Meta Analytics SDK, disclose the analytics data collected in your privacy policy.',
+          ad_sdks: 'Declare use of Meta Audience Network or other ad SDKs. Must comply with Meta\'s advertising data policies and disclose in your privacy policy.',
+          account_linking: 'Facebook Login requires disclosure of which user data fields your app accesses and the purpose. Include this in your privacy policy and Data Use Checkup.'
+        }
+      },
+      chrome_web_store: {
+        name: 'Chrome Web Store',
+        policyRequirement: 'A privacy-policy URL is required for any extension that handles personal data or uses Chrome permissions beyond the minimum.',
+        submissionLocation: 'Chrome Web Store Developer Dashboard → Privacy tab → Privacy Policy URL',
+        extraForm: 'Privacy Practices disclosure (Developer Dashboard → Privacy tab)',
+        extraFormDescription: 'Declares which data types your extension collects, the purposes, and whether data is sold or transferred. Chrome enforces a single-purpose policy for extensions.',
+        dataDeclarations: {
+          device_identifiers: 'Declare "Personally identifiable information" in the Privacy Practices tab if you collect device fingerprints or IDs.',
+          location: 'Declare "Location" in the Privacy Practices tab. Justify the location permission in your extension\'s description.',
+          contacts: 'If your extension accesses contacts, declare "Personally identifiable information" in the Privacy Practices tab.',
+          photos_media: 'If your extension handles images or media files, declare "User activity" or relevant category in the Privacy Practices tab.',
+          health: 'Declare "Health" in the Privacy Practices tab. Health data collection must align with the extension\'s single purpose.',
+          financial: 'Declare "Financial and payment information" in the Privacy Practices tab.',
+          voice_recordings: 'If your extension uses microphone access, declare "Personal communications" and justify the permission.',
+          analytics_crash: 'If you collect usage analytics, declare "User activity" in the Privacy Practices tab.',
+          ad_sdks: 'Extensions serving ads must declare "Web browsing activity" and comply with Chrome\'s ad policy. Must not inject ads into other websites.',
+          account_linking: 'Declare "Authentication information" in the Privacy Practices tab. Explain the account linking purpose.'
+        }
+      },
+      microsoft_store: {
+        name: 'Microsoft Store',
+        policyRequirement: 'A privacy-policy URL is required for any app that collects personal data, accesses the internet, or requests device permissions.',
+        submissionLocation: 'Microsoft Partner Center → Properties → Privacy Policy URL',
+        extraForm: 'None (no separate data-disclosure form)',
+        extraFormDescription: 'Microsoft does not require a separate data-safety form, but your privacy policy is reviewed during certification. The policy must cover all data your app collects.',
+        dataDeclarations: {
+          device_identifiers: 'Your privacy policy must disclose collection of device identifiers and the purpose.',
+          location: 'Declare location capability in the app manifest. Your privacy policy must explain what location data is collected and why.',
+          contacts: 'Declare contacts capability in the app manifest and disclose the access in your privacy policy.',
+          photos_media: 'If your app accesses photos, camera, or media libraries, disclose this in your privacy policy.',
+          health: 'Health-related apps may be subject to additional Microsoft certification requirements. Your privacy policy must detail health data handling.',
+          financial: 'Apps that handle financial data must disclose this in the privacy policy. In-app purchases use Microsoft\'s commerce platform.',
+          voice_recordings: 'If your app uses the microphone, declare the capability and explain voice data handling in your privacy policy.',
+          analytics_crash: 'Disclose any analytics or telemetry data collection in your privacy policy.',
+          ad_sdks: 'If your app displays ads, disclose the ad networks used and the data shared with them in your privacy policy.',
+          account_linking: 'If your app requires sign-in, disclose what account information is collected and how it is used.'
+        }
+      }
+    };
+
+    var DATA_TYPE_LABELS = {
+      device_identifiers: 'Device identifiers',
+      location: 'Location',
+      contacts: 'Contacts',
+      photos_media: 'Photos / media',
+      health: 'Health data',
+      financial: 'Financial data',
+      voice_recordings: 'Voice recordings',
+      analytics_crash: 'Analytics / crash logs',
+      ad_sdks: 'Third-party ad SDKs',
+      account_linking: 'Account linking'
+    };
+
+    var CLAUSE_MAP = {
+      data_collection: {
+        label: 'Data Collection Disclosure',
+        description: 'List every type of personal data your app collects and the method of collection (automatic, user-provided, third-party SDK).',
+        stores: ['google_play', 'apple_app_store', 'amazon_alexa', 'meta_facebook', 'chrome_web_store', 'microsoft_store']
+      },
+      purpose: {
+        label: 'Purpose of Collection',
+        description: 'Explain why each data type is collected (app functionality, analytics, advertising, personalization, etc.).',
+        stores: ['google_play', 'apple_app_store', 'amazon_alexa', 'meta_facebook', 'chrome_web_store', 'microsoft_store']
+      },
+      third_party_sharing: {
+        label: 'Third-Party Sharing',
+        description: 'Name the categories of third parties you share data with, the types of data shared, and the purpose of sharing.',
+        stores: ['google_play', 'apple_app_store', 'meta_facebook', 'chrome_web_store', 'microsoft_store']
+      },
+      data_retention: {
+        label: 'Data Retention',
+        description: 'State how long you keep user data and the criteria used to determine the retention period.',
+        stores: ['google_play', 'apple_app_store', 'meta_facebook', 'chrome_web_store']
+      },
+      user_rights: {
+        label: 'User Rights (Access, Deletion, Correction)',
+        description: 'Describe how users can access, correct, export, or delete their data. Include a contact method or in-app mechanism.',
+        stores: ['google_play', 'apple_app_store', 'meta_facebook', 'chrome_web_store', 'microsoft_store']
+      },
+      deletion_mechanism: {
+        label: 'Data Deletion Instructions',
+        description: 'Provide specific steps for users to request data deletion. Google Play requires a web-accessible data deletion page or in-app flow.',
+        stores: ['google_play', 'apple_app_store', 'meta_facebook']
+      },
+      security: {
+        label: 'Security Measures',
+        description: 'Describe the technical and organizational measures you use to protect user data (encryption, access controls, secure storage).',
+        stores: ['google_play', 'apple_app_store', 'amazon_alexa', 'meta_facebook', 'microsoft_store']
+      },
+      children: {
+        label: 'Children\'s Privacy',
+        description: 'State whether the app is directed at children. If it is, explain COPPA compliance, parental consent, and age-gating.',
+        stores: ['google_play', 'apple_app_store', 'amazon_alexa', 'microsoft_store']
+      },
+      contact_info: {
+        label: 'Developer Contact Information',
+        description: 'Provide a working email address or contact form where users can reach you with privacy questions.',
+        stores: ['google_play', 'apple_app_store', 'amazon_alexa', 'meta_facebook', 'chrome_web_store', 'microsoft_store']
+      },
+      policy_updates: {
+        label: 'Policy Change Notification',
+        description: 'Explain how users will be notified when the privacy policy is updated (in-app notice, email, updated "last modified" date).',
+        stores: ['google_play', 'apple_app_store', 'meta_facebook', 'microsoft_store']
+      },
+      ad_disclosure: {
+        label: 'Advertising & Tracking Disclosure',
+        description: 'If your app uses ad SDKs or tracks users, name the ad networks, explain opt-out mechanisms, and (for iOS) describe App Tracking Transparency compliance.',
+        stores: ['google_play', 'apple_app_store', 'meta_facebook', 'chrome_web_store'],
+        dataCondition: ['ad_sdks']
+      },
+      voice_data: {
+        label: 'Voice Data Handling',
+        description: 'Explain how voice recordings are processed, whether they are stored, and how users can review or delete them.',
+        stores: ['amazon_alexa', 'google_play', 'apple_app_store'],
+        dataCondition: ['voice_recordings']
+      },
+      health_data: {
+        label: 'Health Data Handling',
+        description: 'Detail how health data is collected, processed, and protected. Reference any platform-specific health APIs (HealthKit, Google Fit) and their usage requirements.',
+        stores: ['google_play', 'apple_app_store', 'amazon_alexa'],
+        dataCondition: ['health']
+      }
+    };
+
+    /* ───── STATE ───── */
+
+    var selectedStores = {};
+    var selectedData = {};
+
+    /* ───── DOM REFS ───── */
+
+    var checkBtn = document.getElementById('check-btn');
+    var resetBtn = document.getElementById('reset-btn');
+    var copyBtn = document.getElementById('copy-btn');
+    var copyConfirm = document.getElementById('copy-confirm');
+    var resultsDiv = document.getElementById('results');
+    var storeResults = document.getElementById('store-results');
+    var clauseChecklist = document.getElementById('clause-checklist');
+    var plainTextOutput = document.getElementById('plain-text-output');
+    var formDiv = document.getElementById('checker-form');
+
+    /* ───── CHIP TOGGLE HANDLERS ───── */
+
+    document.querySelectorAll('#store-chips .chip').forEach(function(chip) {
+      chip.addEventListener('click', function() {
+        var key = this.getAttribute('data-store');
+        if (selectedStores[key]) {
+          delete selectedStores[key];
+          this.classList.remove('active');
+        } else {
+          selectedStores[key] = true;
+          this.classList.add('active');
+        }
+        updateCheckBtn();
+      });
+    });
+
+    document.querySelectorAll('#data-chips .chip').forEach(function(chip) {
+      chip.addEventListener('click', function() {
+        var key = this.getAttribute('data-dtype');
+        if (selectedData[key]) {
+          delete selectedData[key];
+          this.classList.remove('active');
+        } else {
+          selectedData[key] = true;
+          this.classList.add('active');
+        }
+        updateCheckBtn();
+      });
+    });
+
+    function updateCheckBtn() {
+      checkBtn.disabled = Object.keys(selectedStores).length === 0;
+    }
+
+    /* ───── CHECK BUTTON ───── */
+
+    checkBtn.addEventListener('click', function() {
+      var storeKeys = Object.keys(selectedStores);
+      var dataKeys = Object.keys(selectedData);
+
+      /* Build store requirement cards */
+      storeResults.innerHTML = '';
+
+      storeKeys.forEach(function(storeKey) {
+        var store = STORE_RULES[storeKey];
+        var card = document.createElement('div');
+        card.className = 'result-card';
+
+        var html = '<div class="result-badge">' + store.name + '</div>';
+        html += '<h3 class="result-law-name">' + store.name + ' Requirements</h3>';
+        html += '<div class="req-row"><span class="req-label">Policy requirement:</span> ' + store.policyRequirement + '</div>';
+        html += '<div class="req-row"><span class="req-label">Where to submit:</span> ' + store.submissionLocation + '</div>';
+        html += '<div class="req-row"><span class="req-label">Extra disclosure form:</span> ' + store.extraForm + '</div>';
+        html += '<div class="req-row req-form-desc">' + store.extraFormDescription + '</div>';
+
+        /* Data-type declarations for this store */
+        var relevantData = dataKeys.filter(function(dk) {
+          return store.dataDeclarations[dk];
+        });
+
+        if (relevantData.length > 0) {
+          html += '<div class="declarations-section">';
+          html += '<span class="req-label">Declarations triggered by your data types:</span>';
+          html += '<ul class="declaration-list">';
+          relevantData.forEach(function(dk) {
+            html += '<li><strong>' + DATA_TYPE_LABELS[dk] + ':</strong> ' + store.dataDeclarations[dk] + '</li>';
+          });
+          html += '</ul>';
+          html += '</div>';
+        }
+
+        card.innerHTML = html;
+        storeResults.appendChild(card);
+      });
+
+      /* Build merged clause checklist */
+      clauseChecklist.innerHTML = '';
+      var activeClauses = [];
+
+      Object.keys(CLAUSE_MAP).forEach(function(clauseKey) {
+        var clause = CLAUSE_MAP[clauseKey];
+
+        /* Check if any selected store matches */
+        var storeMatch = clause.stores.some(function(s) { return selectedStores[s]; });
+        if (!storeMatch) return;
+
+        /* Check data condition if present */
+        if (clause.dataCondition) {
+          var dataMatch = clause.dataCondition.some(function(d) { return selectedData[d]; });
+          if (!dataMatch) return;
+        }
+
+        activeClauses.push(clause);
+
+        var triggeredStores = clause.stores.filter(function(s) { return selectedStores[s]; });
+        var storeNames = triggeredStores.map(function(s) { return STORE_RULES[s].name; });
+
+        var item = document.createElement('div');
+        item.className = 'checklist-item';
+        item.innerHTML = '<div class="checklist-check">&#10003;</div>' +
+          '<div class="checklist-content">' +
+          '<strong>' + clause.label + '</strong>' +
+          '<p>' + clause.description + '</p>' +
+          '<span class="checklist-stores">Required by: ' + storeNames.join(', ') + '</span>' +
+          '</div>';
+        clauseChecklist.appendChild(item);
+      });
+
+      /* Build plain-text summary */
+      var lines = [];
+      lines.push('APP STORE PRIVACY REQUIREMENTS SUMMARY');
+      lines.push('Generated on ' + new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));
+      lines.push('');
+      lines.push('SELECTED STORES: ' + storeKeys.map(function(k) { return STORE_RULES[k].name; }).join(', '));
+      if (dataKeys.length > 0) {
+        lines.push('SELECTED DATA TYPES: ' + dataKeys.map(function(k) { return DATA_TYPE_LABELS[k]; }).join(', '));
+      }
+      lines.push('');
+
+      storeKeys.forEach(function(storeKey) {
+        var store = STORE_RULES[storeKey];
+        lines.push('--- ' + store.name.toUpperCase() + ' ---');
+        lines.push('Policy requirement: ' + store.policyRequirement);
+        lines.push('Where to submit: ' + store.submissionLocation);
+        lines.push('Extra form: ' + store.extraForm);
+
+        var relevantData = dataKeys.filter(function(dk) { return store.dataDeclarations[dk]; });
+        if (relevantData.length > 0) {
+          lines.push('');
+          lines.push('Triggered declarations:');
+          relevantData.forEach(function(dk) {
+            lines.push('  - ' + DATA_TYPE_LABELS[dk] + ': ' + store.dataDeclarations[dk]);
+          });
+        }
+        lines.push('');
+      });
+
+      lines.push('--- PRIVACY POLICY CLAUSE CHECKLIST ---');
+      activeClauses.forEach(function(clause) {
+        lines.push('[ ] ' + clause.label + ': ' + clause.description);
+      });
+      lines.push('');
+      lines.push('Generated by BuildPrivacyPolicy - https://buildprivacypolicy.com/tools/app-store-privacy-requirements/');
+
+      plainTextOutput.textContent = lines.join('\n');
+
+      formDiv.style.display = 'none';
+      resultsDiv.style.display = 'block';
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'tool_complete', stores_checked: storeKeys.length, data_types: dataKeys.length });
+
+      resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    /* ───── COPY BUTTON ───── */
+
+    copyBtn.addEventListener('click', function() {
+      var text = plainTextOutput.textContent;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() {
+          showCopyConfirm();
+        });
+      } else {
+        var textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showCopyConfirm();
+      }
+    });
+
+    function showCopyConfirm() {
+      copyConfirm.style.display = 'inline';
+      setTimeout(function() { copyConfirm.style.display = 'none'; }, 2000);
+    }
+
+    /* ───── RESET ───── */
+
+    resetBtn.addEventListener('click', function() {
+      selectedStores = {};
+      selectedData = {};
+      document.querySelectorAll('.chip').forEach(function(c) { c.classList.remove('active'); });
+      checkBtn.disabled = true;
+      resultsDiv.style.display = 'none';
+      formDiv.style.display = 'block';
+      formDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</Layout>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-link:hover {
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+  .page-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 16px 80px;
+  }
+  .page-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px 36px;
+    border: 1px solid #E5E7EB;
+  }
+  .breadcrumb {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 16px;
+  }
+  .breadcrumb a {
+    color: #6B7280;
+    text-decoration: underline;
+  }
+  .page-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .last-updated {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 24px;
+  }
+  .page-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .page-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  .page-card p {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .page-card a {
+    color: #2563EB;
+    text-decoration: underline;
+  }
+  .page-card strong {
+    font-weight: 600;
+  }
+
+  /* Tool form */
+  .tool-container {
+    margin: 28px 0 12px;
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    padding: 28px 24px;
+  }
+  .form-section {
+    margin-bottom: 28px;
+  }
+  .section-label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 4px;
+  }
+  .section-hint {
+    font-size: 13px !important;
+    color: #9CA3AF !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* Chip multi-select */
+  .chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .chip {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: inherit;
+    border: 1px solid #D1D5DB;
+    border-radius: 20px;
+    background: white;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .chip:hover:not(.active) {
+    border-color: #9CA3AF;
+    background: #F9FAFB;
+  }
+  .chip.active {
+    background: #2563EB;
+    border-color: #2563EB;
+    color: white;
+  }
+
+  /* Check button */
+  .check-btn {
+    width: 100%;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    color: white;
+    background: #2563EB;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .check-btn:hover:not(:disabled) {
+    background: #1D4ED8;
+  }
+  .check-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Results */
+  .results-heading {
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+  }
+  .checklist-heading {
+    margin-top: 36px !important;
+  }
+  .result-card {
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 14px;
+    border-left: 4px solid #2563EB;
+  }
+  .result-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #2563EB;
+    background: #EFF6FF;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  .result-law-name {
+    font-size: 16px !important;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 0 !important;
+    margin-bottom: 12px !important;
+  }
+  .req-row {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.6;
+    margin-bottom: 6px;
+  }
+  .req-label {
+    font-weight: 600;
+    color: #111827;
+  }
+  .req-form-desc {
+    font-size: 13px;
+    color: #6B7280;
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+  .declarations-section {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #F3F4F6;
+  }
+  .declaration-list {
+    margin: 8px 0 0 0;
+    padding-left: 18px;
+    list-style: disc;
+  }
+  .declaration-list li {
+    font-size: 13px;
+    color: #4B5563;
+    line-height: 1.7;
+    margin-bottom: 6px;
+  }
+  .declaration-list li strong {
+    color: #111827;
+  }
+
+  /* Clause checklist */
+  .checklist-item {
+    display: flex;
+    gap: 12px;
+    padding: 14px 16px;
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    align-items: flex-start;
+  }
+  .checklist-check {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ECFDF5;
+    color: #059669;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+  .checklist-content {
+    flex: 1;
+  }
+  .checklist-content strong {
+    font-size: 14px;
+    color: #111827;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .checklist-content p {
+    font-size: 13px !important;
+    color: #4B5563 !important;
+    line-height: 1.6 !important;
+    margin-bottom: 4px !important;
+  }
+  .checklist-stores {
+    font-size: 12px;
+    color: #9CA3AF;
+  }
+
+  /* Copy section */
+  .copy-section {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .copy-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    color: #374151;
+    background: white;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .copy-btn:hover {
+    background: #F9FAFB;
+  }
+  .copy-confirm {
+    font-size: 13px;
+    color: #059669;
+    font-weight: 600;
+  }
+
+  /* Reset */
+  .reset-btn {
+    margin-top: 16px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    color: #374151;
+    background: white;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .reset-btn:hover {
+    background: #F9FAFB;
+  }
+
+  /* FAQ */
+  .faq-list {
+    margin-top: 8px;
+  }
+  .faq-item {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 20px;
+    margin-bottom: 8px;
+  }
+  .faq-item h3 {
+    margin-top: 0;
+  }
+  .faq-item p {
+    margin-bottom: 8px;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .page-card {
+      padding: 24px 18px;
+    }
+    .tool-container {
+      padding: 20px 16px;
+    }
+    .chip {
+      padding: 7px 12px;
+      font-size: 13px;
+    }
+  }
+</style>
