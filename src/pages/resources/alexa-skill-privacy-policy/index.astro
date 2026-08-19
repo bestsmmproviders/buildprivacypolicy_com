@@ -1,10 +1,10 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 
-const title = "Alexa Skill Privacy Policy — What Amazon Requires and How to Create One";
-const description = "Amazon requires a hosted privacy policy URL for Alexa skills that collect personal data or use account linking. Learn what certification checks, what your policy must cover, and how to generate one free.";
+const title = "Alexa Skill Privacy Policy: What Amazon Requires";
+const description = "Amazon requires an Alexa skill privacy policy for skills that collect data or use account linking. Learn what certification checks and how to generate one free.";
 const publishDate = "2026-08-13";
-const modifiedDate = "2026-08-13";
+const modifiedDate = "2026-08-18";
 ---
 
 <Layout title={title} description={description}>
@@ -25,9 +25,9 @@ const modifiedDate = "2026-08-13";
     <h1>Alexa Skill Privacy Policy: What Amazon Requires and How to Create One</h1>
     <p class="last-updated">Published August 13, 2026</p>
 
-    <p>Every Alexa skill that collects personal information, uses account linking, or includes advertising needs a hosted privacy policy URL before Amazon will approve it for the Alexa Skills Store. The privacy policy must live at a publicly accessible web address, load without authentication, and describe how the skill handles user data. Skip it, and the skill fails certification. Provide a vague or boilerplate one, and Amazon's review team can reject it just the same.</p>
+    <p>Every Alexa skill that collects personal information, uses account linking, or includes advertising needs a hosted privacy policy URL before Amazon will approve it for the Alexa Skills Store. The policy must live at a publicly accessible web address, load without authentication, and describe how the skill handles user data. Skip it and the skill fails certification. Submit a vague or boilerplate document and Amazon's review team rejects it just the same -- they read the policy, not just the URL.</p>
 
-    <p>This guide covers exactly what Amazon's certification process checks, the data categories developers commonly overlook, what your policy document must state, and how to host the finished URL and wire it into the Alexa Developer Console. If you need a policy quickly, you can <a href="https://buildprivacypolicy.com/">generate a privacy policy for free</a> in a few minutes and host it at no cost.</p>
+    <p>This guide covers what Amazon's certification process actually checks, the data categories developers miss, what each section of your policy needs to say, and how to host the finished document and wire it into the Developer Console. If you need a policy fast, you can <a href="https://buildprivacypolicy.com/">generate a privacy policy for free</a> and host it at no cost.</p>
 
     <nav class="toc">
       <p class="toc-title">Contents</p>
@@ -45,60 +45,87 @@ const modifiedDate = "2026-08-13";
 
     <p>Amazon treats the privacy policy as a gatekeeper for the Alexa Skills Store, similar to how Google Play and the Apple App Store require one for mobile apps. The requirement exists for three reasons.</p>
 
-    <p><strong>User trust at the point of enablement.</strong> When a customer browses the Alexa Skills Store or says "Alexa, enable [skill name]," they have no source code to inspect. The privacy policy is the only document that tells them what data the skill collects, why it collects it, and who receives it. Without that transparency layer, customers are enabling a black box.</p>
+    <p><strong>User trust at the point of enablement.</strong> When a customer says "Alexa, enable [skill name]," they have no source code to inspect. No APK to decompile, no network tab to watch. The privacy policy is the only document telling them what data flows where and why. Without it, they are enabling a black box.</p>
 
     <p><strong>Regulatory compliance across jurisdictions.</strong> Alexa skills are available in multiple countries. A skill published in the US, UK, Germany, and India simultaneously falls under the CCPA, UK GDPR, EU GDPR, and India's DPDP Act. Amazon cannot audit every skill's data practices against every regulation, so it shifts that responsibility to the developer via a mandatory policy disclosure. The skill's privacy policy is the developer's statement of compliance.</p>
 
-    <p><strong>Certification as a quality gate.</strong> Amazon reviews every skill before it goes live. The privacy policy URL is one of the fields the certification team checks. According to Amazon's developer documentation, a skill that uses account linking or collects user information but does not provide a valid privacy policy will not be published on the Alexa Skills Store. Even skills that do not collect personal data can optionally include a policy, but if they do, it still has to meet certification requirements.</p>
+    <p><strong>Certification as a quality gate.</strong> Amazon reviews every skill before it goes live. The privacy policy URL is one of the fields the certification team checks. Amazon's certification requirements for the Alexa Skills Kit are blunt on this point: the policy section of the content guidelines states that any skill collecting personal information or using account linking "must include a link to a privacy policy that is specific to that skill" and that skills without this link "will fail certification." That is not a soft recommendation -- it is a hard gate. Skills that collect no personal data can optionally include one, but if they do, it still has to pass review.</p>
 
     <h2 id="what-certification-checks">What Certification Checks</h2>
 
-    <p>Amazon's certification team does not simply confirm that the privacy policy URL field is filled in. They verify several specific conditions, documented on the Alexa Skills Kit developer blog.</p>
+    <p>Amazon's certification team does not just confirm the URL field is populated. Reviewers open the link and verify several conditions before approving a submission.</p>
 
     <ul>
-      <li><strong>The URL loads directly to the privacy policy.</strong> The link must open to the actual privacy section, not to a homepage or a general "about" page that happens to mention privacy somewhere. A URL that redirects to a login wall, returns a 404, or lands on a page where the user has to scroll or click to find the policy section will fail review.</li>
-      <li><strong>The language matches the skill's locale.</strong> If a skill is submitted in en-US and de-DE, the privacy policy must be written in English or German. A policy in a third language, even one that Alexa supports, is not accepted.</li>
-      <li><strong>The content is specific to the skill.</strong> A privacy policy that references a different skill name or a different company than the one submitting the skill is flagged as invalid. Generic templates that clearly belong to another product get rejected.</li>
-      <li><strong>The page is publicly accessible.</strong> The policy must load on iOS, Android, and desktop browsers without requiring any authentication, app installation, or account creation.</li>
+      <li><strong>The URL loads directly to the policy text.</strong> The link must open to the actual privacy policy content -- not a homepage, not an "about" page, not a landing page that mentions privacy in a sidebar. URLs that redirect to a login wall, return a 404, or require scrolling past unrelated content fail review.</li>
+      <li><strong>The language matches the skill's locale.</strong> A skill submitted in en-US and de-DE needs a policy in English or German. Third-language policies get rejected.</li>
+      <li><strong>The content names the correct skill.</strong> A policy referencing a different skill name or developer than the submission is flagged immediately. Recycled templates from another product are a fast path to rejection.</li>
+      <li><strong>The page is publicly accessible.</strong> The policy must load on iOS, Android, and desktop browsers with no authentication, app install, or account creation required. Amazon's reviewers test across devices.</li>
     </ul>
 
-    <p>Beyond the privacy policy URL itself, the Distribution section of the Developer Console includes a Privacy and Compliance page where developers must answer specific questions: whether the skill collects personal information, whether it targets children under 13, whether it contains advertising, and whether it allows purchases. The answers to these questions must be consistent with what the privacy policy states. Contradictions between the form answers and the policy text are a common cause of certification rejection.</p>
+    <h3>Why skills get rejected at certification</h3>
+
+    <p>These are the specific failure reasons Amazon's reviewers cite most often in rejection notices:</p>
+
+    <ul>
+      <li><strong>Privacy policy URL missing or broken.</strong> The field in Distribution &gt; Skill Preview is blank, returns a non-200 status code, or redirects to a generic page.</li>
+      <li><strong>Form answers contradict the policy.</strong> The Privacy &amp; Compliance page asks whether the skill collects personal information, targets children under 13, contains advertising, or allows purchases. If a developer checks "No" for personal-data collection but the policy describes storing user emails, the submission is rejected.</li>
+      <li><strong>Policy does not mention the skill's actual data practices.</strong> A boilerplate document that lists cookies and website analytics but never addresses voice data, account linking, or Alexa permissions fails the relevance check.</li>
+      <li><strong>Account linking enabled without corresponding disclosure.</strong> Skills that use OAuth to connect a third-party account must explain in the policy what profile data is retrieved and why. Missing this is one of the top rejection triggers.</li>
+      <li><strong>Policy hosted on an unstable URL.</strong> Google Docs links, Notion pages, and Pastebin URLs are rejected because they can change, require login, or display editing UI.</li>
+    </ul>
+
+    <p>The Distribution section of the Developer Console also includes a <strong>Privacy &amp; Compliance</strong> page with yes/no questions about data collection, children's content, advertising, and in-skill purchases. Every answer must match what the privacy policy states. Contradictions between the two are a common -- and avoidable -- cause of rejection.</p>
 
     <h2 id="data-developers-overlook">Data a Skill Collects That Developers Overlook</h2>
 
-    <p>Most developers know to disclose the obvious inputs: a name and email collected through account linking, or a home address requested through the Device Address API. But Alexa skills handle several data categories that are easy to miss.</p>
+    <p>Most developers disclose the obvious inputs: a name and email from account linking, a home address from the Device Address API. But Alexa skills handle several less obvious data categories that trip up certification.</p>
 
     <ul>
-      <li><strong>Voice recordings and utterances.</strong> When a user speaks to your skill, Amazon's cloud processes the audio and sends your skill's backend the text transcription (and sometimes raw audio for certain APIs). Your skill's interaction model captures every utterance the user directs at it. If your backend logs these utterances for debugging, analytics, or model training, that is personal data collection and your policy must disclose it.</li>
-      <li><strong>User IDs and session identifiers.</strong> Every Alexa skill request includes a <code>userId</code> field, a unique string that identifies the Amazon account interacting with the skill. Even if you never ask for a name or email, storing this ID alongside usage data creates a profile tied to a real person. Session IDs similarly track interactions within a single conversation.</li>
-      <li><strong>Device location.</strong> Skills can request coarse or precise location through the Device Address API. Coarse location returns country and postal code; full address returns street-level detail. If your skill uses location-based features, for example showing nearby results or adjusting content by region, this data flows through your backend and must be disclosed.</li>
-      <li><strong>Account linking data.</strong> When a skill uses Login with Amazon or any OAuth 2.0 provider for account linking, the linked account's profile data (name, email, and sometimes phone number) becomes accessible to the skill. Developers sometimes treat this as "Amazon's data" rather than their own collection, but the moment your backend receives the OAuth token and queries the profile endpoint, you are collecting personal information.</li>
-      <li><strong>Skill permissions data.</strong> Beyond account linking, Alexa offers granular permissions: customer name, customer email, customer phone number, reminders, lists, and location. Each permission the user grants sends data to your skill's backend. Every granted permission needs a corresponding disclosure in the privacy policy.</li>
-      <li><strong>Persistent attributes and DynamoDB storage.</strong> Many skills use the ASK SDK's persistent attributes feature backed by DynamoDB to remember user preferences, game scores, or conversation history between sessions. If this stored data can be tied back to a userId, it constitutes personal data storage and needs disclosure.</li>
+      <li><strong>Voice utterances.</strong> Amazon's cloud processes audio and sends your backend the text transcription. Your interaction model captures every utterance directed at the skill. If your Lambda logs those transcriptions for debugging or analytics, that is personal data collection -- disclose it.</li>
+      <li><strong>User IDs and session identifiers.</strong> Every request includes a <code>userId</code> string tied to the Amazon account. Store it alongside usage data and you have a profile linked to a real person, even without a name or email. Session IDs track interactions within a single conversation.</li>
+      <li><strong>Device location.</strong> The Device Address API returns coarse location (country and postal code) or full street-level detail. If your skill uses location for any feature, that data flows through your backend and needs disclosure.</li>
+      <li><strong>Account linking data.</strong> Login with Amazon or any OAuth 2.0 provider gives your skill access to profile data -- name, email, sometimes phone. Developers sometimes treat this as "Amazon's data." It is not. The moment your backend queries the profile endpoint with that OAuth token, you are collecting personal information.</li>
+      <li><strong>Skill permissions data.</strong> Alexa offers granular permissions beyond account linking: customer name, email, phone, reminders, lists, location. Each granted permission sends data to your backend. Each one needs a corresponding line in the policy.</li>
+      <li><strong>Persistent attributes.</strong> The ASK SDK's persistent attributes feature (typically backed by DynamoDB) stores preferences, scores, or conversation history across sessions. Tied to a userId, that is personal data storage.</li>
     </ul>
 
-    <p>A practical rule: if your skill's Lambda function (or equivalent backend) receives, processes, or stores any piece of data that traces back to a specific user or device, that data type belongs in the privacy policy. When in doubt about which regulations might apply to your specific data practices, a <a href="/tools/privacy-law-checker/">quick compliance check based on your platform and audience</a> can clarify which laws you need to satisfy.</p>
+    <p>The rule is simple: if your Lambda function receives, processes, or stores anything that traces back to a specific user or device, disclose it. Not sure which privacy laws apply? A <a href="/tools/privacy-law-checker/">quick compliance check based on your platform and audience</a> can clarify.</p>
 
     <h2 id="what-policy-must-state">What Your Policy Must State</h2>
 
-    <p>A compliant Alexa skill privacy policy covers the same ground as any app privacy policy, but scoped to the voice-first interaction model. Here is what each section needs to address.</p>
+    <p>A compliant Alexa skill privacy policy covers the same ground as any app privacy policy, but scoped to voice interaction. Six sections do the heavy lifting.</p>
 
     <ul>
       <li><strong>What data you collect.</strong> List every data type from the section above that applies to your skill. Be specific: "We receive your voice utterances as text transcriptions through Amazon's Alexa service" is useful. "We may collect certain information" is not. Include data collected through account linking, skill permissions, and persistent storage.</li>
-      <li><strong>Why you collect it.</strong> Map each data type to a concrete purpose. User utterances might power your skill's core functionality. A userId might persist preferences across sessions. An email address obtained through account linking might send order confirmations. If you cannot name a purpose for a data type, you should not be collecting it.</li>
-      <li><strong>Who receives the data.</strong> Name the categories of third parties: cloud infrastructure (AWS Lambda, DynamoDB), analytics providers (if you send usage events to a dashboard), authentication services (Login with Amazon, third-party OAuth providers), and any other service your backend calls with user data.</li>
-      <li><strong>How long you keep it.</strong> Specify retention periods. "We retain persistent attributes for as long as the skill is enabled on your account and delete them within 30 days of disablement" is a concrete, verifiable statement. Open-ended retention ("we keep data as long as necessary") invites regulatory scrutiny.</li>
-      <li><strong>User rights and how to exercise them.</strong> Under the GDPR, users can request access, correction, deletion, and portability of their data. Under the CCPA, California residents can opt out of data sales and request deletion. Your policy must list the rights that apply based on your audience's geography and provide a contact method, typically an email address, for exercising them.</li>
-      <li><strong>Children's privacy.</strong> If your skill targets or is likely to attract users under 13, you must comply with COPPA (US) and equivalent rules under the GDPR. The Developer Console asks whether the skill targets children, and the answer must match your policy. If your skill is not directed at children, state that clearly.</li>
-      <li><strong>Contact information.</strong> Provide a dedicated email address for privacy questions. If the GDPR applies to your user base, consider naming a Data Protection Officer or privacy contact.</li>
-      <li><strong>How you notify users of changes.</strong> Describe how you communicate policy updates: a bumped "last modified" date, an email to linked accounts, or a card sent through the Alexa app. The GDPR expects notification before material changes take effect.</li>
+      <li><strong>Why you collect it.</strong> Map each data type to a purpose. Utterances power core functionality. A userId persists preferences. An email from account linking sends order confirmations. If you cannot name a purpose, drop the collection.</li>
+      <li><strong>Who receives the data.</strong> Name third-party categories: cloud infrastructure (AWS Lambda, DynamoDB), analytics providers, authentication services (Login with Amazon, third-party OAuth), and any other service your backend calls with user data.</li>
+      <li><strong>How long you keep it.</strong> Specify retention periods. "We retain persistent attributes while the skill is enabled and delete them within 30 days of disablement" is concrete and verifiable. Open-ended retention ("as long as necessary") invites regulatory scrutiny.</li>
+      <li><strong>User rights and how to exercise them.</strong> Under the GDPR: access, correction, deletion, portability. Under the CCPA: opt-out of data sales, deletion. List the rights that apply to your audience's geography and provide a contact email for exercising them.</li>
+      <li><strong>Children's privacy.</strong> If your skill targets users under 13, COPPA (US) and GDPR-K rules apply. The Developer Console asks whether the skill targets children -- the answer must match your policy. Not directed at children? State that explicitly.</li>
+      <li><strong>Contact information.</strong> A dedicated email for privacy questions. GDPR-covered user bases should also name a Data Protection Officer.</li>
+      <li><strong>Change notification.</strong> How you communicate policy updates: a bumped "last modified" date, an email to linked accounts, or a card through the Alexa app.</li>
     </ul>
 
-    <p>Writing this from scratch takes time, especially if your skill spans multiple data types and jurisdictions. The process is nearly identical to <a href="/resources/how-to-write-privacy-policy-for-app/">writing a privacy policy for any app</a>: audit your data flows, map them to purposes, identify third parties, and draft each section in plain language. A generator can compress that work into a guided form.</p>
+    <h3>Worked example: a habit-tracker skill with account linking</h3>
+
+    <p>Consider a skill called "Daily Habits" that lets users log habits by voice and view streaks in a companion web app. The skill uses Login with Amazon for account linking, stores habit entries in DynamoDB keyed to the userId, and requests the customer email permission so it can send a weekly summary.</p>
+
+    <p>That skill's privacy policy needs to disclose at least these data types and purposes:</p>
+
+    <ul>
+      <li><strong>Voice utterances</strong> — transcribed by Amazon and sent to the skill's Lambda function to parse habit names. Logged for 7 days in CloudWatch for debugging, then deleted.</li>
+      <li><strong>Amazon userId</strong> — stored in DynamoDB alongside habit entries to persist streaks across sessions.</li>
+      <li><strong>Account linking profile data</strong> — name and email retrieved via Login with Amazon's OAuth token. Email used to send the weekly summary; name used to personalize Alexa responses.</li>
+      <li><strong>Customer email permission</strong> — separately granted through Alexa permissions, used as a fallback delivery address if the account-linked email is unavailable.</li>
+    </ul>
+
+    <p>The policy also needs a retention statement ("Habit data is retained while the skill is enabled and deleted within 30 days of disabling"), a children's disclaimer (the skill is not directed at users under 13), GDPR and CCPA rights sections covering deletion and access requests, and a contact email. On the Privacy & Compliance page in the Developer Console, the developer must check "Yes" for personal information collection and "No" for children targeting, advertising, and in-skill purchases -- all matching the policy text.</p>
+
+    <p>Writing this from scratch takes time when a skill spans multiple data types and jurisdictions. The process mirrors <a href="/resources/how-to-write-privacy-policy-for-app/">writing a privacy policy for any app</a>: audit your data flows, map them to purposes, identify third parties, and draft each section. A generator can compress that work into a guided form.</p>
 
     <h2 id="host-and-add">Where to Host the URL and Add It in the Developer Console</h2>
 
-    <p>The privacy policy needs a permanent, publicly accessible URL. Here are the most common hosting approaches for Alexa skill developers.</p>
+    <p>The privacy policy needs a permanent, publicly accessible URL. Three hosting approaches cover most Alexa skill developers.</p>
 
     <h3>Hosting options</h3>
 
@@ -114,15 +141,14 @@ const modifiedDate = "2026-08-13";
 
     <ol>
       <li>Open the <a href="https://developer.amazon.com/alexa/console/ask" rel="nofollow">Alexa Developer Console</a> and select your skill.</li>
-      <li>Navigate to the <strong>Distribution</strong> tab in the left sidebar.</li>
-      <li>Under <strong>Skill Preview</strong>, scroll to the <strong>Privacy Policy URL</strong> field and paste your hosted URL.</li>
-      <li>Click <strong>Privacy &amp; Compliance</strong> in the left menu under Distribution.</li>
-      <li>Answer the compliance questions (personal information collection, children targeting, advertising, purchases). Make sure every answer is consistent with what your privacy policy states.</li>
-      <li>If your skill is available in multiple locales, verify the privacy policy link loads and displays properly for each locale and that the policy language matches at least one of the skill's languages.</li>
-      <li>Save and submit the skill for certification.</li>
+      <li>Click the <strong>Distribution</strong> tab in the left sidebar.</li>
+      <li>Under <strong>Skill Preview</strong>, find the <strong>Privacy Policy URL</strong> field near the bottom of the page. Paste your full URL including <code>https://</code>. The console validates that the field contains a properly formatted URL but does not check whether the page actually loads -- that happens during certification review.</li>
+      <li>Click <strong>Privacy &amp; Compliance</strong> in the left menu under Distribution. This page presents yes/no toggles: "Does this skill collect users' personal information?", "Is this skill directed to or does it target children under the age of 13?", "Does this skill contain advertising?", and "Does this skill allow users to make purchases?" Each answer must match what the privacy policy states. Contradictions between this page and the policy are one of the most common rejection triggers.</li>
+      <li>For multi-locale skills, verify the privacy policy link loads for each locale and that the policy language matches at least one of the skill's supported languages.</li>
+      <li>Save and submit for certification.</li>
     </ol>
 
-    <p>After certification approval, the privacy policy link appears on your skill's detail page in the Alexa Skills Store, where customers can review it before enabling the skill.</p>
+    <p>After approval, the privacy policy link appears on your skill's detail page in the Alexa Skills Store. Customers can review it before enabling the skill.</p>
 
     <h2 id="faq">Frequently Asked Questions</h2>
 
