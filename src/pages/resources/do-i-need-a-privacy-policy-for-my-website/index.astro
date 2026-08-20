@@ -4,7 +4,7 @@ import Layout from '../../../layouts/Layout.astro';
 const title = "Do I Need a Privacy Policy on My Website? - BuildPrivacyPolicy";
 const description = "Yes, in almost every case. See which laws (GDPR, CCPA, PIPEDA, LGPD, COPPA) and platform rules require a privacy policy, and what happens if you skip one.";
 const publishDate = "2026-07-29";
-const modifiedDate = "2026-07-29";
+const modifiedDate = "2026-08-20";
 ---
 
 <Layout title={title} description={description}>
@@ -23,7 +23,7 @@ const modifiedDate = "2026-07-29";
   <div class="page-card">
     <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
     <h1>Do I Need a Privacy Policy on My Website?</h1>
-    <p class="last-updated">Published July 29, 2026</p>
+    <p class="last-updated">Published July 29, 2026 · Updated August 20, 2026</p>
 
     <p><strong>Yes — almost certainly.</strong> If your website collects any personal data from visitors, even passively through analytics cookies or server logs, at least one data-protection law and usually several platform terms of service require you to publish a privacy policy. The handful of sites that can skip one are fully static pages with zero tracking, zero forms, and zero third-party scripts, which describes almost no website running today.</p>
 
@@ -44,6 +44,7 @@ const modifiedDate = "2026-07-29";
       <p class="toc-title">Contents</p>
       <ol>
         <li><a href="#short-answer">The Short Answer</a></li>
+        <li><a href="#who-needs">Who Needs a Privacy Policy?</a></li>
         <li><a href="#laws">The Laws That Trigger It</a></li>
         <li><a href="#platform-rules">Platform Rules That Require One</a></li>
         <li><a href="#what-happens">What Happens If You Don't Have One</a></li>
@@ -57,6 +58,21 @@ const modifiedDate = "2026-07-29";
     <p>A privacy policy stops being optional the moment your website processes "personal data" — a term that covers far more than names and email addresses. Under most modern privacy laws, personal data includes IP addresses, device identifiers, cookies, precise or approximate location, and any other information that could identify a specific visitor or session. Server logs alone, which nearly every hosting provider generates by default, already qualify.</p>
 
     <p>That means the legal requirement rarely hinges on how big your site is or how much money it makes. A hobby blog with a comment section and Google Analytics installed is in exactly the same position as a mid-size ecommerce store: both are collecting personal data and both need a policy that discloses it. Company size and revenue only start to matter for a handful of specific state laws (covered below), which set thresholds for who has to comply — not for whether personal data is being collected in the first place.</p>
+
+    <h2 id="who-needs">Who Needs a Privacy Policy?</h2>
+
+    <p>The short answer above applies broadly, but it helps to see how the requirement plays out for specific types of site owners. No matter your niche or business model, the moment your website touches personal data — even indirectly through embedded scripts — a privacy policy moves from "nice to have" to legally necessary.</p>
+
+    <ul>
+      <li><strong>Sole traders and freelancers.</strong> A one-person consultancy with a contact form and Google Analytics is collecting names, email addresses, and IP addresses. GDPR and multiple U.S. state laws don't exempt businesses based on headcount, so a freelance designer in Manchester and a solo accountant in Austin face the same disclosure obligation as a Fortune 500 company.</li>
+      <li><strong>Bloggers.</strong> Even a personal blog that runs ads, uses an email signup form, or embeds YouTube videos is pulling in cookies and device identifiers from third-party scripts. Ad networks like Google AdSense contractually require a published privacy policy, and analytics tools create a legal obligation under the GDPR the moment a single EU visitor lands on the page.</li>
+      <li><strong>Marketing agencies.</strong> Agencies typically run tracking pixels, retargeting scripts, and A/B testing tools across client sites — all of which process visitor data. Beyond the agency's own site needing a policy, the agency is often the data processor under GDPR, which means contractual and legal obligations that start with clear disclosure.</li>
+      <li><strong>Ecommerce sellers.</strong> Online stores collect payment details, shipping addresses, purchase history, and often behavioral data for personalization. Platform terms from Shopify, WooCommerce payment gateways, and Stripe all require a privacy policy independently of any law, and the CCPA kicks in once revenue or data volume thresholds are met.</li>
+      <li><strong>App developers.</strong> If your website supports or promotes a mobile app, both Google Play and the Apple App Store require a publicly accessible privacy policy URL before they will list the app. The website itself needs its own policy the moment it collects emails for beta signups or runs analytics. Our <a href="/resources/how-to-write-privacy-policy-for-app/">guide to writing a privacy policy for an app</a> covers the store-specific requirements in detail.</li>
+      <li><strong>Nonprofits.</strong> Charitable organizations are not exempt from data-protection laws. A nonprofit that collects donor information, runs email campaigns, or tracks website visitors with analytics faces the same GDPR, CCPA, and PIPEDA requirements as a for-profit business. Donors increasingly expect transparency about how their personal information is handled, making a clear policy both a legal safeguard and a trust signal.</li>
+    </ul>
+
+    <p>If you are unsure which privacy laws apply to your particular setup, our <a href="/tools/privacy-law-checker/">privacy law applicability checker</a> walks through a few questions about your audience, platforms, and data practices and returns a tailored answer. Once you know what you need to disclose, a <a href="/">free privacy policy generator</a> can produce the document in minutes — no legal background required.</p>
 
     <h2 id="laws">The Laws That Trigger a Privacy Policy Requirement</h2>
 
@@ -145,6 +161,16 @@ const modifiedDate = "2026-07-29";
       </div>
 
       <div class="faq-item">
+        <h3>Is a privacy policy required on a website?</h3>
+        <p>Yes, for any website that collects personal data — and that bar is lower than most people think. Server logs, analytics scripts, embedded videos, and ad pixels all capture information that qualifies as personal data under laws like the GDPR, CCPA, and PIPEDA. Beyond the legal requirement, platforms such as Google AdSense, Shopify, and the Apple App Store independently require a published policy as a condition of using their services. The safest assumption is that if your site has visitors, it needs a policy.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do all websites need a privacy policy?</h3>
+        <p>Virtually all of them do. The only theoretical exception is a fully static HTML page with no forms, no analytics, no cookies, no server logs, and no third-party scripts — a setup so rare it barely exists in practice. The moment a site adds a contact form, installs Google Analytics, or embeds a YouTube video, it begins collecting personal data and triggers at least one legal or contractual obligation to disclose that collection in a privacy policy.</p>
+      </div>
+
+      <div class="faq-item">
         <h3>Why is everyone updating their privacy policy in 2026?</h3>
         <p>Several new U.S. state privacy laws took effect on January 1, 2026, bringing the total number of states with comprehensive privacy legislation to more than 20, and a growing number of them now require honoring browser-level opt-out signals. Combined with ongoing GDPR enforcement and new automated-decision-making disclosure rules in states like California, most businesses are revisiting their policies to stay current with requirements that didn't exist a year or two ago.</p>
       </div>
@@ -211,6 +237,22 @@ const modifiedDate = "2026-07-29";
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Nearly every website does, because almost every website collects some form of personal data, at minimum IP addresses and basic visit data through server logs or a hosting provider's built-in analytics. A site would need to actively strip out all tracking, forms, and third-party scripts to have a real case for skipping one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a privacy policy required on a website?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, for any website that collects personal data, and that bar is lower than most people think. Server logs, analytics scripts, embedded videos, and ad pixels all capture information that qualifies as personal data under laws like the GDPR, CCPA, and PIPEDA. Beyond the legal requirement, platforms such as Google AdSense, Shopify, and the Apple App Store independently require a published policy as a condition of using their services."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do all websites need a privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Virtually all of them do. The only theoretical exception is a fully static HTML page with no forms, no analytics, no cookies, no server logs, and no third-party scripts. The moment a site adds a contact form, installs Google Analytics, or embeds a YouTube video, it begins collecting personal data and triggers at least one legal or contractual obligation to disclose that collection in a privacy policy."
       }
     },
     {
