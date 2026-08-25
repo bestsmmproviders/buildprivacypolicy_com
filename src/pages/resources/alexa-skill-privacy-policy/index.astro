@@ -4,7 +4,7 @@ import Layout from '../../../layouts/Layout.astro';
 const title = "Alexa Skill Privacy Policy: What Amazon Requires";
 const description = "Amazon requires an Alexa skill privacy policy for skills that collect data or use account linking. Learn what certification checks and how to generate one free.";
 const publishDate = "2026-08-13";
-const modifiedDate = "2026-08-18";
+const modifiedDate = "2026-08-25";
 ---
 
 <Layout title={title} description={description}>
@@ -36,6 +36,8 @@ const modifiedDate = "2026-08-18";
         <li><a href="#what-certification-checks">What Certification Checks</a></li>
         <li><a href="#data-developers-overlook">Data a Skill Collects That Developers Overlook</a></li>
         <li><a href="#what-policy-must-state">What Your Policy Must State</a></li>
+        <li><a href="#example-policy">Sample Alexa Skill Privacy Policy You Can Copy</a></li>
+        <li><a href="#private-beta-skills">Privacy Policies for Private and Beta-Distributed Skills</a></li>
         <li><a href="#host-and-add">Where to Host the URL and Add It in the Developer Console</a></li>
         <li><a href="#faq">Frequently Asked Questions</a></li>
       </ol>
@@ -122,6 +124,100 @@ const modifiedDate = "2026-08-18";
     <p>The policy also needs a retention statement ("Habit data is retained while the skill is enabled and deleted within 30 days of disabling"), a children's disclaimer (the skill is not directed at users under 13), GDPR and CCPA rights sections covering deletion and access requests, and a contact email. On the Privacy & Compliance page in the Developer Console, the developer must check "Yes" for personal information collection and "No" for children targeting, advertising, and in-skill purchases -- all matching the policy text.</p>
 
     <p>Writing this from scratch takes time when a skill spans multiple data types and jurisdictions. The process mirrors <a href="/resources/how-to-write-privacy-policy-for-app/">writing a privacy policy for any app</a>: audit your data flows, map them to purposes, identify third parties, and draft each section. A generator can compress that work into a guided form.</p>
+
+    <h2 id="example-policy">Sample Alexa Skill Privacy Policy You Can Copy</h2>
+
+    <p>Below is a complete privacy policy written for a fictional Alexa skill called "[Your Skill Name]." It covers the data categories most skills handle -- voice utterances, Amazon user IDs, account linking, skill permissions, persistent attributes, and children's privacy. Copy the entire block, replace the bracketed placeholders with your skill's details, and remove any sections that do not apply.</p>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-label">Sample Privacy Policy — ready to copy</span>
+      </div>
+      <div class="copy-block-body" id="sample-policy-text">
+<p><strong>Privacy Policy for [Your Skill Name]</strong></p>
+<p><em>Last updated: [Date]</em></p>
+
+<p><strong>1. Introduction</strong></p>
+<p>[Your Company Name] ("we," "us," or "our") operates the [Your Skill Name] Alexa skill. This privacy policy explains what data the skill collects, why it collects it, who receives it, how long it is kept, and what rights you have over it. By enabling and using the skill, you agree to the practices described below.</p>
+
+<p><strong>2. Data We Collect</strong></p>
+<p><em>Voice utterances.</em> When you speak to the skill, Amazon's Alexa service converts your speech into text and sends the transcription to our backend for processing. We use these transcriptions solely to understand your request and return an appropriate response. Transcription logs are retained in [AWS CloudWatch / your logging service] for [number] days for debugging purposes and then automatically deleted.</p>
+<p><em>Amazon user ID.</em> Each request includes a unique <code>userId</code> string assigned by Amazon to your account. We store this identifier in [Amazon DynamoDB / your database] to persist your preferences and session history across interactions.</p>
+<p><em>Account linking data.</em> If you link your [third-party service] account through the skill, we receive your name and email address via [Login with Amazon / OAuth 2.0]. We use your email to [send notifications / personalize responses] and your name to address you in skill responses.</p>
+<p><em>Skill permissions data.</em> If you grant the skill access to Alexa permissions such as your first name, email address, phone number, or device address, we receive that data from Amazon's API when the skill is invoked. Each permission is used only for the purpose described at the time of the request.</p>
+<p><em>Persistent attributes.</em> The skill stores [preferences / scores / history / other data] in [Amazon DynamoDB / your database], keyed to your Amazon user ID, so your data carries over between sessions.</p>
+
+<p><strong>3. How We Use Your Data</strong></p>
+<ul>
+<li>Process and respond to your voice requests</li>
+<li>Maintain your preferences and history across sessions</li>
+<li>Send notifications or summaries to your linked email (if account linking is enabled)</li>
+<li>Debug errors and improve skill reliability (via time-limited log retention)</li>
+</ul>
+<p>We do not use your data for advertising, sell it to third parties, or share it with data brokers.</p>
+
+<p><strong>4. Third Parties That Receive Your Data</strong></p>
+<ul>
+<li><strong>Amazon Web Services (AWS).</strong> Our skill's backend runs on AWS Lambda and stores data in Amazon DynamoDB. Amazon processes data under its <a href="https://aws.amazon.com/privacy/" rel="nofollow">AWS Privacy Notice</a>.</li>
+<li><strong>[Other third-party service, if applicable].</strong> [Describe what data is shared and why.]</li>
+</ul>
+<p>We do not share your personal data with any parties beyond those listed above.</p>
+
+<p><strong>5. Data Retention</strong></p>
+<p>Voice transcription logs are deleted after [number] days. Persistent attributes (preferences and history) are retained while the skill is enabled on your account and deleted within [30] days after you disable the skill. Account linking tokens are revoked immediately upon unlinking.</p>
+
+<p><strong>6. Children's Privacy (COPPA)</strong></p>
+<p>[If the skill is NOT directed at children:] This skill is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13. If we learn that we have inadvertently collected such information, we will delete it promptly.</p>
+<p>[If the skill IS directed at children:] This skill is designed for use by children under 13. We comply with the Children's Online Privacy Protection Act (COPPA). We collect only the minimum data necessary for the skill to function, we do not use persistent identifiers for behavioral targeting, and a parent or guardian may request deletion of their child's data at any time by contacting us at the email below.</p>
+
+<p><strong>7. Your Rights Under GDPR</strong></p>
+<p>If you are located in the European Economic Area or the United Kingdom, you have the right to: access the personal data we hold about you; request correction of inaccurate data; request deletion of your data; object to or restrict processing; and request data portability. To exercise any of these rights, contact us at [your-email@example.com]. We will respond within 30 days.</p>
+
+<p><strong>8. Your Rights Under CCPA</strong></p>
+<p>If you are a California resident, you have the right to: know what personal information we collect and how it is used; request deletion of your personal information; and opt out of the sale of your personal information. We do not sell personal information. To submit a request, contact us at [your-email@example.com].</p>
+
+<p><strong>9. Changes to This Policy</strong></p>
+<p>We may update this privacy policy from time to time. When we make changes, we will update the "Last updated" date at the top of this page. If the changes are significant, we will notify you through the Alexa app or via your linked email address.</p>
+
+<p><strong>10. Contact Us</strong></p>
+<p>If you have questions about this privacy policy or your data, contact us at:<br />[your-email@example.com]<br />[Your Company Name]<br />[Your Address (optional)]</p>
+      </div>
+      <button class="copy-btn" id="copy-policy-btn" type="button">Copy to clipboard</button>
+    </div>
+
+    <p>This sample covers the most common Alexa skill data flows. If your skill handles additional data -- such as health information, financial data, or biometric identifiers -- add dedicated disclosure sections for those categories. Need to generate a policy tailored to your exact data practices instead of editing a template? You can <a href="https://buildprivacypolicy.com/">build one for free with the generator</a>.</p>
+
+    <h2 id="private-beta-skills">Privacy Policies for Private and Beta-Distributed Skills</h2>
+
+    <p>Not every Alexa skill goes straight to the public Skills Store. Amazon offers two restricted distribution paths -- private skills and beta testing -- and each has its own rules around privacy policies.</p>
+
+    <h3>Private skills (Alexa for Business)</h3>
+
+    <p>Private skills are distributed through Alexa for Business to a specific organization rather than listed in the public Skills Store. They are typically internal tools: meeting-room booking, IT helpdesk queries, company directory lookups. Amazon does not subject private skills to the same public certification review that store-listed skills go through. However, a privacy policy is still strongly recommended for two reasons.</p>
+
+    <ul>
+      <li><strong>Organizational compliance.</strong> The company deploying the skill is the data controller under GDPR or the business under CCPA. Even though Amazon does not enforce a policy URL at publishing time, the deploying organization's legal and compliance teams almost certainly require one. Enterprise procurement reviews routinely ask for a data-handling disclosure before approving any internal tool.</li>
+      <li><strong>Future distribution changes.</strong> A private skill that later moves to the public Skills Store will need a privacy policy to pass certification. Writing it during initial development, when the data flows are fresh in mind, is faster and more accurate than reverse-engineering them later.</li>
+    </ul>
+
+    <h3>Beta testing</h3>
+
+    <p>Amazon's beta testing feature lets developers invite up to 500 users to test a skill before public release. Beta skills must still pass a certification review before testers can access them, and that review includes the same privacy policy checks as a public submission. If the beta skill collects personal data or uses account linking, the privacy policy URL field must be populated and the policy must pass the same relevance and accessibility tests described earlier in this guide.</p>
+
+    <p>The practical difference is scope, not requirements. Beta certification checks the same boxes -- working URL, content that matches the skill's data practices, consistency with the Privacy & Compliance page answers. The only thing that changes is the audience size. Do not skip the policy for a beta build assuming you will add it later; the certification gate blocks beta distribution just as it blocks public distribution.</p>
+
+    <h3>What certification checks for unpublished skills</h3>
+
+    <p>Whether a skill is headed for the public store, a beta group, or a private organization, Amazon's certification review evaluates the same core criteria whenever the skill passes through it:</p>
+
+    <ul>
+      <li>The privacy policy URL returns a 200 status and loads directly to the policy text on mobile and desktop.</li>
+      <li>The policy names the skill and describes its actual data collection practices.</li>
+      <li>The Privacy & Compliance toggle answers (personal data collection, children's content, advertising, in-skill purchases) are consistent with the policy text.</li>
+      <li>If account linking is enabled, the policy explains what profile data is retrieved and why.</li>
+    </ul>
+
+    <p>Private skills distributed solely through Alexa for Business bypass this gate, but every other distribution path -- public, beta, or organization-restricted through the Developer Console -- goes through it. Plan the policy at the start, not at the submission deadline.</p>
 
     <h2 id="host-and-add">Where to Host the URL and Add It in the Developer Console</h2>
 
@@ -419,4 +515,81 @@ const modifiedDate = "2026-08-18";
   .faq-item p {
     margin-bottom: 8px;
   }
+  .copy-block {
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    margin: 20px 0;
+    overflow: hidden;
+  }
+  .copy-block-header {
+    background: #F3F4F6;
+    padding: 10px 16px;
+    border-bottom: 1px solid #D1D5DB;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .copy-block-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #6B7280;
+  }
+  .copy-block-body {
+    padding: 24px 28px;
+    background: #FAFAFA;
+    max-height: 480px;
+    overflow-y: auto;
+  }
+  .copy-block-body p {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .copy-block-body ul {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    padding-left: 22px;
+  }
+  .copy-block-body li {
+    margin-bottom: 4px;
+  }
+  .copy-block-body code {
+    background: #E5E7EB;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+  .copy-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #1E3A5F;
+    color: white;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .copy-btn:hover {
+    background: #2E5A8F;
+  }
 </style>
+
+<script>
+  document.getElementById('copy-policy-btn')?.addEventListener('click', function() {
+    const el = document.getElementById('sample-policy-text');
+    if (!el) return;
+    const text = el.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copy-policy-btn');
+      if (btn) {
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy to clipboard'; }, 2000);
+      }
+    });
+  });
+</script>
