@@ -1,0 +1,556 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const title = "Chrome Extension Privacy Policy: What Google Requires";
+const description = "Google requires a privacy policy for Chrome extensions that handle user data. Learn what the Web Store review checks, what to disclose, and how to create one free.";
+const publishDate = "2026-08-26";
+const modifiedDate = "2026-08-26";
+---
+
+<Layout title={title} description={description}>
+
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="128" height="128" rx="28" fill="#1E3A5F"/><path d="M64 24C64 24 40 34 32 38V62C32 82 46 98 64 104C82 98 96 82 96 62V38C88 34 64 24 64 24Z" fill="#2E5A8F" stroke="#5B9BD5" stroke-width="2.5"/><path d="M52 64L60 72L78 54" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+</div>
+
+<main>
+<article class="page-container">
+  <div class="page-card">
+    <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
+    <h1>Chrome Extension Privacy Policy: What Google Requires and How to Create One</h1>
+    <p class="last-updated">Published August 26, 2026</p>
+
+    <p>Every Chrome extension that handles user data needs a privacy policy URL before Google will approve it for the Chrome Web Store. The policy must be publicly accessible, describe exactly what data the extension collects and why, and match the data-use disclosures you certify in the Developer Dashboard. Skip it and the extension fails review. Submit a vague or generic document and the review team rejects it -- they read the policy, not just the URL field.</p>
+
+    <p>This guide covers when the Chrome Web Store requires a policy, what Google's review process actually checks, the data categories extension developers commonly overlook, how to fill out the Data Usage certification, where to host the finished policy and link it in your listing, and a complete sample policy you can copy. If you need a policy fast, you can <a href="https://buildprivacypolicy.com/">generate a privacy policy for free</a> and host it at no cost.</p>
+
+    <nav class="toc">
+      <p class="toc-title">Contents</p>
+      <ol>
+        <li><a href="#when-required">When Chrome Web Store Requires a Privacy Policy</a></li>
+        <li><a href="#what-review-checks">What Review Checks</a></li>
+        <li><a href="#data-developers-overlook">Data an Extension Collects That Developers Overlook</a></li>
+        <li><a href="#data-usage-certification">Required Disclosures and the Data Usage Certification</a></li>
+        <li><a href="#host-and-link">Hosting the URL and Where to Paste It</a></li>
+        <li><a href="#example-policy">Sample Chrome Extension Privacy Policy You Can Copy</a></li>
+        <li><a href="#faq">Frequently Asked Questions</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="when-required">When Chrome Web Store Requires a Privacy Policy</h2>
+
+    <p>Google's Chrome Web Store Developer Program Policies are explicit: any extension that handles personal or sensitive user data must provide a privacy policy. "Handling" includes collecting, transmitting, using, or sharing that data -- even temporarily. The requirement is enforced at the point of submission, not retroactively, so the policy must be in place before the first review.</p>
+
+    <p>Three conditions trigger the requirement:</p>
+
+    <ul>
+      <li><strong>The extension requests permissions that access user data.</strong> Permissions like <code>tabs</code>, <code>history</code>, <code>bookmarks</code>, <code>cookies</code>, <code>webRequest</code>, <code>identity</code>, and any host permissions (e.g., <code>*://*.example.com/*</code> or <code>&lt;all_urls&gt;</code>) give the extension access to browsing data, authentication tokens, or page content. Requesting any of these means the extension can access user data, and Google treats that as handling it.</li>
+      <li><strong>The extension collects any information from the user.</strong> Form inputs, email addresses, preferences, usage analytics -- if the extension captures information a user provides or generates, the privacy policy field is mandatory.</li>
+      <li><strong>The extension uses remote code or connects to external services.</strong> Extensions that fetch scripts, send data to an API, or communicate with a backend server are transmitting information outside the browser. Google requires disclosure of what data leaves the device and where it goes.</li>
+    </ul>
+
+    <p>Extensions that request zero data-touching permissions (for example, a simple theme or a CSS-only modifier with no host permissions) can skip the privacy policy field. However, even these extensions benefit from having one -- Google's review is faster when the data story is clear, and users see the policy link on the extension's Web Store listing page.</p>
+
+    <p>The requirement applies equally to public extensions, unlisted extensions distributed via direct URL, and extensions published to a managed Google Workspace domain. The distribution channel does not change the obligation -- the Developer Dashboard enforces the same fields regardless.</p>
+
+    <h2 id="what-review-checks">What Review Checks</h2>
+
+    <p>Google's Chrome Web Store review is not a rubber stamp. Reviewers (a mix of automated systems and human evaluators) check several specific conditions before approving an extension.</p>
+
+    <ul>
+      <li><strong>The privacy policy URL loads to the actual policy text.</strong> The link must open directly to the privacy policy content -- not a homepage, not a generic legal page, not a link that redirects through a login wall or returns a 404. Google's reviewers test the URL and expect a 200 response that renders the policy immediately.</li>
+      <li><strong>The policy describes the extension's actual data practices.</strong> A boilerplate document about website cookies and server logs that never mentions browser extensions, permissions, or the specific data the extension accesses will be flagged. The content must be relevant to the extension being submitted.</li>
+      <li><strong>Declared permissions match the policy disclosures.</strong> If the extension's <code>manifest.json</code> requests <code>activeTab</code>, <code>storage</code>, and host permissions for specific domains, the privacy policy must explain why those permissions are needed and what data they access. Mismatches between the manifest and the policy trigger rejection.</li>
+      <li><strong>The Data Usage certification in the Developer Dashboard is consistent with the policy.</strong> The dashboard asks you to certify which data types the extension collects (see the <a href="#data-usage-certification">certification section below</a>). If the certification says "No data collected" but the policy mentions collecting browsing history, the submission fails.</li>
+      <li><strong>The extension does not collect more data than it needs.</strong> Google enforces a minimum-data principle: the extension must "collect and use the minimum amount of data needed" to fulfill its stated purpose. A tab manager that requests <code>&lt;all_urls&gt;</code> and reads page content when it only needs tab titles will be questioned during review.</li>
+    </ul>
+
+    <h3>Common rejection reasons</h3>
+
+    <ul>
+      <li><strong>Privacy policy URL missing or broken.</strong> The field in the Developer Dashboard is blank, returns a non-200 status, or redirects to an unrelated page.</li>
+      <li><strong>Policy does not name the extension.</strong> A recycled policy from a mobile app or website that never mentions the Chrome extension by name fails the relevance check.</li>
+      <li><strong>Excessive permissions without justification.</strong> Requesting broad host permissions like <code>&lt;all_urls&gt;</code> without a clear explanation in both the extension description and the privacy policy is one of the top rejection triggers.</li>
+      <li><strong>Remote code execution without disclosure.</strong> Extensions that load JavaScript from external servers must disclose this practice. Google's Manifest V3 restrictions limit remote code, but extensions using <code>chrome.scripting</code> or fetching configuration data still need to explain the data flow.</li>
+    </ul>
+
+    <h2 id="data-developers-overlook">Data an Extension Collects That Developers Overlook</h2>
+
+    <p>Most extension developers disclose the obvious inputs: an email address from a login form, a search query typed into the popup. But Chrome extensions handle several less obvious data categories that trip up review and violate privacy laws if undisclosed.</p>
+
+    <ul>
+      <li><strong>Permissions-based browsing data.</strong> The <code>tabs</code> permission exposes the title and URL of every open tab. The <code>history</code> permission exposes the user's full browsing history. The <code>bookmarks</code> permission exposes saved bookmarks. Even if the extension only reads this data locally and never transmits it, the capability itself means the extension is handling personal data under GDPR and CCPA definitions -- disclose it.</li>
+      <li><strong>Host permissions and page content.</strong> Host permissions (specific domains or <code>&lt;all_urls&gt;</code>) allow content scripts to read and modify page content. If a content script reads form values, scrapes text, or captures DOM elements from pages the user visits, that is personal data collection. Even reading a page title for display in the extension popup counts if it is stored or transmitted.</li>
+      <li><strong>The <code>storage</code> API.</strong> Data saved with <code>chrome.storage.local</code> or <code>chrome.storage.sync</code> persists across sessions. If the extension stores user preferences, authentication tokens, cached page data, or usage counters, those are persistent attributes tied to a user profile -- especially <code>storage.sync</code>, which is linked to the user's Google account and synced across devices.</li>
+      <li><strong>Remote code and API calls.</strong> Any <code>fetch()</code> call, WebSocket connection, or external script load transmits data outside the browser. Even a simple analytics ping or crash-report payload contains metadata (extension version, browser version, possibly URLs or error contexts) that constitutes data transmission.</li>
+      <li><strong>The <code>identity</code> API and OAuth.</strong> Extensions that use <code>chrome.identity</code> to authenticate users via Google OAuth receive profile data -- name, email, profile photo URL. Extensions that authenticate with third-party services via custom OAuth flows collect tokens and profile data the same way.</li>
+      <li><strong>Web request interception.</strong> The <code>webRequest</code> or <code>declarativeNetRequest</code> permissions let extensions observe or modify network requests. Even if the extension uses this to block ads or modify headers, the capability to inspect request URLs and headers means it has access to browsing patterns.</li>
+      <li><strong>Cookies.</strong> The <code>cookies</code> permission grants read and write access to browser cookies for specified domains. Cookies frequently contain session tokens, user IDs, and tracking identifiers -- all personal data.</li>
+    </ul>
+
+    <p>The rule is straightforward: if the extension can access, read, store, or transmit anything that traces back to a specific user or device, disclose it in the policy. Not sure which privacy regulations apply to your extension's user base? A <a href="/tools/privacy-law-checker/">quick compliance check based on your platform and audience</a> can clarify which laws require specific disclosures.</p>
+
+    <h2 id="data-usage-certification">Required Disclosures and the Data Usage Certification</h2>
+
+    <p>Since 2021, the Chrome Web Store Developer Dashboard includes a <strong>Privacy practices</strong> tab where developers must certify their extension's data handling. This certification is separate from the privacy policy URL but must be consistent with it. Contradictions between the two are a fast path to rejection.</p>
+
+    <p>The certification asks you to declare, for each data type the extension handles:</p>
+
+    <ul>
+      <li><strong>What data types are collected.</strong> Google groups data into categories: Personally Identifiable Information (name, email, address), Health Information, Financial Information, Authentication Information, Personal Communications, Location, Web History, User Activity, and Website Content. Select every category that applies based on what the extension's permissions actually access.</li>
+      <li><strong>Whether data is used or transferred.</strong> For each selected data type, you must state whether it is used locally only, transferred to your servers, or transferred to third parties. The distinction matters: "used locally" means data never leaves the browser; "transferred" means it reaches an external server.</li>
+      <li><strong>Purpose of collection.</strong> You must select at least one purpose: core functionality, analytics, developer communications, advertising, fraud prevention, personalization, or account management.</li>
+    </ul>
+
+    <p>The certification also includes two pledges you must affirm or deny:</p>
+
+    <ul>
+      <li>The extension does <strong>not sell user data</strong> to third parties.</li>
+      <li>The extension does <strong>not use or transfer data for purposes unrelated</strong> to the extension's core functionality.</li>
+    </ul>
+
+    <p>These pledges appear on the extension's Chrome Web Store listing under a "Privacy practices" section visible to users. If your privacy policy says data may be shared with advertising partners but you certify that data is not sold or used for unrelated purposes, the inconsistency can lead to removal.</p>
+
+    <h3>How the certification maps to your privacy policy</h3>
+
+    <p>Think of the Developer Dashboard certification as a structured summary and the privacy policy as the full-text version. Every data type you check in the dashboard must have a corresponding section in the policy explaining what is collected, why, who receives it, and how long it is retained. The certification is the machine-readable declaration; the policy is the human-readable one. Both must tell the same story.</p>
+
+    <p>Writing a privacy policy that covers permissions, data types, and third-party transfers follows the same process as <a href="/resources/how-to-write-privacy-policy-for-app/">writing a privacy policy for any app</a>: audit your data flows, map them to purposes, identify third parties, and draft each required section.</p>
+
+    <h2 id="host-and-link">Hosting the URL and Where to Paste It</h2>
+
+    <p>The privacy policy needs a permanent, publicly accessible URL that loads without authentication on any device. Three hosting approaches cover most Chrome extension developers.</p>
+
+    <h3>Hosting options</h3>
+
+    <ul>
+      <li><strong>Your own domain.</strong> If you have a website, host the policy at a path like <code>yoursite.com/chrome-extension-privacy-policy</code>. This is the most professional option and gives you full control over updates.</li>
+      <li><strong>A free hosted policy.</strong> If you do not have a website or do not want to manage hosting, you can <a href="https://buildprivacypolicy.com/">generate and host a privacy policy for free</a>. The generated URL is permanent and loads without authentication, which satisfies Google's requirements.</li>
+      <li><strong>GitHub Pages or a static site.</strong> A free GitHub Pages site with a single HTML page works. The URL is stable and publicly accessible. Ensure the page renders on mobile -- Google's review checks across devices.</li>
+    </ul>
+
+    <p><strong>Do not use</strong> Google Docs, Notion pages, Pastebin links, or any URL that requires login, displays editing UI, or could change without a stable permalink. These are rejected during review.</p>
+
+    <h3>Adding the URL in the Chrome Web Store Developer Dashboard</h3>
+
+    <ol>
+      <li>Open the <a href="https://chrome.google.com/webstore/devconsole" rel="nofollow">Chrome Web Store Developer Dashboard</a> and select your extension.</li>
+      <li>Click the <strong>Store listing</strong> tab in the left sidebar.</li>
+      <li>Scroll to the <strong>Privacy policy</strong> field. Paste your full URL including <code>https://</code>.</li>
+      <li>Click the <strong>Privacy practices</strong> tab. Complete the Data Usage certification by selecting the data types your extension handles and their purposes. Every selection must match what your privacy policy describes.</li>
+      <li>Save all changes and submit for review.</li>
+    </ol>
+
+    <p>After approval, the privacy policy link appears on your extension's Chrome Web Store listing page under the "Additional Information" section. Users can review it before installing. The Alexa Skills Store has a <a href="/resources/alexa-skill-privacy-policy/">similar requirement for Alexa skills</a> -- the pattern of platform-mandated policies before distribution is standard across app ecosystems.</p>
+
+    <h2 id="example-policy">Sample Chrome Extension Privacy Policy You Can Copy</h2>
+
+    <p>Below is a complete privacy policy written for a fictional Chrome extension called "[Your Extension Name]." It covers the data categories most extensions handle -- permissions-based browsing data, stored preferences, authentication, and external communications. Copy the entire block, replace the bracketed placeholders with your extension's details, and remove any sections that do not apply.</p>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-label">Sample Privacy Policy — ready to copy</span>
+      </div>
+      <div class="copy-block-body" id="sample-policy-text">
+<p><strong>Privacy Policy for [Your Extension Name]</strong></p>
+<p><em>Last updated: [Date]</em></p>
+
+<p><strong>1. Introduction</strong></p>
+<p>[Your Company/Developer Name] ("we," "us," or "our") develops and maintains the [Your Extension Name] Chrome extension. This privacy policy explains what data the extension collects, why it collects it, who receives it, how long it is kept, and what rights you have. By installing and using the extension, you agree to the practices described below.</p>
+
+<p><strong>2. Data We Collect</strong></p>
+<p><em>Browsing data accessed through permissions.</em> The extension requests the following Chrome permissions: [list permissions, e.g., "tabs," "activeTab," "storage," "host permissions for *://*.example.com/*"]. The [tabs/activeTab] permission allows the extension to read the title and URL of [all open tabs / the currently active tab] to [describe purpose, e.g., "display a tab overview in the popup"]. This data is processed locally in your browser and is not transmitted to any external server.</p>
+<p><em>Stored preferences and data.</em> The extension uses <code>chrome.storage.local</code> [and/or <code>chrome.storage.sync</code>] to save your preferences, settings, and [other stored data]. Data saved to <code>storage.sync</code> is synced across your Chrome browsers via your Google account. Data saved to <code>storage.local</code> remains on the device where it was created.</p>
+<p><em>Authentication data.</em> [If applicable:] The extension uses [chrome.identity / OAuth 2.0] to authenticate your [Google / third-party service] account. We receive your name and email address through the authentication flow. We use this data solely to [describe purpose, e.g., "identify your account and sync your settings"].</p>
+<p><em>Data transmitted to external services.</em> [If applicable:] The extension sends [describe what data] to [service name and URL] for the purpose of [describe purpose]. No data beyond what is described here is transmitted outside your browser.</p>
+
+<p><strong>3. How We Use Your Data</strong></p>
+<ul>
+<li>Provide the extension's core functionality as described on the Chrome Web Store listing</li>
+<li>Save your preferences and settings across browser sessions</li>
+<li>[Authenticate your account and sync data across devices]</li>
+<li>[Send error reports to improve extension reliability (if applicable)]</li>
+</ul>
+<p>We do not use your data for advertising, sell it to third parties, or share it with data brokers.</p>
+
+<p><strong>4. Third Parties That Receive Your Data</strong></p>
+<ul>
+<li><strong>[Service name, if applicable].</strong> [Describe what data is shared and why, e.g., "Error reports containing extension version and browser version (no personal data) are sent to Sentry for crash monitoring."]</li>
+</ul>
+<p>[If no third parties:] The extension does not transmit any data to third parties. All data processing happens locally in your browser.</p>
+
+<p><strong>5. Data Retention</strong></p>
+<p>Locally stored data (<code>chrome.storage.local</code>) is retained on your device until you uninstall the extension or clear the extension's storage manually. Synced data (<code>chrome.storage.sync</code>) is retained in your Google account until you uninstall the extension or clear Chrome sync data. [If applicable: Authentication tokens are revoked when you sign out of the extension. Server-side data, if any, is deleted within [number] days of account deletion.]</p>
+
+<p><strong>6. Children's Privacy</strong></p>
+<p>This extension is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13. If we learn that we have inadvertently collected such information, we will delete it promptly.</p>
+
+<p><strong>7. Your Rights Under GDPR</strong></p>
+<p>If you are located in the European Economic Area or the United Kingdom, you have the right to: access the personal data we hold about you; request correction of inaccurate data; request deletion of your data; object to or restrict processing; and request data portability. To exercise any of these rights, contact us at [your-email@example.com]. We will respond within 30 days.</p>
+
+<p><strong>8. Your Rights Under CCPA</strong></p>
+<p>If you are a California resident, you have the right to: know what personal information we collect and how it is used; request deletion of your personal information; and opt out of the sale of your personal information. We do not sell personal information. To submit a request, contact us at [your-email@example.com].</p>
+
+<p><strong>9. Changes to This Policy</strong></p>
+<p>We may update this privacy policy from time to time. When we make changes, we will update the "Last updated" date at the top of this page. If the changes are significant, we will notify you through an extension update or via email if you have provided one.</p>
+
+<p><strong>10. Contact Us</strong></p>
+<p>If you have questions about this privacy policy or your data, contact us at:<br />[your-email@example.com]<br />[Your Company/Developer Name]<br />[Your Address (optional)]</p>
+      </div>
+      <button class="copy-btn" id="copy-policy-btn" type="button">Copy to clipboard</button>
+    </div>
+
+    <p>This sample covers the most common Chrome extension data flows. If your extension handles additional data -- such as health information, financial data, or biometric identifiers -- add dedicated disclosure sections for those categories. Need to generate a policy tailored to your exact permissions and data practices instead of editing a template? You can <a href="https://buildprivacypolicy.com/">build one for free with the generator</a>.</p>
+
+    <h2 id="faq">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Do all Chrome extensions need a privacy policy?</h3>
+        <p>Not all, but most. Google requires a privacy policy for any Chrome extension that handles personal or sensitive user data. If your extension requests permissions like <code>tabs</code>, <code>history</code>, <code>bookmarks</code>, <code>cookies</code>, host permissions, or the <code>identity</code> API, you need a policy. Extensions that request no data-touching permissions (such as simple themes) can skip it, though including one is still recommended.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What happens if I publish a Chrome extension without a privacy policy?</h3>
+        <p>If the extension handles user data and no privacy policy URL is provided, the Chrome Web Store review team will reject the submission. The extension will not be published until a valid policy URL is added, the Data Usage certification is completed, and the extension passes re-review.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I use the same privacy policy for my Chrome extension and my website?</h3>
+        <p>Yes, if the policy covers the data practices of both. Many developers maintain a single policy with separate sections for their website, app, and Chrome extension. The key requirement is that the policy specifically describes the extension's permissions, data collection, and data handling -- not just the website's cookies and analytics.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Where does the privacy policy URL go in the Developer Dashboard?</h3>
+        <p>In the Chrome Web Store Developer Dashboard, select your extension, go to the Store listing tab, and paste the URL into the Privacy policy field. You also need to complete the Privacy practices tab with the Data Usage certification, declaring what data types the extension collects and how they are used.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What is the Data Usage certification in the Developer Dashboard?</h3>
+        <p>The Data Usage certification is a structured declaration where you select which data types your extension collects (personal information, browsing history, website content, etc.), whether data is transferred externally, and the purpose of collection. It also includes pledges about not selling data or using it for unrelated purposes. This information appears on your extension's Web Store listing under "Privacy practices."</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does my privacy policy need to list every permission my extension uses?</h3>
+        <p>Your policy must explain the data practices enabled by each permission, though you do not need to list permissions by their technical names. For example, instead of just listing "<code>tabs</code> permission," explain that the extension reads the titles and URLs of open tabs for a specific purpose. The policy should make clear to a non-technical user what data the extension accesses and why.</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+</main>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Chrome Extension Privacy Policy: What Google Requires and How to Create One",
+  "description": description,
+  "datePublished": publishDate,
+  "dateModified": modifiedDate,
+  "author": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buildprivacypolicy.com/resources/chrome-extension-privacy-policy/"
+  }
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do all Chrome extensions need a privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not all, but most. Google requires a privacy policy for any Chrome extension that handles personal or sensitive user data. If your extension requests permissions like tabs, history, bookmarks, cookies, host permissions, or the identity API, you need a policy. Extensions that request no data-touching permissions (such as simple themes) can skip it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I publish a Chrome extension without a privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If the extension handles user data and no privacy policy URL is provided, the Chrome Web Store review team will reject the submission. The extension will not be published until a valid policy URL is added and the Data Usage certification is completed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use the same privacy policy for my Chrome extension and my website?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, if the policy covers the data practices of both. Many developers maintain a single policy with separate sections for their website, app, and Chrome extension. The key requirement is that the policy specifically describes the extension's permissions, data collection, and data handling."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where does the privacy policy URL go in the Developer Dashboard?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In the Chrome Web Store Developer Dashboard, select your extension, go to the Store listing tab, and paste the URL into the Privacy policy field. You also need to complete the Privacy practices tab with the Data Usage certification."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the Data Usage certification in the Developer Dashboard?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Data Usage certification is a structured declaration where you select which data types your extension collects, whether data is transferred externally, and the purpose of collection. It also includes pledges about not selling data or using it for unrelated purposes. This information appears on your extension's Web Store listing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does my privacy policy need to list every permission my extension uses?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your policy must explain the data practices enabled by each permission, though you do not need to list permissions by their technical names. The policy should make clear to a non-technical user what data the extension accesses and why."
+      }
+    }
+  ]
+})} />
+
+</Layout>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-link:hover {
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+  .page-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 16px 80px;
+  }
+  .page-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px 36px;
+    border: 1px solid #E5E7EB;
+  }
+  .breadcrumb {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 16px;
+  }
+  .breadcrumb a {
+    color: #6B7280;
+    text-decoration: underline;
+  }
+  .page-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .last-updated {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 24px;
+  }
+  .page-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .page-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  .page-card p {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .page-card ul, .page-card ol {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+  .page-card li {
+    margin-bottom: 8px;
+  }
+  .page-card a {
+    color: #2563EB;
+    text-decoration: underline;
+  }
+  .page-card strong {
+    font-weight: 600;
+  }
+  .page-card em {
+    font-style: italic;
+  }
+  .toc {
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 8px;
+  }
+  .toc-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .toc ol {
+    margin-bottom: 0;
+    padding-left: 20px;
+  }
+  .toc li {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .toc a {
+    color: #2563EB;
+  }
+  .faq-list {
+    margin-top: 8px;
+  }
+  .faq-item {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 20px;
+    margin-bottom: 8px;
+  }
+  .faq-item h3 {
+    margin-top: 0;
+  }
+  .faq-item p {
+    margin-bottom: 8px;
+  }
+  .copy-block {
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    margin: 20px 0;
+    overflow: hidden;
+  }
+  .copy-block-header {
+    background: #F3F4F6;
+    padding: 10px 16px;
+    border-bottom: 1px solid #D1D5DB;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .copy-block-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #6B7280;
+  }
+  .copy-block-body {
+    padding: 24px 28px;
+    background: #FAFAFA;
+    max-height: 480px;
+    overflow-y: auto;
+  }
+  .copy-block-body p {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .copy-block-body ul {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    padding-left: 22px;
+  }
+  .copy-block-body li {
+    margin-bottom: 4px;
+  }
+  .copy-block-body code {
+    background: #E5E7EB;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+  .copy-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #1E3A5F;
+    color: white;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .copy-btn:hover {
+    background: #2E5A8F;
+  }
+</style>
+
+<script>
+  document.getElementById('copy-policy-btn')?.addEventListener('click', function() {
+    const el = document.getElementById('sample-policy-text');
+    if (!el) return;
+    const text = el.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copy-policy-btn');
+      if (btn) {
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy to clipboard'; }, 2000);
+      }
+    });
+  });
+</script>
