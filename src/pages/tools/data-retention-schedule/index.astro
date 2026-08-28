@@ -1,0 +1,646 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+
+const title = "Data Retention Schedule Builder - BuildPrivacyPolicy";
+const description = "Free data retention schedule builder: select your data types, jurisdictions, and business model to get recommended retention periods with legal references.";
+const publishDate = "2026-08-28";
+---
+
+<Layout title={title} description={description}>
+
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="128" height="128" rx="28" fill="#1E3A5F"/><path d="M64 24C64 24 40 34 32 38V62C32 82 46 98 64 104C82 98 96 82 96 62V38C88 34 64 24 64 24Z" fill="#2E5A8F" stroke="#5B9BD5" stroke-width="2.5"/><path d="M52 64L60 72L78 54" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+</div>
+
+<main>
+<article class="page-container">
+  <div class="page-card">
+    <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Tools</p>
+    <h1>Data Retention Schedule Builder</h1>
+    <p class="last-updated">Published August 28, 2026</p>
+
+    <p>Privacy laws require you to state how long you keep each type of personal data, but they rarely hand you a number. This tool does the lookup for you: select the data types your app or website collects, the jurisdictions your users are in, and your business model, then get a retention schedule table with recommended periods, the legal basis for each, and a ready-to-paste paragraph for your privacy policy's retention section.</p>
+
+    <div class="tool-container">
+      <div class="tool-form" id="builder-form">
+
+        <div class="form-section">
+          <label class="section-label">Data types you collect <span class="label-hint">(select all that apply)</span></label>
+          <div class="select-all-row">
+            <button type="button" class="select-all-btn" id="select-all-data">Select all</button>
+          </div>
+          <div class="checkbox-grid" id="data-type-grid">
+            <label class="check-card"><input type="checkbox" name="dataType" value="account-email" /><span class="check-label">Account Email</span></label>
+            <label class="check-card"><input type="checkbox" name="dataType" value="name" /><span class="check-label">User Name</span></label>
+            <label class="check-card"><input type="checkbox" name="dataType" value="ip-address" /><span class="check-label">IP Address</span></label>
+            <label class="check-card"><input type="checkbox" name="dataType" value="device-id" /><span class="check-label">Device ID</span></label>
+            <label class="check-card"><input type="checkbox" name="dataType" value="location" /><span class="check-label">Location Data</span></label>
+            <label class="check-card"><input type="checkbox" name="dataType" value="voice" /><span class="check-label">Voice Utterances</span></label>
+            <label class="check-card"><input type="checkbox" name="dataType" value="messages" /><span class="check-label">Message Content</span></label>
+            <label class="check-card"><input type="checkbox" name="dataType" value="payment" /><span class="check-label">Payment Records</span></label>
+            <label class="check-card"><input type="checkbox" name="dataType" value="analytics" /><span class="check-label">Analytics Events</span></label>
+            <label class="check-card"><input type="checkbox" name="dataType" value="cookies" /><span class="check-label">Cookies</span></label>
+            <label class="check-card"><input type="checkbox" name="dataType" value="children" /><span class="check-label">Children&#x2019;s Data</span></label>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <label class="section-label">Jurisdictions <span class="label-hint">(where your users are located)</span></label>
+          <div class="select-all-row">
+            <button type="button" class="select-all-btn" id="select-all-juris">Select all</button>
+          </div>
+          <div class="checkbox-grid" id="jurisdiction-grid">
+            <label class="check-card"><input type="checkbox" name="jurisdiction" value="gdpr" /><span class="check-label">EU/UK GDPR</span></label>
+            <label class="check-card"><input type="checkbox" name="jurisdiction" value="ccpa" /><span class="check-label">US CCPA/CPRA</span></label>
+            <label class="check-card"><input type="checkbox" name="jurisdiction" value="pipeda" /><span class="check-label">Canada PIPEDA</span></label>
+            <label class="check-card"><input type="checkbox" name="jurisdiction" value="lgpd" /><span class="check-label">Brazil LGPD</span></label>
+            <label class="check-card"><input type="checkbox" name="jurisdiction" value="dpdp" /><span class="check-label">India DPDP</span></label>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <label class="section-label" for="business-type">Business type</label>
+          <select id="business-type">
+            <option value="" disabled selected>Select your business type</option>
+            <option value="app">Mobile App</option>
+            <option value="website">Website</option>
+            <option value="saas">SaaS Platform</option>
+            <option value="ecommerce">Ecommerce Store</option>
+          </select>
+        </div>
+
+        <button type="button" class="generate-btn" id="generate-btn" disabled>Generate Retention Schedule</button>
+      </div>
+
+      <div class="tool-results" id="results" style="display:none;">
+        <h2 class="results-heading">Your Data Retention Schedule</h2>
+
+        <div class="caveat-box">
+          <strong>Important:</strong> The retention periods below are common regulatory defaults drawn from published guidance, not legal advice. They do not account for sector-specific regulations such as HIPAA, PCI-DSS, or SOX. Consult a qualified privacy attorney before finalizing your retention schedule.
+        </div>
+
+        <div class="table-wrap">
+          <table class="retention-table" id="retention-table">
+            <thead>
+              <tr>
+                <th>Data Type</th>
+                <th>Recommended Retention</th>
+                <th>Reason</th>
+                <th>Governing Law</th>
+              </tr>
+            </thead>
+            <tbody id="retention-tbody"></tbody>
+          </table>
+        </div>
+
+        <div id="floor-notes" class="floor-notes" style="display:none;"></div>
+        <div id="business-notes" class="business-notes" style="display:none;"></div>
+
+        <div class="clipboard-section">
+          <h3>Retention Clause for Your Privacy Policy</h3>
+          <p class="clipboard-hint">Copy the paragraph below and paste it into the data retention section of your privacy policy.</p>
+          <div class="clipboard-box" id="clipboard-box"></div>
+          <button type="button" class="copy-btn" id="copy-btn">Copy to Clipboard</button>
+          <span class="copy-feedback" id="copy-feedback"></span>
+        </div>
+
+        <button type="button" class="reset-btn" id="reset-btn">Start Over</button>
+      </div>
+    </div>
+
+    <h2 id="how-to-use">How to Use This Tool</h2>
+
+    <p>Start by checking every data type your app or website collects. Next, select the jurisdictions where your users are located — if you are unsure, run the <a href="/tools/privacy-law-checker/">privacy law applicability checker</a> first to find out which regulations apply to you. Pick your business type from the dropdown, then hit “Generate Retention Schedule.” The tool cross-references a built-in lookup table to find the shortest binding constraint and any statutory minimums across your selected jurisdictions, then outputs a table you can reference internally and a ready-to-paste paragraph for your policy. Once your retention periods are set, <a href="https://buildprivacypolicy.com/">generate your full privacy policy</a> to build a compliant document around them.</p>
+
+    <h2 id="why-retention-periods">Why Every Privacy Policy Needs Retention Periods</h2>
+
+    <p>Regulators treat vague retention language as a compliance gap. Phrases like “as long as necessary” or “for a reasonable period” without further context have drawn enforcement action because they give users no way to understand when their data will actually be deleted. Article 13(2)(a) of the GDPR explicitly requires controllers to state the period for which personal data will be stored, or the criteria used to determine that period. The CPRA added a similar disclosure requirement for California businesses. Brazil's LGPD, Canada's PIPEDA, and India's DPDP Act all include purpose-limitation principles that demand data be erased once the stated purpose is fulfilled.</p>
+
+    <p>Beyond compliance, clear retention periods reduce your data footprint. Holding data longer than necessary increases your exposure in a breach, raises storage costs, and makes subject-access requests harder to fulfill. A well-defined retention schedule turns an open-ended liability into a manageable, auditable process.</p>
+
+    <h2 id="statutory-floors">Statutory Floors: When You Cannot Delete Early</h2>
+
+    <p>Some data types have legally mandated minimum retention periods that override purpose limitation. Payment and tax records are the most common example: EU member states typically require businesses to retain financial records for six to ten years depending on national accounting law, the IRS requires at least seven years for most tax-related documents, and India's Income Tax Act extends that window to eight years from the end of the relevant assessment year. These statutory floors exist because tax authorities and regulators need access to historical records for audits and investigations.</p>
+
+    <p>When a statutory floor applies, it acts as a hard minimum — you must retain the data for at least that long even if your general retention policy would delete it sooner. This tool checks for statutory floors across all your selected jurisdictions and surfaces the longest applicable minimum so your retention schedule stays compliant everywhere you operate.</p>
+
+    <h2 id="purpose-limitation">Purpose Limitation: The Default Rule</h2>
+
+    <p>Where no statutory floor exists, every major privacy law defaults to the same principle: retain personal data only for as long as it is needed to fulfill the purpose for which it was collected, then delete or anonymize it. The GDPR calls this “storage limitation” under Article 5(1)(e). The CPRA codifies it as a requirement that retention be “reasonably necessary and proportionate.” PIPEDA's Principle 4.5 states that personal information shall be retained only as long as necessary for the fulfillment of the stated purposes.</p>
+
+    <p>In practice, purpose limitation means you need to define a concrete period for each data type rather than relying on open-ended language. The numbers this tool recommends — six months for IP addresses, thirteen months for cookies, thirty days for location data — are drawn from published regulatory guidance and enforcement precedent. They represent widely accepted ceilings rather than legal mandates, and your actual retention periods may be shorter depending on how you use the data. For a step-by-step guide to translating these periods into policy language, see our guide on <a href="/resources/how-to-write-privacy-policy-for-app/">how to write a privacy policy for your app</a>.</p>
+
+    <h2 id="faq">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Are the retention periods this tool recommends legally binding?</h3>
+        <p>No. The periods are common defaults drawn from published regulatory guidance and enforcement precedent. They represent reasonable starting points, not binding requirements. Statutory floors for payment and tax records are the exception — those are legal minimums set by tax law. For all other data types, consult a privacy attorney to confirm the periods fit your specific use case.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What happens if two jurisdictions recommend different retention periods?</h3>
+        <p>This tool applies the shortest non-floor period across your selected jurisdictions as the recommendation, because the strictest ceiling protects you in all markets. If any jurisdiction imposes a statutory floor (a legal minimum), the tool surfaces the longest floor so you do not delete data you are legally required to keep.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does the business type change the recommended retention periods?</h3>
+        <p>The core retention periods are driven by jurisdiction, not business type. However, business type adds contextual notes — for example, ecommerce stores get a note about chargeback dispute windows for payment records, and SaaS platforms get a note about post-cancellation data cleanup. These notes highlight practical considerations that may affect how you implement your schedule.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I use the generated paragraph directly in my privacy policy?</h3>
+        <p>The paragraph is designed as a starting point. It covers the data types and periods you selected, includes a purpose-limitation statement, and notes statutory floors where they apply. You should review it with your legal team and adjust the language to match your actual data practices before publishing it in your policy.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does this tool send my data anywhere?</h3>
+        <p>No. Everything runs in your browser. The retention lookup table is embedded in the page, and no data is sent to any server. Your selections and results stay on your device.</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+</main>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Data Retention Schedule Builder",
+  "description": description,
+  "url": "https://buildprivacypolicy.com/tools/data-retention-schedule/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "datePublished": publishDate
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are the retention periods this tool recommends legally binding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The periods are common defaults drawn from published regulatory guidance and enforcement precedent. They represent reasonable starting points, not binding requirements. Statutory floors for payment and tax records are the exception — those are legal minimums set by tax law."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if two jurisdictions recommend different retention periods?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool applies the shortest non-floor period across your selected jurisdictions as the recommendation, because the strictest ceiling protects you in all markets. If any jurisdiction imposes a statutory floor, the tool surfaces the longest floor so you do not delete data you are legally required to keep."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the business type change the recommended retention periods?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The core retention periods are driven by jurisdiction, not business type. However, business type adds contextual notes — for example, ecommerce stores get a note about chargeback dispute windows for payment records, and SaaS platforms get a note about post-cancellation data cleanup."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use the generated paragraph directly in my privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The paragraph is designed as a starting point. It covers the data types and periods you selected, includes a purpose-limitation statement, and notes statutory floors. Review it with your legal team before publishing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this tool send my data anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything runs in your browser. The retention lookup table is embedded in the page, and no data is sent to any server. Your selections and results stay on your device."
+      }
+    }
+  ]
+})} />
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  var DATA_TYPES = [
+    { id: 'account-email', label: 'Account Email' },
+    { id: 'name',          label: 'User Name' },
+    { id: 'ip-address',    label: 'IP Address' },
+    { id: 'device-id',     label: 'Device ID' },
+    { id: 'location',      label: 'Location Data' },
+    { id: 'voice',         label: 'Voice Utterances' },
+    { id: 'messages',      label: 'Message Content' },
+    { id: 'payment',       label: 'Payment Records' },
+    { id: 'analytics',     label: 'Analytics Events' },
+    { id: 'cookies',       label: 'Cookies' },
+    { id: 'children',      label: "Children's Data" }
+  ];
+
+  var JURISDICTIONS = [
+    { id: 'gdpr',   label: 'EU/UK GDPR' },
+    { id: 'ccpa',   label: 'US CCPA/CPRA' },
+    { id: 'pipeda', label: 'Canada PIPEDA' },
+    { id: 'lgpd',   label: 'Brazil LGPD' },
+    { id: 'dpdp',   label: 'India DPDP' }
+  ];
+  var RETENTION = {
+    'account-email': {
+      gdpr:   { period: 'Account duration + 30 days', sortVal: 31, reason: 'Purpose limitation — erase within 30 days of account closure', law: 'Art. 5(1)(e) GDPR', floorMonths: null },
+      ccpa:   { period: 'Account duration + 30 days', sortVal: 31, reason: 'Retain only as reasonably necessary for disclosed purpose', law: 'CPRA §1798.100(d)', floorMonths: null },
+      pipeda: { period: 'Account duration + 1 year',  sortVal: 43, reason: 'Minimum 1 year if data was used in a decision about the individual', law: 'PIPEDA Principle 4.5', floorMonths: 12 },
+      lgpd:   { period: 'Account duration + 30 days', sortVal: 31, reason: 'Delete when processing purpose is fulfilled', law: 'Art. 16 LGPD', floorMonths: null },
+      dpdp:   { period: 'Account duration + 30 days', sortVal: 31, reason: 'Erase when purpose is no longer served', law: 'Sec. 8(7) DPDP Act', floorMonths: null }
+    },
+    'name': {
+      gdpr:   { period: 'Account duration + 30 days', sortVal: 31, reason: 'Purpose limitation — erase within 30 days of account closure', law: 'Art. 5(1)(e) GDPR', floorMonths: null },
+      ccpa:   { period: 'Account duration + 30 days', sortVal: 31, reason: 'Retain only as reasonably necessary', law: 'CPRA §1798.100(d)', floorMonths: null },
+      pipeda: { period: 'Account duration + 1 year',  sortVal: 43, reason: 'Minimum 1 year if data was used in a decision about the individual', law: 'PIPEDA Principle 4.5', floorMonths: 12 },
+      lgpd:   { period: 'Account duration + 30 days', sortVal: 31, reason: 'Delete when purpose is fulfilled', law: 'Art. 16 LGPD', floorMonths: null },
+      dpdp:   { period: 'Account duration + 30 days', sortVal: 31, reason: 'Erase when purpose is no longer served', law: 'Sec. 8(7) DPDP Act', floorMonths: null }
+    },
+    'ip-address': {
+      gdpr:   { period: '6 months',  sortVal: 6,  reason: 'Recommended ceiling for server logs (EDPB guidance)', law: 'Art. 5(1)(e) GDPR', floorMonths: null },
+      ccpa:   { period: '12 months', sortVal: 12, reason: 'Reasonably necessary for security and fraud prevention', law: 'CPRA §1798.100(d)', floorMonths: null },
+      pipeda: { period: '6 months',  sortVal: 6,  reason: 'Retain only as long as necessary for stated purpose', law: 'PIPEDA Principle 4.5', floorMonths: null },
+      lgpd:   { period: '6 months',  sortVal: 6,  reason: 'Purpose limitation for access logs', law: 'Art. 16 LGPD', floorMonths: null },
+      dpdp:   { period: '6 months',  sortVal: 6,  reason: 'Erase when no longer needed for stated purpose', law: 'Sec. 8(7) DPDP Act', floorMonths: null }
+    },
+    'device-id': {
+      gdpr:   { period: '13 months', sortVal: 13, reason: 'Max analytics identifier lifetime per CNIL/EDPB guidance', law: 'Art. 5(1)(e) GDPR + ePrivacy Directive', floorMonths: null },
+      ccpa:   { period: '12 months', sortVal: 12, reason: 'Reasonably necessary for business purpose', law: 'CPRA §1798.100(d)', floorMonths: null },
+      pipeda: { period: '12 months', sortVal: 12, reason: 'Retain only as long as necessary', law: 'PIPEDA Principle 4.5', floorMonths: null },
+      lgpd:   { period: '12 months', sortVal: 12, reason: 'Purpose limitation for device identification', law: 'Art. 16 LGPD', floorMonths: null },
+      dpdp:   { period: '12 months', sortVal: 12, reason: 'Erase when purpose is no longer served', law: 'Sec. 8(7) DPDP Act', floorMonths: null }
+    },
+    'location': {
+      gdpr:   { period: 'Delete after use (purpose-limited)', sortVal: 0, reason: 'Special-category data; strict minimization required', law: 'Art. 9 + Art. 5(1)(e) GDPR', floorMonths: null },
+      ccpa:   { period: '30 days', sortVal: 1, reason: 'Sensitive personal information; minimize retention', law: 'CPRA §1798.121', floorMonths: null },
+      pipeda: { period: 'Delete after use (purpose-limited)', sortVal: 0, reason: 'Sensitive information; collect and retain minimally', law: 'PIPEDA Principle 4.3.4', floorMonths: null },
+      lgpd:   { period: 'Delete after use (purpose-limited)', sortVal: 0, reason: 'Sensitive data; delete when purpose fulfilled', law: 'Art. 11 LGPD', floorMonths: null },
+      dpdp:   { period: 'Delete after use (purpose-limited)', sortVal: 0, reason: 'Erase immediately when purpose is served', law: 'Sec. 8(7) DPDP Act', floorMonths: null }
+    },
+    'voice': {
+      gdpr:   { period: 'Delete after processing (max 30 days)', sortVal: 1, reason: 'Biometric data under Art. 9; strict minimization', law: 'Art. 9 + Art. 5(1)(c) GDPR', floorMonths: null },
+      ccpa:   { period: '30 days', sortVal: 1, reason: 'Sensitive personal information; minimize retention', law: 'CPRA §1798.121', floorMonths: null },
+      pipeda: { period: 'Delete after processing', sortVal: 0, reason: 'Sensitive information; retain only during processing', law: 'PIPEDA Principle 4.5', floorMonths: null },
+      lgpd:   { period: 'Delete after processing', sortVal: 0, reason: 'Biometric data; strict purpose limitation', law: 'Art. 11 LGPD', floorMonths: null },
+      dpdp:   { period: 'Delete after processing', sortVal: 0, reason: 'Erase as soon as purpose is fulfilled', law: 'Sec. 8(7) DPDP Act', floorMonths: null }
+    },
+    'messages': {
+      gdpr:   { period: 'Account duration + 30 days', sortVal: 31, reason: 'Purpose limitation — erase within 30 days of account closure', law: 'Art. 5(1)(e) GDPR', floorMonths: null },
+      ccpa:   { period: 'Account duration + 30 days', sortVal: 31, reason: 'Retain only as reasonably necessary', law: 'CPRA §1798.100(d)', floorMonths: null },
+      pipeda: { period: 'Account duration + 1 year',  sortVal: 43, reason: 'Minimum 1 year if data was used in a decision about the individual', law: 'PIPEDA Principle 4.5', floorMonths: 12 },
+      lgpd:   { period: 'Account duration + 30 days', sortVal: 31, reason: 'Delete when processing purpose is fulfilled', law: 'Art. 16 LGPD', floorMonths: null },
+      dpdp:   { period: 'Account duration + 30 days', sortVal: 31, reason: 'Erase when purpose is no longer served', law: 'Sec. 8(7) DPDP Act', floorMonths: null }
+    },
+    'payment': {
+      gdpr:   { period: '7 years',  sortVal: 84, reason: 'Tax and accounting records (EU member-state requirements)', law: 'Art. 5(1)(e) GDPR + national tax law', floorMonths: 84 },
+      ccpa:   { period: '7 years',  sortVal: 84, reason: 'IRS record-keeping requirements', law: 'CPRA §1798.100(d) + 26 USC §6501', floorMonths: 84 },
+      pipeda: { period: '7 years',  sortVal: 84, reason: 'CRA tax record-keeping requirement', law: 'Income Tax Act s. 230', floorMonths: 84 },
+      lgpd:   { period: '5 years',  sortVal: 60, reason: 'Brazilian tax and commercial record-keeping', law: 'Art. 16 LGPD + CTN Art. 173', floorMonths: 60 },
+      dpdp:   { period: '8 years',  sortVal: 96, reason: 'Indian Income Tax Act record-keeping', law: 'Sec. 8(7) DPDP Act + IT Act s. 149', floorMonths: 96 }
+    },
+    'analytics': {
+      gdpr:   { period: '14 months', sortVal: 14, reason: 'CNIL recommendation for analytics data lifecycle', law: 'Art. 5(1)(e) GDPR + CNIL guidelines', floorMonths: null },
+      ccpa:   { period: '12 months', sortVal: 12, reason: 'Reasonably necessary for business analytics', law: 'CPRA §1798.100(d)', floorMonths: null },
+      pipeda: { period: '12 months', sortVal: 12, reason: 'Retain only as long as necessary for purpose', law: 'PIPEDA Principle 4.5', floorMonths: null },
+      lgpd:   { period: '12 months', sortVal: 12, reason: 'Purpose limitation for analytics processing', law: 'Art. 16 LGPD', floorMonths: null },
+      dpdp:   { period: '12 months', sortVal: 12, reason: 'Erase when purpose is no longer served', law: 'Sec. 8(7) DPDP Act', floorMonths: null }
+    },
+    'cookies': {
+      gdpr:   { period: '13 months', sortVal: 13, reason: 'Maximum cookie lifetime per EDPB/CNIL guidance', law: 'ePrivacy Directive Art. 5(3) + CNIL', floorMonths: null },
+      ccpa:   { period: '12 months', sortVal: 12, reason: 'Reasonably necessary for stated purpose', law: 'CPRA §1798.100(d)', floorMonths: null },
+      pipeda: { period: '12 months', sortVal: 12, reason: 'Retain only as long as necessary', law: 'PIPEDA Principle 4.5', floorMonths: null },
+      lgpd:   { period: '12 months', sortVal: 12, reason: 'Purpose limitation for tracking identifiers', law: 'Art. 16 LGPD', floorMonths: null },
+      dpdp:   { period: '12 months', sortVal: 12, reason: 'Erase when purpose is no longer served', law: 'Sec. 8(7) DPDP Act', floorMonths: null }
+    },
+    'children': {
+      gdpr:   { period: 'Minimize and delete promptly', sortVal: 0, reason: 'Enhanced protections for minors; strict data minimization', law: 'Art. 8 + Art. 5(1)(c) GDPR', floorMonths: null },
+      ccpa:   { period: 'Minimize and delete promptly', sortVal: 0, reason: 'COPPA requires deletion when purpose fulfilled; parental consent required', law: 'COPPA 16 CFR §312 + CPRA', floorMonths: null },
+      pipeda: { period: 'Minimize and delete promptly', sortVal: 0, reason: 'Sensitive data of minors; strict minimization', law: 'PIPEDA Principle 4.4', floorMonths: null },
+      lgpd:   { period: 'Minimize and delete promptly', sortVal: 0, reason: "Processing must be in child's best interest; minimize retention", law: 'Art. 14 LGPD', floorMonths: null },
+      dpdp:   { period: 'Minimize and delete promptly', sortVal: 0, reason: 'Verifiable parental consent required; strict erasure obligations', law: 'Sec. 9 DPDP Act', floorMonths: null }
+    }
+  };
+  var BUSINESS_NOTES = {
+    app: {
+      'device-id': 'App platforms may require device identifiers for crash reporting and push notifications — retain only for the active notification service lifecycle.',
+      'children': 'App stores reject submissions without a COPPA-compliant privacy policy if your app is directed at or attracts children under 13.'
+    },
+    website: {
+      'cookies': 'Implement a cookie consent manager to track user preferences and honor opt-outs across sessions.',
+      'ip-address': 'Configure server log rotation to auto-purge IP addresses at the recommended interval.'
+    },
+    saas: {
+      'account-email': 'Document the post-cancellation data cleanup window in your terms of service so subscribers know when their data will be erased.',
+      'payment': 'Subscription billing records may need retention beyond the tax floor for chargeback dispute resolution (typically 120–540 days depending on processor).'
+    },
+    ecommerce: {
+      'payment': 'Card network rules (Visa, Mastercard) allow chargebacks up to 540 days post-transaction — retain enough data to respond to disputes within that window.',
+      'name': 'Shipping and order records containing customer names are typically retained alongside payment records for tax and warranty compliance.'
+    }
+  };
+
+  var form        = document.getElementById('builder-form');
+  var resultsDiv  = document.getElementById('results');
+  var generateBtn = document.getElementById('generate-btn');
+  var resetBtn    = document.getElementById('reset-btn');
+  var copyBtn     = document.getElementById('copy-btn');
+  var copyFeedback = document.getElementById('copy-feedback');
+  var tbody       = document.getElementById('retention-tbody');
+  var floorNotes  = document.getElementById('floor-notes');
+  var bizNotes    = document.getElementById('business-notes');
+  var clipBox     = document.getElementById('clipboard-box');
+  var bizSelect   = document.getElementById('business-type');
+  var selAllData  = document.getElementById('select-all-data');
+  var selAllJuris = document.getElementById('select-all-juris');
+
+  function toggleSelectAll(groupName, btn) {
+    var boxes = document.querySelectorAll('input[name="' + groupName + '"]'  );
+    var allChecked = Array.prototype.every.call(boxes, function (b) { return b.checked; });
+    boxes.forEach(function (b) {
+      b.checked = !allChecked;
+      b.closest('.check-card').classList.toggle('checked', b.checked);
+    });
+    btn.textContent = allChecked ? 'Select all' : 'Deselect all';
+    updateGenerateBtn();
+  }
+
+  selAllData.addEventListener('click', function () { toggleSelectAll('dataType', selAllData); });
+  selAllJuris.addEventListener('click', function () { toggleSelectAll('jurisdiction', selAllJuris); });
+
+  function getChecked(name) {
+    return Array.prototype.map.call(
+      document.querySelectorAll('input[name="' + name + '"]:checked'),
+      function (el) { return el.value; }
+    );
+  }
+
+  function updateGenerateBtn() {
+    generateBtn.disabled = !(getChecked('dataType').length && getChecked('jurisdiction').length && bizSelect.value);
+  }
+
+  document.querySelectorAll('input[name="dataType"], input[name="jurisdiction"]').forEach(function (el) {
+    el.addEventListener('change', updateGenerateBtn);
+  });
+  bizSelect.addEventListener('change', updateGenerateBtn);
+
+  document.querySelectorAll('.check-card input[type="checkbox"]').forEach(function (cb) {
+    cb.addEventListener('change', function () {
+      this.closest('.check-card').classList.toggle('checked', this.checked);
+    });
+  });
+  function dataLabel(id) {
+    for (var i = 0; i < DATA_TYPES.length; i++) { if (DATA_TYPES[i].id === id) return DATA_TYPES[i].label; }
+    return id;
+  }
+  function jurisLabel(id) {
+    for (var i = 0; i < JURISDICTIONS.length; i++) { if (JURISDICTIONS[i].id === id) return JURISDICTIONS[i].label; }
+    return id;
+  }
+
+  generateBtn.addEventListener('click', function () {
+    var selTypes  = getChecked('dataType');
+    var selJuris  = getChecked('jurisdiction');
+    var selBiz    = bizSelect.value;
+    if (!selTypes.length || !selJuris.length || !selBiz) return;
+
+    tbody.innerHTML = '';
+    var floors = [];
+    var bizNotesArr = [];
+    var paragraphParts = [];
+
+    selTypes.forEach(function (typeId) {
+      var entries = [];
+      var maxFloor = null;
+      var maxFloorEntry = null;
+
+      selJuris.forEach(function (jId) {
+        var entry = RETENTION[typeId] && RETENTION[typeId][jId];
+        if (!entry) return;
+        entries.push({ jId: jId, entry: entry });
+        if (entry.floorMonths !== null) {
+          if (maxFloor === null || entry.floorMonths > maxFloor) {
+            maxFloor = entry.floorMonths;
+            maxFloorEntry = { jId: jId, entry: entry };
+          }
+        }
+      });
+
+      if (!entries.length) return;
+      entries.sort(function (a, b) { return a.entry.sortVal - b.entry.sortVal; });
+
+      var pick;
+      if (maxFloor !== null) {
+        pick = maxFloorEntry;
+      } else {
+        pick = entries[0];
+      }
+
+      var label = dataLabel(typeId);
+
+      var tr = document.createElement('tr');
+      tr.innerHTML =
+        '<td data-label="Data Type">' + label + '</td>' +
+        '<td data-label="Retention">' + pick.entry.period + '</td>' +
+        '<td data-label="Reason">' + pick.entry.reason + '</td>' +
+        '<td data-label="Law">' + pick.entry.law + ' (' + jurisLabel(pick.jId) + ')' + '</td>';
+      tbody.appendChild(tr);
+
+      if (maxFloor !== null) {
+        var floorYears = maxFloor >= 12 ? (maxFloor / 12) : maxFloor;
+        var floorUnit  = maxFloor >= 12 ? 'year' + (floorYears !== 1 ? 's' : '') : 'month' + (maxFloor !== 1 ? 's' : '');
+        floors.push(label + ': statutory minimum of ' + floorYears + ' ' + floorUnit + ' (' + pick.entry.law + ').');
+      }
+
+      if (BUSINESS_NOTES[selBiz] && BUSINESS_NOTES[selBiz][typeId]) {
+        bizNotesArr.push('<strong>' + label + ':</strong> ' + BUSINESS_NOTES[selBiz][typeId]);
+      }
+
+      paragraphParts.push(label.toLowerCase() + ' for ' + pick.entry.period.toLowerCase());
+    });
+
+    if (floors.length) {
+      floorNotes.innerHTML = '<strong>Statutory minimums:</strong> ' + floors.join(' ');
+      floorNotes.style.display = 'block';
+    } else {
+      floorNotes.style.display = 'none';
+    }
+
+    if (bizNotesArr.length) {
+      bizNotes.innerHTML = '<strong>Notes for your business type (' + selBiz + '):</strong><ul>' +
+        bizNotesArr.map(function (n) { return '<li>' + n + '</li>'; }).join('') + '</ul>';
+      bizNotes.style.display = 'block';
+    } else {
+      bizNotes.style.display = 'none';
+    }
+
+    var jurisdictionNames = selJuris.map(jurisLabel).join(', ');
+    var para = 'We retain personal data only for as long as necessary to fulfill the purposes for which it was collected, in accordance with applicable data protection laws including ' + jurisdictionNames + '. Specifically, we retain ' + paragraphParts.join('; ') + '. ';
+    if (floors.length) {
+      para += 'Certain records are subject to statutory minimum retention periods required by tax and accounting law: ' + floors.join(' ') + ' ';
+    }
+    para += 'When the applicable retention period expires, data is securely deleted or anonymized. These retention periods reflect common regulatory defaults and may be adjusted as laws evolve. This schedule does not constitute legal advice.';
+
+    clipBox.textContent = para;
+
+    form.style.display = 'none';
+    resultsDiv.style.display = 'block';
+    resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'tool_complete', data_types_count: selTypes.length, jurisdictions_count: selJuris.length });
+  });
+
+  copyBtn.addEventListener('click', function () {
+    var text = clipBox.textContent;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        copyFeedback.textContent = 'Copied!';
+        setTimeout(function () { copyFeedback.textContent = ''; }, 2000);
+      });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      copyFeedback.textContent = 'Copied!';
+      setTimeout(function () { copyFeedback.textContent = ''; }, 2000);
+    }
+  });
+
+  resetBtn.addEventListener('click', function () {
+    document.querySelectorAll('input[name="dataType"], input[name="jurisdiction"]').forEach(function (el) {
+      el.checked = false;
+      el.closest('.check-card').classList.remove('checked');
+    });
+    bizSelect.value = '';
+    generateBtn.disabled = true;
+    selAllData.textContent = 'Select all';
+    selAllJuris.textContent = 'Select all';
+    resultsDiv.style.display = 'none';
+    form.style.display = 'block';
+    form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</Layout>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; }
+  .logo-link { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-link:hover { text-decoration: none; }
+  .logo-icon { width: 28px; height: 28px; border-radius: 6px; flex-shrink: 0; }
+  .logo-text { font-size: 18px; font-weight: 700; color: #111827; letter-spacing: -0.3px; }
+  .page-container { max-width: 780px; margin: 0 auto; padding: 32px 16px 80px; }
+  .page-card { background: white; border-radius: 12px; padding: 40px 36px; border: 1px solid #E5E7EB; }
+  .breadcrumb { font-size: 13px; color: #9CA3AF; margin-bottom: 16px; }
+  .breadcrumb a { color: #6B7280; text-decoration: underline; }
+  .page-card h1 { font-size: 28px; font-weight: 700; color: #111827; letter-spacing: -0.5px; line-height: 1.3; margin-bottom: 4px; }
+  .last-updated { font-size: 13px; color: #9CA3AF; margin-bottom: 24px; }
+  .page-card h2 { font-size: 20px; font-weight: 700; color: #111827; margin-top: 36px; margin-bottom: 12px; letter-spacing: -0.3px; }
+  .page-card h3 { font-size: 17px; font-weight: 600; color: #111827; margin-top: 24px; margin-bottom: 8px; }
+  .page-card p { font-size: 15px; color: #374151; line-height: 1.75; margin-bottom: 14px; }
+  .page-card a { color: #2563EB; text-decoration: underline; }
+  .page-card strong { font-weight: 600; }
+
+  .tool-container { margin: 28px 0 12px; background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 10px; padding: 28px 24px; }
+  .form-section { margin-bottom: 24px; }
+  .section-label { display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 10px; }
+  .label-hint { font-weight: 400; color: #9CA3AF; }
+  .select-all-row { margin-bottom: 10px; }
+  .select-all-btn { padding: 4px 12px; font-size: 12px; font-weight: 600; font-family: inherit; color: #2563EB; background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 5px; cursor: pointer; transition: background 0.15s; }
+  .select-all-btn:hover { background: #DBEAFE; }
+
+  .checkbox-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
+  .check-card { display: flex; align-items: center; gap: 8px; padding: 10px 14px; background: white; border: 1px solid #E5E7EB; border-radius: 8px; cursor: pointer; transition: border-color 0.15s, background 0.15s; user-select: none; }
+  .check-card:hover { border-color: #93C5FD; }
+  .check-card.checked { border-color: #2563EB; background: #EFF6FF; }
+  .check-card input[type="checkbox"] { accent-color: #2563EB; width: 16px; height: 16px; flex-shrink: 0; }
+  .check-label { font-size: 14px; font-weight: 500; color: #374151; }
+
+  .form-section select { width: 100%; padding: 10px 14px; font-size: 15px; font-family: inherit; border: 1px solid #D1D5DB; border-radius: 8px; background: white; color: #111827; cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236B7280' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 6l3.5 4 3.5-4z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; }
+  .form-section select:focus { border-color: #2563EB; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); outline: none; }
+
+  .generate-btn { width: 100%; padding: 12px 24px; font-size: 15px; font-weight: 600; font-family: inherit; color: white; background: #2563EB; border: none; border-radius: 8px; cursor: pointer; transition: background 0.15s; }
+  .generate-btn:hover:not(:disabled) { background: #1D4ED8; }
+  .generate-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .results-heading { margin-top: 0 !important; margin-bottom: 20px !important; font-size: 20px; font-weight: 700; color: #111827; }
+  .caveat-box { background: #FFFBEB; border: 1px solid #FDE68A; border-left: 4px solid #F59E0B; border-radius: 8px; padding: 14px 18px; font-size: 13px; color: #92400E; line-height: 1.6; margin-bottom: 20px; }
+
+  .table-wrap { overflow-x: auto; margin-bottom: 16px; border: 1px solid #E5E7EB; border-radius: 8px; }
+  .retention-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .retention-table th { background: #F3F4F6; text-align: left; padding: 12px 14px; font-weight: 600; color: #374151; border-bottom: 2px solid #E5E7EB; white-space: nowrap; }
+  .retention-table td { padding: 12px 14px; color: #374151; border-bottom: 1px solid #F3F4F6; line-height: 1.5; vertical-align: top; }
+  .retention-table tr:last-child td { border-bottom: none; }
+  .retention-table tr:hover td { background: #F9FAFB; }
+
+  .floor-notes { background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 8px; padding: 14px 18px; font-size: 13px; color: #92400E; line-height: 1.6; margin-bottom: 16px; }
+  .business-notes { background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 8px; padding: 14px 18px; font-size: 13px; color: #1E40AF; line-height: 1.6; margin-bottom: 16px; }
+  .business-notes ul { margin: 8px 0 0 18px; padding: 0; }
+  .business-notes li { margin-bottom: 6px; }
+
+  .clipboard-section { margin-top: 24px; padding-top: 20px; border-top: 1px solid #E5E7EB; }
+  .clipboard-section h3 { margin-top: 0 !important; margin-bottom: 6px !important; font-size: 16px; font-weight: 700; color: #111827; }
+  .clipboard-hint { font-size: 13px !important; color: #6B7280 !important; margin-bottom: 10px !important; }
+  .clipboard-box { background: white; border: 1px solid #D1D5DB; border-radius: 8px; padding: 16px; font-size: 14px; color: #374151; line-height: 1.7; margin-bottom: 10px; user-select: all; }
+  .copy-btn { padding: 8px 18px; font-size: 14px; font-weight: 600; font-family: inherit; color: white; background: #2563EB; border: none; border-radius: 6px; cursor: pointer; transition: background 0.15s; }
+  .copy-btn:hover { background: #1D4ED8; }
+  .copy-feedback { margin-left: 10px; font-size: 13px; font-weight: 600; color: #059669; }
+
+  .reset-btn { margin-top: 20px; padding: 10px 20px; font-size: 14px; font-weight: 600; font-family: inherit; color: #374151; background: white; border: 1px solid #D1D5DB; border-radius: 8px; cursor: pointer; transition: background 0.15s; }
+  .reset-btn:hover { background: #F9FAFB; }
+
+  .faq-list { margin-top: 8px; }
+  .faq-item { border-top: 1px solid #E5E7EB; padding-top: 20px; margin-bottom: 8px; }
+  .faq-item h3 { margin-top: 0; }
+  .faq-item p { margin-bottom: 8px; }
+
+  @media (max-width: 600px) {
+    .page-card { padding: 24px 18px; }
+    .page-container { max-width: 100%; }
+    .tool-container { padding: 20px 16px; }
+    .checkbox-grid { grid-template-columns: 1fr 1fr; }
+    .retention-table thead { display: none; }
+    .retention-table, .retention-table tbody, .retention-table tr, .retention-table td { display: block; width: 100%; }
+    .retention-table tr { margin-bottom: 12px; border: 1px solid #E5E7EB; border-radius: 8px; padding: 12px; background: white; }
+    .retention-table td { padding: 4px 0; border-bottom: none; }
+    .retention-table td::before { content: attr(data-label) ": "; font-weight: 600; color: #111827; }
+    .retention-table td:first-child { font-weight: 600; color: #111827; }
+    .retention-table td:first-child::before { display: none; }
+  }
+</style>

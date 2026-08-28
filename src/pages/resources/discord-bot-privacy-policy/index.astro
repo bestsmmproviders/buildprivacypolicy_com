@@ -1,0 +1,513 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const title = "Discord Bot Privacy Policy: Developer Requirements";
+const description = "Discord requires a privacy policy for bot verification and the App Directory. Learn what your bot must disclose about user IDs, message content, and more.";
+const publishDate = "2026-08-27";
+const modifiedDate = "2026-08-27";
+---
+
+<Layout title={title} description={description}>
+
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="128" height="128" rx="28" fill="#1E3A5F"/><path d="M64 24C64 24 40 34 32 38V62C32 82 46 98 64 104C82 98 96 82 96 62V38C88 34 64 24 64 24Z" fill="#2E5A8F" stroke="#5B9BD5" stroke-width="2.5"/><path d="M52 64L60 72L78 54" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+</div>
+
+<main>
+<article class="page-container">
+  <div class="page-card">
+    <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
+    <h1>Discord Bot Privacy Policy: What Discord Requires and How to Write One</h1>
+    <p class="last-updated">Published August 27, 2026</p>
+
+    <p>Discord requires every bot to have a privacy policy under its Developer Policy, and a working policy URL becomes mandatory once your bot needs verification -- at 100 servers -- or gets listed in the App Directory. It has to describe what your bot actually collects: user IDs, server and channel IDs, message content if you use that intent, voice state, and anything you log or store. A generic template copied from a website's terms page will not pass review.</p>
+
+    <p>This guide covers when Discord requires the policy, what data your bot handles that developers routinely forget to disclose, how a 2026 change to Discord's privileged-intent rules affects your Message Content disclosure, and where to host it. Rather generate one than write it from scratch? <a href="https://buildprivacypolicy.com/">Generate a privacy policy for free</a> and host it at no cost.</p>
+
+    <nav class="toc">
+      <p class="toc-title">Contents</p>
+      <ol>
+        <li><a href="#when-required">When Discord Requires a Privacy Policy for Your Bot</a></li>
+        <li><a href="#what-bots-collect">What Data a Discord Bot Collects</a></li>
+        <li><a href="#message-content-intent">The Message Content Intent Review and Your Privacy Disclosure</a></li>
+        <li><a href="#required-sections">What Your Bot's Privacy Policy Must Include</a></li>
+        <li><a href="#host-and-add">Hosting Your Policy and Adding It to the Developer Portal</a></li>
+        <li><a href="#sample-policy">Sample Discord Bot Privacy Policy You Can Copy</a></li>
+        <li><a href="#faq">Frequently Asked Questions</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="when-required">When Discord Requires a Privacy Policy for Your Bot</h2>
+
+    <p>Discord's Developer Policy applies to every application registered in the Developer Portal, bots included, and requires a publicly accessible privacy policy that clearly and accurately describes how the application collects, uses, and shares user data. That obligation exists from the moment you create the application, not once the bot gets popular.</p>
+
+    <p>Three moments make it non-negotiable:</p>
+
+    <ul>
+      <li><strong>Bot verification.</strong> Required once a bot reaches 100 servers; an unverified bot cannot join more servers past that point. The App Verification checklist lists a working privacy policy alongside Stripe identity verification for the team owner -- start early, since review takes real time.</li>
+      <li><strong>App Directory discovery.</strong> To be discoverable, your application must have a connected, publicly available privacy policy and terms of service in addition to being verified -- a baseline eligibility gate, not an optional nicety.</li>
+      <li><strong>Every other bot, technically.</strong> The Developer Policy carves out no exception for small or single-server bots. Enforcement is lighter below the verification threshold, but the obligation applies at any scale.</li>
+    </ul>
+
+    <p>This is the same pattern Amazon uses for <a href="/resources/alexa-skill-privacy-policy/">Alexa skill certification</a> and Google uses for <a href="/resources/chrome-extension-privacy-policy/">Chrome Web Store listings</a> -- the platform gatekeeps the policy, and reviewers check that it matches what the application does rather than just confirming the URL field is filled in.</p>
+
+    <h2 id="what-bots-collect">What Data a Discord Bot Collects</h2>
+
+    <p>Most developers under-disclose because they think about what they store in a database, not what Discord sends their bot in the first place. Your policy needs to cover both.</p>
+
+    <ul>
+      <li><strong>User IDs and usernames.</strong> Every message, reaction, or slash command carries the Discord user ID and current username of whoever triggered it -- a persistent identifier, so it is personal data before you ever save it.</li>
+      <li><strong>Guild and channel IDs.</strong> These identify where an interaction happened, and combined with a user ID reveal which servers someone uses your bot in.</li>
+      <li><strong>Message content, if you request the intent.</strong> Without <code>MESSAGE_CONTENT</code>, your bot only sees text it is mentioned in, a DM, or a slash command. Enabled, every message in every visible channel passes through your code, logged or not.</li>
+      <li><strong>Voice state.</strong> Music and voice bots use the standard (non-privileged) <code>GUILD_VOICE_STATES</code> intent to know who joined or left a voice channel -- personal data, even though it skips the privileged-intent review.</li>
+      <li><strong>Member lists and presence.</strong> <code>GUILD_MEMBERS</code> and <code>GUILD_PRESENCES</code> hand your bot a full roster or users' online status -- far more than most bots need.</li>
+      <li><strong>Logs.</strong> Console and error logs often contain user IDs or message snippets by accident -- data storage, whether intended or not.</li>
+    </ul>
+
+    <p>The distinction that trips developers up: receiving data through the Gateway is processing, even when nothing touches a database. A stateless bot still needs a policy describing what it receives and why.</p>
+
+    <h2 id="message-content-intent">The Message Content Intent Review and Your Privacy Disclosure</h2>
+
+    <p>Message Content, Guild Members, and Presence are Discord's three privileged intents -- gateway access Discord does not hand out automatically, because each exposes data most users would not expect a bot to see. Any bot using one needs to justify it, and the privacy policy is part of that justification.</p>
+
+    <p>Discord changed how that review works in 2026. Previously, the trigger was server count: bots under 100 servers could self-toggle privileged intents, and bots at 100 or more applied for approval as part of bot verification itself. As of June 2026, Discord separated the two processes and moved the intent-review trigger to unique user count across all of a bot's servers instead. Under 10,000 total users, you can still self-toggle. Past that, the owner is notified and has 90 days to submit a review explaining the bot's use case per intent, and approved bots must now reapply annually.</p>
+
+    <p>None of this changes what data the intents expose -- only when Discord reviews the justification. Your policy obligation does not wait for that review: if <code>MESSAGE_CONTENT</code> is enabled, it needs a line explaining why the bot reads messages, whether content is stored or only processed in memory, and for how long, at 50 users or 50,000. Bots that only need it to catch a command prefix should migrate to slash commands instead, dropping the privileged intent -- and the disclosure burden -- entirely.</p>
+
+    <h2 id="required-sections">What Your Bot's Privacy Policy Must Include</h2>
+
+    <p>Name the bot specifically -- a generic document that never mentions it by name is an easy rejection reason during review. Beyond that, these sections cover what Discord and standard privacy law both expect.</p>
+
+    <ul>
+      <li><strong>What data you collect</strong>, in plain terms rather than "we may collect certain information."</li>
+      <li><strong>Why you collect it.</strong> Tie each data type to a feature; if you cannot name a reason, stop collecting it.</li>
+      <li><strong>Who else receives it</strong> -- your host and any AI provider your bot calls if messages leave Discord for processing. Discord bars selling API data or handing it to brokers -- say you do not, if true.</li>
+      <li><strong>How long you keep it.</strong> Real periods ("moderation logs, 12 months"), not "as long as necessary," and what happens when the bot is removed from a server.</li>
+      <li><strong>User rights.</strong> How someone gets a copy of their data or has it deleted, and which rights apply under GDPR and CCPA.</li>
+      <li><strong>Children's privacy.</strong> Discord's minimum age is 13 -- state the bot is not directed at under-13s.</li>
+      <li><strong>Contact and change notice.</strong> A working contact method and how you will announce policy changes.</li>
+    </ul>
+
+    <p>Not sure which of these actually apply to your bot's audience? A <a href="/tools/privacy-law-checker/">quick compliance check based on your platform and users</a> narrows it down faster than reading every regulation yourself.</p>
+
+    <h2 id="host-and-add">Hosting Your Policy and Adding It to the Developer Portal</h2>
+
+    <p>The policy needs a stable, public URL. Google Docs, Notion pages, and Pastebin links are a poor fit -- they can change, go private, or disappear, exactly what Discord's reviewers watch for. Three options hold up:</p>
+
+    <ul>
+      <li><strong>Your bot's own site</strong> -- a path like <code>yourbotname.com/privacy</code>. Full control, no third-party dependency.</li>
+      <li><strong>A free generated policy</strong> -- if you have no website, <a href="https://buildprivacypolicy.com/">generate and host one for free</a> and link straight to the permanent URL.</li>
+      <li><strong>GitHub Pages</strong> -- a static HTML page in a public repo, common for open-source bots, as long as it renders without a GitHub login.</li>
+    </ul>
+
+    <p>Adding the URL takes four steps: open the <a href="https://discord.com/developers/applications" rel="nofollow">Developer Portal</a> and select your application; click <strong>General Information</strong>; paste the full URL (including <code>https://</code>) into the <strong>Privacy Policy URL</strong> field; save. That URL shows during your bot's OAuth2 authorization flow, and it is the same field verification and Discovery reviewers check. If your data practices change, update the policy and bump the modified date before your next reapplication, not after.</p>
+
+    <h2 id="sample-policy">Sample Discord Bot Privacy Policy You Can Copy</h2>
+
+    <p>A template for a fictional bot, "[Your Bot Name]." Copy it, fill in the brackets, and delete anything that does not apply.</p>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-label">Sample Privacy Policy — ready to copy</span>
+      </div>
+      <div class="copy-block-body" id="sample-policy-text">
+<p><strong>Privacy Policy for [Your Bot Name]</strong></p>
+<p><em>Last updated: [Date]</em></p>
+
+<p><strong>1. Introduction</strong></p>
+<p>[Your Name / Organization] ("we," "us," or "our") operates the [Your Bot Name] Discord bot ("the Bot"). This policy explains what data the Bot collects through Discord, why, who else receives it, how long it is kept, and your rights over it.</p>
+
+<p><strong>2. Data We Collect</strong></p>
+<p><em>Discord user ID and username</em>, with every command, message, or reaction processed. <em>Server (guild) and channel IDs</em>, to route responses and apply per-server settings. <em>Message content</em> [if applicable]: used to [describe feature]; [processed in memory only / logged briefly / stored] for this purpose only. <em>Voice state</em> [if applicable], while active in a voice channel. <em>Command inputs and stored records</em> tied to your user or server ID, such as [preferences / warnings / configuration].</p>
+
+<p><strong>3. Why We Use This Data</strong></p>
+<p>To operate the Bot's commands and features, maintain per-server and per-user settings across sessions, moderate content where applicable, and debug errors. We do not use your data for advertising, sell it, or share it with data brokers.</p>
+
+<p><strong>4. Third Parties</strong></p>
+<p><strong>[Hosting provider]</strong> runs the Bot's backend and database. <strong>[AI provider, if applicable]</strong> processes message content to generate responses. No other third party receives your data.</p>
+
+<p><strong>5. Data Retention</strong></p>
+<p>Message content processed for [feature] is discarded within [number] days. Stored records are deleted within 30 days of the Bot leaving a server. Debug logs are kept for [number] days, then deleted.</p>
+
+<p><strong>6. Your Rights</strong></p>
+<p>If you are in the EU, UK, or California, you may request a copy of your data, ask us to correct or delete it, or object to its use, by contacting [your-email@example.com]. We respond within 30 days and do not sell personal information.</p>
+
+<p><strong>7. Children's Privacy</strong></p>
+<p>Not directed at users under 13, Discord's minimum age. We do not knowingly collect data from them and delete it promptly if we learn otherwise.</p>
+
+<p><strong>8. Changes</strong></p>
+<p>We update the "Last updated" date above when this policy changes and announce material changes in [your support server / via a bot command].</p>
+
+<p><strong>9. Contact Us</strong></p>
+<p>[your-email@example.com]<br />[Support server invite link, optional]</p>
+      </div>
+      <button class="copy-btn" id="copy-policy-btn" type="button">Copy to clipboard</button>
+    </div>
+
+    <p>Bots with payments or AI integrations need a dedicated section for each. Want a policy built from your bot's actual practices instead? <a href="https://buildprivacypolicy.com/">Build one for free with the generator</a>.</p>
+
+    <h2 id="faq">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Does every Discord bot need a privacy policy?</h3>
+        <p>Yes. Discord's Developer Policy requires one for every application, bots included, from registration onward -- enforcement is just heaviest at verification (100+ servers) and for App Directory listing.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do I need one if my bot doesn't store any data?</h3>
+        <p>Yes. Your bot still receives user IDs and usernames through the API on every event, even with no database, which is still processing under GDPR -- say data is processed but not persisted, if accurate.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What changed with the Message Content Intent review in 2026?</h3>
+        <p>The review trigger moved from server count to unique user count. Under 10,000 users, you can still self-toggle privileged intents; past that, you have 90 days to apply and must reapply annually. Verification, still triggered at 100 servers, is now a separate process.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>When does my bot need to be verified?</h3>
+        <p>At 100 servers. An unverified bot cannot join more servers past that point, and verification requires a working privacy policy URL plus identity verification for the team owner.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Where do I add my bot's privacy policy URL?</h3>
+        <p>Developer Portal &rsaquo; your application &rsaquo; General Information &rsaquo; Privacy Policy URL -- the same field verification and App Directory review check.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I host my bot's privacy policy on a GitHub Gist or Google Doc?</h3>
+        <p>It is discouraged -- both can change ownership or be edited without notice. Your own domain, a hosted generator page, or GitHub Pages are more stable.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do I need a separate privacy policy for my bot and my website?</h3>
+        <p>Not necessarily. One policy can cover both if it specifically describes each surface's data practices, with the bot-relevant sections actually present and accurate.</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+</main>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Discord Bot Privacy Policy: What Discord Requires and How to Write One",
+  "description": description,
+  "datePublished": publishDate,
+  "dateModified": modifiedDate,
+  "author": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buildprivacypolicy.com/resources/discord-bot-privacy-policy/"
+  }
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does every Discord bot need a privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Discord's Developer Policy requires a publicly accessible privacy policy for every application, bots included. Enforcement is most consistent at verification (100+ servers) and for App Directory listing, but the requirement applies regardless of scale."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need one if my bot doesn't store any data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Your bot still receives user IDs, usernames, and other data through Discord's API whenever it processes an event, even without a database. That is still data processing under GDPR and should be disclosed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What changed with the Message Content Intent review in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Discord moved the review trigger for its privileged intents from server count to unique user count. Bots under 10,000 users can self-toggle Message Content, Guild Members, and Presence intents; past that, owners have 90 days to apply and must reapply annually. Bot verification remains a separate process triggered at 100 servers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When does my bot need to be verified?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At 100 servers. An unverified bot cannot join additional servers past that point, and verification requires a working privacy policy URL plus identity verification for the team owner."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where do I add my bot's privacy policy URL?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In the Discord Developer Portal, open your application, go to General Information, and paste the URL into the Privacy Policy URL field."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I host my bot's privacy policy on a GitHub Gist or Google Doc?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is discouraged, since both can change ownership, go private, or be edited without notice. A page on your own domain, a hosted generator page, or GitHub Pages are more stable choices."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a separate privacy policy for my bot and my website?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not necessarily. One policy can cover both as long as it specifically and accurately describes the bot's own data practices, such as user IDs, intents, and guild data."
+      }
+    }
+  ]
+})} />
+
+</Layout>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-link:hover {
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+  .page-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 16px 80px;
+  }
+  .page-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px 36px;
+    border: 1px solid #E5E7EB;
+  }
+  .breadcrumb {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 16px;
+  }
+  .breadcrumb a {
+    color: #6B7280;
+    text-decoration: underline;
+  }
+  .page-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .last-updated {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 24px;
+  }
+  .page-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .page-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  .page-card p {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .page-card ul, .page-card ol {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+  .page-card li {
+    margin-bottom: 8px;
+  }
+  .page-card a {
+    color: #2563EB;
+    text-decoration: underline;
+  }
+  .page-card strong {
+    font-weight: 600;
+  }
+  .page-card em {
+    font-style: italic;
+  }
+  .toc {
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 8px;
+  }
+  .toc-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .toc ol {
+    margin-bottom: 0;
+    padding-left: 20px;
+  }
+  .toc li {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .toc a {
+    color: #2563EB;
+  }
+  .faq-list {
+    margin-top: 8px;
+  }
+  .faq-item {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 20px;
+    margin-bottom: 8px;
+  }
+  .faq-item h3 {
+    margin-top: 0;
+  }
+  .faq-item p {
+    margin-bottom: 8px;
+  }
+  .copy-block {
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    margin: 20px 0;
+    overflow: hidden;
+  }
+  .copy-block-header {
+    background: #F3F4F6;
+    padding: 10px 16px;
+    border-bottom: 1px solid #D1D5DB;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .copy-block-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #6B7280;
+  }
+  .copy-block-body {
+    padding: 24px 28px;
+    background: #FAFAFA;
+    max-height: 480px;
+    overflow-y: auto;
+  }
+  .copy-block-body p {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .copy-block-body ul {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    padding-left: 22px;
+  }
+  .copy-block-body li {
+    margin-bottom: 4px;
+  }
+  .copy-block-body code {
+    background: #E5E7EB;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+  .copy-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #1E3A5F;
+    color: white;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .copy-btn:hover {
+    background: #2E5A8F;
+  }
+</style>
+
+<script>
+  document.getElementById('copy-policy-btn')?.addEventListener('click', function() {
+    const el = document.getElementById('sample-policy-text');
+    if (!el) return;
+    const text = el.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copy-policy-btn');
+      if (btn) {
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy to clipboard'; }, 2000);
+      }
+    });
+  });
+</script>
