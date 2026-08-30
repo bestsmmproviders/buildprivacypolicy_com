@@ -53,6 +53,8 @@ const modifiedDate = "2026-08-25";
 
     <p><strong>Certification as a quality gate.</strong> Amazon reviews every skill before it goes live. The privacy policy URL is one of the fields the certification team checks. Amazon's certification requirements for the Alexa Skills Kit are blunt on this point: the policy section of the content guidelines states that any skill collecting personal information or using account linking "must include a link to a privacy policy that is specific to that skill" and that skills without this link "will fail certification." That is not a soft recommendation -- it is a hard gate. Skills that collect no personal data can optionally include one, but if they do, it still has to pass review.</p>
 
+    <p>Other non-mobile platforms enforce the same pattern. Google requires a hosted policy before listing a <a href="/resources/chrome-extension-privacy-policy/">Chrome extension in its Web Store</a>, and Discord blocks bot verification past 100 servers without <a href="/resources/discord-bot-privacy-policy/">a working policy URL in the Developer Portal</a>. The requirement specifics differ, but the gating mechanism is identical: no policy, no distribution.</p>
+
     <h2 id="what-certification-checks">What Certification Checks</h2>
 
     <p>Amazon's certification team does not just confirm the URL field is populated. Reviewers open the link and verify several conditions before approving a submission.</p>
