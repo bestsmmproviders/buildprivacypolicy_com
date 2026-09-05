@@ -60,7 +60,7 @@ const modifiedDate = "2026-08-26";
 
     <h2 id="what-review-checks">What Review Checks</h2>
 
-    <p>Google's Chrome Web Store review is not a rubber stamp. Reviewers (a mix of automated systems and human evaluators) check several specific conditions before approving an extension.</p>
+    <p>Google's Chrome Web Store review runs in two stages. An automated pipeline scans the submitted ZIP for known patterns — permission usage, remote code references, manifest structure — and flags items for human review. A human reviewer then checks the flagged items against the Developer Program Policies. Extensions requesting sensitive permissions (<code>webRequest</code>, <code>&lt;all_urls&gt;</code>, <code>tabs</code>, <code>identity</code>, <code>cookies</code>) are routed to human review more frequently than extensions with narrow permissions like <code>activeTab</code> or <code>storage</code>. The reviewers check several specific conditions before approving an extension.</p>
 
     <ul>
       <li><strong>The privacy policy URL loads to the actual policy text.</strong> The link must open directly to the privacy policy content -- not a homepage, not a generic legal page, not a link that redirects through a login wall or returns a 404. Google's reviewers test the URL and expect a 200 response that renders the policy immediately.</li>
@@ -70,13 +70,15 @@ const modifiedDate = "2026-08-26";
       <li><strong>The extension does not collect more data than it needs.</strong> Google enforces a minimum-data principle: the extension must "collect and use the minimum amount of data needed" to fulfill its stated purpose. A tab manager that requests <code>&lt;all_urls&gt;</code> and reads page content when it only needs tab titles will be questioned during review.</li>
     </ul>
 
-    <h3>Common rejection reasons</h3>
+    <h3>Common rejection reasons and what the rejection emails say</h3>
+
+    <p>When Google rejects a submission, the developer receives an email from "Chrome Web Store Developer Support" with a subject line starting "Your item was not published" or "Action required: Your extension [name]." The body cites a specific Developer Program Policy section. Here are the rejection patterns developers hit most often:</p>
 
     <ul>
-      <li><strong>Privacy policy URL missing or broken.</strong> The field in the Developer Dashboard is blank, returns a non-200 status, or redirects to an unrelated page.</li>
-      <li><strong>Policy does not name the extension.</strong> A recycled policy from a mobile app or website that never mentions the Chrome extension by name fails the relevance check.</li>
-      <li><strong>Excessive permissions without justification.</strong> Requesting broad host permissions like <code>&lt;all_urls&gt;</code> without a clear explanation in both the extension description and the privacy policy is one of the top rejection triggers.</li>
-      <li><strong>Remote code execution without disclosure.</strong> Extensions that load JavaScript from external servers must disclose this practice. Google's Manifest V3 restrictions limit remote code, but extensions using <code>chrome.scripting</code> or fetching configuration data still need to explain the data flow.</li>
+      <li><strong>Privacy policy URL missing or broken.</strong> The rejection email reads: <em>"Your extension does not comply with the following Chrome Web Store policy: User Data Privacy — Prominent Disclosure. Your extension must provide a privacy policy."</em> The field labeled <strong>"Privacy policy URL"</strong> in the Store listing tab is either blank or resolves to a non-200 status. Google's automated check fetches the URL before human review begins — a 404, redirect loop, or login wall stops the process immediately.</li>
+      <li><strong>Policy does not match the extension's data practices.</strong> The email states: <em>"Your extension's privacy policy does not adequately disclose how user data is collected, used, and shared."</em> This fires when the policy is recycled from a mobile app or website and never mentions Chrome permissions, the extension name, or browser-specific data flows. Reviewers cross-check the <code>manifest.json</code> permissions against the policy text.</li>
+      <li><strong>Excessive permissions without justification.</strong> The rejection references the "Use of Permissions" policy and reads: <em>"Your extension is requesting permission(s) that are not required for implementing its functionality."</em> The permissions that most frequently trigger this are <code>&lt;all_urls&gt;</code>, <code>webRequest</code>, <code>webRequestBlocking</code> (Manifest V2), <code>tabs</code> when <code>activeTab</code> would suffice, and <code>clipboardRead</code> on extensions that have no paste-related feature. Switching from <code>tabs</code> to <code>activeTab</code> alone resolves a large share of these rejections because <code>activeTab</code> grants access only to the current tab on user gesture, while <code>tabs</code> exposes the URL and title of every open tab.</li>
+      <li><strong>Remote code execution.</strong> The email cites the "Code Readability Requirements" policy: <em>"Your extension is loading and executing remote code or modules that are not included in the extension package."</em> Manifest V3 banned remotely hosted code effective January 2023. Extensions that use <code>chrome.scripting.executeScript</code> with dynamically constructed code strings, or that <code>fetch()</code> JSON configuration that alters runtime behavior, still get flagged. The policy requires all executable logic to be included in the submitted ZIP and reviewable in the code review.</li>
     </ul>
 
     <h2 id="data-developers-overlook">Data an Extension Collects That Developers Overlook</h2>
@@ -99,22 +101,36 @@ const modifiedDate = "2026-08-26";
 
     <p>Since 2021, the Chrome Web Store Developer Dashboard includes a <strong>Privacy practices</strong> tab where developers must certify their extension's data handling. This certification is separate from the privacy policy URL but must be consistent with it. Contradictions between the two are a fast path to rejection.</p>
 
-    <p>The certification asks you to declare, for each data type the extension handles:</p>
+    <p>To reach the certification, open the Developer Dashboard at <code>chrome.google.com/webstore/devconsole</code>, select your extension, and click <strong>"Privacy practices"</strong> in the left sidebar (it sits between "Store listing" and "Distribution"). The page is divided into three sections that must all be completed before you can submit for review.</p>
+
+    <p><strong>Section 1 — "Single purpose."</strong> A text field labeled <strong>"What is the single purpose of your extension?"</strong> requires a plain-language description. Google enforces single-purpose policy strictly: if your description names two unrelated functions, reviewers may reject it. State the core function in one sentence.</p>
+
+    <p><strong>Section 2 — "Permission justification."</strong> For each permission declared in your <code>manifest.json</code>, a row appears with the permission name and a text field labeled <strong>"Justification."</strong> Explain why the permission is needed in concrete terms. For example, if you request <code>activeTab</code>, write "Reads the current tab's URL to check it against the user's saved blocklist." Generic justifications like "needed for the extension to work" are flagged by reviewers.</p>
+
+    <p><strong>Section 3 — "Data usage."</strong> This section asks you to certify which data types the extension collects. The data categories appear as checkboxes with these exact labels:</p>
 
     <ul>
-      <li><strong>What data types are collected.</strong> Google groups data into categories: Personally Identifiable Information (name, email, address), Health Information, Financial Information, Authentication Information, Personal Communications, Location, Web History, User Activity, and Website Content. Select every category that applies based on what the extension's permissions actually access.</li>
-      <li><strong>Whether data is used or transferred.</strong> For each selected data type, you must state whether it is used locally only, transferred to your servers, or transferred to third parties. The distinction matters: "used locally" means data never leaves the browser; "transferred" means it reaches an external server.</li>
-      <li><strong>Purpose of collection.</strong> You must select at least one purpose: core functionality, analytics, developer communications, advertising, fraud prevention, personalization, or account management.</li>
+      <li><strong>Personally identifiable information</strong> — name, address, email address, age, date of birth, phone number, or Social Security number</li>
+      <li><strong>Health information</strong></li>
+      <li><strong>Financial and payment information</strong></li>
+      <li><strong>Authentication information</strong> — credentials, security questions, or personal identification numbers</li>
+      <li><strong>Personal communications</strong> — emails, texts, or chat messages</li>
+      <li><strong>Location</strong> — region, IP address, GPS coordinates, or geolocation data</li>
+      <li><strong>Web history</strong> — list of web pages the user has visited</li>
+      <li><strong>User activity</strong> — network monitoring, clicks, mouse position, scroll, or keystroke logging</li>
+      <li><strong>Website content</strong> — text, images, sounds, videos, or hyperlinks from websites the user visits</li>
     </ul>
 
-    <p>The certification also includes two pledges you must affirm or deny:</p>
+    <p>For each checked category, a follow-up asks whether the data is <strong>"Used locally only"</strong> or <strong>"Transferred out of the user's device."</strong> If you select "Transferred," you must specify whether the destination is your own servers, third-party servers, or both.</p>
+
+    <p>Below the data categories, two certification statements appear as checkboxes that you must affirm or deny:</p>
 
     <ul>
-      <li>The extension does <strong>not sell user data</strong> to third parties.</li>
-      <li>The extension does <strong>not use or transfer data for purposes unrelated</strong> to the extension's core functionality.</li>
+      <li><strong>"I certify that my extension doesn't sell user data to third parties, outside of the approved use cases described in the Chrome Web Store Developer Program Policies."</strong></li>
+      <li><strong>"I certify that my extension doesn't use or transfer user data for purposes that are unrelated to the item's single purpose."</strong></li>
     </ul>
 
-    <p>These pledges appear on the extension's Chrome Web Store listing under a "Privacy practices" section visible to users. If your privacy policy says data may be shared with advertising partners but you certify that data is not sold or used for unrelated purposes, the inconsistency can lead to removal.</p>
+    <p>These pledges appear on the extension's Chrome Web Store listing under a "Privacy practices" section visible to users before they install. If your privacy policy says data may be shared with advertising partners but you certify that data is not sold or used for unrelated purposes, the inconsistency can lead to removal from the Web Store.</p>
 
     <h3>How the certification maps to your privacy policy</h3>
 

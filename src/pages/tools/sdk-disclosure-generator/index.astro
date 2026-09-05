@@ -1,0 +1,970 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const title = "Third-Party SDK Disclosure Generator - BuildPrivacyPolicy";
+const description = "Free tool: select the third-party SDKs your app uses and instantly generate privacy policy disclosure paragraphs ready to copy into your policy. No signup.";
+const publishDate = "2026-09-05";
+---
+
+<Layout title={title} description={description}>
+
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="128" height="128" rx="28" fill="#1E3A5F"/><path d="M64 24C64 24 40 34 32 38V62C32 82 46 98 64 104C82 98 96 82 96 62V38C88 34 64 24 64 24Z" fill="#2E5A8F" stroke="#5B9BD5" stroke-width="2.5"/><path d="M52 64L60 72L78 54" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+</div>
+
+<main>
+<article class="page-container">
+  <div class="page-card">
+    <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Tools</p>
+    <h1>Third-Party SDK Disclosure Generator</h1>
+    <p class="last-updated">Published September 5, 2026</p>
+
+    <p>Your app's privacy policy must disclose every third-party SDK that collects or processes user data. Google Play's Data Safety form, Apple's Privacy Nutrition Labels, and regulations like GDPR and CCPA all require you to name the services, explain what data they handle, and link to their privacy policies. Select the SDKs your app uses below, and this tool writes the disclosure paragraphs for you -- ready to copy straight into your privacy policy.</p>
+
+    <div class="tool-container">
+      <div class="tool-form" id="sdk-form">
+        <div class="form-section">
+          <label class="section-label" for="app-name">Your app or company name</label>
+          <input type="text" id="app-name" class="text-input" placeholder="e.g. My App" autocomplete="off" />
+        </div>
+
+        <div class="form-section">
+          <label class="section-label">Which third-party SDKs does your app use?</label>
+          <p class="section-hint">Select all that apply. Grouped by category.</p>
+
+          <div class="sdk-category">
+            <h3 class="category-label">Analytics</h3>
+            <div class="chip-group">
+              <button type="button" class="chip" data-sdk="google_analytics">Google Analytics</button>
+              <button type="button" class="chip" data-sdk="firebase_analytics">Firebase Analytics</button>
+              <button type="button" class="chip" data-sdk="mixpanel">Mixpanel</button>
+              <button type="button" class="chip" data-sdk="amplitude">Amplitude</button>
+            </div>
+          </div>
+
+          <div class="sdk-category">
+            <h3 class="category-label">Advertising</h3>
+            <div class="chip-group">
+              <button type="button" class="chip" data-sdk="admob">AdMob</button>
+              <button type="button" class="chip" data-sdk="meta_audience_network">Meta Audience Network</button>
+            </div>
+          </div>
+
+          <div class="sdk-category">
+            <h3 class="category-label">Crash Reporting</h3>
+            <div class="chip-group">
+              <button type="button" class="chip" data-sdk="sentry">Sentry</button>
+              <button type="button" class="chip" data-sdk="crashlytics">Crashlytics</button>
+            </div>
+          </div>
+
+          <div class="sdk-category">
+            <h3 class="category-label">Payments</h3>
+            <div class="chip-group">
+              <button type="button" class="chip" data-sdk="stripe">Stripe</button>
+              <button type="button" class="chip" data-sdk="paypal">PayPal</button>
+              <button type="button" class="chip" data-sdk="revenuecat">RevenueCat</button>
+            </div>
+          </div>
+
+          <div class="sdk-category">
+            <h3 class="category-label">Authentication</h3>
+            <div class="chip-group">
+              <button type="button" class="chip" data-sdk="firebase_auth">Firebase Auth</button>
+              <button type="button" class="chip" data-sdk="auth0">Auth0</button>
+              <button type="button" class="chip" data-sdk="google_sign_in">Google Sign-In</button>
+              <button type="button" class="chip" data-sdk="apple_sign_in">Apple Sign-In</button>
+            </div>
+          </div>
+
+          <div class="sdk-category">
+            <h3 class="category-label">Push Notifications</h3>
+            <div class="chip-group">
+              <button type="button" class="chip" data-sdk="onesignal">OneSignal</button>
+              <button type="button" class="chip" data-sdk="fcm">Firebase Cloud Messaging</button>
+            </div>
+          </div>
+
+          <div class="sdk-category">
+            <h3 class="category-label">Customer Support</h3>
+            <div class="chip-group">
+              <button type="button" class="chip" data-sdk="intercom">Intercom</button>
+              <button type="button" class="chip" data-sdk="crisp">Crisp</button>
+              <button type="button" class="chip" data-sdk="zendesk">Zendesk</button>
+            </div>
+          </div>
+
+          <div class="sdk-category">
+            <h3 class="category-label">Backend &amp; Infrastructure</h3>
+            <div class="chip-group">
+              <button type="button" class="chip" data-sdk="supabase">Supabase</button>
+              <button type="button" class="chip" data-sdk="aws_amplify">AWS Amplify</button>
+              <button type="button" class="chip" data-sdk="cloudflare">Cloudflare</button>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="generate-btn" id="generate-btn" disabled>Generate Disclosure</button>
+      </div>
+
+      <div class="tool-results" id="results" style="display:none;">
+        <h2 class="results-heading">SDK Disclosure Section</h2>
+        <p class="results-hint">Copy the text below into the "Third-Party Services" or "Third-Party SDKs" section of your privacy policy.</p>
+
+        <div class="copy-block">
+          <div class="copy-block-header">
+            <span class="copy-block-label">Privacy policy disclosure — ready to copy</span>
+          </div>
+          <div class="copy-block-body" id="disclosure-text"></div>
+          <button class="copy-btn" id="copy-disclosure-btn" type="button">Copy to clipboard</button>
+        </div>
+
+        <h2 class="results-heading data-heading">Data Categories Collected</h2>
+        <p class="results-hint">These are all the data categories your selected SDKs handle. Your privacy policy's "Data We Collect" section should list each one.</p>
+        <div id="data-categories-table"></div>
+
+        <div class="next-steps">
+          <h3>What to do next</h3>
+          <ol>
+            <li>Paste the disclosure text into your privacy policy under a "Third-Party Services" heading.</li>
+            <li>Make sure your "Data We Collect" section lists every data category shown in the table above.</li>
+            <li>Check which privacy laws apply to your app with the <a href="/tools/privacy-law-checker/">Privacy Law Checker</a>.</li>
+            <li>Verify your app meets each store's requirements with the <a href="/tools/app-store-privacy-requirements/">App Store Privacy Requirements Checker</a>.</li>
+            <li>Need a complete privacy policy? <a href="https://buildprivacypolicy.com/">Generate one for free</a> with our privacy policy generator.</li>
+          </ol>
+        </div>
+
+        <button type="button" class="reset-btn" id="reset-btn">Start Over</button>
+      </div>
+    </div>
+
+    <h2 id="how-to-use">How to Use This Tool</h2>
+
+    <p>Enter your app or company name, then select every third-party SDK your app integrates. The tool groups SDKs by function -- analytics, advertising, crash reporting, payments, authentication, push notifications, customer support, and backend infrastructure -- so you can work through each category without missing one. Hit "Generate Disclosure" to produce a ready-to-copy disclosure section that names each SDK, states what data it collects, explains the purpose, and links to the vendor's privacy policy. Below the disclosure text you will see a deduplicated table of every data category your selected SDKs handle, which tells you exactly what your "Data We Collect" section needs to cover. When you are ready to build the full policy document, <a href="https://buildprivacypolicy.com/">generate a complete privacy policy for free</a> with our generator.</p>
+
+    <h2 id="why-sdk-disclosure-matters">Why Third-Party SDK Disclosure Matters</h2>
+
+    <p>Every SDK you add to your app introduces a third-party data processor. Google Analytics collects device identifiers and usage events. Stripe processes payment card details. Crashlytics captures device state and stack traces at the moment of a crash. Each of these data flows must be disclosed in your privacy policy -- not as a vague reference to "third-party services," but with the specific SDK named, the data it handles identified, and the purpose stated.</p>
+
+    <p>This is not optional. Google Play requires you to declare every SDK that collects or shares user data in your Data Safety form, and the declaration must match what your privacy policy says. Apple requires a privacy manifest file (<code>PrivacyInfo.xcprivacy</code>) that lists the data collection practices of every third-party SDK in your build, and your App Store Privacy Nutrition Labels must be consistent with that manifest. Under GDPR Article 13, users must be informed of the categories of recipients of their personal data -- generic statements are no longer sufficient. CCPA requires disclosure of the categories of personal information collected and the categories of third parties to whom it is disclosed.</p>
+
+    <p>Getting the disclosure wrong has consequences. Google Play can reject your app update or suspend your listing if your Data Safety form contradicts your privacy policy. Apple's app review flags inconsistencies between your Nutrition Labels and your manifest. Regulators can fine you for incomplete disclosure -- and class-action lawsuits have targeted apps whose privacy policies failed to mention specific SDKs that were actively collecting user data.</p>
+
+    <p>The most common mistake is not malice but oversight. Developers add SDKs during development, update them across versions, and forget to update the privacy policy. This tool eliminates that gap by generating the disclosure text directly from your SDK selections, so the policy stays current every time you add or remove a service.</p>
+
+    <h2 id="faq">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Do I need to list every SDK in my privacy policy?</h3>
+        <p>Yes, if the SDK collects, processes, or transmits user data. Both Google Play and the Apple App Store require you to disclose every third-party service that handles user data. GDPR and CCPA also require you to name the categories of third parties that receive personal information. SDKs that perform purely local operations with no data collection (such as a local image-processing library) do not need disclosure.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What data categories should I disclose for each SDK?</h3>
+        <p>Each SDK collects different data types. Analytics SDKs typically collect device identifiers, usage data, and IP addresses. Advertising SDKs add advertising identifiers and may track browsing activity. Crash reporting SDKs collect device state, OS version, and stack traces. This tool maps each SDK to its specific data categories so you do not have to research them individually.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Is the generated disclosure text legally binding?</h3>
+        <p>The generated text is a disclosure template based on each SDK's publicly documented data practices. It is not legal advice. Review the output for accuracy against your specific implementation, since your app may configure an SDK to collect more or less data than the default. For complex data practices or regulated industries, consult a privacy attorney.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How often should I update my SDK disclosures?</h3>
+        <p>Update your privacy policy's SDK disclosures every time you add, remove, or update a third-party SDK. SDK updates can change what data is collected -- for example, a major version bump might add new telemetry. Run this tool again after any dependency change to regenerate the disclosure section and catch new data categories.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does this tool cover all SDKs?</h3>
+        <p>This tool covers the most widely used third-party SDKs across analytics, advertising, crash reporting, payments, authentication, push notifications, customer support, and backend infrastructure -- roughly 25 services. If your app uses an SDK not listed here, add a manual disclosure paragraph following the same pattern: name the service, state the data it collects, explain the purpose, and link to the vendor's privacy policy.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I use this for both iOS and Android apps?</h3>
+        <p>Yes. The disclosure text is platform-neutral -- it describes what each SDK does with user data regardless of whether your app runs on iOS, Android, or both. The data categories and vendor privacy policy links apply across platforms. Platform-specific requirements like Apple's privacy manifest or Google's Data Safety form are separate compliance steps; the <a href="/tools/app-store-privacy-requirements/">App Store Privacy Requirements Checker</a> can help with those.</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+</main>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Third-Party SDK Disclosure Generator",
+  "description": description,
+  "url": "https://buildprivacypolicy.com/tools/sdk-disclosure-generator/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "datePublished": publishDate
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need to list every SDK in my privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, if the SDK collects, processes, or transmits user data. Both Google Play and the Apple App Store require you to disclose every third-party service that handles user data. GDPR and CCPA also require you to name the categories of third parties that receive personal information."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What data categories should I disclose for each SDK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Each SDK collects different data types. Analytics SDKs typically collect device identifiers, usage data, and IP addresses. Advertising SDKs add advertising identifiers and may track browsing activity. Crash reporting SDKs collect device state, OS version, and stack traces."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the generated disclosure text legally binding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The generated text is a disclosure template based on each SDK's publicly documented data practices. It is not legal advice. Review the output for accuracy against your specific implementation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should I update my SDK disclosures?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Update your privacy policy's SDK disclosures every time you add, remove, or update a third-party SDK. SDK updates can change what data is collected. Run this tool again after any dependency change to regenerate the disclosure section."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this tool cover all SDKs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool covers the most widely used third-party SDKs across analytics, advertising, crash reporting, payments, authentication, push notifications, customer support, and backend infrastructure -- roughly 25 services."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this for both iOS and Android apps?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The disclosure text is platform-neutral. It describes what each SDK does with user data regardless of whether your app runs on iOS, Android, or both. The data categories and vendor privacy policy links apply across platforms."
+      }
+    }
+  ]
+})} />
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+
+    /* ───── SDK LOOKUP TABLE ───── */
+
+    var SDK_DATA = {
+      google_analytics: {
+        name: 'Google Analytics',
+        vendor: 'Google LLC',
+        dataCategories: ['Device identifiers', 'Usage data', 'IP address', 'Browser/OS information'],
+        purpose: 'to measure app usage, track user interactions, and generate audience reports',
+        policyUrl: 'https://policies.google.com/privacy'
+      },
+      firebase_analytics: {
+        name: 'Firebase Analytics',
+        vendor: 'Google LLC',
+        dataCategories: ['Device identifiers', 'Usage data', 'App instance identifiers', 'Advertising identifiers'],
+        purpose: 'to collect app usage and behavior data, measure conversions, and generate analytics reports',
+        policyUrl: 'https://firebase.google.com/support/privacy'
+      },
+      mixpanel: {
+        name: 'Mixpanel',
+        vendor: 'Mixpanel Inc.',
+        dataCategories: ['Device identifiers', 'Usage data', 'IP address', 'User interactions'],
+        purpose: 'to track user events, analyze product usage patterns, and build behavioral analytics reports',
+        policyUrl: 'https://mixpanel.com/legal/privacy-policy/'
+      },
+      amplitude: {
+        name: 'Amplitude',
+        vendor: 'Amplitude Inc.',
+        dataCategories: ['Device identifiers', 'Usage data', 'IP address', 'Session data'],
+        purpose: 'to analyze user behavior, measure feature adoption, and generate product analytics',
+        policyUrl: 'https://amplitude.com/privacy'
+      },
+      admob: {
+        name: 'Google AdMob',
+        vendor: 'Google LLC',
+        dataCategories: ['Advertising identifiers', 'Device identifiers', 'IP address', 'Usage data', 'Location (coarse)'],
+        purpose: 'to display personalized or non-personalized advertisements within the app',
+        policyUrl: 'https://policies.google.com/privacy'
+      },
+      meta_audience_network: {
+        name: 'Meta Audience Network',
+        vendor: 'Meta Platforms Inc.',
+        dataCategories: ['Advertising identifiers', 'Device identifiers', 'IP address', 'Usage data', 'Interaction data'],
+        purpose: 'to serve targeted advertisements and measure ad performance within the app',
+        policyUrl: 'https://www.facebook.com/privacy/policy/'
+      },
+      sentry: {
+        name: 'Sentry',
+        vendor: 'Functional Software Inc.',
+        dataCategories: ['Device identifiers', 'OS and device information', 'Crash logs', 'Stack traces', 'IP address'],
+        purpose: 'to capture, report, and diagnose application errors and crashes in real time',
+        policyUrl: 'https://sentry.io/privacy/'
+      },
+      crashlytics: {
+        name: 'Firebase Crashlytics',
+        vendor: 'Google LLC',
+        dataCategories: ['Crash logs', 'Device identifiers', 'OS and device information', 'Stack traces', 'App state data'],
+        purpose: 'to collect crash reports, diagnose stability issues, and prioritize bug fixes',
+        policyUrl: 'https://firebase.google.com/support/privacy'
+      },
+      stripe: {
+        name: 'Stripe',
+        vendor: 'Stripe Inc.',
+        dataCategories: ['Payment card details', 'Transaction data', 'Billing address', 'IP address', 'Device identifiers'],
+        purpose: 'to process payments, prevent fraud, and manage billing and subscriptions',
+        policyUrl: 'https://stripe.com/privacy'
+      },
+      paypal: {
+        name: 'PayPal',
+        vendor: 'PayPal Holdings Inc.',
+        dataCategories: ['Payment information', 'Transaction data', 'Account information', 'IP address', 'Device identifiers'],
+        purpose: 'to process payments and manage financial transactions within the app',
+        policyUrl: 'https://www.paypal.com/webapps/mpp/ua/privacy-full'
+      },
+      revenuecat: {
+        name: 'RevenueCat',
+        vendor: 'RevenueCat Inc.',
+        dataCategories: ['Purchase history', 'Subscription status', 'Device identifiers', 'App user identifiers'],
+        purpose: 'to manage in-app subscriptions, track purchase events, and synchronize entitlement status across platforms',
+        policyUrl: 'https://www.revenuecat.com/privacy/'
+      },
+      firebase_auth: {
+        name: 'Firebase Authentication',
+        vendor: 'Google LLC',
+        dataCategories: ['Email address', 'Phone number', 'User identifiers', 'IP address', 'User agent'],
+        purpose: 'to authenticate users, manage sign-in sessions, and handle account creation and recovery',
+        policyUrl: 'https://firebase.google.com/support/privacy'
+      },
+      auth0: {
+        name: 'Auth0',
+        vendor: 'Okta Inc.',
+        dataCategories: ['Email address', 'User identifiers', 'IP address', 'Login metadata', 'User agent'],
+        purpose: 'to provide user authentication, manage identity tokens, and enforce access control',
+        policyUrl: 'https://auth0.com/privacy'
+      },
+      google_sign_in: {
+        name: 'Google Sign-In',
+        vendor: 'Google LLC',
+        dataCategories: ['Email address', 'Name', 'Profile picture URL', 'User identifiers'],
+        purpose: 'to let users sign in with their Google account and retrieve basic profile information',
+        policyUrl: 'https://policies.google.com/privacy'
+      },
+      apple_sign_in: {
+        name: 'Sign in with Apple',
+        vendor: 'Apple Inc.',
+        dataCategories: ['Email address (or relay address)', 'Name', 'User identifiers'],
+        purpose: 'to let users sign in with their Apple ID, optionally hiding their real email address',
+        policyUrl: 'https://www.apple.com/legal/privacy/'
+      },
+      onesignal: {
+        name: 'OneSignal',
+        vendor: 'OneSignal Inc.',
+        dataCategories: ['Device identifiers', 'Push notification tokens', 'IP address', 'Usage data', 'Language and timezone'],
+        purpose: 'to send push notifications, segment users, and track notification delivery and engagement',
+        policyUrl: 'https://onesignal.com/privacy_policy'
+      },
+      fcm: {
+        name: 'Firebase Cloud Messaging',
+        vendor: 'Google LLC',
+        dataCategories: ['Device identifiers', 'Push notification tokens', 'App instance identifiers'],
+        purpose: 'to deliver push notifications and data messages to user devices',
+        policyUrl: 'https://firebase.google.com/support/privacy'
+      },
+      intercom: {
+        name: 'Intercom',
+        vendor: 'Intercom Inc.',
+        dataCategories: ['Email address', 'Name', 'User identifiers', 'Usage data', 'Conversation content', 'IP address'],
+        purpose: 'to provide in-app customer support chat, help center access, and user engagement messaging',
+        policyUrl: 'https://www.intercom.com/legal/privacy'
+      },
+      crisp: {
+        name: 'Crisp',
+        vendor: 'Crisp IM SAS',
+        dataCategories: ['Email address', 'Name', 'User identifiers', 'Conversation content', 'IP address', 'Browser/OS information'],
+        purpose: 'to provide live chat support, manage help desk conversations, and track customer interactions',
+        policyUrl: 'https://crisp.chat/en/privacy/'
+      },
+      zendesk: {
+        name: 'Zendesk',
+        vendor: 'Zendesk Inc.',
+        dataCategories: ['Email address', 'Name', 'User identifiers', 'Support ticket content', 'IP address', 'Device information'],
+        purpose: 'to manage customer support tickets, provide in-app help center access, and track support interactions',
+        policyUrl: 'https://www.zendesk.com/company/agreements-and-terms/privacy-policy/'
+      },
+      supabase: {
+        name: 'Supabase',
+        vendor: 'Supabase Inc.',
+        dataCategories: ['User identifiers', 'Email address', 'Authentication tokens', 'Application data', 'IP address'],
+        purpose: 'to provide backend database storage, user authentication, and real-time data synchronization',
+        policyUrl: 'https://supabase.com/privacy'
+      },
+      aws_amplify: {
+        name: 'AWS Amplify',
+        vendor: 'Amazon Web Services Inc.',
+        dataCategories: ['User identifiers', 'Authentication tokens', 'Application data', 'IP address', 'Usage metadata'],
+        purpose: 'to provide backend services including authentication, data storage, and API hosting',
+        policyUrl: 'https://aws.amazon.com/privacy/'
+      },
+      cloudflare: {
+        name: 'Cloudflare',
+        vendor: 'Cloudflare Inc.',
+        dataCategories: ['IP address', 'HTTP request metadata', 'Browser/OS information', 'Performance data'],
+        purpose: 'to provide content delivery, DNS resolution, DDoS protection, and web performance optimization',
+        policyUrl: 'https://www.cloudflare.com/privacypolicy/'
+      }
+    };
+
+    /* ───── STATE ───── */
+
+    var selectedSdks = {};
+
+    /* ───── DOM REFS ───── */
+
+    var generateBtn = document.getElementById('generate-btn');
+    var resetBtn = document.getElementById('reset-btn');
+    var resultsDiv = document.getElementById('results');
+    var formDiv = document.getElementById('sdk-form');
+    var appNameInput = document.getElementById('app-name');
+    var disclosureText = document.getElementById('disclosure-text');
+    var dataCategoriesTable = document.getElementById('data-categories-table');
+    var copyDisclosureBtn = document.getElementById('copy-disclosure-btn');
+
+    /* ───── CHIP TOGGLE HANDLERS ───── */
+
+    document.querySelectorAll('.chip[data-sdk]').forEach(function(chip) {
+      chip.addEventListener('click', function() {
+        var key = this.getAttribute('data-sdk');
+        if (selectedSdks[key]) {
+          delete selectedSdks[key];
+          this.classList.remove('active');
+        } else {
+          selectedSdks[key] = true;
+          this.classList.add('active');
+        }
+        updateGenerateBtn();
+      });
+    });
+
+    function updateGenerateBtn() {
+      generateBtn.disabled = Object.keys(selectedSdks).length === 0;
+    }
+
+    /* ───── GENERATE BUTTON ───── */
+
+    generateBtn.addEventListener('click', function() {
+      var sdkKeys = Object.keys(selectedSdks);
+      var appName = appNameInput.value.trim() || 'Our application';
+
+      /* Build disclosure paragraphs */
+      var paras = [];
+      paras.push('<p><strong>Third-Party Services</strong></p>');
+      paras.push('<p>' + appName + ' uses the following third-party services that may collect and process user data. Each service operates under its own privacy policy, which governs its handling of your information.</p>');
+
+      sdkKeys.forEach(function(key) {
+        var sdk = SDK_DATA[key];
+        var dataList = sdk.dataCategories.join(', ').toLowerCase();
+        paras.push('<p><strong>' + sdk.name + '</strong> (provided by ' + sdk.vendor + '). We use ' + sdk.name + ' ' + sdk.purpose + '. This service may collect ' + dataList + '. For more information, see the <a href="' + sdk.policyUrl + '" rel="nofollow">' + sdk.vendor + ' Privacy Policy</a>.</p>');
+      });
+
+      disclosureText.innerHTML = paras.join('\n');
+
+      /* Build deduplicated data categories table */
+      var categoryMap = {};
+      sdkKeys.forEach(function(key) {
+        var sdk = SDK_DATA[key];
+        sdk.dataCategories.forEach(function(cat) {
+          if (!categoryMap[cat]) {
+            categoryMap[cat] = [];
+          }
+          if (categoryMap[cat].indexOf(sdk.name) === -1) {
+            categoryMap[cat].push(sdk.name);
+          }
+        });
+      });
+
+      var catKeys = Object.keys(categoryMap).sort();
+      var tableHtml = '<table class="data-table"><thead><tr><th>Data Category</th><th>Collected By</th></tr></thead><tbody>';
+      catKeys.forEach(function(cat) {
+        tableHtml += '<tr><td>' + cat + '</td><td>' + categoryMap[cat].join(', ') + '</td></tr>';
+      });
+      tableHtml += '</tbody></table>';
+      dataCategoriesTable.innerHTML = tableHtml;
+
+      formDiv.style.display = 'none';
+      resultsDiv.style.display = 'block';
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'tool_complete', tool: 'sdk_disclosure', sdks_selected: sdkKeys.length });
+
+      resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    /* ───── COPY BUTTON ───── */
+
+    copyDisclosureBtn.addEventListener('click', function() {
+      var el = document.getElementById('disclosure-text');
+      if (!el) return;
+      var text = el.innerText;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() {
+          showCopyConfirm();
+        });
+      } else {
+        var textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showCopyConfirm();
+      }
+    });
+
+    function showCopyConfirm() {
+      copyDisclosureBtn.textContent = 'Copied!';
+      setTimeout(function() { copyDisclosureBtn.textContent = 'Copy to clipboard'; }, 2000);
+    }
+
+    /* ───── RESET ───── */
+
+    resetBtn.addEventListener('click', function() {
+      selectedSdks = {};
+      appNameInput.value = '';
+      document.querySelectorAll('.chip').forEach(function(c) { c.classList.remove('active'); });
+      generateBtn.disabled = true;
+      resultsDiv.style.display = 'none';
+      formDiv.style.display = 'block';
+      formDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</Layout>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-link:hover {
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+  .page-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 16px 80px;
+  }
+  .page-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px 36px;
+    border: 1px solid #E5E7EB;
+  }
+  .breadcrumb {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 16px;
+  }
+  .breadcrumb a {
+    color: #6B7280;
+    text-decoration: underline;
+  }
+  .page-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .last-updated {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 24px;
+  }
+  .page-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .page-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  .page-card p {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .page-card ul, .page-card ol {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+  .page-card li {
+    margin-bottom: 8px;
+  }
+  .page-card a {
+    color: #2563EB;
+    text-decoration: underline;
+  }
+  .page-card strong {
+    font-weight: 600;
+  }
+  .page-card code {
+    background: #E5E7EB;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+
+  /* Tool form */
+  .tool-container {
+    margin: 28px 0 12px;
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    padding: 28px 24px;
+  }
+  .form-section {
+    margin-bottom: 24px;
+  }
+  .section-label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 6px;
+  }
+  .section-hint {
+    font-size: 13px !important;
+    color: #6B7280 !important;
+    margin-bottom: 12px !important;
+  }
+  .text-input {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 15px;
+    font-family: inherit;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    background: white;
+    color: #111827;
+    transition: border-color 0.15s;
+  }
+
+  /* SDK categories */
+  .sdk-category {
+    margin-bottom: 20px;
+  }
+  .category-label {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #6B7280 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 0 !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* Chip multi-select */
+  .chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .chip {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: inherit;
+    border: 1px solid #D1D5DB;
+    border-radius: 20px;
+    background: white;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .chip:hover:not(.active) {
+    border-color: #9CA3AF;
+    background: #F9FAFB;
+  }
+  .chip.active {
+    background: #2563EB;
+    border-color: #2563EB;
+    color: white;
+  }
+
+  /* Generate button */
+  .generate-btn {
+    width: 100%;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    color: white;
+    background: #2563EB;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .generate-btn:hover:not(:disabled) {
+    background: #1D4ED8;
+  }
+  .generate-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Results */
+  .results-heading {
+    margin-top: 0 !important;
+    margin-bottom: 12px !important;
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+  }
+  .data-heading {
+    margin-top: 32px !important;
+  }
+  .results-hint {
+    font-size: 14px !important;
+    color: #6B7280 !important;
+    margin-bottom: 16px !important;
+  }
+
+  /* Copy block */
+  .copy-block {
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    margin: 16px 0;
+    overflow: hidden;
+  }
+  .copy-block-header {
+    background: #F3F4F6;
+    padding: 10px 16px;
+    border-bottom: 1px solid #D1D5DB;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .copy-block-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4B5563;
+  }
+  .copy-block-body {
+    padding: 24px 28px;
+    background: #FAFAFA;
+    max-height: 480px;
+    overflow-y: auto;
+  }
+  .copy-block-body p {
+    font-size: 14px !important;
+    color: #374151 !important;
+    line-height: 1.7 !important;
+    margin-bottom: 10px !important;
+  }
+  .copy-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #1E3A5F;
+    color: white;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .copy-btn:hover {
+    background: #2E5A8F;
+  }
+
+  /* Data categories table */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 12px 0;
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .data-table thead {
+    background: #F3F4F6;
+  }
+  .data-table th {
+    text-align: left;
+    padding: 10px 14px;
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 1px solid #E5E7EB;
+  }
+  .data-table td {
+    padding: 10px 14px;
+    color: #4B5563;
+    border-bottom: 1px solid #F3F4F6;
+    line-height: 1.5;
+  }
+  .data-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Next steps */
+  .next-steps {
+    margin-top: 28px;
+    padding: 20px 24px;
+    background: #EFF6FF;
+    border: 1px solid #BFDBFE;
+    border-radius: 8px;
+  }
+  .next-steps h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1E40AF;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  .next-steps ol {
+    font-size: 14px;
+    color: #1E40AF;
+    line-height: 1.7;
+    margin-bottom: 0;
+    padding-left: 20px;
+  }
+  .next-steps li {
+    margin-bottom: 6px;
+  }
+  .next-steps a {
+    color: #1D4ED8;
+  }
+
+  /* Reset */
+  .reset-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    color: #374151;
+    background: white;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .reset-btn:hover {
+    background: #F9FAFB;
+  }
+
+  /* FAQ */
+  .faq-list {
+    margin-top: 8px;
+  }
+  .faq-item {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 20px;
+    margin-bottom: 8px;
+  }
+  .faq-item h3 {
+    margin-top: 0;
+  }
+  .faq-item p {
+    margin-bottom: 8px;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .page-card {
+      padding: 24px 18px;
+    }
+    .tool-container {
+      padding: 20px 16px;
+    }
+    .chip {
+      padding: 7px 12px;
+      font-size: 13px;
+    }
+    .copy-block-body {
+      padding: 16px 18px;
+    }
+    .data-table th, .data-table td {
+      padding: 8px 10px;
+      font-size: 13px;
+    }
+  }
+</style>
+</content>
+</invoke>
