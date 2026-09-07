@@ -4,7 +4,7 @@ import Layout from '../../../layouts/Layout.astro';
 const title = "Squarespace Privacy Policy Generator - Free & Instant";
 const description = "Generate a free privacy policy for your Squarespace website. Covers what clauses to include, why Squarespace sites need one, and how to add it to your site.";
 const publishDate = "2026-08-05";
-const modifiedDate = "2026-08-05";
+const modifiedDate = "2026-09-06";
 ---
 
 <Layout title={title} description={description}>
@@ -37,6 +37,7 @@ const modifiedDate = "2026-08-05";
         <li><a href="#what-to-include">What to Include in a Squarespace Privacy Policy</a></li>
         <li><a href="#how-to-add">How to Add a Privacy Policy to Your Squarespace Site</a></li>
         <li><a href="#generator">Using BuildPrivacyPolicy's Generator for Squarespace</a></li>
+        <li><a href="#example-policy">Sample Squarespace Privacy Policy You Can Copy</a></li>
         <li><a href="#faq">FAQ</a></li>
       </ol>
     </nav>
@@ -126,6 +127,84 @@ const modifiedDate = "2026-08-05";
     <p>The generator outputs a privacy policy you can host for free on BuildPrivacyPolicy's servers, download as HTML to paste into a Squarespace Code block, or copy as plain text to drop into a Squarespace Text block. No signup, no account creation, no payment. The whole process takes a few minutes from start to published page.</p>
 
     <p>The output covers each required disclosure section across the GDPR, CCPA, COPPA, PIPEDA, and other major regulations. Unlike copying Squarespace's sample messages, the generated policy reflects the specific services, data types, and legal jurisdictions you selected. It is not a substitute for a lawyer's review if your site handles sensitive health data or children's information, but for the vast majority of Squarespace site owners running portfolios, blogs, service businesses, and small online stores, it produces a document that is specific to your setup and far more accurate than assembling a policy from generic samples.</p>
+
+    <h2 id="example-policy">Sample Squarespace Privacy Policy You Can Copy</h2>
+
+    <p>Below is a complete privacy policy written for a fictional Squarespace website called "[Your Website Name]." It covers the data flows that Squarespace sites handle by default -- Squarespace Analytics, form block submissions, Squarespace Commerce with Stripe payment processing, built-in email campaigns, and common third-party integrations added through code injection. Copy the entire block, replace the bracketed placeholders with your site's details, and remove any sections that do not apply.</p>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-label">Sample Privacy Policy — ready to copy</span>
+      </div>
+      <div class="copy-block-body" id="sample-policy-text">
+<p><strong>Privacy Policy for [Your Website Name]</strong></p>
+<p><em>Last updated: [Date]</em></p>
+
+<p><strong>1. Introduction</strong></p>
+<p>[Your Business Name] ("we," "us," or "our") operates [your-website.com], a website built on the Squarespace platform. This privacy policy explains what personal data we collect when you visit our site, submit a form, book a service, or make a purchase, why we collect it, who receives it, how long we keep it, and what rights you have over it.</p>
+
+<p><strong>2. Data We Collect</strong></p>
+<p><em>Form submissions.</em> When you fill out a contact form, newsletter signup, or inquiry form built with Squarespace's Form Block, we collect the information you enter -- typically your name, email address, phone number, and message. Submissions are stored in the Squarespace Form Submissions panel and optionally forwarded to our email inbox or connected to a third-party service like Mailchimp or Google Sheets via Squarespace's built-in integrations.</p>
+<p><em>E-commerce data (Squarespace Commerce).</em> [If applicable:] When you place an order, Squarespace Commerce collects your full name, email address, shipping address, billing address, phone number, and order details (items, quantities, order total, discount codes applied). Payment is processed entirely by Stripe, which is Squarespace's integrated payment processor. Full credit card numbers, expiration dates, and CVV codes are transmitted directly to Stripe's PCI DSS Level 1-certified servers and are never stored in our Squarespace dashboard. If you pay via PayPal, Square, or Afterpay, your payment data is handled by that processor under its own privacy policy; we receive only your name, email, and shipping address to fulfill the order.</p>
+<p><em>Scheduling data (Acuity Scheduling).</em> [If applicable:] When you book an appointment through Acuity Scheduling (a Squarespace product), we collect your name, email address, phone number, selected service, appointment date and time, and any intake form responses you provide. This data is stored within the Acuity platform, which is linked to our Squarespace account.</p>
+<p><em>Member area data.</em> [If applicable:] If you create an account in our Squarespace Member Area, we store your email address, password (encrypted by Squarespace), and membership tier. Your activity within gated content areas (pages viewed, content accessed) is logged by Squarespace.</p>
+<p><em>Automatically collected data (Squarespace Analytics).</em> Squarespace Analytics is enabled by default and cannot be disabled. It automatically logs your IP address, browser type and version, operating system, device type, screen resolution, referring URL, pages visited, time spent on each page, search terms used on the site, and session duration. This data is collected on every visit regardless of whether you interact with forms or make a purchase.</p>
+<p><em>Cookies.</em> Squarespace sets first-party cookies for essential site functionality. The <code>crumb</code> cookie prevents cross-site request forgery on form submissions. Session cookies (<code>ss_cid</code>, <code>ss_cpvisit</code>, <code>ss_cvisit</code>) track unique visitors and sessions for Squarespace Analytics. A <code>ss_cvr</code> cookie stores a unique visitor identifier that persists across sessions. Commerce cookies (<code>ss_cvt</code>) manage the shopping cart. These are essential and analytics cookies set by the Squarespace platform itself.</p>
+<p><em>Third-party analytics and advertising.</em> [If applicable:] We use Google Analytics, added through Squarespace's built-in integrations panel or via code injection. Google Analytics sets the <code>_ga</code> and <code>_ga_[container]</code> cookies to distinguish unique visitors and measure traffic patterns across our site. [If applicable:] We use Meta Pixel (Facebook Pixel), added via Squarespace's code injection feature. Meta Pixel records page views, product views, add-to-cart events, and purchases, and transmits this data to Meta Platforms, Inc. for advertising measurement and retargeting on Facebook and Instagram.</p>
+<p><em>Email campaign data.</em> [If applicable:] If you subscribe to our mailing list, we store your email address [and name] in [Squarespace Email Campaigns / Mailchimp]. [Squarespace Email Campaigns / Mailchimp] tracks whether you open emails and which links you click to measure campaign effectiveness and segment audiences.</p>
+
+<p><strong>3. How We Use Your Data</strong></p>
+<ul>
+<li>Respond to inquiries submitted through contact and inquiry forms</li>
+<li>Process and fulfill orders placed through Squarespace Commerce, including sending order confirmation and shipping notification emails generated by Squarespace</li>
+<li>Confirm and manage appointments booked through Acuity Scheduling, including automated reminder emails</li>
+<li>Send marketing emails and newsletters if you opted in through a signup form (you can unsubscribe at any time using the link in every email)</li>
+<li>Analyze site traffic and visitor behaviour through Squarespace Analytics to improve content and site structure</li>
+<li>Measure advertising effectiveness and serve targeted ads on Meta platforms (if Meta Pixel is installed)</li>
+<li>Manage member accounts and control access to gated content areas</li>
+</ul>
+<p>We do not sell your personal data to third parties or share it with data brokers.</p>
+
+<p><strong>4. Third Parties That Receive Your Data</strong></p>
+<ul>
+<li><strong>Squarespace, Inc.</strong> Hosts our website, stores form submissions, runs Squarespace Analytics, processes Commerce orders, manages email campaigns through Squarespace Email Campaigns, and operates the Member Area feature. Squarespace acts as a data processor on our behalf under its <a href="https://www.squarespace.com/privacy" rel="nofollow">Privacy Policy</a> and Data Processing Addendum.</li>
+<li><strong>Stripe (via Squarespace Commerce).</strong> Processes credit and debit card payments for all Commerce orders. Card data is transmitted directly to Stripe and handled under Stripe's PCI DSS Level 1 certification. Squarespace does not store card details.</li>
+<li><strong>[PayPal / Square / Afterpay, if applicable].</strong> Processes payments when selected at checkout. The processor receives your name, email, shipping address, and transaction amount.</li>
+<li><strong>[Acuity Scheduling, if applicable].</strong> Stores booking details, client information, and intake form responses. Acuity is a Squarespace product and data is processed under Squarespace's privacy terms.</li>
+<li><strong>[Google Analytics, if applicable].</strong> Receives anonymized browsing data (pages viewed, session duration, traffic source, device type) for site analytics. Connected through Squarespace's integrations panel or code injection.</li>
+<li><strong>[Meta Platforms, Inc., if applicable].</strong> Receives browsing and conversion event data through Meta Pixel for advertising measurement and retargeting. Added via Squarespace's code injection feature.</li>
+<li><strong>[Mailchimp, if applicable].</strong> Stores subscriber email addresses and sends marketing campaigns. Tracks email engagement (opens, clicks). Connected through Squarespace's built-in Mailchimp integration.</li>
+</ul>
+<p>We do not share your personal data with any parties beyond those listed above.</p>
+
+<p><strong>5. Data Retention</strong></p>
+<p>Form submissions are stored in the Squarespace Form Submissions panel indefinitely until we manually delete them. Commerce order records are retained for [7] years to comply with tax and accounting regulations. Acuity Scheduling appointment records are retained for [2] years after the appointment date. Email campaign subscriber data is retained until you unsubscribe, at which point your email is removed from active lists within [7] days. Squarespace Analytics data is retained on the platform for as long as the site is active. Member account data is retained until the account is deleted by the member or by us.</p>
+
+<p><strong>6. Children's Privacy</strong></p>
+<p>Our website is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13. If we learn that we have inadvertently collected such information, we will delete it promptly. If you believe a child under 13 has provided us with personal data, contact us at the email below.</p>
+
+<p><strong>7. Your Rights Under GDPR</strong></p>
+<p>If you are located in the European Economic Area or the United Kingdom, you have the right to: access the personal data we hold about you; request correction of inaccurate data; request deletion of your data; object to or restrict processing; request data portability; and withdraw consent at any time. To exercise any of these rights, contact us at [your-email@example.com]. We will respond within 30 days.</p>
+
+<p><strong>8. Your Rights Under CCPA</strong></p>
+<p>If you are a California resident, you have the right to: know what personal information we collect and how it is used; request deletion of your personal information; and opt out of the sale or sharing of your personal information. We do not sell personal information. To submit a request, contact us at [your-email@example.com].</p>
+
+<p><strong>9. Cookie Management</strong></p>
+<p>Our site uses Squarespace's built-in cookie banner to let you accept or decline non-essential cookies when you first visit. You can also manage cookies through your browser settings at any time. Declining analytics and advertising cookies will not affect core site functionality, but it will limit our ability to measure traffic and serve relevant advertisements. Essential cookies (CSRF protection, shopping cart, session management) cannot be declined without breaking site features like form submissions and checkout.</p>
+
+<p><strong>10. Security</strong></p>
+<p>Our site is hosted on Squarespace's infrastructure, which provides SSL/TLS encryption on all pages by default. Payment processing is handled by Stripe under PCI DSS Level 1 certification. We use two-factor authentication on our Squarespace account and restrict contributor permissions to the minimum required for each role. While no method of electronic transmission is completely secure, we implement industry-standard safeguards to protect your personal data.</p>
+
+<p><strong>11. Changes to This Policy</strong></p>
+<p>We may update this privacy policy from time to time. When we make changes, we will update the "Last updated" date at the top of this page. If the changes are significant, we will notify you by email or through a notice on our site.</p>
+
+<p><strong>12. Contact Us</strong></p>
+<p>If you have questions about this privacy policy or your data, contact us at:<br />[your-email@example.com]<br />[Your Business Name]<br />[Your Address (optional)]</p>
+      </div>
+      <button class="copy-btn" id="copy-policy-btn" type="button">Copy to clipboard</button>
+    </div>
+
+    <p>This sample covers the most common Squarespace site data flows. If your site handles additional data -- such as donations through Squarespace's donation blocks, podcast listener analytics, or digital product downloads -- add dedicated disclosure sections for those features. Need to generate a policy tailored to your exact setup instead of editing a template? You can <a href="https://buildprivacypolicy.com/">build one for free with the generator</a>.</p>
 
     <h2 id="faq">Frequently Asked Questions</h2>
 
@@ -243,6 +322,20 @@ const modifiedDate = "2026-08-05";
   ]
 })} />
 
+<script>
+  document.getElementById('copy-policy-btn')?.addEventListener('click', function() {
+    const el = document.getElementById('sample-policy-text');
+    if (!el) return;
+    const text = el.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copy-policy-btn');
+      if (btn) {
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy to clipboard'; }, 2000);
+      }
+    });
+  });
+</script>
 </Layout>
 
 <style>
@@ -398,5 +491,67 @@ const modifiedDate = "2026-08-05";
   }
   .faq-item p {
     margin-bottom: 8px;
+  }
+  .copy-block {
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    margin: 20px 0;
+    overflow: hidden;
+  }
+  .copy-block-header {
+    background: #F3F4F6;
+    padding: 10px 16px;
+    border-bottom: 1px solid #D1D5DB;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .copy-block-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4B5563;
+  }
+  .copy-block-body {
+    padding: 24px 28px;
+    background: #FAFAFA;
+    max-height: 480px;
+    overflow-y: auto;
+  }
+  .copy-block-body p {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .copy-block-body ul {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    padding-left: 22px;
+  }
+  .copy-block-body li {
+    margin-bottom: 4px;
+  }
+  .copy-block-body code {
+    background: #E5E7EB;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+  .copy-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #1E3A5F;
+    color: white;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .copy-btn:hover {
+    background: #2E5A8F;
   }
 </style>
