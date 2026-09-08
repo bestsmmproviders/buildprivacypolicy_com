@@ -4,7 +4,7 @@ import Layout from '../../../layouts/Layout.astro';
 const title = "Alexa Skill Privacy Policy: What Amazon Requires";
 const description = "Amazon requires an Alexa skill privacy policy URL for certification. Learn what the developer console checks and how to generate a compliant policy for free.";
 const publishDate = "2026-08-13";
-const modifiedDate = "2026-09-02";
+const modifiedDate = "2026-09-08";
 ---
 
 <Layout title={title} description={description}>
@@ -23,7 +23,7 @@ const modifiedDate = "2026-09-02";
   <div class="page-card">
     <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
     <h1>Alexa Skill Privacy Policy: What Amazon Requires and How to Create One</h1>
-    <p class="last-updated">Published August 13, 2026</p>
+    <p class="last-updated">Published August 13, 2026 &middot; Updated September 8, 2026</p>
 
     <p>Every Alexa skill that collects personal information, uses account linking, or includes advertising needs a hosted privacy policy URL before Amazon will approve it for the Alexa Skills Store. The policy must live at a publicly accessible web address, load without authentication, and describe how the skill handles user data. Skip it and the skill fails certification. Submit a vague or boilerplate document and Amazon's review team rejects it just the same -- they read the policy, not just the URL.</p>
 
@@ -34,8 +34,11 @@ const modifiedDate = "2026-09-02";
       <ol>
         <li><a href="#why-amazon-requires">Why Amazon Requires a Privacy Policy URL for Skills</a></li>
         <li><a href="#what-certification-checks">What Certification Checks</a></li>
+        <li><a href="#troubleshooting-rejections">Troubleshooting Certification Rejections</a></li>
         <li><a href="#data-developers-overlook">Data a Skill Collects That Developers Overlook</a></li>
         <li><a href="#what-policy-must-state">What Your Policy Must State</a></li>
+        <li><a href="#child-directed-skills">Privacy Policies for Child-Directed Skills</a></li>
+        <li><a href="#health-skills">Privacy Policies for Health Skills</a></li>
         <li><a href="#generate-policy">How to Generate an Alexa Skill Privacy Policy</a></li>
         <li><a href="#example-policy">Sample Alexa Skill Privacy Policy You Can Copy</a></li>
         <li><a href="#private-beta-skills">Privacy Policies for Private and Beta-Distributed Skills</a></li>
@@ -80,6 +83,49 @@ const modifiedDate = "2026-09-02";
     </ul>
 
     <p>The Distribution section of the Developer Console also includes a <strong>Privacy &amp; Compliance</strong> page with yes/no questions about data collection, children's content, advertising, and in-skill purchases. Every answer must match what the privacy policy states. Contradictions between the two are a common -- and avoidable -- cause of rejection.</p>
+
+    <h2 id="troubleshooting-rejections">Troubleshooting Certification Rejections</h2>
+
+    <p>When Amazon rejects a skill submission over a privacy policy issue, the rejection notice arrives by email at the address tied to your developer account. The notice names the specific problem, but the wording is often terse. Below are the most common rejection scenarios, what triggers each one, and the fix.</p>
+
+    <h3>Privacy policy URL missing, broken, or misdirected</h3>
+
+    <p>The <strong>Privacy Policy URL</strong> field under <strong>Distribution &gt; Skill Preview</strong> is either blank, returns a non-200 HTTP status, or opens to a page that is not the privacy policy itself. Amazon's certification team clicks the link and expects the policy text to appear immediately. A URL that opens to your homepage with a "Privacy" link in the footer does not satisfy the requirement, even if the policy is one click away. A Google Docs link that prompts for login, a Notion page that displays editing chrome, or a Pastebin URL that could change at any time will also fail.</p>
+
+    <p><strong>Fix:</strong> Paste a fully qualified <code>https://</code> URL that resolves directly to the policy text. Test it in an incognito browser window on both desktop and mobile. If you do not have stable hosting, <a href="https://buildprivacypolicy.com/">generate and host a policy for free</a> at a permanent URL.</p>
+
+    <h3>Privacy policy language does not match the skill's locale</h3>
+
+    <p>Amazon requires the privacy policy to be written in at least one of the languages the skill supports. A skill submitted in en-US and de-DE locales must have a policy in English or German. A policy in a third language -- even one Alexa supports -- is rejected. Amazon's certification blog post is explicit: "We do not allow privacy policy pages in a different language than the language(s) of the skill."</p>
+
+    <p><strong>Fix:</strong> For multi-locale skills, either provide one policy in a shared language or submit locale-specific privacy policy URLs. The Developer Console accepts one URL per locale under <strong>Distribution &gt; Skill Preview</strong>.</p>
+
+    <h3>Privacy policy content does not match the skill</h3>
+
+    <p>The policy names a different skill, a different developer, or a different product entirely. Recycled policies from another app or a previous project that were never updated are the most common trigger. Amazon's reviewer cross-checks the skill name in the submission against the skill name in the policy text.</p>
+
+    <p><strong>Fix:</strong> Verify that the policy names your skill exactly as it appears in the Developer Console. If you maintain a single policy covering multiple products, add a section explicitly naming the Alexa skill and describing its specific data practices.</p>
+
+    <h3>Privacy &amp; Compliance toggles contradict the policy</h3>
+
+    <p>The <strong>Privacy &amp; Compliance</strong> page under <strong>Distribution</strong> presents four yes/no questions:</p>
+
+    <ol>
+      <li>"Does this skill collect users' personal information?"</li>
+      <li>"Is this skill directed to or does it target children under the age of 13?"</li>
+      <li>"Does this skill contain advertising?"</li>
+      <li>"Does this skill allow users to make purchases?"</li>
+    </ol>
+
+    <p>If you answer "No" to personal-data collection but your policy describes storing email addresses via account linking, the submission is rejected. The same applies in reverse: answering "Yes" to children targeting while the policy says the skill is not directed at children creates a contradiction.</p>
+
+    <p><strong>Fix:</strong> Before submitting, read through every toggle answer on the <strong>Privacy &amp; Compliance</strong> page and verify each one matches a corresponding statement in your privacy policy. This single cross-check eliminates one of the most common rejection triggers.</p>
+
+    <h3>Account linking enabled without corresponding disclosure</h3>
+
+    <p>Skills that use Login with Amazon or any OAuth 2.0 provider to connect a third-party account must explain in the policy what profile data is retrieved, why it is retrieved, and how it is stored. A policy that mentions account linking in passing without naming the specific data types (name, email, profile photo, access token) pulled from the OAuth provider fails the relevance check.</p>
+
+    <p><strong>Fix:</strong> Add a dedicated section to your policy that names the account linking provider, lists every data field retrieved from the profile endpoint, maps each field to a purpose, and states the retention period for the OAuth token.</p>
 
     <h2 id="data-developers-overlook">Data a Skill Collects That Developers Overlook</h2>
 
@@ -127,6 +173,51 @@ const modifiedDate = "2026-09-02";
     <p>The policy also needs a retention statement ("Habit data is retained while the skill is enabled and deleted within 30 days of disabling"), a children's disclaimer (the skill is not directed at users under 13), GDPR and CCPA rights sections covering deletion and access requests, and a contact email. On the Privacy & Compliance page in the Developer Console, the developer must check "Yes" for personal information collection and "No" for children targeting, advertising, and in-skill purchases -- all matching the policy text.</p>
 
     <p>Writing this from scratch takes time when a skill spans multiple data types and jurisdictions. The process mirrors <a href="/resources/how-to-write-privacy-policy-for-app/">writing a privacy policy for any app</a>: audit your data flows, map them to purposes, identify third parties, and draft each section. A generator can compress that work into a guided form.</p>
+
+    <h2 id="child-directed-skills">Privacy Policies for Child-Directed Skills</h2>
+
+    <p>Amazon applies stricter rules to Alexa skills directed at children. The age threshold depends on the distribution country: under 13 in the United States, India, and Canada; under 16 in the UK, Germany, Japan, France, Italy, Spain, Mexico, the Netherlands, and Australia; and under 18 in Saudi Arabia. If your skill targets any of these age groups, the privacy policy must address several additional requirements beyond the standard certification checklist.</p>
+
+    <h3>What Amazon restricts for child-directed skills</h3>
+
+    <p>Amazon's policy requirements state that a child-directed skill will be rejected if any of the following is true: the skill is a custom skill and the developer is not an Amazon-approved kid skill developer; it promotes products, content, or services; it directs users to engage with content outside of Alexa; it sells physical products or services; it sells digital products without using Amazon In-Skill Purchasing; it collects any personal information from end users; it uses account linking; it includes recommendations for skills not directed to children; or it includes content not suitable for all ages.</p>
+
+    <p>The critical restriction for privacy policies is the ban on personal information collection. Under COPPA (the Children's Online Privacy Protection Act), operators of online services directed at children under 13 may not collect, use, or disclose personal information without verifiable parental consent. Amazon enforces this by prohibiting kid skills from collecting personal information as defined by COPPA. That means no account linking, no Alexa permissions requests (name, email, phone, address), and no persistent attributes tied to identifiable users.</p>
+
+    <h3>What the privacy policy must say</h3>
+
+    <p>Even though a compliant child-directed skill collects minimal data, the privacy policy still needs to address children's privacy explicitly:</p>
+
+    <ul>
+      <li><strong>State that the skill is directed at children.</strong> Unlike a general skill where you disclaim child targeting, a kid skill's policy must acknowledge its audience. "This skill is designed for use by children" is the opening the certification team expects.</li>
+      <li><strong>Confirm COPPA compliance.</strong> State that the skill complies with the Children's Online Privacy Protection Act and that it does not knowingly collect personal information from children under 13.</li>
+      <li><strong>Describe what data the skill does and does not collect.</strong> Even if the answer is "none," say so explicitly. If the skill uses DynamoDB for anonymous session data (not tied to a userId), disclose that and confirm the data cannot identify a child.</li>
+      <li><strong>Provide a parental contact mechanism.</strong> Include an email address where a parent or guardian can ask questions about the skill's data practices or request deletion of any data inadvertently collected.</li>
+    </ul>
+
+    <p>On the <strong>Privacy &amp; Compliance</strong> page in the Developer Console, answer "Yes" to "Is this skill directed to or does it target children under the age of 13?" The policy must match this answer. A mismatch in either direction -- claiming the skill targets children in the console but not in the policy, or vice versa -- triggers rejection.</p>
+
+    <h2 id="health-skills">Privacy Policies for Health Skills</h2>
+
+    <p>Alexa skills that provide health-related information, collect health data, or reference medical treatments face additional certification requirements. Amazon's policy guidelines single out several categories that require extra disclosure or are outright prohibited.</p>
+
+    <h3>Health information collection</h3>
+
+    <p>Amazon restricts skills that collect "information relating to any person's physical or mental health or condition, the provision of health care to a person, or payment for the same." Some health-data-collecting skills may be allowed in certain countries and regions, but the bar is high. If your skill collects any health information, disclose the specific data types in the privacy policy, map each to a clear purpose, and state the retention period.</p>
+
+    <h3>Required health disclaimer</h3>
+
+    <p>Skills that provide health-related information, news, facts, or tips must include a disclaimer in both the skill description and the privacy policy. Amazon provides this example language: "This tool does not provide medical advice, and is for informational and educational purposes only, and is not a substitute for professional medical advice, treatment or diagnosis. Call your doctor to receive medical advice. If you think you may have a medical emergency, please dial your local emergency response phone number." Amazon may also require certain skills to deliver this disclaimer by voice at invocation.</p>
+
+    <h3>Drug dosage and administration</h3>
+
+    <p>Skills that provide information on drug dosage, usage, or administration must meet additional requirements unless the developer is affiliated with or acting at the direction of the drug manufacturer. These include: providing the data source for drug dosage guidance in the <strong>Testing Instructions</strong> field under <strong>Distribution &gt; Privacy &amp; Compliance</strong>; delivering a medical disclaimer at invocation; requiring account linking to establish a clinician-patient relationship before providing specific dosing information; confirming the precise drug name, dosage, and unit of dose with the user; and sending label information to the Alexa app via a home card that the user must confirm.</p>
+
+    <h3>HIPAA-eligible skills</h3>
+
+    <p>Skills that process Protected Health Information (PHI) must comply with HIPAA requirements, which include signing Amazon's Alexa Business Associate Agreement (BAA). However, Amazon ended support for third-party HIPAA-eligible skills in the public Alexa Skills Store in December 2022. HIPAA use cases are now scoped to enterprise deployments through Alexa Smart Properties for Healthcare, where skills must be published as hidden (not listed in the Skills Store) and distributed only in the United States.</p>
+
+    <p>If your skill handles any health-adjacent data -- fitness tracking, wellness tips, symptom logging, medication reminders -- and you are unsure whether it crosses into regulated territory, err on the side of disclosure. Include a health disclaimer in both the skill description and the privacy policy, and state clearly whether the skill collects, stores, or transmits any health-related information.</p>
 
     <h2 id="generate-policy">How to Generate an Alexa Skill Privacy Policy</h2>
 
@@ -332,6 +423,21 @@ const modifiedDate = "2026-09-02";
         <h3>What happens if my privacy policy URL breaks after the skill is live?</h3>
         <p>Amazon periodically re-reviews published skills. If the privacy policy URL returns a 404 or redirects to an unrelated page during a re-review, Amazon can suspend or unpublish the skill from the Alexa Skills Store until the link is fixed and the skill passes re-certification. Use stable hosting and check your URL periodically.</p>
       </div>
+
+      <div class="faq-item">
+        <h3>What does Amazon's certification reviewer actually check on the privacy policy?</h3>
+        <p>The reviewer opens the URL and verifies four things: the page loads directly to the policy text without redirects or login walls; the language matches at least one of the skill's supported locales; the content names the correct skill and developer; and the data practices described in the policy are consistent with the Privacy &amp; Compliance toggle answers in the Developer Console. The reviewer also checks that account linking, if enabled, is explained in the policy with the specific data types retrieved and their purposes.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does a child-directed Alexa skill need a privacy policy?</h3>
+        <p>Yes, though the policy will be simpler because Amazon prohibits child-directed skills from collecting personal information, using account linking, or requesting Alexa permissions. The policy must state that the skill is directed at children, confirm COPPA compliance, describe what data the skill does and does not collect, and provide a parental contact email. On the Privacy &amp; Compliance page in the Developer Console, answer "Yes" to "Is this skill directed to or does it target children under the age of 13?" and ensure the policy matches.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do health-related Alexa skills have extra privacy policy requirements?</h3>
+        <p>Yes. Skills that provide health information, news, facts, or tips must include a disclaimer in both the skill description and the privacy policy stating that the skill is not a substitute for professional medical advice. Skills that provide drug dosage or administration information face additional requirements including account linking for clinician-patient verification. Skills processing Protected Health Information under HIPAA must sign Amazon's Business Associate Agreement, though Amazon ended support for third-party HIPAA skills in the public store in December 2022.</p>
+      </div>
     </div>
 
   </div>
@@ -443,6 +549,30 @@ const modifiedDate = "2026-09-02";
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Amazon periodically re-reviews published skills. If the privacy policy URL returns a 404 or redirects to an unrelated page during a re-review, Amazon can suspend or unpublish the skill from the Alexa Skills Store until the link is fixed and the skill passes re-certification. Use stable hosting and check your URL periodically."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does Amazon's certification reviewer actually check on the privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The reviewer opens the URL and verifies that the page loads directly to the policy text, the language matches the skill's locale, the content names the correct skill and developer, and the data practices match the Privacy & Compliance toggle answers in the Developer Console. Account linking disclosures are also checked."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a child-directed Alexa skill need a privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The policy must state that the skill is directed at children, confirm COPPA compliance, describe what data the skill does and does not collect, and provide a parental contact email. Amazon prohibits child-directed skills from collecting personal information or using account linking."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do health-related Alexa skills have extra privacy policy requirements?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Health skills must include a disclaimer stating the skill is not a substitute for professional medical advice. Skills providing drug dosage information need account linking for clinician verification. HIPAA-eligible skills require Amazon's Business Associate Agreement, though third-party HIPAA skills in the public store ended in December 2022."
       }
     }
   ]
