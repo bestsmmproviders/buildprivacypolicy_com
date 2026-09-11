@@ -4,7 +4,7 @@ import Layout from '../../../layouts/Layout.astro';
 const title = "Privacy Policy for a Photography Website - What to Include";
 const description = "Photography privacy policy template you can copy, plus what to include — client data, model releases, EXIF metadata, gallery platforms, GDPR and CCPA.";
 const publishDate = "2026-08-06";
-const modifiedDate = "2026-09-02";
+const modifiedDate = "2026-09-10";
 ---
 
 <Layout title={title} description={description}>
@@ -31,6 +31,7 @@ const modifiedDate = "2026-09-02";
       <p class="toc-title">Contents</p>
       <ol>
         <li><a href="#data-photographers-collect">What Data Photography Websites Collect</a></li>
+        <li><a href="#image-rights-vs-data-rights">Image Rights vs Data Rights for Photographers</a></li>
         <li><a href="#privacy-laws">Privacy Laws That Apply to Photography Businesses</a></li>
         <li><a href="#third-party-services">Third-Party Services in a Photographer's Data Flow</a></li>
         <li><a href="#key-clauses">Key Clauses for a Photography Privacy Policy</a></li>
@@ -45,15 +46,24 @@ const modifiedDate = "2026-09-02";
     <p>Photography websites collect personal information through several channels that go beyond a standard contact form. Understanding every data point your site touches is the first step toward writing an accurate privacy policy.</p>
 
     <ul>
-      <li><strong>Client contact and booking details.</strong> Names, email addresses, phone numbers, physical addresses, and preferred shoot dates submitted through booking or inquiry forms. Wedding and event photographers often collect additional details such as venue addresses, the names of other people involved in the event, and scheduling preferences.</li>
+      <li><strong>Client contact and booking details.</strong> Names, email addresses, phone numbers, physical addresses, and preferred shoot dates submitted through booking or inquiry forms.</li>
+      <li><strong>Wedding and event guest data.</strong> Wedding and event photographers collect data that extends well beyond the hiring client. Couples typically share guest lists with names, seating charts, and sometimes email addresses so the photographer can coordinate group shots or deliver reception candids. Venue addresses, ceremony timelines, and the names of wedding party members are recorded during planning calls. Every guest photographed at the event appears in deliverable images — even though those guests never filled out a form or signed a release on your website. Your privacy policy must acknowledge that you process personal data about third parties whose information the booking client provides.</li>
       <li><strong>Payment information.</strong> Credit card numbers, billing addresses, and payment tokens processed during session deposits or print orders. Even when a third-party gateway like Stripe or PayPal handles the transaction, your privacy policy must disclose that financial data is collected at checkout and name the processor involved.</li>
       <li><strong>Model release and consent records.</strong> Signed model releases contain the subject's name, signature, date, and sometimes their address. If you photograph minors, the release includes a parent or guardian's information. These records are personal data under the GDPR and most other privacy frameworks.</li>
-      <li><strong>Image metadata and EXIF data.</strong> Every digital photograph contains embedded metadata: GPS coordinates where the image was taken, camera settings, date and time stamps, and sometimes the serial number of the camera body. When you upload images to a gallery or portfolio, this metadata can travel with the file unless you strip it before publishing.</li>
-      <li><strong>Gallery and proofing activity.</strong> Online galleries track which images a client views, favorites, downloads, or selects for printing. This browsing behavior is tied to their login credentials and constitutes personal data.</li>
+      <li><strong>Image metadata and EXIF data.</strong> Every digital photograph contains embedded metadata: GPS coordinates where the image was taken, camera settings, date and time stamps, and sometimes the serial number of the camera body. When you upload images to a public-facing gallery or portfolio, this metadata can travel with the file unless you strip it before publishing. Files delivered privately to clients through Pixieset, ShootProof, or SmugMug typically retain their full EXIF data, including GPS coordinates that reveal the exact shoot location — a private residence, a school, or a medical facility. Your policy should state whether you strip geolocation from delivered files or leave it intact, and explain how clients can request removal.</li>
+      <li><strong>Gallery and proofing activity.</strong> Online gallery platforms like Pixieset, ShootProof, Pic-Time, and SmugMug track which images a client views, favorites, downloads, or selects for printing. This browsing behavior is tied to the login credentials or access link the client uses, and it constitutes personal data. Some platforms also log the IP address and device used to access the gallery, and they may send automated email notifications when new images are uploaded or a download link is about to expire.</li>
       <li><strong>Website analytics and cookies.</strong> Google Analytics, Meta Pixel, or similar tools track page views, traffic sources, session duration, and device information through cookies set in the visitor's browser.</li>
     </ul>
 
     <p>Your privacy policy must list each of these data categories explicitly. Generic language about collecting "some personal information" does not satisfy the disclosure requirements of modern privacy legislation. If you are unsure whether <a href="/resources/do-i-need-a-privacy-policy-for-my-website/">your website needs a privacy policy at all</a>, the short answer is that any site collecting personal data does.</p>
+
+    <h2 id="image-rights-vs-data-rights">Image Rights vs Data Rights for Photographers</h2>
+
+    <p>Photographers often conflate two separate legal concepts: the right to use someone's likeness in a photograph (an image right governed by model releases and intellectual property law) and the right to process that person's personal data (a data right governed by privacy law). A signed model release grants permission to publish or license a portrait, but it does not satisfy the GDPR's requirement for a lawful basis to process the subject's name, contact details, and biometric identifiers. These are distinct obligations, and a photography privacy policy must address both.</p>
+
+    <p>A model release answers the question "Can I use this photo?" — it covers reproduction, display, and commercial licensing of the image. A privacy policy answers "What am I doing with this person's data?" — it covers how you store the subject's name, how long you keep their signed release on file, whether you share their contact details with a retouching service or a print lab, and how they can request deletion. A photographer who collects a model release but has no privacy policy has secured image rights without addressing data rights. Under the GDPR, that gap can result in fines even if the subject consented to the photograph itself.</p>
+
+    <p>In practice, this means your privacy policy should include a dedicated disclosure about model release records: what personal data they contain (name, signature, address, date), how long you retain them (typically for the full duration you use the image plus two to five years), and how a subject can exercise their right to withdraw consent for the data processing side without necessarily revoking the image license. Treating model releases as both a creative permission document and a personal data record is what separates a photography-specific privacy policy from a generic template.</p>
 
     <h2 id="privacy-laws">Privacy Laws That Apply to Photography Businesses</h2>
 
@@ -93,7 +103,7 @@ const modifiedDate = "2026-09-02";
       <li><strong>How data is collected.</strong> Explain whether data comes from forms the client fills out, cookies set automatically by the browser, metadata embedded in uploaded files, or third-party integrations.</li>
       <li><strong>Purpose of data collection.</strong> State why you collect each category — booking management, payment processing, delivering finished images, marketing communications, or website analytics.</li>
       <li><strong>Third-party sharing.</strong> Identify the categories of services that receive client data and explain what data each category processes.</li>
-      <li><strong>Data retention periods.</strong> Specify how long you keep different types of data. Booking records might be retained for tax compliance (typically five to seven years), while marketing email lists are maintained until the subscriber opts out.</li>
+      <li><strong>Data retention periods.</strong> Specify how long you keep each data category with concrete timeframes rather than vague language. Common photography retention periods: booking and invoice records kept five to seven years for tax compliance; raw image files stored for 12 to 24 months after delivery so clients can re-order prints or request additional edits; edited galleries hosted on Pixieset or ShootProof for 6 to 12 months before archival; model release records retained for the full duration of image usage plus two to five years after last publication; and marketing email addresses kept until the subscriber opts out. State these periods explicitly in your policy so clients know when their data will be deleted and can request earlier removal if needed.</li>
       <li><strong>User rights.</strong> Describe how clients can access, correct, delete, or port their data, and provide a contact method for exercising those rights.</li>
       <li><strong>Cookies and tracking.</strong> List the categories of cookies your site uses (essential, analytics, marketing) and explain how visitors can manage their preferences.</li>
       <li><strong>Children's data.</strong> If you photograph minors, explain how you handle their data. If you do not knowingly collect data from children under 13, state that explicitly and explain how parents can contact you if data was collected inadvertently.</li>
@@ -221,6 +231,16 @@ const modifiedDate = "2026-09-02";
       </div>
 
       <div class="faq-item">
+        <h3>How should wedding photographers handle guest data in their privacy policy?</h3>
+        <p>Wedding photographers process personal data about guests who never interacted with the photographer's website directly — their faces appear in images, their names may be on guest lists shared by the couple, and their likenesses end up on gallery platforms. Your privacy policy should acknowledge that you receive personal information about third parties from your booking clients, explain what data is involved (names, likenesses in photographs), state how long images containing guest likenesses are stored, and provide a contact method for any guest who wants to inquire about their data. Under the GDPR, you may rely on legitimate interest as your lawful basis for processing guest data captured during an event you were hired to photograph, but you must still disclose the practice.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How long should photographers keep client photos and data?</h3>
+        <p>Retention periods vary by data type. Most photographers keep raw image files for 12 to 24 months after delivery to allow re-orders and additional edits, then archive or delete them. Edited galleries on platforms like Pixieset or ShootProof are typically hosted for 6 to 12 months. Booking and invoice records should be retained for five to seven years for tax compliance. Model release records need to be kept for as long as you use the associated images plus two to five additional years. Your privacy policy should state each of these periods explicitly so clients understand when their data will be removed.</p>
+      </div>
+
+      <div class="faq-item">
         <h3>Do I need a separate privacy policy for my client photo galleries?</h3>
         <p>You do not need a separate privacy policy for your client galleries as long as your main website privacy policy covers the data that the gallery platform collects. That includes the client's login credentials, which images they view or download, and any email address the platform uses to send gallery access links. If your gallery platform has its own privacy policy, you can reference it in your disclosure, but your policy still needs to explain that you share client data with the gallery service and describe what data is shared.</p>
       </div>
@@ -311,6 +331,22 @@ const modifiedDate = "2026-09-02";
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes. A template gives you a starting structure that covers the standard sections — data collection, purpose of use, third-party sharing, retention periods, user rights, and contact information. Replace every bracketed placeholder with your actual business details, remove sections that do not apply, and add any data practices the template does not cover. A privacy policy generator is a faster alternative to manual editing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How should wedding photographers handle guest data in their privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wedding photographers process personal data about guests who never interacted with the photographer's website — their faces appear in images, and their names may be on guest lists shared by the couple. Your privacy policy should acknowledge that you receive personal information about third parties from booking clients, explain what data is involved, state how long images containing guest likenesses are stored, and provide a contact method for any guest who wants to inquire about their data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long should photographers keep client photos and data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Retention periods vary by data type. Most photographers keep raw image files for 12 to 24 months after delivery, edited galleries on platforms like Pixieset or ShootProof for 6 to 12 months, booking and invoice records for five to seven years for tax compliance, and model release records for as long as you use the associated images plus two to five additional years. State each period explicitly in your privacy policy."
       }
     },
     {

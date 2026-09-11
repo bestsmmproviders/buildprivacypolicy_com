@@ -4,7 +4,7 @@ import Layout from '../../../layouts/Layout.astro';
 const title = "Discord Bot Privacy Policy: Developer Requirements";
 const description = "Discord requires a privacy policy for bot verification and the App Directory. Learn what your bot must disclose about user IDs, message content, and more.";
 const publishDate = "2026-08-27";
-const modifiedDate = "2026-08-27";
+const modifiedDate = "2026-09-10";
 ---
 
 <Layout title={title} description={description}>
@@ -23,89 +23,200 @@ const modifiedDate = "2026-08-27";
   <div class="page-card">
     <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
     <h1>Discord Bot Privacy Policy: What Discord Requires and How to Write One</h1>
-    <p class="last-updated">Published August 27, 2026</p>
+    <p class="last-updated">Published August 27, 2026 &middot; Updated September 10, 2026</p>
 
-    <p>Discord requires every bot to have a privacy policy under its Developer Policy, and a working policy URL becomes mandatory once your bot needs verification -- at 100 servers -- or gets listed in the App Directory. It has to describe what your bot actually collects: user IDs, server and channel IDs, message content if you use that intent, voice state, and anything you log or store. A generic template copied from a website's terms page will not pass review.</p>
+    <p>Discord requires every bot registered in the Developer Portal to have a privacy policy under its Developer Policy, and a working policy URL becomes an enforced gate once your bot needs verification -- triggered at <strong>75 servers</strong> -- or applies for the App Directory. The policy has to describe what your bot actually does: which user IDs, guild IDs, and message content it processes, which privileged intents it uses and why, and what happens to any of it after the bot leaves a server. A generic document copied from a website's terms page, one that never names the bot, is one of the fastest ways to get a verification application rejected.</p>
 
-    <p>This guide covers when Discord requires the policy, what data your bot handles that developers routinely forget to disclose, how a 2026 change to Discord's privileged-intent rules affects your Message Content disclosure, and where to host it. Rather generate one than write it from scratch? <a href="https://buildprivacypolicy.com/">Generate a privacy policy for free</a> and host it at no cost.</p>
+    <p>This guide covers exactly what Discord's Trust & Safety team checks during verification, the specific rejection scenarios developers run into and how to fix each one, what data your bot handles that goes undisclosed most often, how the 2026 split between bot verification and privileged intent review actually works, and what changes -- technically and legally -- once your bot crosses the 75-server line. Rather generate a policy than write one from scratch? <a href="https://buildprivacypolicy.com/">Generate a privacy policy for free</a> and host it at no cost.</p>
 
     <nav class="toc">
       <p class="toc-title">Contents</p>
       <ol>
-        <li><a href="#when-required">When Discord Requires a Privacy Policy for Your Bot</a></li>
+        <li><a href="#why-discord-requires">Why Discord Requires a Privacy Policy for Your Bot</a></li>
+        <li><a href="#what-verification-checks">What Verification Checks</a></li>
+        <li><a href="#troubleshooting-rejections">Troubleshooting Verification Rejections</a></li>
         <li><a href="#what-bots-collect">What Data a Discord Bot Collects</a></li>
-        <li><a href="#message-content-intent">The Message Content Intent Review and Your Privacy Disclosure</a></li>
+        <li><a href="#message-content-intent">The Message Content Intent and Privileged Intents</a></li>
         <li><a href="#required-sections">What Your Bot's Privacy Policy Must Include</a></li>
-        <li><a href="#host-and-add">Hosting Your Policy and Adding It to the Developer Portal</a></li>
+        <li><a href="#after-75-servers">What Changes Once Your Bot Passes 75 Servers</a></li>
+        <li><a href="#generate-policy">How to Generate a Discord Bot Privacy Policy</a></li>
         <li><a href="#sample-policy">Sample Discord Bot Privacy Policy You Can Copy</a></li>
+        <li><a href="#private-team-bots">Privacy Policies for Private and Team-Only Bots</a></li>
+        <li><a href="#host-and-add">Hosting Your Policy and Adding It to the Developer Portal</a></li>
         <li><a href="#faq">Frequently Asked Questions</a></li>
       </ol>
     </nav>
 
-    <h2 id="when-required">When Discord Requires a Privacy Policy for Your Bot</h2>
+    <h2 id="why-discord-requires">Why Discord Requires a Privacy Policy for Your Bot</h2>
 
-    <p>Discord's Developer Policy applies to every application registered in the Developer Portal, bots included, and requires a publicly accessible privacy policy that clearly and accurately describes how the application collects, uses, and shares user data. That obligation exists from the moment you create the application, not once the bot gets popular.</p>
+    <p>Discord's Developer Policy applies to every application registered in the Developer Portal, bots included, and requires a publicly accessible privacy policy that clearly and accurately describes how the application collects, uses, and shares user data. That obligation exists from the moment you create the application in the Developer Portal, not once the bot gets popular -- but Discord's enforcement mechanisms only bite at specific milestones.</p>
 
-    <p>Three moments make it non-negotiable:</p>
+    <p>Three moments make the policy non-negotiable in practice:</p>
 
     <ul>
-      <li><strong>Bot verification.</strong> Required once a bot reaches 100 servers; an unverified bot cannot join more servers past that point. The App Verification checklist lists a working privacy policy alongside Stripe identity verification for the team owner -- start early, since review takes real time.</li>
-      <li><strong>App Directory discovery.</strong> To be discoverable, your application must have a connected, publicly available privacy policy and terms of service in addition to being verified -- a baseline eligibility gate, not an optional nicety.</li>
-      <li><strong>Every other bot, technically.</strong> The Developer Policy carves out no exception for small or single-server bots. Enforcement is lighter below the verification threshold, but the obligation applies at any scale.</li>
+      <li><strong>Bot verification.</strong> Required once a bot reaches <strong>75 servers</strong> (Discord lowered this threshold from 100 servers in its 2024 policy update). An unverified bot cannot accept invites to more servers past that point -- it is capped, not removed, but growth stops cold. The verification checklist requires a working privacy policy URL alongside Stripe identity verification for the team owner, a Terms of Service URL, and an accurate description of what the bot does.</li>
+      <li><strong>App Directory eligibility.</strong> To be listed and discoverable in Discord's App Directory, your application must already be verified and must have a connected, publicly accessible privacy policy and terms of service URL set in <strong>General Information</strong> -- a baseline eligibility gate that the Directory review checks again independently.</li>
+      <li><strong>Every other bot, technically.</strong> The Developer Policy carves out no exception for small or single-server bots. Enforcement is lighter below the verification threshold, but the obligation applies at any scale, and organizations deploying internal bots often require one regardless of what Discord enforces.</li>
     </ul>
 
-    <p>This is the same pattern Amazon uses for <a href="/resources/alexa-skill-privacy-policy/">Alexa skill certification</a> and Google uses for <a href="/resources/chrome-extension-privacy-policy/">Chrome Web Store listings</a> -- the platform gatekeeps the policy, and reviewers check that it matches what the application does rather than just confirming the URL field is filled in.</p>
+    <p>This is the same pattern Amazon uses for <a href="/resources/alexa-skill-privacy-policy/">Alexa skill certification</a> and Google uses for <a href="/resources/chrome-extension-privacy-policy/">Chrome Web Store listings</a> -- the platform gatekeeps distribution behind a policy check, and reviewers verify that the policy matches what the application actually does rather than just confirming the URL field is populated.</p>
+
+    <h2 id="what-verification-checks">What Verification Checks</h2>
+
+    <p>Bot verification is a one-time review performed by Discord's Trust & Safety team once your bot's server count reaches 75. It is separate from privileged intent review (covered below), and it is the process most developers mean when they say "getting my bot verified." The application happens from inside the Developer Portal, and Discord reviews the submission manually rather than approving it automatically.</p>
+
+    <p>The verification checklist covers five things:</p>
+
+    <ul>
+      <li><strong>A valid Privacy Policy URL.</strong> Set in <strong>General Information</strong>, it must resolve over HTTPS, load without authentication, and contain an actual privacy policy -- not a homepage or a placeholder.</li>
+      <li><strong>A valid Terms of Service URL.</strong> Same field group, same accessibility bar. Discord checks both URLs together.</li>
+      <li><strong>An accurate bot description.</strong> The <strong>Description</strong> field in General Information has to describe what the bot actually does. A description that says "multipurpose utility bot" while the bot's real function is scraping message history for a third-party dataset will not pass.</li>
+      <li><strong>Justified privileged intent usage.</strong> If your bot has Message Content, Server Members, or Presence Intent enabled, the reviewer expects the bot's functionality to require it. Enabling Message Content on a bot that only responds to slash commands is a mismatch reviewers catch.</li>
+      <li><strong>Completed identity verification.</strong> The team owner must complete Discord's identity verification flow, handled through Stripe Identity, before the application can be approved. This confirms a real person or organization stands behind the bot.</li>
+    </ul>
+
+    <p>Discord's review is manual, so turnaround is not instant -- start the process before you are actually blocked at 75 servers, since an unverified bot capped at that limit cannot accept new invites while the review is pending.</p>
+
+    <h3>Where verification lives in the Developer Portal</h3>
+
+    <p>Everything runs through <a href="https://discord.com/developers/applications" rel="nofollow">discord.com/developers/applications</a>. Select your application, and the left-hand tabs -- <strong>General Information</strong>, <strong>Bot</strong>, <strong>OAuth2</strong>, <strong>Installation</strong>, and others -- hold the fields verification checks. General Information carries <strong>Name</strong>, <strong>Description</strong>, <strong>Privacy Policy URL</strong>, <strong>Terms of Service URL</strong>, and <strong>Tags</strong> (up to five). The <strong>Bot</strong> tab holds the three privileged intent toggles under <strong>Privileged Gateway Intents</strong>. Verification pulls from both tabs -- the identity fields from General Information and the intent configuration from Bot.</p>
+
+    <h2 id="troubleshooting-rejections">Troubleshooting Verification Rejections</h2>
+
+    <p>When Discord rejects a verification application, the notice is often terse. Below are the rejection scenarios developers run into most often, what triggers each, and how to fix it.</p>
+
+    <h3>"Your application's privacy policy URL is missing or does not load correctly"</h3>
+
+    <p>This is the single most common rejection reason. The <strong>Privacy Policy URL</strong> field in General Information is either empty, points to a URL that returns a non-200 status, redirects to an unrelated page, or requires a login. Discord's reviewers open the link directly -- a homepage with a "Privacy" link buried in the footer does not satisfy this, even if the actual policy is one click further in.</p>
+
+    <p><strong>Fix:</strong> Paste a fully qualified <code>https://</code> URL that resolves immediately to the policy text. Test it in a private browser window with no cookies or saved logins. If you have no stable hosting, <a href="https://buildprivacypolicy.com/">generate and host a policy for free</a> at a permanent URL and use that.</p>
+
+    <h3>Policy doesn't describe the bot's actual practices</h3>
+
+    <p>A generic, templated policy that never names the bot, or that describes data practices for a generic "application" rather than the specific bot under review, gets flagged. Reviewers cross-check the bot's name and stated functionality in the Developer Portal against the content of the linked policy. A moderation bot whose policy only mentions "cookies and website analytics" -- language recycled from a web template -- is an easy rejection.</p>
+
+    <p><strong>Fix:</strong> Name the bot specifically in the policy, and make sure the data types listed (message content, member events, stored moderation records, whatever applies) match what the bot's code actually does.</p>
+
+    <h3>Privileged intent usage not justified</h3>
+
+    <p>Message Content Intent or Server Members Intent is enabled in the <strong>Bot</strong> tab, but nothing about the bot's stated functionality explains why it needs full message text or a member roster. This is a frequent rejection point for bots that enabled Message Content early (for a text-command prefix, say) and never migrated to slash commands, which do not require the intent at all.</p>
+
+    <p><strong>Fix:</strong> Either write a clear justification tying each enabled intent to a specific feature, or disable intents the bot does not actually need. Slash commands eliminate the need for Message Content in most command-based bots entirely.</p>
+
+    <h3>Identity verification incomplete</h3>
+
+    <p>The team owner has not finished Discord's Stripe Identity verification flow. Verification cannot complete until this step is done, and it is easy to overlook since it is a separate flow from the application form itself.</p>
+
+    <p><strong>Fix:</strong> Complete identity verification for the team owner account before or alongside submitting the verification application, not after.</p>
+
+    <h3>Bot description doesn't match functionality</h3>
+
+    <p>The <strong>Description</strong> field in General Information says something vague or inaccurate relative to what the bot's commands and event listeners actually do. Reviewers use this field as a first-pass sanity check against the rest of the application.</p>
+
+    <p><strong>Fix:</strong> Rewrite the Description field to plainly state the bot's core functions -- moderation, music playback, ticketing, whatever applies -- in language that matches both the privacy policy and the bot's actual command set.</p>
 
     <h2 id="what-bots-collect">What Data a Discord Bot Collects</h2>
 
-    <p>Most developers under-disclose because they think about what they store in a database, not what Discord sends their bot in the first place. Your policy needs to cover both.</p>
+    <p>Most developers under-disclose because they think about what they store in a database, not what Discord sends their bot in the first place through the Gateway. Your policy needs to cover both layers.</p>
 
     <ul>
-      <li><strong>User IDs and usernames.</strong> Every message, reaction, or slash command carries the Discord user ID and current username of whoever triggered it -- a persistent identifier, so it is personal data before you ever save it.</li>
+      <li><strong>User IDs and usernames.</strong> Every message, reaction, or slash command carries the Discord user ID and current username of whoever triggered it -- a persistent identifier, so it is personal data before you ever save it anywhere.</li>
       <li><strong>Guild and channel IDs.</strong> These identify where an interaction happened, and combined with a user ID reveal which servers someone uses your bot in.</li>
-      <li><strong>Message content, if you request the intent.</strong> Without <code>MESSAGE_CONTENT</code>, your bot only sees text it is mentioned in, a DM, or a slash command. Enabled, every message in every visible channel passes through your code, logged or not.</li>
-      <li><strong>Voice state.</strong> Music and voice bots use the standard (non-privileged) <code>GUILD_VOICE_STATES</code> intent to know who joined or left a voice channel -- personal data, even though it skips the privileged-intent review.</li>
-      <li><strong>Member lists and presence.</strong> <code>GUILD_MEMBERS</code> and <code>GUILD_PRESENCES</code> hand your bot a full roster or users' online status -- far more than most bots need.</li>
-      <li><strong>Logs.</strong> Console and error logs often contain user IDs or message snippets by accident -- data storage, whether intended or not.</li>
+      <li><strong>Message content, if you request the intent.</strong> Without <code>MESSAGE_CONTENT</code>, your bot only sees text it is mentioned in, a DM, or a slash command's own parameters. Enabled, every message in every visible channel passes through your code, logged or not.</li>
+      <li><strong>Voice state.</strong> Music and voice bots use the standard (non-privileged) <code>GUILD_VOICE_STATES</code> intent to know who joined or left a voice channel -- personal data, even though it skips the privileged-intent review entirely.</li>
+      <li><strong>Member lists and presence.</strong> <code>GUILD_MEMBERS</code> and <code>GUILD_PRESENCES</code> hand your bot a full member roster or users' online status -- far more than most bots need, and both are privileged.</li>
+      <li><strong>Join and leave events.</strong> Server Members Intent also delivers member join and leave events in real time -- useful for welcome messages and moderation logs, but a timestamped record of who joined or left which server and when.</li>
+      <li><strong>Logs.</strong> Console and error logs often contain user IDs or message snippets by accident -- data storage, whether intended or not, and something reviewers rarely think to check but should be disclosed if it happens.</li>
     </ul>
 
-    <p>The distinction that trips developers up: receiving data through the Gateway is processing, even when nothing touches a database. A stateless bot still needs a policy describing what it receives and why.</p>
+    <p>The distinction that trips developers up: receiving data through the Gateway is processing, even when nothing touches a database. A fully stateless bot still needs a policy describing what it receives and why -- "we do not store data" is a valid disclosure, but only once you have accounted for what passes through memory first.</p>
 
-    <h2 id="message-content-intent">The Message Content Intent Review and Your Privacy Disclosure</h2>
+    <h2 id="message-content-intent">The Message Content Intent and Privileged Intents</h2>
 
-    <p>Message Content, Guild Members, and Presence are Discord's three privileged intents -- gateway access Discord does not hand out automatically, because each exposes data most users would not expect a bot to see. Any bot using one needs to justify it, and the privacy policy is part of that justification.</p>
+    <p>Message Content, Server Members, and Presence are Discord's three privileged intents -- gateway access Discord does not hand out automatically, because each exposes data most server members would not expect a bot to see by default. Any bot using one needs to justify it, and the privacy policy is part of that justification during both verification and any later privileged intent review.</p>
 
-    <p>Discord changed how that review works in 2026. Previously, the trigger was server count: bots under 100 servers could self-toggle privileged intents, and bots at 100 or more applied for approval as part of bot verification itself. As of June 2026, Discord separated the two processes and moved the intent-review trigger to unique user count across all of a bot's servers instead. Under 10,000 total users, you can still self-toggle. Past that, the owner is notified and has 90 days to submit a review explaining the bot's use case per intent, and approved bots must now reapply annually.</p>
+    <h3>Where the toggles live</h3>
 
-    <p>None of this changes what data the intents expose -- only when Discord reviews the justification. Your policy obligation does not wait for that review: if <code>MESSAGE_CONTENT</code> is enabled, it needs a line explaining why the bot reads messages, whether content is stored or only processed in memory, and for how long, at 50 users or 50,000. Bots that only need it to catch a command prefix should migrate to slash commands instead, dropping the privileged intent -- and the disclosure burden -- entirely.</p>
+    <p>In the Developer Portal, open your application and click the <strong>Bot</strong> tab. Under <strong>Privileged Gateway Intents</strong> you will find three toggles: <strong>Presence Intent</strong>, <strong>Server Members Intent</strong>, and <strong>Message Content Intent</strong>. Each carries the same portal note: "If your bot is in 100 or more servers, this will require verification and approval." That copy is a holdover from the portal's UI and still references the old 100-server figure -- but the actual bot verification trigger for the application overall is 75 servers, and privileged intent review now runs on a separate track entirely, described below.</p>
+
+    <h3>Bot verification vs. privileged intent review -- two different processes</h3>
+
+    <p>Discord changed how privileged intent review works in 2026, and the change is easy to conflate with bot verification because both used to be tied to the same 100-server number. They are now separate:</p>
+
+    <ul>
+      <li><strong>Bot verification</strong> is triggered at 75 servers, is a one-time process, and covers the whole application -- privacy policy, terms of service, identity verification, and a general check that privileged intents in use are justified.</li>
+      <li><strong>Privileged intent review</strong> is now triggered by <strong>unique user count</strong> across all of a bot's servers, not server count. As of 2026, the threshold is <strong>10,000 unique users</strong>. Below that, you can self-toggle Message Content, Server Members, and Presence directly in the Bot tab with no application required. Past 10,000 users, the owner must apply, gets a <strong>90-day window</strong> to submit the review, and approved bots must <strong>reapply annually</strong> to keep the intents enabled.</li>
+    </ul>
+
+    <p>A bot can therefore be verified (past 75 servers) while still self-toggling privileged intents (under 10,000 unique users), or unverified (under 75 servers) while already needing privileged intent review (over 10,000 unique users concentrated in a handful of large servers). Track both numbers independently.</p>
+
+    <h3>What this means for your privacy disclosure</h3>
+
+    <p>None of this changes what data the intents expose -- only when Discord reviews the justification. Your policy obligation does not wait for either review: if <code>MESSAGE_CONTENT</code> is enabled, the policy needs a line explaining why the bot reads messages, whether content is stored or only processed in memory, and for how long, whether the bot has 50 users or 50,000. Bots that only need the intent to catch a legacy text-command prefix should migrate to slash commands instead, dropping the privileged intent -- and the disclosure burden, and the review risk -- entirely.</p>
 
     <h2 id="required-sections">What Your Bot's Privacy Policy Must Include</h2>
 
-    <p>Name the bot specifically -- a generic document that never mentions it by name is an easy rejection reason during review. Beyond that, these sections cover what Discord and standard privacy law both expect.</p>
+    <p>Name the bot specifically -- a generic document that never mentions it by name is an easy rejection reason during verification review, as covered above. Beyond that, these sections cover what Discord and standard privacy law both expect.</p>
 
     <ul>
       <li><strong>What data you collect</strong>, in plain terms rather than "we may collect certain information."</li>
       <li><strong>Why you collect it.</strong> Tie each data type to a feature; if you cannot name a reason, stop collecting it.</li>
-      <li><strong>Who else receives it</strong> -- your host and any AI provider your bot calls if messages leave Discord for processing. Discord bars selling API data or handing it to brokers -- say you do not, if true.</li>
-      <li><strong>How long you keep it.</strong> Real periods ("moderation logs, 12 months"), not "as long as necessary," and what happens when the bot is removed from a server.</li>
+      <li><strong>Who else receives it</strong> -- your host, your database provider, and any AI provider your bot calls if messages leave Discord for processing. Discord bars selling API data or handing it to data brokers -- say you do not, if true.</li>
+      <li><strong>How long you keep it.</strong> Real periods ("moderation logs, 90 days"), not "as long as necessary," and what happens to stored data when the bot is removed from a server.</li>
       <li><strong>User rights.</strong> How someone gets a copy of their data or has it deleted, and which rights apply under GDPR and CCPA.</li>
       <li><strong>Children's privacy.</strong> Discord's minimum age is 13 -- state the bot is not directed at under-13s.</li>
       <li><strong>Contact and change notice.</strong> A working contact method and how you will announce policy changes.</li>
     </ul>
 
-    <p>Not sure which of these actually apply to your bot's audience? A <a href="/tools/privacy-law-checker/">quick compliance check based on your platform and users</a> narrows it down faster than reading every regulation yourself.</p>
+    <h3>Worked example: a moderation bot called "ModGuard"</h3>
 
-    <h2 id="host-and-add">Hosting Your Policy and Adding It to the Developer Portal</h2>
+    <p>Consider a moderation bot called "ModGuard" that scans messages for rule violations using the Message Content Intent, tracks member joins and leaves with the Server Members Intent, stores warning and ban history in PostgreSQL keyed to user ID and guild ID, and posts moderation logs to a webhook in a staff-only channel.</p>
 
-    <p>The policy needs a stable, public URL. Google Docs, Notion pages, and Pastebin links are a poor fit -- they can change, go private, or disappear, exactly what Discord's reviewers watch for. Three options hold up:</p>
+    <p>ModGuard's privacy policy needs to disclose, at minimum:</p>
 
     <ul>
-      <li><strong>Your bot's own site</strong> -- a path like <code>yourbotname.com/privacy</code>. Full control, no third-party dependency.</li>
-      <li><strong>A free generated policy</strong> -- if you have no website, <a href="https://buildprivacypolicy.com/">generate and host one for free</a> and link straight to the permanent URL.</li>
-      <li><strong>GitHub Pages</strong> -- a static HTML page in a public repo, common for open-source bots, as long as it renders without a GitHub login.</li>
+      <li><strong>Message content</strong> — every message in a server where ModGuard is active is scanned in memory against the server's rule set for auto-moderation. Content is not stored unless a violation is detected, in which case the offending message text is attached to the resulting moderation record.</li>
+      <li><strong>User IDs and guild IDs</strong> — stored alongside every warning or ban record in PostgreSQL, so history persists across sessions and can be reviewed by staff later.</li>
+      <li><strong>Member join and leave events</strong> — logged for 90 days to support raid detection and moderation review, then purged automatically.</li>
+      <li><strong>Moderation logs sent to a staff webhook</strong> — a Discord webhook posts each moderation action (warning issued, user banned, message removed) to a private staff channel, visible only to that server's staff.</li>
     </ul>
 
-    <p>Adding the URL takes four steps: open the <a href="https://discord.com/developers/applications" rel="nofollow">Developer Portal</a> and select your application; click <strong>General Information</strong>; paste the full URL (including <code>https://</code>) into the <strong>Privacy Policy URL</strong> field; save. That URL shows during your bot's OAuth2 authorization flow, and it is the same field verification and Discovery reviewers check. If your data practices change, update the policy and bump the modified date before your next reapplication, not after.</p>
+    <p>The policy also needs a retention statement covering the full lifecycle: data tied to a given server is retained while ModGuard remains active in that server and deleted within 30 days of the bot being removed. It needs a children's disclaimer (not directed at users under 13), GDPR and CCPA rights sections, and a contact method. Because ModGuard uses both Message Content and Server Members Intent, the privacy policy is also part of the justification Discord's reviewers check during verification and, once ModGuard crosses 10,000 unique users, during privileged intent review.</p>
+
+    <p>Not sure which of these actually apply to your bot's audience? A <a href="/tools/privacy-law-checker/">quick compliance check based on your platform and users</a> narrows it down faster than reading every regulation yourself. The same process applies broadly to <a href="/resources/how-to-write-privacy-policy-for-app/">writing a privacy policy for any app</a>: audit what you actually collect, map each item to a purpose, name every third party, and set a real retention period.</p>
+
+    <h2 id="after-75-servers">What Changes Once Your Bot Passes 75 Servers</h2>
+
+    <p>Crossing 75 servers is not just a number on a dashboard -- it triggers a set of concrete requirements and unlocks a set of concrete benefits, and developers who plan for it ahead of time avoid getting capped mid-growth.</p>
+
+    <ul>
+      <li><strong>Verification becomes mandatory to keep growing.</strong> Once a bot hits 75 servers without being verified, it stops accepting invites to new servers. Existing installs keep working; new ones are blocked until verification completes.</li>
+      <li><strong>The Privacy Policy URL becomes enforced and visible.</strong> Once verified, the URL set in General Information is displayed on the bot's public profile, where any server admin considering an install can read it before inviting the bot.</li>
+      <li><strong>The Terms of Service URL becomes enforced the same way.</strong> Both URLs are checked together during verification and both surface publicly afterward.</li>
+      <li><strong>Team owner identity verification is required.</strong> The Stripe Identity flow for the team owner must be completed as part of verification -- it is not optional past this point.</li>
+      <li><strong>Privileged intents come under potential review.</strong> Verification itself checks that any enabled privileged intent is justified. Separately, if the bot's unique user count also crosses 10,000, the annual privileged intent review process kicks in regardless of server count.</li>
+      <li><strong>App Directory eligibility opens up.</strong> Verification is a prerequisite for App Directory listing, but it is not automatic -- a separate application and review is required, and the privacy policy and terms of service URLs are checked again as part of that review.</li>
+      <li><strong>Higher rate limits may become available.</strong> Verified bots are eligible for increased API rate limits compared to unverified applications, which matters for bots operating at scale across many servers.</li>
+      <li><strong>A verified badge appears on the bot's profile.</strong> Visible to every server member, it signals to admins and users that the bot passed Discord's review.</li>
+    </ul>
+
+    <p>Compliance obligations scale with server count in practice even though the legal requirement does not change: more servers means more jurisdictions your users are sitting in, more data volume moving through your bot, and a proportionally higher cost if your policy turns out to be inaccurate during a later re-review.</p>
+
+    <h2 id="generate-policy">How to Generate a Discord Bot Privacy Policy</h2>
+
+    <p>Writing a Discord bot privacy policy from scratch means auditing every Gateway event your bot subscribes to, mapping each privileged intent to a specific feature, documenting your database schema well enough to describe retention accurately, and formatting the result into something that survives a Trust & Safety reviewer's read-through. For a bot using Message Content and Server Members Intent with a real database behind it, that is real work.</p>
+
+    <p>A privacy policy generator compresses this into a guided questionnaire: which platform (Discord bot, alongside web or mobile if you have a companion app), which data types your bot processes (user IDs, guild IDs, message content, voice state, member events), which third parties you send data to (your host, your database, any AI API), and which regulations apply to your user base. The output is a policy with the right disclosure language for each selection, hosted at a permanent HTTPS URL you paste straight into the Developer Portal's Privacy Policy URL field.</p>
+
+    <h3>Generator vs. template vs. manual drafting</h3>
+
+    <ul>
+      <li><strong>Generator (fastest for bots with real data flows).</strong> Best once your bot uses a privileged intent, stores anything in a database, or calls a third-party API. A <a href="https://buildprivacypolicy.com/">free privacy policy generator</a> walks through each data category and produces a submission-ready policy with hosting included -- useful when you need to clear verification without hiring a lawyer.</li>
+      <li><strong>Template (fine for simple bots).</strong> If your bot has no privileged intents, no database, and no third-party calls, the <a href="#sample-policy">sample policy below</a> works after you fill in the brackets and delete what does not apply.</li>
+      <li><strong>Manual drafting (for edge cases).</strong> Bots that process payments, biometric data, or health information, or that are aimed at users under 13, may need custom legal language beyond what a generator or template covers. Use the <a href="#required-sections">required sections list above</a> as a starting checklist and involve a privacy attorney.</li>
+    </ul>
+
+    <p>Whatever approach you take, check the finished policy against the <a href="#what-verification-checks">verification checklist above</a> before submitting: correct bot name, every enabled intent justified and disclosed, and a URL that loads without authentication on both mobile and desktop.</p>
 
     <h2 id="sample-policy">Sample Discord Bot Privacy Policy You Can Copy</h2>
 
@@ -123,7 +234,7 @@ const modifiedDate = "2026-08-27";
 <p>[Your Name / Organization] ("we," "us," or "our") operates the [Your Bot Name] Discord bot ("the Bot"). This policy explains what data the Bot collects through Discord, why, who else receives it, how long it is kept, and your rights over it.</p>
 
 <p><strong>2. Data We Collect</strong></p>
-<p><em>Discord user ID and username</em>, with every command, message, or reaction processed. <em>Server (guild) and channel IDs</em>, to route responses and apply per-server settings. <em>Message content</em> [if applicable]: used to [describe feature]; [processed in memory only / logged briefly / stored] for this purpose only. <em>Voice state</em> [if applicable], while active in a voice channel. <em>Command inputs and stored records</em> tied to your user or server ID, such as [preferences / warnings / configuration].</p>
+<p><em>Discord user ID and username</em>, with every command, message, or reaction processed. <em>Server (guild) and channel IDs</em>, to route responses and apply per-server settings. <em>Message content</em> [if applicable]: used to [describe feature]; [processed in memory only / logged briefly / stored] for this purpose only. <em>Member join and leave events</em> [if applicable], used for [welcome messages / moderation logging], retained for [number] days. <em>Voice state</em> [if applicable], while active in a voice channel. <em>Command inputs and stored records</em> tied to your user or server ID, such as [preferences / warnings / configuration].</p>
 
 <p><strong>3. Why We Use This Data</strong></p>
 <p>To operate the Bot's commands and features, maintain per-server and per-user settings across sessions, moderate content where applicable, and debug errors. We do not use your data for advertising, sell it, or share it with data brokers.</p>
@@ -132,7 +243,7 @@ const modifiedDate = "2026-08-27";
 <p><strong>[Hosting provider]</strong> runs the Bot's backend and database. <strong>[AI provider, if applicable]</strong> processes message content to generate responses. No other third party receives your data.</p>
 
 <p><strong>5. Data Retention</strong></p>
-<p>Message content processed for [feature] is discarded within [number] days. Stored records are deleted within 30 days of the Bot leaving a server. Debug logs are kept for [number] days, then deleted.</p>
+<p>Message content processed for [feature] is discarded within [number] days unless a violation or other flagged event triggers a stored record. Stored records tied to a server are deleted within 30 days of the Bot leaving that server. Debug logs are kept for [number] days, then deleted.</p>
 
 <p><strong>6. Your Rights</strong></p>
 <p>If you are in the EU, UK, or California, you may request a copy of your data, ask us to correct or delete it, or object to its use, by contacting [your-email@example.com]. We respond within 30 days and do not sell personal information.</p>
@@ -151,12 +262,50 @@ const modifiedDate = "2026-08-27";
 
     <p>Bots with payments or AI integrations need a dedicated section for each. Want a policy built from your bot's actual practices instead? <a href="https://buildprivacypolicy.com/">Build one for free with the generator</a>.</p>
 
+    <h2 id="private-team-bots">Privacy Policies for Private and Team-Only Bots</h2>
+
+    <p>Not every Discord bot is headed for the App Directory or a large public server base. Three categories cover most bots that never see verification at all: internal team tools never invited to an external server, bots that stay intentionally small and never approach 75 servers, and bots still in active testing or development.</p>
+
+    <h3>Internal team tools</h3>
+
+    <p>A bot built to run in a single company's Discord server -- handling deploy notifications, standup reminders, or internal ticketing -- never gets invited anywhere else and never approaches the verification threshold. Discord does not require or check a privacy policy for a bot like this at any point in its lifecycle, since it never triggers verification or Directory review.</p>
+
+    <p>That said, organizational compliance may require one regardless of what Discord enforces. If the bot processes employee data -- names, Discord IDs, message content used for internal analytics -- your company's own data-handling policies, especially under GDPR if any team members are in the EU, may obligate you to document the bot's practices internally even without a public-facing requirement from Discord.</p>
+
+    <h3>Small bots that stay under 75 servers by design</h3>
+
+    <p>Some bots are built for a niche community and never intend to scale past a handful of servers. Discord does not enforce a privacy policy requirement for bots that never cross 75 servers, since verification simply never triggers. The Developer Policy still technically requires a policy at any scale, but in practice enforcement is limited to the moments described earlier in this guide: verification, App Directory listing, and (separately) privileged intent review at 10,000 unique users.</p>
+
+    <h3>Testing and development bots</h3>
+
+    <p>A bot running only in your own test server while you build it out has no meaningful audience and no enforcement trigger. Once you start inviting real servers, though, is the right moment to write the policy -- not after you are already capped at 75 servers and rushing through verification. Drafting it while the data flows are still fresh in your head is faster and more accurate than reconstructing them later.</p>
+
+    <p>Whichever category your bot falls into, having a policy in place before you need one costs little and avoids the scramble that comes with racing a verification deadline once your bot's growth outpaces your paperwork.</p>
+
+    <h2 id="host-and-add">Hosting Your Policy and Adding It to the Developer Portal</h2>
+
+    <p>The policy needs a stable, public URL. Google Docs, Notion pages, and Pastebin links are a poor fit -- they can change, go private, or disappear, exactly what Discord's reviewers watch for. Three options hold up:</p>
+
+    <ul>
+      <li><strong>Your bot's own site</strong> -- a path like <code>yourbotname.com/privacy</code>. Full control, no third-party dependency.</li>
+      <li><strong>A free generated policy</strong> -- if you have no website, <a href="https://buildprivacypolicy.com/">generate and host one for free</a> and link straight to the permanent URL.</li>
+      <li><strong>GitHub Pages</strong> -- a static HTML page in a public repo, common for open-source bots, as long as it renders without a GitHub login.</li>
+    </ul>
+
+    <h3>Where the fields live in the Developer Portal</h3>
+
+    <p>Open <a href="https://discord.com/developers/applications" rel="nofollow">discord.com/developers/applications</a> and select your application. The <strong>General Information</strong> tab holds the fields that matter here: <strong>Name</strong>, <strong>Description</strong>, <strong>Privacy Policy URL</strong>, <strong>Terms of Service URL</strong>, and <strong>Tags</strong> (up to five). Paste the full URL, including <code>https://</code>, into <strong>Privacy Policy URL</strong>, and do the same for <strong>Terms of Service URL</strong> if you have one -- both are checked together during verification and both later appear on your bot's public profile once verified.</p>
+
+    <p>Separately, the <strong>Bot</strong> tab holds the <strong>Privileged Gateway Intents</strong> section, where the Presence, Server Members, and Message Content toggles live -- this is where you actually enable the intents your policy needs to describe. The <strong>Installation</strong> tab configures OAuth2 scopes and bot permissions for the invite link, which is worth double-checking against your policy too: a bot requesting the <code>administrator</code> permission or a broad OAuth2 scope set should have a policy that justifies why.</p>
+
+    <p>These URLs also surface during your bot's OAuth2 authorization flow, and they are the same fields verification and Directory reviewers check. If your data practices change, update the policy and bump the modified date before your next reapplication or Directory review, not after.</p>
+
     <h2 id="faq">Frequently Asked Questions</h2>
 
     <div class="faq-list">
       <div class="faq-item">
         <h3>Does every Discord bot need a privacy policy?</h3>
-        <p>Yes. Discord's Developer Policy requires one for every application, bots included, from registration onward -- enforcement is just heaviest at verification (100+ servers) and for App Directory listing.</p>
+        <p>Yes. Discord's Developer Policy requires one for every application, bots included, from registration onward -- enforcement is just heaviest at verification (75+ servers) and for App Directory listing.</p>
       </div>
 
       <div class="faq-item">
@@ -165,13 +314,38 @@ const modifiedDate = "2026-08-27";
       </div>
 
       <div class="faq-item">
-        <h3>What changed with the Message Content Intent review in 2026?</h3>
-        <p>The review trigger moved from server count to unique user count. Under 10,000 users, you can still self-toggle privileged intents; past that, you have 90 days to apply and must reapply annually. Verification, still triggered at 100 servers, is now a separate process.</p>
+        <h3>At how many servers does my Discord bot need to be verified?</h3>
+        <p>At 75 servers. Discord lowered this from 100 servers in its 2024 policy update. An unverified bot cannot accept invites to more servers past that point, and verification requires a working privacy policy URL, a terms of service URL, an accurate bot description, justified privileged intent usage, and completed identity verification for the team owner.</p>
       </div>
 
       <div class="faq-item">
-        <h3>When does my bot need to be verified?</h3>
-        <p>At 100 servers. An unverified bot cannot join more servers past that point, and verification requires a working privacy policy URL plus identity verification for the team owner.</p>
+        <h3>What changed with the Message Content Intent review in 2026?</h3>
+        <p>Discord separated bot verification from privileged intent review. Bot verification is triggered at 75 servers and is a one-time process. Privileged intent review now runs on unique user count instead: under 10,000 users, you can still self-toggle Message Content, Server Members, and Presence intents; past that, you have 90 days to apply and must reapply annually.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Why does the Developer Portal still say 100 servers next to the privileged intent toggles?</h3>
+        <p>The note under Presence, Server Members, and Message Content in the Bot tab is leftover copy from before Discord's 2024 change and still references 100 servers. The bot verification trigger that actually applies today is 75 servers; privileged intent review is a separate process tied to unique user count, not server count at all.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What does Discord's verification review actually check?</h3>
+        <p>A valid Privacy Policy URL and Terms of Service URL in General Information, an accurate bot description, justified usage of any enabled privileged intent, and completed Stripe identity verification for the team owner. Discord's Trust & Safety team reviews the application manually.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Why was my bot's verification application rejected?</h3>
+        <p>The most common reasons are a missing or broken privacy policy URL, a policy that doesn't describe the bot's actual data practices, privileged intents enabled without a clear justification, incomplete identity verification for the team owner, or a bot description that doesn't match what the bot actually does.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What happens if my bot stays under 75 servers?</h3>
+        <p>Discord does not enforce the verification checklist, since it never triggers. The privacy policy requirement in the Developer Policy technically still applies at any scale, but enforcement in practice is limited to verification, App Directory listing, and privileged intent review at 10,000 unique users.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does my bot need to be verified to appear in the App Directory?</h3>
+        <p>Yes. App Directory listing requires the bot to already be verified, to have a Privacy Policy URL and Terms of Service URL set in General Information, and to pass a separate App Directory review on top of verification itself.</p>
       </div>
 
       <div class="faq-item">
@@ -187,6 +361,11 @@ const modifiedDate = "2026-08-27";
       <div class="faq-item">
         <h3>Do I need a separate privacy policy for my bot and my website?</h3>
         <p>Not necessarily. One policy can cover both if it specifically describes each surface's data practices, with the bot-relevant sections actually present and accurate.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does a private, internal-only bot need a privacy policy?</h3>
+        <p>Discord does not check for one since a bot that never leaves a single organization's server never triggers verification or Directory review. Your organization's own compliance requirements may still call for one, especially if the bot processes employee data under GDPR.</p>
       </div>
     </div>
 
@@ -226,7 +405,7 @@ const modifiedDate = "2026-08-27";
       "name": "Does every Discord bot need a privacy policy?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Discord's Developer Policy requires a publicly accessible privacy policy for every application, bots included. Enforcement is most consistent at verification (100+ servers) and for App Directory listing, but the requirement applies regardless of scale."
+        "text": "Yes. Discord's Developer Policy requires a publicly accessible privacy policy for every application, bots included. Enforcement is most consistent at verification (75+ servers) and for App Directory listing, but the requirement applies regardless of scale."
       }
     },
     {
@@ -239,18 +418,58 @@ const modifiedDate = "2026-08-27";
     },
     {
       "@type": "Question",
-      "name": "What changed with the Message Content Intent review in 2026?",
+      "name": "At how many servers does my Discord bot need to be verified?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Discord moved the review trigger for its privileged intents from server count to unique user count. Bots under 10,000 users can self-toggle Message Content, Guild Members, and Presence intents; past that, owners have 90 days to apply and must reapply annually. Bot verification remains a separate process triggered at 100 servers."
+        "text": "At 75 servers, which Discord lowered from 100 servers in its 2024 policy update. An unverified bot cannot accept invites to more servers past that point, and verification requires a privacy policy URL, terms of service URL, accurate bot description, justified privileged intent usage, and completed identity verification for the team owner."
       }
     },
     {
       "@type": "Question",
-      "name": "When does my bot need to be verified?",
+      "name": "What changed with the Message Content Intent review in 2026?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "At 100 servers. An unverified bot cannot join additional servers past that point, and verification requires a working privacy policy URL plus identity verification for the team owner."
+        "text": "Discord separated bot verification from privileged intent review. Bot verification is triggered at 75 servers and is a one-time process. Privileged intent review now runs on unique user count: under 10,000 users you can self-toggle Message Content, Server Members, and Presence intents; past that, owners have 90 days to apply and must reapply annually."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the Developer Portal still say 100 servers next to the privileged intent toggles?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "That note is leftover portal copy from before Discord's 2024 change. The verification trigger that actually applies today is 75 servers, and privileged intent review is a separate process tied to unique user count rather than server count."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does Discord's verification review actually check?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A valid Privacy Policy URL and Terms of Service URL in General Information, an accurate bot description, justified usage of any enabled privileged intent, and completed Stripe identity verification for the team owner, all reviewed manually by Discord's Trust and Safety team."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why was my bot's verification application rejected?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Common reasons include a missing or broken privacy policy URL, a policy that does not describe the bot's actual data practices, privileged intents enabled without justification, incomplete identity verification for the team owner, or a bot description that does not match its functionality."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if my bot stays under 75 servers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Discord does not enforce the verification checklist since it never triggers. The Developer Policy technically still requires a privacy policy at any scale, but enforcement in practice happens at verification, App Directory listing, and privileged intent review at 10,000 unique users."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does my bot need to be verified to appear in the App Directory?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. App Directory listing requires the bot to already be verified, to have a Privacy Policy URL and Terms of Service URL set in General Information, and to pass a separate App Directory review."
       }
     },
     {
@@ -275,6 +494,14 @@ const modifiedDate = "2026-08-27";
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Not necessarily. One policy can cover both as long as it specifically and accurately describes the bot's own data practices, such as user IDs, intents, and guild data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a private, internal-only bot need a privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Discord does not check for one since a bot that never leaves a single organization's server never triggers verification or Directory review, but organizational compliance requirements may still call for one, especially if the bot processes employee data under GDPR."
       }
     }
   ]
