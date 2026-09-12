@@ -4,7 +4,7 @@ import Layout from '../../../layouts/Layout.astro';
 const title = "Do I Need a Privacy Policy for My Website?";
 const description = "Yes, in almost every case. See which laws (GDPR, CCPA, PIPEDA, LGPD, COPPA) and platform rules require a privacy policy, and what happens if you skip one.";
 const publishDate = "2026-07-29";
-const modifiedDate = "2026-08-20";
+const modifiedDate = "2026-09-11";
 ---
 
 <Layout title={title} description={description}>
@@ -23,7 +23,7 @@ const modifiedDate = "2026-08-20";
   <div class="page-card">
     <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
     <h1>Do I Need a Privacy Policy on My Website?</h1>
-    <p class="last-updated">Published July 29, 2026 · Updated August 20, 2026</p>
+    <p class="last-updated">Published July 29, 2026 · Updated September 11, 2026</p>
 
     <p><strong>Yes — almost certainly.</strong> If your website collects any personal data from visitors, even passively through analytics cookies or server logs, at least one data-protection law and usually several platform terms of service require you to publish a privacy policy. The handful of sites that can skip one are fully static pages with zero tracking, zero forms, and zero third-party scripts, which describes almost no website running today.</p>
 
@@ -45,6 +45,7 @@ const modifiedDate = "2026-08-20";
       <ol>
         <li><a href="#short-answer">The Short Answer</a></li>
         <li><a href="#who-needs">Who Needs a Privacy Policy?</a></li>
+        <li><a href="#portfolio-sites">Portfolio and Personal Websites</a></li>
         <li><a href="#laws">The Laws That Trigger It</a></li>
         <li><a href="#platform-rules">Platform Rules That Require One</a></li>
         <li><a href="#what-happens">What Happens If You Don't Have One</a></li>
@@ -73,6 +74,40 @@ const modifiedDate = "2026-08-20";
     </ul>
 
     <p>If you are unsure which privacy laws apply to your particular setup, our <a href="/tools/privacy-law-checker/">privacy law applicability checker</a> walks through a few questions about your audience, platforms, and data practices and returns a tailored answer. Once you know what you need to disclose, a <a href="/">free privacy policy generator</a> can produce the document in minutes — no legal background required.</p>
+
+    <h2 id="portfolio-sites">Do You Need a Privacy Policy for a Portfolio or Personal Website?</h2>
+
+    <p>Portfolio sites and personal websites sit in a gray area that most privacy-policy guides gloss over. The answer depends entirely on what your site actually does — and in some cases, the honest answer is no.</p>
+
+    <h3>When You Genuinely Don't Need One</h3>
+
+    <p>If your portfolio is a purely static HTML site — just pages showing your work, with no contact form, no analytics, no embedded third-party content, and no cookies — there is nothing to disclose. A hand-coded site on GitHub Pages that loads only your own images, text, and self-hosted CSS does not collect personal data, and no privacy law requires a policy for data you never touch. This is the one scenario where skipping a policy is both legally defensible and practically fine.</p>
+
+    <h3>When You Do — and Most Portfolios Fall Here</h3>
+
+    <p>The moment you add any of the following, your site starts collecting personal data and a privacy policy becomes necessary:</p>
+
+    <ul>
+      <li><strong>A contact form.</strong> This is the most common trigger. The moment someone types their name and email into a "Get in touch" form, you are collecting personal data. It does not matter whether the form goes to Formspree, Netlify Forms, or your own inbox — the data crosses a threshold that GDPR, CCPA, and PIPEDA all regulate.</li>
+      <li><strong>Google Analytics or any visitor-tracking script.</strong> Analytics tools drop cookies, capture IP addresses, and log device and browser details. Google Analytics 4 still collects enough to qualify as personal data under the GDPR even with IP anonymization enabled, because it ties sessions to a client ID stored in a first-party cookie.</li>
+      <li><strong>Embedded fonts from Google Fonts or Adobe Fonts.</strong> When fonts load from an external CDN, the visitor's IP address is sent to that provider with every page load. A 2022 German court ruling fined a site owner for exactly this Google Fonts scenario under the GDPR — and the logic applies to any externally hosted font service.</li>
+      <li><strong>Embedded YouTube, Vimeo, or SoundCloud content.</strong> Third-party embeds load their own cookies and tracking scripts. A single YouTube embed connects the visitor's browser to Google's ad infrastructure, which sets cookies and collects identifiers before the visitor presses play.</li>
+      <li><strong>A newsletter signup or mailing-list widget.</strong> Whether you use Mailchimp, ConvertKit, Buttondown, or any other provider, a signup form collects an email address at minimum, and the provider itself sets cookies and tracking pixels to measure open rates.</li>
+      <li><strong>A comments section.</strong> Disqus, Giscus, or any comment system collects names, email addresses, and often IP addresses. Disqus in particular loads extensive third-party tracking alongside the comment functionality.</li>
+    </ul>
+
+    <h3>What the Major Portfolio Platforms Do by Default</h3>
+
+    <p>If you build on a hosted platform rather than coding from scratch, the platform itself may already be collecting data on your behalf — which means you need a policy even if you have not consciously added any tracking:</p>
+
+    <ul>
+      <li><strong>Squarespace</strong> includes its own analytics, sets cookies for session tracking, and loads Google Fonts by default on most templates. Squarespace's own terms recommend that every site publish a privacy policy.</li>
+      <li><strong>Wix</strong> runs Wix Analytics automatically, sets first-party and third-party cookies, and embeds external resources. Wix provides a privacy-policy template app, which signals that they expect sites on their platform to use one.</li>
+      <li><strong>Webflow</strong> hosts sites on its CDN and collects basic analytics by default. Sites using Webflow's form handling are processing personal data through Webflow's servers, triggering disclosure obligations.</li>
+      <li><strong>GitHub Pages</strong> is the closest to a genuinely clean slate — it serves static files with no cookies and no built-in analytics. If your GitHub Pages site loads no external resources and has no forms, you have a legitimate case for not needing a policy. The moment you add a form handler, Google Fonts, or an analytics snippet, that changes.</li>
+    </ul>
+
+    <p>If you are not sure where your portfolio falls, our <a href="/tools/privacy-law-checker/">privacy law checker</a> asks a few quick questions about your setup and tells you which laws apply. And if it turns out you do need a policy, a <a href="/">free privacy policy generator</a> builds one in minutes — you answer questions about your data practices and get a policy you can host, download, or copy at no cost.</p>
 
     <h2 id="laws">The Laws That Trigger a Privacy Policy Requirement</h2>
 
@@ -174,6 +209,16 @@ const modifiedDate = "2026-08-20";
         <h3>Why is everyone updating their privacy policy in 2026?</h3>
         <p>Several new U.S. state privacy laws took effect on January 1, 2026, bringing the total number of states with comprehensive privacy legislation to more than 20, and a growing number of them now require honoring browser-level opt-out signals. Combined with ongoing GDPR enforcement and new automated-decision-making disclosure rules in states like California, most businesses are revisiting their policies to stay current with requirements that didn't exist a year or two ago.</p>
       </div>
+
+      <div class="faq-item">
+        <h3>Do I need a privacy policy for my portfolio website?</h3>
+        <p>It depends on what the site does. If your portfolio is purely static with no contact form, no analytics, no embedded fonts or videos, and no cookies, you do not need one — there is no personal data to disclose. But most portfolio sites have at least a contact form or Google Analytics installed, and either one is enough to trigger requirements under the GDPR, CCPA, and other privacy laws. If you are on Squarespace, Wix, or Webflow, the platform's built-in tracking means you almost certainly need a policy.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does a GitHub Pages site need a privacy policy?</h3>
+        <p>Not if it is a bare static site with no forms, no analytics, and no externally loaded resources like Google Fonts. GitHub Pages itself does not set cookies or track visitors on your behalf. But if you have added a contact form through a service like Formspree or Netlify, embedded a YouTube video, or included a Google Analytics snippet, your site is collecting personal data and needs a policy just like any other website.</p>
+      </div>
     </div>
 
   </div>
@@ -261,6 +306,22 @@ const modifiedDate = "2026-08-20";
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Several new U.S. state privacy laws took effect on January 1, 2026, bringing the total number of states with comprehensive privacy legislation to more than 20, and a growing number now require honoring browser-level opt-out signals. Combined with ongoing GDPR enforcement, most businesses are revisiting their policies to stay current."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a privacy policy for my portfolio website?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on what the site does. If your portfolio is purely static with no contact form, no analytics, no embedded fonts or videos, and no cookies, you do not need one. But most portfolio sites have at least a contact form or Google Analytics installed, and either one triggers requirements under the GDPR, CCPA, and other privacy laws. If you are on Squarespace, Wix, or Webflow, the platform's built-in tracking means you almost certainly need a policy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a GitHub Pages site need a privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not if it is a bare static site with no forms, no analytics, and no externally loaded resources like Google Fonts. GitHub Pages itself does not set cookies or track visitors. But if you have added a contact form, embedded a YouTube video, or included a Google Analytics snippet, your site is collecting personal data and needs a policy just like any other website."
       }
     }
   ]
