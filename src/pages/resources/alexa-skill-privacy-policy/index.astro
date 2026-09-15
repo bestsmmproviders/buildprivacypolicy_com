@@ -29,6 +29,17 @@ const modifiedDate = "2026-09-08";
 
     <p>This guide covers what Amazon's certification process actually checks, the data categories developers miss, what each section of your policy needs to say, and how to host the finished document and wire it into the Developer Console. If you need a policy fast, you can <a href="https://buildprivacypolicy.com/">generate a privacy policy for free</a> and host it at no cost.</p>
 
+    <div class="generator-callout">
+      <p class="generator-callout-title">Get Your Alexa Skill Privacy Policy URL</p>
+      <p>If you just need the URL the Developer Console is asking for, skip ahead: the Distribution &gt; Skill Preview field expects a fully qualified <code>https://</code> link that opens straight to your policy text, with no login wall or redirect. Three steps get you there:</p>
+      <ol class="generator-callout-steps">
+        <li>Answer a short set of questions about your skill's data -- voice utterances, account linking, Alexa permissions, persistent attributes.</li>
+        <li>The tool assembles a policy covering each data type you selected, worded for Amazon's certification reviewers.</li>
+        <li>Copy the finished document's permanent web address and paste it into the Privacy Policy URL field.</li>
+      </ol>
+      <p>Prefer to skip the manual drafting entirely? <a href="https://buildprivacypolicy.com/">Build and host your policy in a few minutes</a>, then come back to the certification details below whenever you need them.</p>
+    </div>
+
     <nav class="toc">
       <p class="toc-title">Contents</p>
       <ol>
@@ -125,7 +136,7 @@ const modifiedDate = "2026-09-08";
 
     <p>Skills that use Login with Amazon or any OAuth 2.0 provider to connect a third-party account must explain in the policy what profile data is retrieved, why it is retrieved, and how it is stored. A policy that mentions account linking in passing without naming the specific data types (name, email, profile photo, access token) pulled from the OAuth provider fails the relevance check.</p>
 
-    <p><strong>Fix:</strong> Add a dedicated section to your policy that names the account linking provider, lists every data field retrieved from the profile endpoint, maps each field to a purpose, and states the retention period for the OAuth token.</p>
+    <p><strong>Fix:</strong> Add a dedicated section to your policy that names the account linking provider, lists every data field retrieved from the profile endpoint, maps each field to a purpose, and states the retention period for the OAuth token. If drafting that section from scratch is the holdup, <a href="https://buildprivacypolicy.com/">a guided policy tool</a> can produce the OAuth disclosure language and give you a hosted URL to paste back into the Console.</p>
 
     <h2 id="data-developers-overlook">Data a Skill Collects That Developers Overlook</h2>
 
@@ -690,6 +701,31 @@ const modifiedDate = "2026-09-08";
   }
   .page-card em {
     font-style: italic;
+  }
+  .generator-callout {
+    background: #EFF6FF;
+    border: 1px solid #BFDBFE;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+  }
+  .generator-callout-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1E3A5F;
+    margin-bottom: 10px;
+  }
+  .generator-callout p {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .generator-callout-steps {
+    font-size: 14px;
+    padding-left: 22px;
+    margin-bottom: 12px;
+  }
+  .generator-callout-steps li {
+    margin-bottom: 6px;
   }
   .toc {
     background: #F9FAFB;
