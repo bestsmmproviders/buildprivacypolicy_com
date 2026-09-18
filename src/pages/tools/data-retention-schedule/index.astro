@@ -1,9 +1,10 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 
-const title = "Data Retention Schedule Builder - BuildPrivacyPolicy";
-const description = "Free data retention schedule builder: select your data types, jurisdictions, and business model to get recommended retention periods with legal references.";
+const title = "Data Retention Policy Template (Free) - BuildPrivacyPolicy";
+const description = "Free data retention policy template covering 11 data types across GDPR, CCPA, LGPD, PIPEDA, and DPDP. Copy the schedule table or use the interactive builder.";
 const publishDate = "2026-08-28";
+const modifiedDate = "2026-09-17";
 ---
 
 <Layout title={title} description={description}>
@@ -21,10 +22,47 @@ const publishDate = "2026-08-28";
 <article class="page-container">
   <div class="page-card">
     <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Tools</p>
-    <h1>Data Retention Schedule Builder</h1>
-    <p class="last-updated">Published August 28, 2026</p>
+    <h1>Data Retention Policy Template</h1>
+    <p class="last-updated">Published August 28, 2026 · Updated September 17, 2026</p>
 
-    <p>Privacy laws require you to state how long you keep each type of personal data, but they rarely hand you a number. This tool does the lookup for you: select the data types your app or website collects, the jurisdictions your users are in, and your business model, then get a retention schedule table with recommended periods, the legal basis for each, and a ready-to-paste paragraph for your privacy policy's retention section.</p>
+    <p>A data retention policy template gives your organization a ready-made framework for documenting how long you keep each category of personal data and when that data must be deleted or anonymized. The table below lists recommended retention periods for 11 common data types across five major privacy frameworks — GDPR, CCPA/CPRA, PIPEDA, LGPD, and India's DPDP Act. Copy it directly into your internal records, or scroll down to the <a href="#builder">interactive builder</a> to generate a custom retention schedule and a paste-ready clause for your privacy policy.</p>
+
+    <h2 id="retention-schedule">Retention Schedule Template</h2>
+
+    <p>The following retention schedule covers the data types most commonly collected by apps and websites. Each period reflects the strictest cross-jurisdictional default drawn from published regulatory guidance. Copy the table and adjust the periods to match your specific data practices.</p>
+
+    <div class="static-table-wrap">
+      <div class="table-wrap">
+        <table class="retention-table" id="static-retention-table">
+          <thead>
+            <tr>
+              <th>Data Type</th>
+              <th>Recommended Retention</th>
+              <th>Legal Basis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Account Email</td><td>Account duration + 30 days</td><td>GDPR Art. 5(1)(e); CPRA §1798.100(d)</td></tr>
+            <tr><td>User Name</td><td>Account duration + 30 days</td><td>GDPR Art. 5(1)(e); CPRA §1798.100(d)</td></tr>
+            <tr><td>IP Address</td><td>6 months</td><td>EDPB server-log guidance; CPRA §1798.100(d)</td></tr>
+            <tr><td>Device ID</td><td>12 months</td><td>CNIL Deliberation 2020-091; CPRA §1798.100(d)</td></tr>
+            <tr><td>Location Data</td><td>Delete after use</td><td>GDPR Art. 9; CPRA §1798.121</td></tr>
+            <tr><td>Voice Utterances</td><td>Delete after processing (max 30 days)</td><td>GDPR Art. 9; CPRA §1798.121</td></tr>
+            <tr><td>Message Content</td><td>Account duration + 30 days</td><td>GDPR Art. 5(1)(e); CPRA §1798.100(d)</td></tr>
+            <tr><td>Payment Records</td><td>7 years (statutory floor)</td><td>HGB §257; 26 USC §6501; Income Tax Act s. 230</td></tr>
+            <tr><td>Analytics Events</td><td>12 months</td><td>CNIL Deliberation 2020-091; CPRA §1798.100(d)</td></tr>
+            <tr><td>Cookies</td><td>13 months</td><td>ePrivacy Directive Art. 5(3); CNIL guidelines</td></tr>
+            <tr><td>Children's Data</td><td>Minimize and delete promptly</td><td>GDPR Art. 8; COPPA 16 CFR §312</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <button type="button" class="copy-btn" id="copy-table-btn">Copy Table to Clipboard</button>
+      <span class="copy-feedback" id="copy-table-feedback"></span>
+    </div>
+
+    <h2 id="builder">Custom Retention Schedule Builder</h2>
+
+    <p>Need a retention schedule tailored to your exact data types, jurisdictions, and business model? Use the interactive builder below. It cross-references regulatory defaults across your selections and outputs a table plus a ready-to-paste retention clause for your privacy policy. Not sure which jurisdictions apply? Run the <a href="/tools/privacy-law-checker/">privacy law applicability checker</a> first.</p>
 
     <div class="tool-container">
       <div class="tool-form" id="builder-form">
@@ -113,9 +151,25 @@ const publishDate = "2026-08-28";
       </div>
     </div>
 
-    <h2 id="how-to-use">How to Use This Tool</h2>
+    <h2 id=”what-is-data-retention-policy”>What Is a Data Retention Policy?</h2>
 
-    <p>Start by checking every data type your app or website collects. Next, select the jurisdictions where your users are located — if you are unsure, run the <a href="/tools/privacy-law-checker/">privacy law applicability checker</a> first to find out which regulations apply to you. Pick your business type from the dropdown, then hit “Generate Retention Schedule.” The tool cross-references a built-in lookup table to find the shortest binding constraint and any statutory minimums across your selected jurisdictions, then outputs a table you can reference internally and a ready-to-paste paragraph for your policy. Once your retention periods are set, <a href="https://buildprivacypolicy.com/">generate your full privacy policy</a> to build a compliant document around them.</p>
+    <p>A data retention policy is a formal document that specifies how long an organization stores each category of personal data, the legal basis for that storage period, and the procedure for secure deletion once the period expires. Privacy regulations including the GDPR (Article 5(1)(e)), California's CPRA (Civil Code §1798.100(d)), Brazil's LGPD (Article 16), Canada's PIPEDA (Principle 4.5), and India's DPDP Act (Section 8(7)) all require controllers to define and disclose retention periods rather than keeping data indefinitely.</p>
+
+    <p>For app and website developers, the policy typically lives inside your privacy policy's “Data Retention” or “How Long We Keep Your Data” section. It should name each data type you collect — account information, device identifiers, analytics events, payment records — state a specific retention period for each, and cite the legal basis. Vague language like “as long as necessary” does not satisfy GDPR Article 13(2)(a), which requires either a concrete period or the criteria used to determine one. The template table and builder on this page generate both.</p>
+
+    <h2 id=”how-to-use”>How to Use This Tool</h2>
+
+    <p>Start by checking every data type your app or website collects in the builder above. Next, select the jurisdictions where your users are located — if you are unsure, run the <a href=”/tools/privacy-law-checker/”>privacy law applicability checker</a> first to find out which regulations apply to you. Pick your business type from the dropdown, then click “Generate Retention Schedule.” The builder cross-references a built-in lookup table of regulatory defaults to find the strictest binding ceiling and any statutory minimums across your selected jurisdictions. The output includes a retention table you can reference internally and a ready-to-paste paragraph for your privacy policy's data retention section. Once your retention periods are set, <a href=”https://buildprivacypolicy.com/”>generate your full privacy policy</a> to build a compliant document around them.</p>
+
+    <h2 id="gdpr-data-retention-requirements">GDPR Data Retention Requirements</h2>
+
+    <p>The GDPR does not prescribe a single retention period for all personal data. Instead, it establishes storage limitation under Article 5(1)(e) and requires controllers to define their own periods based on the purpose of processing. Several articles work together to make this enforceable.</p>
+
+    <p>Article 13(2)(a) requires controllers to inform data subjects of the storage period, or the criteria used to determine it, at the time data is collected. Article 17(1)(a) establishes the right to erasure when personal data is no longer necessary for its original purpose. Article 25(1) codifies data protection by design, which the European Data Protection Board interprets to include built-in deletion schedules that execute automatically when periods expire. Article 30(1)(f) requires the record of processing activities to include "envisaged time limits for erasure" for each data category.</p>
+
+    <p>Enforcement has confirmed these are not optional disclosures. France's CNIL fined Google €150 million in January 2022 (Deliberation SAN-2021-023) in part because analytics cookies persisted beyond any disclosed retention period; the authority cited the absence of a defined storage duration as a standalone violation. The Irish Data Protection Commission's €225 million fine against WhatsApp in September 2021 included transparency failures around retention disclosures under Articles 12 through 14.</p>
+
+    <p>For app and website developers with EU users, the practical requirement is straightforward: every data type in your privacy policy needs a named retention period and a cited legal basis. Use the <a href="#retention-schedule">retention schedule table</a> above as a starting point, then <a href="/tools/privacy-law-checker/">check which privacy laws apply to you</a> before finalizing your periods.</p>
 
     <h2 id="why-retention-periods">Why Every Privacy Policy Needs Retention Periods</h2>
 
@@ -175,6 +229,21 @@ const publishDate = "2026-08-28";
         <h3>Does this tool send my data anywhere?</h3>
         <p>No. Everything runs in your browser. The retention lookup table is embedded in the page, and no data is sent to any server. Your selections and results stay on your device.</p>
       </div>
+
+      <div class="faq-item">
+        <h3>How long should I keep personal data?</h3>
+        <p>Retention periods depend on the data type, the jurisdictions your users are in, and the purpose for which the data was collected. Under the GDPR, the default is purpose limitation — keep data only as long as you need it for the stated purpose, then delete it. Under the CPRA, the standard is "reasonably necessary and proportionate." Common defaults include 30 days after account closure for account emails, 6 months for server-log IP addresses, 12 to 13 months for analytics and cookies, and 7 years for payment and tax records where statutory floors apply. Use the builder on this page to generate periods tailored to your data types and jurisdictions.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What is the difference between a data retention policy and a data backup policy?</h3>
+        <p>A data retention policy defines how long you keep active data for legal, regulatory, and business purposes — and when to delete it. A data backup policy defines how you create copies of that data to protect against system failure, accidental deletion, or ransomware. Retention governs the data lifecycle; backup governs disaster recovery. Both are needed, but they serve different purposes. Your retention policy should specify that retention periods also apply to backup copies — otherwise, data you intended to delete may persist indefinitely in backup archives.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do I need a data retention policy for my app or website?</h3>
+        <p>Yes. If your app or website collects any personal data — account emails, IP addresses, analytics events, payment details — you need a data retention policy. The GDPR requires it for any controller processing EU residents' data (Article 13(2)(a)). California's CPRA requires it for businesses meeting its revenue or data-volume thresholds (Civil Code §1798.100(d)). Even where no law explicitly mandates a standalone retention policy, Google Play and Apple's App Store require a privacy policy that discloses data practices, and vague retention language is a common reason for review delays.</p>
+      </div>
     </div>
 
   </div>
@@ -184,7 +253,7 @@ const publishDate = "2026-08-28";
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Data Retention Schedule Builder",
+  "name": "Data Retention Policy Template & Builder",
   "description": description,
   "url": "https://buildprivacypolicy.com/tools/data-retention-schedule/",
   "applicationCategory": "BusinessApplication",
@@ -199,7 +268,8 @@ const publishDate = "2026-08-28";
     "name": "BuildPrivacyPolicy",
     "url": "https://buildprivacypolicy.com/"
   },
-  "datePublished": publishDate
+  "datePublished": publishDate,
+  "dateModified": modifiedDate
 })} />
 
 <script type="application/ld+json" set:html={JSON.stringify({
@@ -244,6 +314,30 @@ const publishDate = "2026-08-28";
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "No. Everything runs in your browser. The retention lookup table is embedded in the page, and no data is sent to any server. Your selections and results stay on your device."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long should I keep personal data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Retention periods depend on the data type, jurisdictions, and purpose of collection. Common defaults include 30 days after account closure for account emails, 6 months for IP addresses, 12 to 13 months for analytics and cookies, and 7 years for payment records where statutory floors apply."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a data retention policy and a data backup policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A data retention policy defines how long you keep active data and when to delete it. A data backup policy defines how you create copies of data to protect against system failure. Retention governs the data lifecycle; backup governs disaster recovery."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a data retention policy for my app or website?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. If your app or website collects any personal data, you need a data retention policy. The GDPR requires it for any controller processing EU residents' data. California's CPRA requires it for qualifying businesses. App stores also require privacy policies that disclose data practices including retention."
       }
     }
   ]
@@ -559,6 +653,44 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var copyTableBtn = document.getElementById('copy-table-btn');
+  var copyTableFeedback = document.getElementById('copy-table-feedback');
+  if (!copyTableBtn) return;
+
+  copyTableBtn.addEventListener('click', function () {
+    var table = document.getElementById('static-retention-table');
+    var rows = table.querySelectorAll('tr');
+    var lines = [];
+    rows.forEach(function (row) {
+      var cells = row.querySelectorAll('th, td');
+      var cols = [];
+      cells.forEach(function (c) { cols.push(c.textContent.trim()); });
+      lines.push(cols.join('\t'));
+    });
+    var text = lines.join('\n');
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        copyTableFeedback.textContent = 'Copied!';
+        setTimeout(function () { copyTableFeedback.textContent = ''; }, 2000);
+      });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      copyTableFeedback.textContent = 'Copied!';
+      setTimeout(function () { copyTableFeedback.textContent = ''; }, 2000);
+    }
+  });
+});
+</script>
+
 </Layout>
 
 <style>
@@ -637,6 +769,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   .reset-btn { margin-top: 20px; padding: 10px 20px; font-size: 14px; font-weight: 600; font-family: inherit; color: #374151; background: white; border: 1px solid #D1D5DB; border-radius: 8px; cursor: pointer; transition: background 0.15s; }
   .reset-btn:hover { background: #F9FAFB; }
+
+  .static-table-wrap { margin: 20px 0 28px; }
+  .static-table-wrap .copy-btn { margin-top: 10px; }
+  .static-table-wrap .copy-feedback { margin-left: 10px; font-size: 13px; font-weight: 600; color: #059669; }
 
   .faq-list { margin-top: 8px; }
   .faq-item { border-top: 1px solid #E5E7EB; padding-top: 20px; margin-bottom: 8px; }
