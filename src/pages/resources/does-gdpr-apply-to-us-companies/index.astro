@@ -1,0 +1,393 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const title = "Does GDPR Apply to US Companies? What to Know";
+const description = "Find out when and how the GDPR applies to US-based companies. Learn about Article 3 territorial-scope triggers, compliance steps, and realistic penalty risks.";
+const publishDate = "2026-09-18";
+const modifiedDate = "2026-09-18";
+---
+
+<Layout title={title} description={description}>
+
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="128" height="128" rx="28" fill="#1E3A5F"/><path d="M64 24C64 24 40 34 32 38V62C32 82 46 98 64 104C82 98 96 82 96 62V38C88 34 64 24 64 24Z" fill="#2E5A8F" stroke="#5B9BD5" stroke-width="2.5"/><path d="M52 64L60 72L78 54" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+</div>
+
+<main>
+<article class="page-container">
+  <div class="page-card">
+    <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
+    <h1>Does GDPR Apply to US Companies? The Territorial-Scope Test Explained</h1>
+    <p class="last-updated">Published September 18, 2026</p>
+
+    <p>Yes, the GDPR can apply to US companies -- even those with no office, server, or employee in Europe. The regulation's reach is determined by whose data you process and what you do with it, not by where your business is incorporated. If your app or website collects personal data from people located in the European Economic Area (EEA), you may be subject to the full weight of the GDPR regardless of your company's size or location.</p>
+
+    <p>This guide breaks down the specific legal triggers in Article 3 of the GDPR, walks through concrete examples a US app developer would recognize, clarifies the situations that do <em>not</em> bring a US company within scope, and explains what compliance actually requires if the regulation does apply to you. If you want a quick answer on which privacy laws cover your specific setup, you can run a <a href="/tools/privacy-law-checker/">privacy law eligibility check based on your platforms and audience</a> in under a minute.</p>
+
+    <nav class="toc">
+      <p class="toc-title">Contents</p>
+      <ol>
+        <li><a href="#territorial-scope">The Short Answer: GDPR's Territorial-Scope Test</a></li>
+        <li><a href="#article-3-triggers">Article 3 Triggers: Offering Services and Monitoring Behavior</a></li>
+        <li><a href="#what-does-not-trigger">What Does NOT Trigger GDPR</a></li>
+        <li><a href="#what-you-must-do">What You Must Do If GDPR Applies</a></li>
+        <li><a href="#penalties">Penalties and Realistic Enforcement Risk</a></li>
+        <li><a href="#faq">Frequently Asked Questions</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="territorial-scope">The Short Answer: GDPR's Territorial-Scope Test</h2>
+
+    <p>Article 3 of the GDPR defines three ways an organization falls within its jurisdiction. The first, Article 3(1), applies to any company that has an "establishment" in the EU -- an office, a subsidiary, or a branch. This one rarely surprises anyone. The two that catch US companies off guard are in Article 3(2):</p>
+
+    <ul>
+      <li><strong>Article 3(2)(a) -- Offering goods or services.</strong> If your company offers goods or services to individuals who are in the EEA, the GDPR applies. The key word is "offers" -- you do not need to charge money or complete a sale. A free app available to EU users counts.</li>
+      <li><strong>Article 3(2)(b) -- Monitoring behavior.</strong> If your company monitors the behavior of individuals in the EEA, the GDPR applies. Behavior monitoring includes analytics tracking, cookie-based profiling, retargeting, location tracking, and any form of behavioral advertising aimed at EU users.</li>
+    </ul>
+
+    <p>The test is about the data subjects' location at the time of processing, not their citizenship or residency. A French tourist visiting your website from Paris is an individual "in the Union" under Article 3. That same person visiting your site from New York is not.</p>
+
+    <h2 id="article-3-triggers">Article 3 Triggers: Offering Services and Monitoring Behavior</h2>
+
+    <h3>When "offering goods or services" applies</h3>
+
+    <p>The GDPR does not require you to explicitly target the EU market. Recital 23 of the regulation lists indicators that a company intends to offer services to EU individuals. If any of the following apply to your app or website, you are likely within scope:</p>
+
+    <ul>
+      <li>Your app is available on the EU App Store or Google Play Store in EU countries, and you have not geo-restricted it away from those regions.</li>
+      <li>Your website offers content or pricing in an EU language (other than English) or displays prices in euros.</li>
+      <li>You use a <code>.eu</code> or country-code top-level domain like <code>.de</code> or <code>.fr</code>.</li>
+      <li>You mention EU-specific shipping, delivery, or customer support availability.</li>
+      <li>Your marketing campaigns target EU audiences through Google Ads geo-targeting, Meta audience settings, or similar platforms.</li>
+    </ul>
+
+    <p>For a US app developer, the most common trigger is the first one: publishing an app to a global app store without restricting EU availability. The moment a user in Germany downloads your free utility app and it collects their email address or device identifier, you are processing personal data of an individual in the Union under Article 3(2)(a).</p>
+
+    <h3>When "monitoring behavior" applies</h3>
+
+    <p>Article 3(2)(b) has a lower bar than most US developers expect. Recital 24 clarifies that monitoring includes tracking individuals on the internet to create profiles, analyze preferences, predict behavior, or serve personalized content. Concrete triggers include:</p>
+
+    <ul>
+      <li>Running Google Analytics, Mixpanel, Amplitude, or any analytics platform that collects IP addresses or device identifiers from EU visitors.</li>
+      <li>Setting advertising cookies (Meta Pixel, Google Ads conversion tracking) that follow EU visitors across sites.</li>
+      <li>Using session-recording tools like Hotjar or FullStory on pages accessible to EU users.</li>
+      <li>Implementing push notifications or in-app messaging that tracks engagement behavior by user.</li>
+    </ul>
+
+    <p>If your website or app is publicly accessible and you have not geo-blocked EU traffic, the analytics and advertising tools you already use are almost certainly monitoring the behavior of individuals in the EEA.</p>
+
+    <h2 id="what-does-not-trigger">What Does NOT Trigger GDPR</h2>
+
+    <p>Not every US company with a website falls under the GDPR. The regulation targets intentional engagement with the EU market, not incidental contact. These situations generally do <em>not</em> trigger GDPR obligations:</p>
+
+    <ul>
+      <li><strong>A US-only service with geo-blocking.</strong> If your app is restricted to the US App Store and your website geo-blocks EU IP addresses, you are not offering services to or monitoring individuals in the EEA.</li>
+      <li><strong>Incidental EU traffic with no targeting.</strong> An EU tourist stumbling onto your US-only restaurant website does not, on its own, bring you within scope -- provided you have no EU-language content, no EU-targeted ads, and no intent to serve EU visitors. The European Data Protection Board (EDPB) has noted that mere accessibility of a website from the EU is not enough.</li>
+      <li><strong>B2B services sold exclusively to US companies.</strong> If your SaaS product is sold only to US-based businesses and you have no EU end users whose data you process, the GDPR typically does not apply. However, if your US client's EU employees or EU customers' data flows through your system, you may be a processor under the GDPR.</li>
+      <li><strong>Processing data of EU citizens outside the EU.</strong> Article 3(2) keys on the location of the individual at the time of processing, not their nationality. Data collected from an EU citizen who is physically in the United States at the time of collection is not covered by Article 3(2).</li>
+    </ul>
+
+    <p>The gray area is small but real. If you are unsure whether your specific data flows bring you within scope, the safe practice is to comply -- the cost of basic GDPR compliance is far lower than the cost of a regulator inquiry. To map your situation to the privacy laws that apply, our <a href="/tools/privacy-law-checker/">privacy law checker</a> walks through the relevant factors in a few clicks.</p>
+
+    <h2 id="what-you-must-do">What You Must Do If GDPR Applies</h2>
+
+    <p>If the Article 3 analysis puts your US company in scope, the GDPR requires a specific set of actions. These are not optional best practices -- they are legal obligations with enforcement behind them.</p>
+
+    <ul>
+      <li><strong>Lawful basis for processing.</strong> Every category of personal data you collect needs a lawful basis under Article 6. For most US app developers, the relevant bases are consent (Article 6(1)(a)) for marketing and analytics cookies, and legitimate interest (Article 6(1)(f)) for core product functionality. You must document which basis applies to each processing activity.</li>
+      <li><strong>Transparent privacy policy.</strong> Articles 13 and 14 require you to tell users exactly what data you collect, why, who receives it, how long you keep it, and what rights they have. Generic or vague language does not satisfy the transparency requirement. Your privacy policy must name your lawful bases, your data retention periods, and the categories of third-party recipients. If you need a policy that covers GDPR requirements for your specific data practices, you can <a href="https://buildprivacypolicy.com/">generate one for free with the privacy policy builder</a>.</li>
+      <li><strong>Data subject rights.</strong> You must provide mechanisms for EU individuals to exercise their rights under Articles 15 through 22: access, rectification, erasure ("right to be forgotten"), restriction, data portability, and objection. You have one month to respond to a valid request.</li>
+      <li><strong>Data processing agreements.</strong> If you use third-party services that process personal data on your behalf (hosting providers, analytics platforms, email tools), Article 28 requires a written data processing agreement with each one.</li>
+      <li><strong>EU representative.</strong> Article 27 requires companies outside the EU that are subject to the GDPR to appoint a representative established in an EU member state. This representative acts as a local contact point for data subjects and supervisory authorities. Small-scale or occasional processing may be exempt, but most US companies serving EU users through an app or website do not qualify for the exemption.</li>
+      <li><strong>Data breach notification.</strong> Under Article 33, if a personal data breach occurs, you must notify the relevant EU supervisory authority within 72 hours of becoming aware of it. If the breach poses a high risk to individuals, Article 34 requires you to notify the affected individuals directly.</li>
+    </ul>
+
+    <p>For a US company building an app that collects user data, the practical starting points are a GDPR-compliant privacy policy, cookie consent for non-essential tracking, and documented lawful bases. These three steps address the most common enforcement triggers. For a broader look at building a compliant policy, our guide on <a href="/resources/privacy-policy-for-small-business/">creating a privacy policy for a small business</a> walks through required clauses step by step.</p>
+
+    <h2 id="penalties">Penalties and Realistic Enforcement Risk</h2>
+
+    <p>The GDPR's headline penalty numbers -- up to 20 million euros or 4% of annual global turnover under Article 83(5) -- are real, but the enforcement picture is more nuanced than the headlines suggest.</p>
+
+    <p><strong>How fines actually work.</strong> Article 83(2) lists the factors supervisory authorities consider when setting fines: the nature and gravity of the infringement, whether it was intentional or negligent, what steps the company took to mitigate damage, the categories of data involved, and the company's degree of cooperation. The maximum is a ceiling, not a starting point. Most fines against small and mid-size companies are in the tens of thousands of euros, not millions.</p>
+
+    <p><strong>Enforcement reality for small US companies.</strong> EU data protection authorities have limited budgets and prioritize enforcement actions against large-scale processors and repeat offenders. A US startup processing data from a few thousand EU users is unlikely to be the first target of a cross-border investigation. That said, enforcement activity has increased year over year since 2018, and several non-EU companies have received fines. Clearview AI, for instance, was fined by regulators in France, Italy, and Greece despite having no EU presence.</p>
+
+    <p><strong>The real risk is not the fine itself.</strong> For most small US companies, the practical risks of non-compliance are reputational damage, loss of EU partnerships or customers who require GDPR compliance from their vendors, and app store enforcement. Both Apple and Google have tightened privacy requirements for apps in their stores, and a GDPR complaint from an EU user can trigger a review that affects your app's availability.</p>
+
+    <p>The pragmatic calculation: basic GDPR compliance -- a proper privacy policy, cookie consent, and documented data practices -- costs very little for a small company. The downside risk of ignoring the regulation entirely, while statistically small in any given year, carries disproportionate consequences if it materializes.</p>
+
+    <h2 id="faq">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Does GDPR apply if I have no EU customers?</h3>
+        <p>If you have genuinely geo-blocked EU access and do not target EU audiences through advertising, app store availability, or EU-language content, the GDPR generally does not apply. However, if your website or app is publicly accessible and uses analytics or advertising tools that track EU visitors, you may be monitoring behavior under Article 3(2)(b) even without intentional EU customers.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do I need an EU representative under GDPR?</h3>
+        <p>Article 27 requires non-EU companies subject to the GDPR to appoint a representative in an EU member state. The representative serves as a contact point for supervisory authorities and data subjects. Exemptions exist for public authorities and for processing that is occasional, does not include large-scale processing of special categories of data, and is unlikely to result in a risk to individuals. Most US companies with a publicly available app or website that collects EU user data do not meet the exemption criteria.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can a US company be fined under GDPR?</h3>
+        <p>Yes. The GDPR applies based on the data subjects' location, not the company's location. EU supervisory authorities have issued fines to companies outside the EU, including Clearview AI (fined by France, Italy, and Greece). Enforcement against smaller non-EU companies is less common but increasing. Cross-border cooperation agreements between EU authorities are improving their ability to pursue non-EU entities.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Is GDPR the same as US privacy laws like CCPA?</h3>
+        <p>No. The GDPR and US privacy laws like the CCPA differ in scope, legal basis, and enforcement. The GDPR requires a lawful basis for every processing activity, applies to any company processing EU residents' data regardless of size, and grants broad individual rights including data portability. The CCPA applies only to businesses meeting specific revenue or data-volume thresholds and focuses on disclosure and opt-out rights rather than requiring affirmative consent. Complying with one does not mean you comply with the other.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does GDPR apply to small businesses and startups?</h3>
+        <p>Yes. The GDPR has no revenue threshold, no employee count minimum, and no small-business exemption. A solo developer with a free app downloaded by EU users is subject to the same transparency and data protection obligations as a multinational corporation. The scale of your obligations reflects the scale and risk of your data processing, but the core requirements -- lawful basis, privacy notice, data subject rights -- apply regardless of company size.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What is the first step toward GDPR compliance for a US company?</h3>
+        <p>Start with a data mapping exercise: identify every category of personal data you collect from EU individuals, where it is stored, who has access, and which third parties receive it. Then draft a GDPR-compliant privacy policy that covers lawful bases, retention periods, third-party disclosures, and data subject rights. Implement cookie consent for non-essential tracking. These three steps address the most common enforcement triggers and form the foundation for full compliance.</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+</main>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Does GDPR Apply to US Companies? The Territorial-Scope Test Explained",
+  "description": description,
+  "datePublished": publishDate,
+  "dateModified": modifiedDate,
+  "author": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buildprivacypolicy.com/resources/does-gdpr-apply-to-us-companies/"
+  }
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does GDPR apply if I have no EU customers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you have genuinely geo-blocked EU access and do not target EU audiences through advertising, app store availability, or EU-language content, the GDPR generally does not apply. However, if your website or app is publicly accessible and uses analytics or advertising tools that track EU visitors, you may be monitoring behavior under Article 3(2)(b) even without intentional EU customers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need an EU representative under GDPR?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Article 27 requires non-EU companies subject to the GDPR to appoint a representative in an EU member state. The representative serves as a contact point for supervisory authorities and data subjects. Exemptions exist for occasional processing unlikely to result in risk to individuals, but most US companies with a publicly available app or website that collects EU user data do not meet the exemption criteria."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a US company be fined under GDPR?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The GDPR applies based on the data subjects' location, not the company's location. EU supervisory authorities have issued fines to companies outside the EU, including Clearview AI. Enforcement against smaller non-EU companies is less common but increasing as cross-border cooperation agreements improve."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is GDPR the same as US privacy laws like CCPA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The GDPR requires a lawful basis for every processing activity and applies regardless of company size. The CCPA applies only to businesses meeting specific revenue or data-volume thresholds and focuses on disclosure and opt-out rights rather than requiring affirmative consent. Complying with one does not mean you comply with the other."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does GDPR apply to small businesses and startups?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The GDPR has no revenue threshold, no employee count minimum, and no small-business exemption. A solo developer with a free app downloaded by EU users is subject to the same transparency and data protection obligations as a multinational corporation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the first step toward GDPR compliance for a US company?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start with a data mapping exercise: identify every category of personal data you collect from EU individuals, where it is stored, who has access, and which third parties receive it. Then draft a GDPR-compliant privacy policy and implement cookie consent for non-essential tracking. These three steps address the most common enforcement triggers."
+      }
+    }
+  ]
+})} />
+
+</Layout>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-link:hover {
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+  .page-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 16px 80px;
+  }
+  .page-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px 36px;
+    border: 1px solid #E5E7EB;
+  }
+  .breadcrumb {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 16px;
+  }
+  .breadcrumb a {
+    color: #6B7280;
+    text-decoration: underline;
+  }
+  .page-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .last-updated {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 24px;
+  }
+  .page-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .page-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  .page-card p {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .page-card ul, .page-card ol {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+  .page-card li {
+    margin-bottom: 8px;
+  }
+  .page-card a {
+    color: #2563EB;
+    text-decoration: underline;
+  }
+  .page-card strong {
+    font-weight: 600;
+  }
+  .page-card em {
+    font-style: italic;
+  }
+  .toc {
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 8px;
+  }
+  .toc-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .toc ol {
+    margin-bottom: 0;
+    padding-left: 20px;
+  }
+  .toc li {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .toc a {
+    color: #2563EB;
+  }
+  .faq-list {
+    margin-top: 8px;
+  }
+  .faq-item {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 20px;
+    margin-bottom: 8px;
+  }
+  .faq-item h3 {
+    margin-top: 0;
+  }
+  .faq-item p {
+    margin-bottom: 8px;
+  }
+</style>
