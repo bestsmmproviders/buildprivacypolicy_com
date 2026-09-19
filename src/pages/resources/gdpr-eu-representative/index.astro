@@ -1,0 +1,464 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const title = "GDPR EU Representative: What Article 27 Requires";
+const description = "Learn when GDPR Article 27 requires a non-EU company to appoint an EU representative, who is exempt, and how to name your representative in your privacy policy.";
+const publishDate = "2026-09-19";
+const modifiedDate = "2026-09-19";
+---
+
+<Layout title={title} description={description}>
+
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="128" height="128" rx="28" fill="#1E3A5F"/><path d="M64 24C64 24 40 34 32 38V62C32 82 46 98 64 104C82 98 96 82 96 62V38C88 34 64 24 64 24Z" fill="#2E5A8F" stroke="#5B9BD5" stroke-width="2.5"/><path d="M52 64L60 72L78 54" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+</div>
+
+<main>
+<article class="page-container">
+  <div class="page-card">
+    <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
+    <h1>GDPR EU Representative: What Article 27 Requires and How to Comply</h1>
+    <p class="last-updated">Published September 19, 2026</p>
+
+    <p>A GDPR EU representative is a person or organization based in the European Union that a non-EU company designates as its local contact point for data protection authorities and individuals whose data it processes. Article 27 of the GDPR requires this appointment whenever a company outside the EU is subject to the regulation under Article 3(2) -- meaning it offers goods or services to people in the EU, or monitors their behavior. If your app or website serves EU users and you have no EU establishment, you almost certainly need one.</p>
+
+    <p>This guide covers what Article 27 actually says, who qualifies for an exemption, how a representative differs from a Data Protection Officer, what the appointment process involves, and how to disclose your representative in your privacy policy with ready-to-use clause text. If you are not yet sure whether the GDPR applies to your company at all, start with our breakdown of <a href="/resources/does-gdpr-apply-to-us-companies/">whether GDPR applies to US companies</a> -- it covers the Article 3 territorial-scope test in detail.</p>
+
+    <nav class="toc">
+      <p class="toc-title">Contents</p>
+      <ol>
+        <li><a href="#article-27-requirements">What Article 27 Actually Requires</a></li>
+        <li><a href="#exemptions">Who Is Exempt</a></li>
+        <li><a href="#representative-vs-dpo">What a Representative Does (and Does Not Do)</a></li>
+        <li><a href="#how-to-appoint">How to Appoint an EU Representative</a></li>
+        <li><a href="#privacy-policy-clause">Naming Your Representative in Your Privacy Policy</a></li>
+        <li><a href="#faq">Frequently Asked Questions</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="article-27-requirements">What Article 27 Actually Requires</h2>
+
+    <p>Article 27(1) of the GDPR states:</p>
+
+    <blockquote>
+      <p>"Where Article 3(2) applies, the controller or the processor shall designate in writing a representative in the Union."</p>
+    </blockquote>
+
+    <p>In plain language: if you are a company outside the EU and the GDPR applies to you because you offer goods or services to people in the EU or monitor their behavior (the two triggers in Article 3(2)), you must appoint a representative who is physically established in an EU member state. The appointment must be in writing -- a verbal agreement does not satisfy the requirement.</p>
+
+    <p>Article 27(3) adds a geographic constraint. Your representative must be established in one of the member states where the data subjects whose data you process are located. If your app's EU users are spread across multiple countries, the representative can be in any one of those member states -- you do not need a representative in every country where you have users.</p>
+
+    <p>Article 27(4) defines the representative's role: they are "mandated by the controller or processor to be addressed in addition to or instead of the controller or the processor by, in particular, supervisory authorities and data subjects, on all issues related to processing." The representative is not a shield or a substitute for your own accountability -- Article 27(5) makes clear that appointing a representative does not affect any legal actions that could be brought against you directly.</p>
+
+    <p>The obligation applies to both data controllers (companies that decide why and how personal data is processed) and data processors (companies that process data on behalf of a controller). If you are a US-based SaaS company that processes EU user data on behalf of your clients, you need a representative just as much as a company collecting that data directly.</p>
+
+    <h2 id="exemptions">Who Is Exempt</h2>
+
+    <p>Article 27(2) carves out two exemptions from the representative requirement. Both are narrower than most small companies expect.</p>
+
+    <h3>The occasional-processing exemption</h3>
+
+    <p>Article 27(2)(a) exempts processing that meets <em>all three</em> of the following conditions simultaneously:</p>
+
+    <ul>
+      <li>The processing is <strong>occasional</strong> -- not regular, systematic, or ongoing.</li>
+      <li>The processing does not include large-scale processing of special categories of data (Article 9(1) data such as health, biometric, racial, or political opinion data) or data relating to criminal convictions and offences (Article 10).</li>
+      <li>The processing is <strong>unlikely to result in a risk</strong> to the rights and freedoms of natural persons, taking into account the nature, context, scope, and purposes of the processing.</li>
+    </ul>
+
+    <p>All three conditions must be met. Fail any one and the exemption does not apply. For most US companies with a publicly available app or website that continuously collects user data (email addresses, device identifiers, analytics data, IP addresses), the processing is not "occasional" -- it is ongoing and systematic. The exemption was designed for one-off or irregular data transfers, not for companies with a persistent digital presence serving EU users.</p>
+
+    <p>A practical example of processing that <em>would</em> qualify: a US consulting firm that occasionally receives a spreadsheet of employee data from a one-time EU client engagement, does not process any special-category data, and the data involves a small number of individuals with minimal risk. That is genuinely occasional. A US mobile app with EU downloads collecting analytics data daily is not.</p>
+
+    <h3>The public-authority exemption</h3>
+
+    <p>Article 27(2)(b) exempts public authorities and bodies. This is straightforward: if you are a government entity, you do not need to appoint a representative. This exemption is irrelevant to private companies, startups, and independent developers. If you are reading this guide, it almost certainly does not apply to you.</p>
+
+    <h2 id="representative-vs-dpo">What a Representative Does (and Does Not Do)</h2>
+
+    <p>The most common confusion around Article 27 is conflating the EU representative with a Data Protection Officer (DPO). They are different roles with different legal bases, different responsibilities, and different appointment triggers.</p>
+
+    <h3>What the representative does</h3>
+
+    <ul>
+      <li><strong>Acts as a local contact point.</strong> The representative is the address that EU data protection authorities and data subjects use to reach your company on data protection matters. When a supervisory authority in Germany wants to contact you about a complaint, they contact your representative.</li>
+      <li><strong>Maintains records of processing activities.</strong> Under Article 30, the representative must keep a copy of the records of processing activities that you, as the controller or processor, are required to maintain and provide to them.</li>
+      <li><strong>Cooperates with supervisory authorities.</strong> If a data protection authority initiates an inquiry or investigation, the representative cooperates with them on your behalf.</li>
+    </ul>
+
+    <h3>What the representative does NOT do</h3>
+
+    <ul>
+      <li><strong>The representative is not a DPO.</strong> A Data Protection Officer (required under Article 37 for certain types of organizations) has an internal advisory and oversight role -- they monitor compliance, conduct data protection impact assessments, and serve as the contact point for data subjects <em>within</em> the organization. The representative is an external-facing contact for <em>authorities and data subjects to reach you</em>. They are different obligations that can coexist: a company may need both a DPO and a representative.</li>
+      <li><strong>The representative does not make compliance decisions for you.</strong> They do not audit your data practices, design your data protection strategy, or advise you on lawful bases. Those responsibilities remain yours (or your DPO's, if you have one).</li>
+      <li><strong>The representative does not absorb your liability.</strong> Article 27(5) is explicit: appointing a representative does not limit or shift the legal actions that can be brought against you. The representative is a communication channel, not a liability buffer.</li>
+    </ul>
+
+    <p>Think of it this way: the DPO is your internal compliance advisor. The representative is your EU mailbox. Both are required under different conditions, and neither replaces the other.</p>
+
+    <h2 id="how-to-appoint">How to Appoint an EU Representative</h2>
+
+    <p>The appointment process under Article 27 requires a written mandate. There is no official form or registration with an EU authority -- the mandate is a contract between you and your representative. Here is what the process involves:</p>
+
+    <h3>Step 1: Choose your representative</h3>
+
+    <p>Your representative can be a natural person (an individual) or a legal person (a company or organization) established in the EU. Many companies use specialized representative service providers, but you can also appoint an EU-based law firm, a consultancy, or even an individual. The representative must be in a member state where your data subjects are located.</p>
+
+    <h3>Step 2: Draft the mandate letter</h3>
+
+    <p>The written mandate should contain at a minimum:</p>
+
+    <ul>
+      <li>The identity and contact details of both the appointing company (controller or processor) and the representative.</li>
+      <li>An explicit statement that the representative is designated under Article 27 of the GDPR.</li>
+      <li>The scope of the mandate: that the representative is authorized to be addressed by supervisory authorities and data subjects on all issues related to processing for the purposes of ensuring compliance with the GDPR.</li>
+      <li>The obligation of the representative to maintain the records of processing activities provided by the controller or processor under Article 30.</li>
+      <li>The obligation of the representative to cooperate with supervisory authorities on request.</li>
+      <li>Duration, termination, and liability provisions between the parties.</li>
+    </ul>
+
+    <h3>Step 3: Provide your records of processing</h3>
+
+    <p>Under Article 30(1) and 30(2), the representative must hold a copy of your records of processing activities. Prepare these records and provide them to the representative before or at the time of the appointment. The records must include the categories of data you process, the purposes, the categories of recipients, international transfer details, and retention periods.</p>
+
+    <h3>Step 4: Publish the representative's details</h3>
+
+    <p>Once appointed, you must make the representative's name and contact details available to data subjects and supervisory authorities. The standard place to do this is your privacy policy. Article 13(1)(a) and Article 14(1)(a) require that you provide the identity and contact details of your representative when informing data subjects about data processing.</p>
+
+    <h2 id="privacy-policy-clause">Naming Your Representative in Your Privacy Policy</h2>
+
+    <p>Your privacy policy must identify your EU representative when one is required. Articles 13 and 14 of the GDPR require that you provide the representative's identity and contact details as part of the information you give to data subjects at the point of data collection.</p>
+
+    <p>Below is a sample clause you can adapt for your own privacy policy. Replace the placeholder values with your representative's actual details:</p>
+
+    <div class="copy-block">
+      <p class="copy-block-label">Sample Privacy Policy Clause</p>
+      <div class="copy-block-content">
+        <p><strong>EU Representative</strong></p>
+        <p>We are not established in the European Union. In accordance with Article 27 of the General Data Protection Regulation (GDPR), we have appointed the following representative in the EU:</p>
+        <p>[Representative Name]<br />[Street Address]<br />[City, Postal Code, Country]<br />Email: [representative@example.com]</p>
+        <p>Our EU representative is authorized to be addressed by data subjects and supervisory authorities on all issues related to the processing of personal data under the GDPR. You may contact our representative with any data protection inquiry or to exercise your rights under the GDPR.</p>
+      </div>
+    </div>
+
+    <p>Place this clause near the top of your privacy policy alongside your own company's identity and contact information, or in a dedicated "Contact Us" or "Data Controller" section. The key requirement is that data subjects can find it without difficulty.</p>
+
+    <p>If you are building a privacy policy from scratch and want to make sure all required GDPR sections are covered -- including the representative disclosure -- you can <a href="https://buildprivacypolicy.com/">generate a privacy policy with the free generator</a>. To check whether your app's setup triggers GDPR at all (and which other laws may apply), the <a href="/tools/privacy-law-checker/">privacy law checker</a> walks through the factors in a few clicks.</p>
+
+    <h2 id="faq">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Is a GDPR EU representative the same as a Data Protection Officer?</h3>
+        <p>No. The EU representative (Article 27) is an external contact point for supervisory authorities and data subjects to reach a non-EU company. The Data Protection Officer (Article 37) is an internal compliance role that monitors data protection practices within the organization. They serve different functions, have different legal triggers, and a company may need both.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do I need an EU representative if my app is free?</h3>
+        <p>Yes, if your free app is available to EU users and collects their personal data. Article 3(2)(a) covers "offering goods or services" to people in the EU, and a free app counts as offering a service. The representative obligation under Article 27 follows from Article 3(2) applying -- it does not depend on whether you charge for your product.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I appoint anyone in the EU as my representative?</h3>
+        <p>Your representative can be any natural person or legal entity (company, law firm, consultancy) established in an EU member state where your data subjects are located. There is no certification or registration requirement. However, the representative must be able to fulfill the role -- maintaining processing records, responding to authority inquiries, and being reachable by data subjects. Many companies use dedicated representative service providers for this reason.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What happens if I do not appoint an EU representative?</h3>
+        <p>Failure to appoint a representative when required is itself a violation of the GDPR. Under Article 83(4)(a), it can result in administrative fines of up to 10 million euros or 2% of annual worldwide turnover, whichever is higher. Beyond fines, not having a representative makes it harder for supervisory authorities to contact you, which can escalate enforcement actions and make cooperation more difficult if a complaint arises.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does my representative need to be in every EU country where I have users?</h3>
+        <p>No. Article 27(3) requires the representative to be established in one of the member states where your data subjects are located. A single representative in one EU country covers you for the entire EU. You do not need a representative in every country where you have users.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does appointing a representative protect me from GDPR fines?</h3>
+        <p>No. Article 27(5) states that appointing a representative is "without prejudice to legal actions which could be initiated against the controller or the processor themselves." The representative is a compliance requirement, not a liability shield. You remain fully responsible for your data processing practices and can still be subject to fines and enforcement actions directly.</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+</main>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "GDPR EU Representative: What Article 27 Requires and How to Comply",
+  "description": description,
+  "datePublished": publishDate,
+  "dateModified": modifiedDate,
+  "author": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buildprivacypolicy.com/resources/gdpr-eu-representative/"
+  }
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is a GDPR EU representative the same as a Data Protection Officer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The EU representative (Article 27) is an external contact point for supervisory authorities and data subjects to reach a non-EU company. The Data Protection Officer (Article 37) is an internal compliance role that monitors data protection practices within the organization. They serve different functions, have different legal triggers, and a company may need both."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need an EU representative if my app is free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, if your free app is available to EU users and collects their personal data. Article 3(2)(a) covers offering goods or services to people in the EU, and a free app counts as offering a service. The representative obligation under Article 27 follows from Article 3(2) applying -- it does not depend on whether you charge for your product."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I appoint anyone in the EU as my representative?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your representative can be any natural person or legal entity established in an EU member state where your data subjects are located. There is no certification or registration requirement. However, the representative must be able to fulfill the role -- maintaining processing records, responding to authority inquiries, and being reachable by data subjects."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I do not appoint an EU representative?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Failure to appoint a representative when required is itself a violation of the GDPR. Under Article 83(4)(a), it can result in administrative fines of up to 10 million euros or 2% of annual worldwide turnover, whichever is higher. Not having a representative also makes it harder for supervisory authorities to contact you, which can escalate enforcement actions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does my representative need to be in every EU country where I have users?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Article 27(3) requires the representative to be established in one of the member states where your data subjects are located. A single representative in one EU country covers you for the entire EU."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does appointing a representative protect me from GDPR fines?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Article 27(5) states that appointing a representative is without prejudice to legal actions which could be initiated against the controller or the processor themselves. The representative is a compliance requirement, not a liability shield. You remain fully responsible for your data processing practices."
+      }
+    }
+  ]
+})} />
+
+</Layout>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-link:hover {
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+  .page-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 16px 80px;
+  }
+  .page-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px 36px;
+    border: 1px solid #E5E7EB;
+  }
+  .breadcrumb {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 16px;
+  }
+  .breadcrumb a {
+    color: #6B7280;
+    text-decoration: underline;
+  }
+  .page-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .last-updated {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 24px;
+  }
+  .page-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .page-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  .page-card p {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .page-card ul, .page-card ol {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+  .page-card li {
+    margin-bottom: 8px;
+  }
+  .page-card a {
+    color: #2563EB;
+    text-decoration: underline;
+  }
+  .page-card strong {
+    font-weight: 600;
+  }
+  .page-card em {
+    font-style: italic;
+  }
+  .page-card blockquote {
+    border-left: 3px solid #2563EB;
+    padding: 12px 20px;
+    margin: 16px 0;
+    background: #F9FAFB;
+    border-radius: 0 8px 8px 0;
+  }
+  .page-card blockquote p {
+    font-style: italic;
+    color: #374151;
+    margin-bottom: 0;
+  }
+  .toc {
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 8px;
+  }
+  .toc-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .toc ol {
+    margin-bottom: 0;
+    padding-left: 20px;
+  }
+  .toc li {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .toc a {
+    color: #2563EB;
+  }
+  .copy-block {
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    margin: 20px 0;
+    overflow: hidden;
+  }
+  .copy-block-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 12px 20px 8px;
+    margin-bottom: 0;
+    border-bottom: 1px solid #E5E7EB;
+    background: #F3F4F6;
+  }
+  .copy-block-content {
+    padding: 16px 20px;
+  }
+  .copy-block-content p {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .copy-block-content p:last-child {
+    margin-bottom: 0;
+  }
+  .faq-list {
+    margin-top: 8px;
+  }
+  .faq-item {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 20px;
+    margin-bottom: 8px;
+  }
+  .faq-item h3 {
+    margin-top: 0;
+  }
+  .faq-item p {
+    margin-bottom: 8px;
+  }
+</style>

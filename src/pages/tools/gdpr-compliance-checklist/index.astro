@@ -1,0 +1,1279 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const title = "GDPR Compliance Checklist - BuildPrivacyPolicy";
+const description = "Free interactive GDPR compliance checklist. Audit your readiness across six categories, get a scored report, and see prioritised fixes with GDPR article refs.";
+const publishDate = "2026-09-19";
+---
+
+<Layout title={title} description={description}>
+
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="128" height="128" rx="28" fill="#1E3A5F"/><path d="M64 24C64 24 40 34 32 38V62C32 82 46 98 64 104C82 98 96 82 96 62V38C88 34 64 24 64 24Z" fill="#2E5A8F" stroke="#5B9BD5" stroke-width="2.5"/><path d="M52 64L60 72L78 54" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+</div>
+
+<main>
+<article class="page-container">
+  <div class="page-card">
+    <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Tools</p>
+    <h1>GDPR Compliance Checklist</h1>
+    <p class="last-updated">Published September 19, 2026</p>
+
+    <p>Use this free self-assessment to find out how close your organisation is to full GDPR compliance. Fill in your company details, work through roughly 30 audit items grouped into six categories, and get an instant readiness score with a prioritised list of gaps to close.</p>
+
+    <div class="tool-container">
+      <div id="tool-form">
+        <h2 class="section-title" id="context-heading">Company Context</h2>
+        <p class="context-intro">These details determine which checklist items apply to your organisation. Items that are not relevant to your setup are excluded from the score.</p>
+
+        <div class="context-grid">
+          <div class="form-group">
+            <label for="ctx-based">Where is your organisation based?</label>
+            <select id="ctx-based">
+              <option value="" disabled selected>Select region</option>
+              <option value="eu">EU / EEA</option>
+              <option value="uk">United Kingdom</option>
+              <option value="us">United States</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="ctx-headcount">Approximate headcount</label>
+            <select id="ctx-headcount">
+              <option value="" disabled selected>Select range</option>
+              <option value="1-10">1 &ndash; 10</option>
+              <option value="11-50">11 &ndash; 50</option>
+              <option value="51-250">51 &ndash; 250</option>
+              <option value="250+">250+</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="toggle-group" id="context-toggles">
+          <div class="toggle-row">
+            <span class="toggle-label">Do you offer goods or services to people in the EU/EEA?</span>
+            <div class="toggle-switch-wrap">
+              <button type="button" class="toggle-btn active" data-field="serveEU" data-value="no">No</button>
+              <button type="button" class="toggle-btn" data-field="serveEU" data-value="yes">Yes</button>
+            </div>
+          </div>
+          <div class="toggle-row">
+            <span class="toggle-label">Do you process special-category data (health, biometric, racial/ethnic origin, etc.)?</span>
+            <div class="toggle-switch-wrap">
+              <button type="button" class="toggle-btn active" data-field="specialCategory" data-value="no">No</button>
+              <button type="button" class="toggle-btn" data-field="specialCategory" data-value="yes">Yes</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="checklist-sections"></div>
+
+        <button type="button" class="score-btn" id="score-btn" disabled>Score My Readiness</button>
+      </div>
+
+      <div id="results" style="display:none;">
+        <h2 class="results-heading">Your GDPR Readiness Score</h2>
+        <div class="overall-score-ring" id="overall-ring">
+          <svg viewBox="0 0 120 120" class="ring-svg">
+            <circle cx="60" cy="60" r="52" fill="none" stroke="#E5E7EB" stroke-width="10"/>
+            <circle cx="60" cy="60" r="52" fill="none" stroke="#2563EB" stroke-width="10"
+              stroke-dasharray="326.73" stroke-dashoffset="326.73" stroke-linecap="round"
+              transform="rotate(-90 60 60)" id="ring-progress"/>
+          </svg>
+          <span class="ring-label" id="ring-label">0%</span>
+        </div>
+        <p class="score-verdict" id="score-verdict"></p>
+
+        <h3 class="sub-heading">Section Breakdown</h3>
+        <div id="section-bars"></div>
+
+        <div id="failed-items-wrap" style="display:none;">
+          <h3 class="sub-heading">Items Needing Attention</h3>
+          <div id="failed-items"></div>
+        </div>
+
+        <div class="result-actions">
+          <button type="button" class="action-btn" id="copy-btn">Copy Summary</button>
+          <button type="button" class="action-btn" id="print-btn">Print Report</button>
+          <button type="button" class="reset-btn" id="edit-btn">Edit Answers</button>
+        </div>
+
+        <div class="result-cta">
+          <p>Now that you know where the gaps are, <a href="https://buildprivacypolicy.com/">generate a privacy policy</a> that addresses GDPR requirements for your specific setup.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="how-to-use">How to Use This Checklist</h2>
+
+    <p>Start by selecting your company details: where you are based, whether you serve EU residents, your team size, and whether you handle special-category data like health records. The checklist adapts to your answers &mdash; items that do not apply to your setup are automatically excluded. Work through each of the six sections, marking items as Yes, No, or Partial. When finished, hit Score My Readiness for your overall compliance percentage, section-by-section breakdowns, and a prioritised list of gaps with the GDPR article each one relates to. Use the Copy Summary button to save your results.</p>
+
+    <h2 id="what-gdpr-requires">What the GDPR Requires</h2>
+
+    <p>The General Data Protection Regulation is the EU's framework for protecting personal data. It applies to any organisation, anywhere in the world, that processes data belonging to people in the EU or EEA. Compliance is not a single checkbox &mdash; it spans how you collect, store, share, and delete data, and it requires ongoing attention rather than a one-time fix. The regulation organises its obligations into several pillars: establishing a lawful reason to process data, being transparent about what you do with it, respecting the rights individuals have over their information, keeping data secure, ensuring that vendors and international transfers meet the same standard, and documenting everything so you can demonstrate compliance to a supervisory authority on demand.</p>
+
+    <p>If you are unsure whether the GDPR applies to your project in the first place, our <a href="/tools/privacy-law-checker/">privacy law applicability checker</a> can tell you which regulations cover your user base in a few clicks. For a deeper look at how the GDPR reaches organisations based outside Europe, see our guide on <a href="/resources/does-gdpr-apply-to-us-companies/">whether the GDPR applies to US companies</a>.</p>
+
+    <h2 id="common-gaps">Common Compliance Gaps</h2>
+
+    <p>Even organisations that have invested in GDPR compliance often stumble on the same set of issues. Retention periods are one of the most frequently cited gaps: many privacy policies say data is kept "as long as necessary" without defining what that means, which fails the storage-limitation principle under Article 5. Another common shortfall is around data subject requests &mdash; having a contact email is not enough if no one monitors it, and missing the 30-day response window is treated as a violation in its own right. Vendor management is the third area regulators consistently flag: if you use third-party analytics, hosting, or email services that touch personal data, each one needs a written Data Processing Agreement in place before data flows to them, not after an audit reveals the gap.</p>
+
+    <h2 id="when-to-seek-help">When to Seek Professional Help</h2>
+
+    <p>This checklist gives you a structured starting point, but it is not a substitute for legal advice. If your organisation processes special-category data at scale, operates in multiple EU member states, or handles data that could trigger a Data Protection Impact Assessment, working with a qualified data protection professional is strongly recommended. The same applies if you discover critical gaps in this assessment &mdash; a data protection consultant or a DPO-as-a-service provider can help you prioritise remediation and avoid the most costly enforcement risks.</p>
+
+    <h2 id="faq">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>What is GDPR compliance?</h3>
+        <p>GDPR compliance means meeting all the requirements of the EU's General Data Protection Regulation when your organisation processes the personal data of individuals in the European Union or European Economic Area. It covers how you collect, store, use, and share personal data, and it requires transparency, security safeguards, and respect for individual data rights.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Does the GDPR apply to businesses outside the EU?</h3>
+        <p>Yes. The GDPR applies to any organisation worldwide that offers goods or services to people in the EU or monitors their behaviour, regardless of where the organisation is based. A company in the United States with EU website visitors must comply just the same as one headquartered in Berlin.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What are the penalties for GDPR non-compliance?</h3>
+        <p>GDPR fines can reach up to 20 million euros or four percent of an organisation's global annual turnover, whichever is higher. Beyond fines, supervisory authorities can order you to stop processing data entirely, which can shut down core business operations.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Do small businesses need to comply with the GDPR?</h3>
+        <p>Yes. There is no revenue or employee-count exemption in the GDPR. If you process personal data of EU residents, the regulation applies regardless of your company's size. Some obligations scale &mdash; for example, maintaining a formal Record of Processing Activities is only mandatory above certain thresholds &mdash; but the core principles apply to everyone.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How often should I review my GDPR compliance?</h3>
+        <p>At minimum, review your compliance annually or whenever you introduce a new processing activity, adopt a new vendor or sub-processor, expand into a new market, or experience a data breach. Regulatory guidance evolves, and your data practices change with your product &mdash; a checklist completed once and never revisited quickly becomes outdated.</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+</main>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "GDPR Compliance Checklist",
+  "description": description,
+  "url": "https://buildprivacypolicy.com/tools/gdpr-compliance-checklist/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "datePublished": publishDate
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is GDPR compliance?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "GDPR compliance means meeting all the requirements of the EU's General Data Protection Regulation when your organisation processes the personal data of individuals in the European Union or European Economic Area. It covers how you collect, store, use, and share personal data, and it requires transparency, security safeguards, and respect for individual data rights."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the GDPR apply to businesses outside the EU?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The GDPR applies to any organisation worldwide that offers goods or services to people in the EU or monitors their behaviour, regardless of where the organisation is based. A company in the United States with EU website visitors must comply just the same as one headquartered in Berlin."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the penalties for GDPR non-compliance?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "GDPR fines can reach up to 20 million euros or four percent of an organisation's global annual turnover, whichever is higher. Beyond fines, supervisory authorities can order you to stop processing data entirely, which can shut down core business operations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do small businesses need to comply with the GDPR?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. There is no revenue or employee-count exemption in the GDPR. If you process personal data of EU residents, the regulation applies regardless of your company's size. Some obligations scale — for example, maintaining a formal Record of Processing Activities is only mandatory above certain thresholds — but the core principles apply to everyone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should I review my GDPR compliance?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At minimum, review your compliance annually or whenever you introduce a new processing activity, adopt a new vendor or sub-processor, expand into a new market, or experience a data breach. Regulatory guidance evolves, and your data practices change with your product — a checklist completed once and never revisited quickly becomes outdated."
+      }
+    }
+  ]
+})} />
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  /* ========== CHECKLIST DATA ========== */
+  var items = [
+    // Lawful Basis
+    { id:'lb1', cat:'lawful-basis', text:'Identified a lawful basis (consent, contract, legitimate interest, etc.) for every processing activity', weight:3, severity:'critical', article:'Art. 6(1)', risk:'Processing without a lawful basis is the single most common ground for GDPR enforcement fines.', gate:null },
+    { id:'lb2', cat:'lawful-basis', text:'Where consent is the lawful basis, it is freely given, specific, informed, and unambiguous', weight:3, severity:'critical', article:'Art. 7', risk:'Invalid consent means every processing activity that relies on it is unlawful.', gate:null },
+    { id:'lb3', cat:'lawful-basis', text:'Documented the lawful basis for each processing activity in an internal record', weight:2, severity:'high', article:'Art. 5(2)', risk:'Without documentation you cannot demonstrate compliance if a supervisory authority audits you.', gate:null },
+    { id:'lb4', cat:'lawful-basis', text:'Identified an Article 9 condition for every special-category processing activity', weight:3, severity:'critical', article:'Art. 9', risk:'Special-category data processed without an Article 9 condition triggers higher-tier fines.', gate:'specialCategory' },
+    { id:'lb5', cat:'lawful-basis', text:'Users can withdraw consent as easily as they gave it', weight:2, severity:'high', article:'Art. 7(3)', risk:'Making withdrawal harder than giving consent renders the original consent invalid.', gate:null },
+
+    // Transparency
+    { id:'tr1', cat:'transparency', text:'Published a publicly accessible, plain-language privacy policy', weight:3, severity:'critical', article:'Art. 12', risk:'No privacy notice means users have no way to understand how their data is processed.', gate:null },
+    { id:'tr2', cat:'transparency', text:'Privacy policy states the identity and contact details of the data controller', weight:2, severity:'high', article:'Art. 13(1)(a)', risk:'Users and regulators need to know who is responsible for the data processing.', gate:null },
+    { id:'tr3', cat:'transparency', text:'Privacy policy explains the purpose and legal basis for each processing activity', weight:2, severity:'high', article:'Art. 13(1)(c)', risk:'Vague or missing purpose statements are a frequent finding in regulatory audits.', gate:null },
+    { id:'tr4', cat:'transparency', text:'Privacy policy lists the categories of personal data collected', weight:2, severity:'high', article:'Art. 14(1)(d)', risk:'Users cannot exercise their rights effectively without knowing what data you hold.', gate:null },
+    { id:'tr5', cat:'transparency', text:'Privacy policy states retention periods or the criteria used to determine them', weight:2, severity:'high', article:'Art. 13(2)(a)', risk:'Indefinite retention without justification violates the storage limitation principle.', gate:null },
+    { id:'tr6', cat:'transparency', text:'Privacy policy informs users about their data protection rights', weight:2, severity:'high', article:'Art. 13(2)(b)', risk:'Failing to communicate rights prevents users from exercising them.', gate:null },
+    { id:'tr7', cat:'transparency', text:'Users are notified before data is used for a new purpose not originally disclosed', weight:2, severity:'medium', article:'Art. 13(3)', risk:'Changing the purpose of processing without notice undermines the transparency requirement.', gate:null },
+
+    // Data Subject Rights
+    { id:'dr1', cat:'data-rights', text:'Process in place for individuals to request access to their personal data', weight:3, severity:'critical', article:'Art. 15', risk:'Failing to honour a subject access request is an actionable violation regulators actively investigate.', gate:null },
+    { id:'dr2', cat:'data-rights', text:'Individuals can request correction of inaccurate personal data', weight:2, severity:'high', article:'Art. 16', risk:'Holding inaccurate data you refuse to correct undermines the accuracy principle.', gate:null },
+    { id:'dr3', cat:'data-rights', text:'Individuals can request erasure of their data when it is no longer necessary', weight:2, severity:'high', article:'Art. 17', risk:'Denying valid erasure requests is one of the most common subjects of GDPR complaints.', gate:null },
+    { id:'dr4', cat:'data-rights', text:'Individuals can request restriction of processing in disputed cases', weight:1, severity:'medium', article:'Art. 18', risk:'Without a restriction mechanism you may continue processing data that is contested.', gate:null },
+    { id:'dr5', cat:'data-rights', text:'Individuals can receive their data in a portable, machine-readable format', weight:1, severity:'medium', article:'Art. 20', risk:'Data portability supports user autonomy and is increasingly scrutinised by regulators.', gate:null },
+    { id:'dr6', cat:'data-rights', text:'Individuals can object to processing based on legitimate interests or direct marketing', weight:2, severity:'high', article:'Art. 21', risk:'Ignoring an objection to direct marketing is a strict-liability violation.', gate:null },
+    { id:'dr7', cat:'data-rights', text:'All data subject requests are responded to within one calendar month', weight:2, severity:'high', article:'Art. 12(3)', risk:'Late responses are treated as a failure to comply with the right, even if you eventually respond.', gate:null },
+
+    // Security
+    { id:'sc1', cat:'security', text:'Personal data is encrypted in transit (HTTPS/TLS)', weight:3, severity:'critical', article:'Art. 32(1)(a)', risk:'Unencrypted data in transit is trivially interceptable and a near-automatic breach finding.', gate:null },
+    { id:'sc2', cat:'security', text:'Personal data is encrypted at rest in databases and backups', weight:2, severity:'high', article:'Art. 32(1)(a)', risk:'Unencrypted storage means a single compromised backup exposes every record.', gate:null },
+    { id:'sc3', cat:'security', text:'Role-based access controls limit who can view or modify personal data', weight:2, severity:'high', article:'Art. 32(1)(b)', risk:'Unrestricted access increases the blast radius of any insider threat or account compromise.', gate:null },
+    { id:'sc4', cat:'security', text:'A documented data breach response plan is in place', weight:3, severity:'critical', article:'Art. 33', risk:'Without a breach plan you are unlikely to meet the 72-hour notification deadline.', gate:null },
+    { id:'sc5', cat:'security', text:'You can notify your supervisory authority within 72 hours of discovering a breach', weight:2, severity:'high', article:'Art. 33(1)', risk:'Missing the 72-hour window is itself a separate violation that draws additional scrutiny.', gate:null },
+    { id:'sc6', cat:'security', text:'Data protection by design and by default is applied to new projects and features', weight:2, severity:'medium', article:'Art. 25', risk:'Retrofitting privacy controls is far more expensive and error-prone than building them in.', gate:null },
+
+    // Vendors and Transfers
+    { id:'vt1', cat:'vendors', text:'Written Data Processing Agreements are in place with every third-party processor', weight:3, severity:'critical', article:'Art. 28', risk:'Sharing data with a processor without a DPA is an automatic compliance failure.', gate:null },
+    { id:'vt2', cat:'vendors', text:'A current list of all sub-processors is maintained and available', weight:2, severity:'high', article:'Art. 28(2)', risk:'Not knowing who processes data on your behalf means you cannot ensure their compliance.', gate:null },
+    { id:'vt3', cat:'vendors', text:'International data transfers rely on an approved safeguard (SCCs, adequacy decision, or BCRs)', weight:3, severity:'critical', article:'Art. 46', risk:'Transfers without a safeguard are unlawful since the Schrems II ruling invalidated Privacy Shield.', gate:null },
+    { id:'vt4', cat:'vendors', text:'Transfer impact assessments have been completed for third-country recipients', weight:2, severity:'high', article:'Art. 44', risk:'Post-Schrems II, regulators expect a documented assessment of recipient-country protections.', gate:null },
+
+    // Documentation
+    { id:'dc1', cat:'documentation', text:'A Record of Processing Activities (ROPA) is maintained', weight:2, severity:'high', article:'Art. 30', risk:'Supervisory authorities request the ROPA as a first step in most audits.', gate:'ropa' },
+    { id:'dc2', cat:'documentation', text:'A Data Protection Officer has been appointed', weight:2, severity:'high', article:'Art. 37', risk:'Organisations required to appoint a DPO that fail to do so face enforcement action.', gate:'dpo' },
+    { id:'dc3', cat:'documentation', text:'Data Protection Impact Assessments are conducted for high-risk processing activities', weight:2, severity:'high', article:'Art. 35', risk:'High-risk processing without a DPIA may be ordered to stop by a supervisory authority.', gate:null },
+    { id:'dc4', cat:'documentation', text:'Data protection practices are reviewed and updated at least annually', weight:1, severity:'medium', article:'Art. 5(2)', risk:'Stale policies that no longer reflect actual practices create compliance gaps over time.', gate:null },
+    { id:'dc5', cat:'documentation', text:'Staff who handle personal data receive data protection training', weight:1, severity:'medium', article:'Art. 39(1)(b)', risk:'Untrained staff are the leading cause of accidental data breaches.', gate:null }
+  ];
+
+  var categories = [
+    { id:'lawful-basis', name:'Lawful Basis' },
+    { id:'transparency', name:'Transparency' },
+    { id:'data-rights', name:'Data Subject Rights' },
+    { id:'security', name:'Security' },
+    { id:'vendors', name:'Vendors and Transfers' },
+    { id:'documentation', name:'Documentation' }
+  ];
+
+  var severityOrder = { critical:0, high:1, medium:2 };
+
+  /* ========== STATE ========== */
+  var context = { based:'', headcount:'', serveEU:false, specialCategory:false };
+  var answers = {}; // itemId -> 'yes'|'partial'|'no'
+
+  /* ========== DOM REFS ========== */
+  var basedSelect = document.getElementById('ctx-based');
+  var headcountSelect = document.getElementById('ctx-headcount');
+  var sectionsDiv = document.getElementById('checklist-sections');
+  var scoreBtn = document.getElementById('score-btn');
+  var resultsDiv = document.getElementById('results');
+  var formDiv = document.getElementById('tool-form');
+  var ringProgress = document.getElementById('ring-progress');
+  var ringLabel = document.getElementById('ring-label');
+  var scoreVerdict = document.getElementById('score-verdict');
+  var sectionBars = document.getElementById('section-bars');
+  var failedItemsWrap = document.getElementById('failed-items-wrap');
+  var failedItemsDiv = document.getElementById('failed-items');
+  var copyBtn = document.getElementById('copy-btn');
+  var printBtn = document.getElementById('print-btn');
+  var editBtn = document.getElementById('edit-btn');
+
+  /* ========== RESTORE FROM LOCALSTORAGE ========== */
+  try {
+    var saved = localStorage.getItem('gdpr_checklist_context');
+    if (saved) {
+      var parsed = JSON.parse(saved);
+      context.based = parsed.based || '';
+      context.headcount = parsed.headcount || '';
+      context.serveEU = !!parsed.serveEU;
+      context.specialCategory = !!parsed.specialCategory;
+      if (context.based) basedSelect.value = context.based;
+      if (context.headcount) headcountSelect.value = context.headcount;
+    }
+    var savedAnswers = localStorage.getItem('gdpr_checklist_answers');
+    if (savedAnswers) answers = JSON.parse(savedAnswers);
+  } catch(e) {}
+
+  /* ========== RENDER CHECKLIST ========== */
+  function renderChecklist() {
+    sectionsDiv.innerHTML = '';
+    categories.forEach(function(cat) {
+      var catItems = items.filter(function(it) { return it.cat === cat.id; });
+      var section = document.createElement('div');
+      section.className = 'checklist-section';
+      section.setAttribute('data-cat', cat.id);
+
+      var heading = document.createElement('h2');
+      heading.className = 'section-title';
+      heading.textContent = cat.name;
+      section.appendChild(heading);
+
+      catItems.forEach(function(item) {
+        var row = document.createElement('div');
+        row.className = 'checklist-item';
+        row.setAttribute('data-id', item.id);
+        if (item.gate) row.setAttribute('data-gate', item.gate);
+
+        var label = document.createElement('span');
+        label.className = 'item-label';
+        label.textContent = item.text;
+
+        var badge = document.createElement('span');
+        badge.className = 'severity-badge severity-' + item.severity;
+        badge.textContent = item.severity;
+
+        var articleTag = document.createElement('span');
+        articleTag.className = 'article-tag';
+        articleTag.textContent = item.article;
+
+        var meta = document.createElement('div');
+        meta.className = 'item-meta';
+        meta.appendChild(badge);
+        meta.appendChild(articleTag);
+
+        var toggleWrap = document.createElement('div');
+        toggleWrap.className = 'item-toggle';
+
+        var vals = ['yes','partial','no'];
+        var labels = ['Yes','Partial','No'];
+        vals.forEach(function(v, i) {
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'toggle-btn toggle-' + v;
+          if (answers[item.id] === v) btn.classList.add('active');
+          btn.setAttribute('data-item', item.id);
+          btn.setAttribute('data-value', v);
+          btn.textContent = labels[i];
+          btn.addEventListener('click', function() {
+            var wrap = this.parentElement;
+            wrap.querySelectorAll('.toggle-btn').forEach(function(b) { b.classList.remove('active'); });
+            this.classList.add('active');
+            answers[item.id] = v;
+            saveState();
+            updateScoreBtn();
+          });
+          toggleWrap.appendChild(btn);
+        });
+
+        row.appendChild(label);
+        row.appendChild(meta);
+        row.appendChild(toggleWrap);
+        section.appendChild(row);
+      });
+
+      sectionsDiv.appendChild(section);
+    });
+
+    updateGating();
+    updateScoreBtn();
+    restoreToggles();
+  }
+
+  function restoreToggles() {
+    // Restore context toggles
+    if (context.serveEU) {
+      document.querySelector('[data-field="serveEU"][data-value="yes"]').classList.add('active');
+      document.querySelector('[data-field="serveEU"][data-value="no"]').classList.remove('active');
+    }
+    if (context.specialCategory) {
+      document.querySelector('[data-field="specialCategory"][data-value="yes"]').classList.add('active');
+      document.querySelector('[data-field="specialCategory"][data-value="no"]').classList.remove('active');
+    }
+  }
+
+  /* ========== GATING ========== */
+  function isGated(item) {
+    if (!item.gate) return false;
+    if (item.gate === 'specialCategory') return !context.specialCategory;
+    if (item.gate === 'ropa') return !(context.headcount === '250+' || context.specialCategory);
+    if (item.gate === 'dpo') return !context.specialCategory;
+    return false;
+  }
+
+  function updateGating() {
+    items.forEach(function(item) {
+      var row = document.querySelector('[data-id="' + item.id + '"]');
+      if (!row) return;
+      if (isGated(item)) {
+        row.style.display = 'none';
+      } else {
+        row.style.display = '';
+      }
+    });
+  }
+
+  /* ========== CONTEXT HANDLERS ========== */
+  basedSelect.addEventListener('change', function() {
+    context.based = this.value;
+    saveState();
+    updateScoreBtn();
+  });
+  headcountSelect.addEventListener('change', function() {
+    context.headcount = this.value;
+    updateGating();
+    saveState();
+    updateScoreBtn();
+  });
+
+  document.querySelectorAll('#context-toggles .toggle-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var field = this.getAttribute('data-field');
+      var value = this.getAttribute('data-value');
+      var wrap = this.parentElement;
+      wrap.querySelectorAll('.toggle-btn').forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      context[field] = value === 'yes';
+      updateGating();
+      saveState();
+      updateScoreBtn();
+    });
+  });
+
+  /* ========== SCORE BUTTON STATE ========== */
+  function updateScoreBtn() {
+    scoreBtn.disabled = !(context.based && context.headcount);
+  }
+
+  /* ========== SCORING ========== */
+  function getApplicableItems() {
+    return items.filter(function(item) { return !isGated(item); });
+  }
+
+  function calcScore(subset) {
+    var totalWeight = 0;
+    var earnedWeight = 0;
+    subset.forEach(function(item) {
+      totalWeight += item.weight;
+      var ans = answers[item.id];
+      if (ans === 'yes') earnedWeight += item.weight;
+      else if (ans === 'partial') earnedWeight += item.weight * 0.5;
+    });
+    return totalWeight > 0 ? Math.round((earnedWeight / totalWeight) * 100) : 0;
+  }
+
+  /* ========== RENDER RESULTS ========== */
+  scoreBtn.addEventListener('click', function() {
+    var applicable = getApplicableItems();
+    var overall = calcScore(applicable);
+
+    // Animate ring
+    var circumference = 2 * Math.PI * 52; // 326.73
+    var offset = circumference - (overall / 100) * circumference;
+    ringProgress.style.transition = 'stroke-dashoffset 1s ease';
+    ringProgress.style.strokeDashoffset = offset;
+    if (overall >= 80) ringProgress.style.stroke = '#16A34A';
+    else if (overall >= 50) ringProgress.style.stroke = '#F59E0B';
+    else ringProgress.style.stroke = '#EF4444';
+    ringLabel.textContent = overall + '%';
+
+    // Verdict
+    if (overall >= 90) scoreVerdict.textContent = 'Strong compliance posture. Address any remaining gaps to reach full readiness.';
+    else if (overall >= 70) scoreVerdict.textContent = 'Good foundation, but several areas need attention before you can demonstrate full compliance.';
+    else if (overall >= 50) scoreVerdict.textContent = 'Significant gaps exist. Prioritise the critical items listed below to reduce enforcement risk.';
+    else scoreVerdict.textContent = 'Major compliance gaps detected. Immediate action on the critical items below is strongly recommended.';
+
+    // Section bars
+    sectionBars.innerHTML = '';
+    categories.forEach(function(cat) {
+      var catItems = applicable.filter(function(it) { return it.cat === cat.id; });
+      if (catItems.length === 0) return;
+      var pct = calcScore(catItems);
+
+      var bar = document.createElement('div');
+      bar.className = 'bar-row';
+
+      var label = document.createElement('span');
+      label.className = 'bar-label';
+      label.textContent = cat.name;
+
+      var track = document.createElement('div');
+      track.className = 'bar-track';
+      var fill = document.createElement('div');
+      fill.className = 'bar-fill';
+      fill.style.width = pct + '%';
+      if (pct >= 80) fill.style.background = '#16A34A';
+      else if (pct >= 50) fill.style.background = '#F59E0B';
+      else fill.style.background = '#EF4444';
+      track.appendChild(fill);
+
+      var pctLabel = document.createElement('span');
+      pctLabel.className = 'bar-pct';
+      pctLabel.textContent = pct + '%';
+
+      bar.appendChild(label);
+      bar.appendChild(track);
+      bar.appendChild(pctLabel);
+      sectionBars.appendChild(bar);
+    });
+
+    // Failed items
+    var failed = applicable.filter(function(it) {
+      var ans = answers[it.id];
+      return ans !== 'yes';
+    });
+    failed.sort(function(a, b) {
+      var sd = severityOrder[a.severity] - severityOrder[b.severity];
+      if (sd !== 0) return sd;
+      return b.weight - a.weight;
+    });
+
+    failedItemsDiv.innerHTML = '';
+    if (failed.length > 0) {
+      failedItemsWrap.style.display = '';
+      failed.forEach(function(item) {
+        var card = document.createElement('div');
+        card.className = 'failed-card';
+
+        var header = document.createElement('div');
+        header.className = 'failed-header';
+
+        var badge = document.createElement('span');
+        badge.className = 'severity-badge severity-' + item.severity;
+        badge.textContent = item.severity;
+
+        var articleTag = document.createElement('span');
+        articleTag.className = 'article-tag';
+        articleTag.textContent = item.article;
+
+        var ansTag = document.createElement('span');
+        ansTag.className = 'answer-tag answer-' + (answers[item.id] || 'no');
+        ansTag.textContent = answers[item.id] === 'partial' ? 'Partial' : 'No';
+
+        header.appendChild(badge);
+        header.appendChild(articleTag);
+        header.appendChild(ansTag);
+
+        var title = document.createElement('p');
+        title.className = 'failed-title';
+        title.textContent = item.text;
+
+        var risk = document.createElement('p');
+        risk.className = 'failed-risk';
+        risk.textContent = item.risk;
+
+        card.appendChild(header);
+        card.appendChild(title);
+        card.appendChild(risk);
+        failedItemsDiv.appendChild(card);
+      });
+    } else {
+      failedItemsWrap.style.display = 'none';
+    }
+
+    formDiv.style.display = 'none';
+    resultsDiv.style.display = 'block';
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'tool_complete', score: overall });
+
+    resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  /* ========== COPY SUMMARY ========== */
+  copyBtn.addEventListener('click', function() {
+    var applicable = getApplicableItems();
+    var overall = calcScore(applicable);
+    var lines = [];
+    lines.push('GDPR Compliance Readiness Report');
+    lines.push('Generated: ' + new Date().toLocaleDateString());
+    lines.push('Overall Score: ' + overall + '%');
+    lines.push('');
+    lines.push('Company Context:');
+    lines.push('  Based in: ' + (context.based || 'Not set'));
+    lines.push('  Serves EU residents: ' + (context.serveEU ? 'Yes' : 'No'));
+    lines.push('  Headcount: ' + (context.headcount || 'Not set'));
+    lines.push('  Special-category data: ' + (context.specialCategory ? 'Yes' : 'No'));
+    lines.push('');
+    lines.push('Section Scores:');
+    categories.forEach(function(cat) {
+      var catItems = applicable.filter(function(it) { return it.cat === cat.id; });
+      if (catItems.length === 0) return;
+      lines.push('  ' + cat.name + ': ' + calcScore(catItems) + '%');
+    });
+
+    var failed = applicable.filter(function(it) { return answers[it.id] !== 'yes'; });
+    failed.sort(function(a, b) {
+      var sd = severityOrder[a.severity] - severityOrder[b.severity];
+      if (sd !== 0) return sd;
+      return b.weight - a.weight;
+    });
+    if (failed.length > 0) {
+      lines.push('');
+      lines.push('Items Needing Attention:');
+      failed.forEach(function(item, i) {
+        var status = answers[item.id] === 'partial' ? 'PARTIAL' : 'MISSING';
+        lines.push('  ' + (i + 1) + '. [' + item.severity.toUpperCase() + '] [' + status + '] ' + item.text + ' (' + item.article + ')');
+        lines.push('     Risk: ' + item.risk);
+      });
+    }
+    lines.push('');
+    lines.push('Generated by BuildPrivacyPolicy.com/tools/gdpr-compliance-checklist/');
+
+    var text = lines.join('\n');
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function() {
+        copyBtn.textContent = 'Copied!';
+        setTimeout(function() { copyBtn.textContent = 'Copy Summary'; }, 2000);
+      });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      copyBtn.textContent = 'Copied!';
+      setTimeout(function() { copyBtn.textContent = 'Copy Summary'; }, 2000);
+    }
+  });
+
+  /* ========== PRINT ========== */
+  printBtn.addEventListener('click', function() {
+    window.print();
+  });
+
+  /* ========== EDIT / RESET ========== */
+  editBtn.addEventListener('click', function() {
+    resultsDiv.style.display = 'none';
+    formDiv.style.display = '';
+    // Reset ring for next run
+    ringProgress.style.transition = 'none';
+    ringProgress.style.strokeDashoffset = 326.73;
+    formDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  /* ========== PERSIST ========== */
+  function saveState() {
+    try {
+      localStorage.setItem('gdpr_checklist_context', JSON.stringify(context));
+      localStorage.setItem('gdpr_checklist_answers', JSON.stringify(answers));
+    } catch(e) {}
+  }
+
+  /* ========== INIT ========== */
+  renderChecklist();
+});
+</script>
+
+</Layout>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-link:hover {
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+  .page-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 16px 80px;
+  }
+  .page-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px 36px;
+    border: 1px solid #E5E7EB;
+  }
+  .breadcrumb {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 16px;
+  }
+  .breadcrumb a {
+    color: #6B7280;
+    text-decoration: underline;
+  }
+  .page-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .last-updated {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 24px;
+  }
+  .page-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .page-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  .page-card p {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .page-card a {
+    color: #2563EB;
+    text-decoration: underline;
+  }
+  .page-card strong {
+    font-weight: 600;
+  }
+
+  /* Tool container */
+  .tool-container {
+    margin: 28px 0 12px;
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    padding: 28px 24px;
+  }
+  .section-title {
+    font-size: 17px !important;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 0 !important;
+    margin-bottom: 12px !important;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #E5E7EB;
+  }
+  .context-intro {
+    font-size: 14px !important;
+    color: #6B7280;
+    margin-bottom: 20px !important;
+  }
+
+  /* Context form */
+  .context-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 8px;
+  }
+  .form-group select {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 15px;
+    font-family: inherit;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    background: white;
+    color: #111827;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236B7280' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 6l3.5 4 3.5-4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+  }
+  .form-group select:focus {
+    border-color: #2563EB;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+    outline: none;
+  }
+
+  /* Toggle rows */
+  .toggle-group {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 16px;
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+  }
+  .toggle-label {
+    font-size: 14px;
+    color: #374151;
+    font-weight: 500;
+    flex: 1;
+  }
+  .toggle-switch-wrap {
+    display: flex;
+    gap: 0;
+    border: 1px solid #D1D5DB;
+    border-radius: 6px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .toggle-btn {
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    border: none;
+    background: white;
+    color: #6B7280;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .toggle-btn + .toggle-btn {
+    border-left: 1px solid #D1D5DB;
+  }
+  .toggle-btn.active[data-value="no"] {
+    background: #F3F4F6;
+    color: #374151;
+  }
+  .toggle-btn.active[data-value="yes"] {
+    background: #2563EB;
+    color: white;
+  }
+  .toggle-btn:hover:not(.active) {
+    background: #F9FAFB;
+  }
+
+  /* Checklist sections */
+  .checklist-section {
+    margin-top: 28px;
+  }
+  .checklist-section .section-title {
+    border-bottom-color: #2563EB;
+    border-bottom-width: 2px;
+  }
+  .checklist-item {
+    padding: 14px 16px;
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  .item-label {
+    display: block;
+    font-size: 14px;
+    color: #111827;
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .item-meta {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .severity-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .severity-critical {
+    color: #991B1B;
+    background: #FEE2E2;
+  }
+  .severity-high {
+    color: #92400E;
+    background: #FEF3C7;
+  }
+  .severity-medium {
+    color: #1E40AF;
+    background: #DBEAFE;
+  }
+  .article-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #6B7280;
+    background: #F3F4F6;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .item-toggle {
+    display: flex;
+    gap: 0;
+    border: 1px solid #D1D5DB;
+    border-radius: 6px;
+    overflow: hidden;
+    width: fit-content;
+  }
+  .item-toggle .toggle-btn {
+    padding: 5px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    border: none;
+    background: white;
+    color: #6B7280;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    font-family: inherit;
+  }
+  .item-toggle .toggle-btn + .toggle-btn {
+    border-left: 1px solid #D1D5DB;
+  }
+  .item-toggle .toggle-btn:hover:not(.active) {
+    background: #F9FAFB;
+  }
+  .item-toggle .toggle-yes.active {
+    background: #16A34A;
+    color: white;
+  }
+  .item-toggle .toggle-partial.active {
+    background: #F59E0B;
+    color: white;
+  }
+  .item-toggle .toggle-no.active {
+    background: #EF4444;
+    color: white;
+  }
+
+  /* Score button */
+  .score-btn {
+    width: 100%;
+    padding: 14px 24px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inherit;
+    color: white;
+    background: #2563EB;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+    margin-top: 24px;
+  }
+  .score-btn:hover:not(:disabled) {
+    background: #1D4ED8;
+  }
+  .score-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Results */
+  .results-heading {
+    margin-top: 0 !important;
+    margin-bottom: 8px !important;
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    text-align: center;
+  }
+  .overall-score-ring {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 20px auto;
+  }
+  .ring-svg {
+    width: 100%;
+    height: 100%;
+  }
+  .ring-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    font-weight: 700;
+    color: #111827;
+  }
+  .score-verdict {
+    text-align: center;
+    font-size: 14px !important;
+    color: #4B5563;
+    margin-bottom: 28px !important;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .sub-heading {
+    font-size: 16px !important;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 28px !important;
+    margin-bottom: 14px !important;
+  }
+
+  /* Section bars */
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .bar-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+    width: 150px;
+    flex-shrink: 0;
+  }
+  .bar-track {
+    flex: 1;
+    height: 10px;
+    background: #E5E7EB;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 5px;
+    transition: width 0.6s ease;
+  }
+  .bar-pct {
+    font-size: 13px;
+    font-weight: 700;
+    color: #111827;
+    width: 40px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  /* Failed items */
+  .failed-card {
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 10px;
+    border-left: 4px solid #EF4444;
+  }
+  .failed-header {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .answer-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .answer-no {
+    color: #991B1B;
+    background: #FEE2E2;
+  }
+  .answer-partial {
+    color: #92400E;
+    background: #FEF3C7;
+  }
+  .failed-title {
+    font-size: 14px !important;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 4px !important;
+    line-height: 1.5;
+  }
+  .failed-risk {
+    font-size: 13px !important;
+    color: #6B7280;
+    margin-bottom: 0 !important;
+    line-height: 1.6;
+  }
+
+  /* Result actions */
+  .result-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .action-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    color: white;
+    background: #2563EB;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .action-btn:hover {
+    background: #1D4ED8;
+  }
+  .reset-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    color: #374151;
+    background: white;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .reset-btn:hover {
+    background: #F9FAFB;
+  }
+
+  /* Result CTA */
+  .result-cta {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: #EFF6FF;
+    border-radius: 8px;
+  }
+  .result-cta p {
+    font-size: 14px !important;
+    color: #1E40AF;
+    margin-bottom: 0 !important;
+  }
+  .result-cta a {
+    color: #1E40AF;
+    font-weight: 600;
+  }
+
+  /* FAQ */
+  .faq-list {
+    margin-top: 8px;
+  }
+  .faq-item {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 20px;
+    margin-bottom: 8px;
+  }
+  .faq-item h3 {
+    margin-top: 0;
+  }
+  .faq-item p {
+    margin-bottom: 8px;
+  }
+
+  /* Print styles */
+  @media print {
+    .sticky-header, .score-btn, .result-actions, .result-cta, .toggle-group, .context-grid, #tool-form { display: none !important; }
+    #results { display: block !important; }
+    .tool-container { border: none; background: white; padding: 0; }
+    .page-card { border: none; padding: 20px 0; }
+    .page-container { padding: 0; }
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .page-card {
+      padding: 24px 18px;
+    }
+    .tool-container {
+      padding: 20px 16px;
+    }
+    .context-grid {
+      grid-template-columns: 1fr;
+    }
+    .toggle-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .toggle-switch-wrap {
+      align-self: flex-end;
+    }
+    .bar-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+    .bar-label {
+      width: auto;
+    }
+    .bar-track {
+      width: 100%;
+    }
+    .bar-pct {
+      text-align: left;
+      width: auto;
+    }
+    .result-actions {
+      flex-direction: column;
+    }
+    .action-btn, .reset-btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>
