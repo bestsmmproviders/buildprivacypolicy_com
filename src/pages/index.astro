@@ -23,7 +23,8 @@ import Layout from '../layouts/Layout.astro';
 <!-- Hero Section -->
 <div class="hero-section">
   <div class="hero-inner">
-    <h1 class="hero-title">Privacy Policy Generator</h1>
+    <h1 class="hero-title">Free Privacy Policy Generator</h1>
+    <p class="hero-sub">Create a privacy policy for your app or website in minutes. Covers GDPR, CCPA, CalOPPA, and more. No signup, no payment.</p>
     <div class="hero-features">
       <div class="hero-feature">
         <div class="hero-feature-icon">
@@ -42,6 +43,27 @@ import Layout from '../layouts/Layout.astro';
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         </div>
         <span class="hero-feature-text">Free Download</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- How It Works -->
+<div class="how-it-works">
+  <div class="how-inner">
+    <h2 class="how-title">How the free privacy policy generator works</h2>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-num">1</div>
+        <p><strong>Describe your app or website.</strong> Answer eight short sections about your platforms, data practices, SDKs, and compliance needs.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">2</div>
+        <p><strong>Generate instantly.</strong> The generator builds a legally structured privacy policy covering GDPR, CCPA, CalOPPA, COPPA, and Google Play and App Store requirements.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">3</div>
+        <p><strong>Host, download, or copy.</strong> Get a free hosted URL you can link from your app store listing, or download the policy as HTML or plain text.</p>
       </div>
     </div>
   </div>
@@ -749,13 +771,46 @@ import Layout from '../layouts/Layout.astro';
   </div>
 </div>
 
+<!-- ======= FAQ ======= -->
+<div class="faq-section">
+  <div class="faq-container">
+    <h2 class="faq-title">Frequently asked questions</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary class="faq-q">Is this privacy policy generator really free?</summary>
+        <div class="faq-a"><p>Yes. You can generate, download, and host a privacy policy without paying anything or creating an account. There are no hidden fees, trial limits, or paywalls.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">What privacy laws does the generated policy cover?</summary>
+        <div class="faq-a"><p>The generator produces clauses for GDPR (EU), CCPA/CPRA (California), CalOPPA, COPPA (children's privacy), and the data-disclosure requirements of Google Play and the Apple App Store. It adapts based on the regions and data practices you select in the form.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Do I need to sign up to use the generator?</summary>
+        <div class="faq-a"><p>No. Fill out the form, click Generate, and your policy is ready immediately. No account, no email verification, no signup of any kind.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Can I host my privacy policy for free?</summary>
+        <div class="faq-a"><p>Yes. After generation you receive a permanent hosted URL. You can link to it from your app store listing, website footer, or anywhere else that requires a privacy policy link.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Does this replace legal advice?</summary>
+        <div class="faq-a"><p>No. The generator creates a structured starting point based on your answers, but it is not a substitute for a qualified lawyer. If your app handles sensitive data or operates in heavily regulated industries, have a legal professional review your policy.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">How do I add the privacy policy to my app or website?</summary>
+        <div class="faq-a"><p>You can link directly to the free hosted URL, or download the policy as HTML or plain text and embed it on your own site. For step-by-step instructions, see our guide on <a href="/resources/how-to-add-privacy-policy-to-website/">how to add a privacy policy to a website</a>.</p></div>
+      </details>
+    </div>
+  </div>
+</div>
+
 </main>
 
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Privacy Policy Generator",
-  "description": "Generate a free, comprehensive privacy policy for your app. Works for Google Play, App Store, and web apps. No signup required.",
+  "name": "Free Privacy Policy Generator",
+  "description": "Generate a free privacy policy for your app or website in minutes. Covers GDPR, CCPA, and app store requirements. No signup, no payment — download or host instantly.",
   "url": "https://buildprivacypolicy.com/",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Any",
@@ -769,6 +824,61 @@ import Layout from '../layouts/Layout.astro';
     "name": "BuildPrivacyPolicy",
     "url": "https://buildprivacypolicy.com/"
   }
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is this privacy policy generator really free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You can generate, download, and host a privacy policy without paying anything or creating an account. There are no hidden fees, trial limits, or paywalls."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What privacy laws does the generated policy cover?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The generator produces clauses for GDPR (EU), CCPA/CPRA (California), CalOPPA, COPPA (children's privacy), and the data-disclosure requirements of Google Play and the Apple App Store. It adapts based on the regions and data practices you select in the form."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to sign up to use the generator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Fill out the form, click Generate, and your policy is ready immediately. No account, no email verification, no signup of any kind."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I host my privacy policy for free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. After generation you receive a permanent hosted URL. You can link to it from your app store listing, website footer, or anywhere else that requires a privacy policy link."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this replace legal advice?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The generator creates a structured starting point based on your answers, but it is not a substitute for a qualified lawyer. If your app handles sensitive data or operates in heavily regulated industries, have a legal professional review your policy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I add the privacy policy to my app or website?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can link directly to the free hosted URL, or download the policy as HTML or plain text and embed it on your own site."
+      }
+    }
+  ]
 })} />
 
 </Layout>
@@ -875,7 +985,13 @@ import Layout from '../layouts/Layout.astro';
     font-weight: 700;
     color: white;
     letter-spacing: -0.5px;
+    margin: 0 0 8px;
+  }
+  .hero-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
     margin: 0 0 16px;
+    line-height: 1.5;
   }
   .hero-features {
     display: flex;
@@ -1332,6 +1448,100 @@ import Layout from '../layouts/Layout.astro';
     color: #374151;
     margin: 24px 0 12px;
   }
+  /* How It Works */
+  .how-it-works {
+    background: white;
+    padding: 32px 16px;
+    border-bottom: 1px solid #E5E7EB;
+  }
+  .how-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .how-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .how-steps {
+    display: flex;
+    gap: 24px;
+  }
+  .how-step {
+    flex: 1;
+    text-align: center;
+  }
+  .how-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #EFF6FF;
+    color: #2563EB;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+  }
+  .how-step p {
+    font-size: 13px;
+    color: #374151;
+    line-height: 1.6;
+  }
+  @media (max-width: 600px) {
+    .how-steps { flex-direction: column; gap: 16px; }
+  }
+
+  /* FAQ */
+  .faq-section {
+    background: white;
+    padding: 40px 16px;
+    border-top: 1px solid #E5E7EB;
+  }
+  .faq-container {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .faq-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 20px;
+  }
+  .faq-item {
+    border-bottom: 1px solid #E5E7EB;
+  }
+  .faq-q {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111827;
+    padding: 16px 0;
+    cursor: pointer;
+    list-style: none;
+  }
+  .faq-q::-webkit-details-marker { display: none; }
+  .faq-q::before {
+    content: '+';
+    display: inline-block;
+    width: 20px;
+    font-size: 18px;
+    color: #2563EB;
+    font-weight: 700;
+    margin-right: 8px;
+  }
+  details[open] .faq-q::before { content: '\2212'; }
+  .faq-a {
+    padding: 0 0 16px 28px;
+  }
+  .faq-a p {
+    font-size: 14px;
+    color: #4B5563;
+    line-height: 1.7;
+  }
+
   @media (max-width: 700px) {
     .guides-grid { grid-template-columns: 1fr; }
   }
