@@ -1,10 +1,10 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 
-const title = "Chrome Extension Privacy Policy: What Google Requires";
-const description = "Google requires a privacy policy for Chrome extensions that handle user data. Learn what the Web Store review checks and what your policy must disclose.";
+const title = "Chrome Extension Privacy Policy: Template & Guide (2026)";
+const description = "Need a Chrome extension privacy policy? Free copy-ready template, Developer Dashboard walkthrough, and how to pass Google's Web Store review first try.";
 const publishDate = "2026-08-26";
-const modifiedDate = "2026-09-10";
+const modifiedDate = "2026-09-30";
 ---
 
 <Layout title={title} description={description}>
@@ -23,7 +23,7 @@ const modifiedDate = "2026-09-10";
   <div class="page-card">
     <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
     <h1>Chrome Extension Privacy Policy: What Google Requires and How to Create One</h1>
-    <p class="last-updated">Published August 26, 2026 &middot; Updated September 10, 2026</p>
+    <p class="last-updated">Published August 26, 2026 &middot; Updated September 30, 2026</p>
 
     <p>Every Chrome extension that handles user data needs a privacy policy URL before Google will approve it for the Chrome Web Store. The policy must be publicly accessible, describe exactly what data the extension collects and why, and match the data-use disclosures you certify in the Developer Dashboard's Privacy practices tab. Skip it and the extension fails review. Submit a vague or generic document and the review team rejects it anyway -- they read the policy, not just the URL field, and they cross-check it against the "Single purpose" description and permission justifications you filed alongside it.</p>
 
@@ -42,6 +42,7 @@ const modifiedDate = "2026-09-10";
         <li><a href="#generate-policy">How to Generate a Chrome Extension Privacy Policy</a></li>
         <li><a href="#example-policy">Sample Chrome Extension Privacy Policy You Can Copy</a></li>
         <li><a href="#host-and-link">Hosting the URL and Where to Paste It</a></li>
+        <li><a href="#august-2026-updates">August 2026 Chrome Web Store Privacy Updates</a></li>
         <li><a href="#faq">Frequently Asked Questions</a></li>
       </ol>
     </nav>
@@ -371,6 +372,26 @@ const modifiedDate = "2026-09-10";
 
     <p>After approval, the privacy policy link appears on your extension's Chrome Web Store listing page under the "Additional Information" section, alongside the Data usage summary. Users can review both before installing. The Alexa Skills Store has a <a href="/resources/alexa-skill-privacy-policy/">similar requirement for Alexa skills</a>, and Discord blocks bot verification without <a href="/resources/discord-bot-privacy-policy/">a working policy in the Developer Portal</a> -- the pattern of platform-mandated policies before distribution is standard across app ecosystems.</p>
 
+    <h2 id="august-2026-updates">August 2026 Chrome Web Store Privacy Updates</h2>
+
+    <p>In July 2026, Google announced four policy changes affecting every Chrome extension that handles user data, with enforcement starting August 1, 2026. If your extension was submitted or updated before August 2026, review your privacy policy and Developer Dashboard disclosures against these new rules before your next submission.</p>
+
+    <h3>Stricter "strictly necessary" data collection standard</h3>
+
+    <p>The Limited Use policy now requires that any user data collected by an extension be <strong>strictly necessary</strong> to the extension's disclosed single purpose. The previous standard already called for minimum data collection, but the updated language tightens enforcement: reviewers now reject extensions that collect data broadly and justify it as "useful" rather than "necessary." If your privacy policy describes data collection with open-ended language like "we may collect additional data to improve the service," replace it with a specific, permission-by-permission account of exactly what is collected and why each piece is required for the single purpose you declared.</p>
+
+    <h3>Mandatory post-install disclosure of data practice changes</h3>
+
+    <p>Extensions must now notify users of any changes to data practices after installation. Previously, updating the privacy policy and the Developer Dashboard was sufficient. Under the new rule, if an extension update adds a new permission, begins collecting a new data category, or changes how existing data is shared, the developer must prominently disclose the change to users -- not just update the policy document. The disclosure must be visible inside the extension itself (for example, a notification or a changelog prompt on the first run after the update), not buried in a policy revision.</p>
+
+    <h3>AI safety circumvention ban</h3>
+
+    <p>A new prohibited-products rule bars extensions designed to circumvent safety guardrails, usage restrictions, or other protective measures implemented by AI-powered services. Extensions that modify prompts, bypass rate limits, or remove content filters on AI platforms are now explicitly policy-violating regardless of what the privacy policy says. If your extension interacts with AI services, make sure its function respects the target service's usage restrictions and that your privacy policy does not describe behavior that would constitute circumvention.</p>
+
+    <h3>What this means for your privacy policy</h3>
+
+    <p>If your extension was published before August 2026, audit the policy against these three changes: (1) replace any open-ended data-collection language with strictly necessary, permission-specific disclosures; (2) add a mechanism inside the extension to notify users when data practices change in a future update; and (3) if the extension touches AI services, confirm that the policy does not describe guardrail-circumventing behavior. Then re-check that the Developer Dashboard's Data usage certification still matches the updated policy text.</p>
+
     <h2 id="faq">Frequently Asked Questions</h2>
 
     <div class="faq-list">
@@ -432,6 +453,26 @@ const modifiedDate = "2026-09-10";
       <div class="faq-item">
         <h3>Does my privacy policy need to list every permission my extension uses?</h3>
         <p>Your policy must explain the data practices enabled by each permission, though you do not need to list permissions by their technical names. For example, instead of just listing "<code>tabs</code> permission," explain that the extension reads the titles and URLs of open tabs for a specific purpose. The policy should make clear to a non-technical user what data the extension accesses and why, and it should stay consistent with the Single purpose field and the permission Justifications in the dashboard.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What changed in the Chrome Web Store privacy rules in August 2026?</h3>
+        <p>Google tightened the Limited Use policy so that data collection must now be "strictly necessary" to the extension's single purpose, not just minimal. Extensions must also notify users inside the extension itself when data practices change after installation -- updating the privacy policy document alone is no longer enough. A new rule also bans extensions designed to circumvent safety guardrails on AI-powered services. Enforcement began August 1, 2026. See the <a href="#august-2026-updates">August 2026 updates section above</a> for the full breakdown.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I use a free privacy policy generator instead of writing one from scratch?</h3>
+        <p>Yes. A privacy policy generator walks you through questions about your extension's permissions, data types, and third-party services, then produces a policy with the correct disclosure language for each selection. The result must still be accurate to your extension's actual data practices -- a generated policy that does not match your manifest permissions and Developer Dashboard certifications will be rejected the same way a hand-written one would. You can <a href="https://buildprivacypolicy.com/">generate and host a Chrome extension privacy policy for free</a>.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do I need a privacy policy if my extension only uses the storage permission?</h3>
+        <p>If <code>storage</code> is truly the only permission and the extension collects no other user information, Google does not strictly require a policy. However, <code>chrome.storage.sync</code> ties data to the user's Google account and syncs it across devices, which qualifies as handling personal data under GDPR and CCPA. In practice, including a privacy policy is strongly recommended even for storage-only extensions -- it avoids ambiguity during review and protects you legally if users in regulated jurisdictions install the extension.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do I need to update my privacy policy when I change my extension's permissions?</h3>
+        <p>Yes. Every time you add, remove, or change a permission in <code>manifest.json</code>, the privacy policy must be updated to reflect the new data practices. Since August 2026, Google also requires that you notify users of data practice changes inside the extension itself after an update -- not just in the policy document. Failing to update the policy creates a mismatch between the manifest, the Developer Dashboard certification, and the policy, which is one of the most common causes of rejection during re-review.</p>
       </div>
     </div>
 
@@ -560,6 +601,38 @@ const modifiedDate = "2026-09-10";
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Your policy must explain the data practices enabled by each permission, though not necessarily by technical name. The policy should make clear to a non-technical user what data the extension accesses and why, staying consistent with the Single purpose field and permission justifications in the dashboard."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What changed in the Chrome Web Store privacy rules in August 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Google tightened the Limited Use policy so that data collection must be strictly necessary to the extension's single purpose. Extensions must notify users inside the extension when data practices change after installation. A new rule also bans extensions designed to circumvent safety guardrails on AI services. Enforcement began August 1, 2026."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use a free privacy policy generator instead of writing one from scratch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. A generator walks you through your extension's permissions, data types, and third-party services, producing correct disclosure language. The result must still accurately match your manifest permissions and Developer Dashboard certifications, or it will be rejected like any inaccurate policy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a privacy policy if my extension only uses the storage permission?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If storage is the only permission and no other user information is collected, Google does not strictly require a policy. However, chrome.storage.sync ties data to the user's Google account, which qualifies as personal data under GDPR and CCPA. Including a policy is strongly recommended even for storage-only extensions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to update my privacy policy when I change my extension's permissions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Every permission change in manifest.json requires a matching privacy policy update. Since August 2026, Google also requires notifying users of data practice changes inside the extension after an update. Mismatches between the manifest, Dashboard certification, and policy are one of the most common rejection causes."
       }
     }
   ]
