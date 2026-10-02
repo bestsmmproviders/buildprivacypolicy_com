@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import RelatedGuides from '../../../components/RelatedGuides.astro';
 
 const title = "App Store Privacy Requirements Checker - BuildPrivacyPolicy";
 const description = "Free tool: pick the app stores you publish to and the data types your app collects, then get each store's app store privacy requirements and clauses you need.";
@@ -90,6 +91,8 @@ const publishDate = "2026-08-15";
     <p>Google Play requires every app to link a privacy-policy URL in the Play Console and complete a Data Safety form that declares exactly which data types the app collects, whether data is shared with third parties, and whether users can request deletion. Apple mandates a privacy-policy link in App Store Connect and requires developers to fill out Privacy Nutrition Labels that appear on the app's product page. Amazon Alexa Skills must include a privacy-policy URL in the Alexa Developer Console, with extra scrutiny for skills that access voice recordings or location. Meta requires a privacy-policy URL in the App Dashboard and runs periodic Data Use Checkups for apps that access Facebook user data. The Chrome Web Store asks for a privacy-policy URL in the developer dashboard and a Privacy Practices disclosure tied to the extension's permissions. Microsoft Store requires a privacy-policy URL in Partner Center for any app that collects personal data or uses network access.</p>
 
     <p>Getting the requirements right before submission saves rejection cycles and keeps your release timeline on track. For a deeper walkthrough of writing the policy itself, read our <a href="/resources/how-to-write-privacy-policy-for-app/">full guide to app privacy policies</a>.</p>
+
+    <RelatedGuides currentSlug="tools/app-store-privacy-requirements" />
 
     <h2 id="faq">Frequently Asked Questions</h2>
 

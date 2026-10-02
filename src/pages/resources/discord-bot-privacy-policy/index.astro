@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import RelatedGuides from '../../../components/RelatedGuides.astro';
 
 const title = "Discord Bot Privacy Policy — Free Generator & Template";
 const description = "Generate a free Discord bot privacy policy or copy a ready-made template. Meets Discord’s verified-bot and App Directory requirements so your bot stays live.";
@@ -299,6 +300,8 @@ const modifiedDate = "2026-09-10";
     <p>Separately, the <strong>Bot</strong> tab holds the <strong>Privileged Gateway Intents</strong> section, where the Presence, Server Members, and Message Content toggles live -- this is where you actually enable the intents your policy needs to describe. The <strong>Installation</strong> tab configures OAuth2 scopes and bot permissions for the invite link, which is worth double-checking against your policy too: a bot requesting the <code>administrator</code> permission or a broad OAuth2 scope set should have a policy that justifies why.</p>
 
     <p>These URLs also surface during your bot's OAuth2 authorization flow, and they are the same fields verification and Directory reviewers check. If your data practices change, update the policy and bump the modified date before your next reapplication or Directory review, not after.</p>
+
+    <RelatedGuides currentSlug="resources/discord-bot-privacy-policy" />
 
     <h2 id="faq">Frequently Asked Questions</h2>
 

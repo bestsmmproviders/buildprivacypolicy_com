@@ -1,10 +1,11 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import RelatedGuides from '../../../components/RelatedGuides.astro';
 
-const title = "Alexa Skill Privacy Policy: What Amazon Requires";
-const description = "Amazon requires an Alexa skill privacy policy URL for certification. Learn what the developer console checks and how to generate a compliant policy for free.";
+const title = "Alexa Skill Privacy Policy URL | Generator & Guide";
+const description = "Need an Alexa skill privacy policy URL for certification? See what Amazon reviews, copy a ready-made example, or generate and host a compliant policy for free.";
 const publishDate = "2026-08-13";
-const modifiedDate = "2026-09-08";
+const modifiedDate = "2026-10-01";
 ---
 
 <Layout title={title} description={description}>
@@ -23,7 +24,7 @@ const modifiedDate = "2026-09-08";
   <div class="page-card">
     <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
     <h1>Alexa Skill Privacy Policy: What Amazon Requires and How to Create One</h1>
-    <p class="last-updated">Published August 13, 2026 &middot; Updated September 8, 2026</p>
+    <p class="last-updated">Published August 13, 2026 &middot; Updated October 1, 2026</p>
 
     <p>Every Alexa skill that collects personal information, uses account linking, or includes advertising needs a hosted privacy policy URL before Amazon will approve it for the Alexa Skills Store. The policy must live at a publicly accessible web address, load without authentication, and describe how the skill handles user data. Skip it and the skill fails certification. Submit a vague or boilerplate document and Amazon's review team rejects it just the same -- they read the policy, not just the URL.</p>
 
@@ -44,16 +45,16 @@ const modifiedDate = "2026-09-08";
       <p class="toc-title">Contents</p>
       <ol>
         <li><a href="#why-amazon-requires">Why Amazon Requires a Privacy Policy URL for Skills</a></li>
-        <li><a href="#what-certification-checks">What Certification Checks</a></li>
+        <li><a href="#what-certification-checks">What the Alexa Skill Certification Review Checks</a></li>
         <li><a href="#troubleshooting-rejections">Troubleshooting Certification Rejections</a></li>
         <li><a href="#data-developers-overlook">Data a Skill Collects That Developers Overlook</a></li>
         <li><a href="#what-policy-must-state">What Your Policy Must State</a></li>
         <li><a href="#child-directed-skills">Privacy Policies for Child-Directed Skills</a></li>
         <li><a href="#health-skills">Privacy Policies for Health Skills</a></li>
         <li><a href="#generate-policy">How to Generate an Alexa Skill Privacy Policy</a></li>
-        <li><a href="#example-policy">Sample Alexa Skill Privacy Policy You Can Copy</a></li>
+        <li><a href="#example-policy">Alexa Skill Privacy Policy Example You Can Copy</a></li>
         <li><a href="#private-beta-skills">Privacy Policies for Private and Beta-Distributed Skills</a></li>
-        <li><a href="#host-and-add">Where to Host the URL and Add It in the Developer Console</a></li>
+        <li><a href="#host-and-add">Where to Host Your Privacy Policy URL and Add It in the Developer Console</a></li>
         <li><a href="#faq">Frequently Asked Questions</a></li>
       </ol>
     </nav>
@@ -70,7 +71,7 @@ const modifiedDate = "2026-09-08";
 
     <p>Other non-mobile platforms enforce the same pattern. Google requires a hosted policy before listing a <a href="/resources/chrome-extension-privacy-policy/">Chrome extension in its Web Store</a>, and Discord blocks bot verification past 100 servers without <a href="/resources/discord-bot-privacy-policy/">a working policy URL in the Developer Portal</a>. The requirement specifics differ, but the gating mechanism is identical: no policy, no distribution.</p>
 
-    <h2 id="what-certification-checks">What Certification Checks</h2>
+    <h2 id="what-certification-checks">What the Alexa Skill Certification Review Checks</h2>
 
     <p>Amazon's certification team does not just confirm the URL field is populated. Reviewers open the link and verify several conditions before approving a submission.</p>
 
@@ -248,7 +249,7 @@ const modifiedDate = "2026-09-08";
 
     <p>Whichever approach you choose, verify the finished document against Amazon's certification requirements before submitting: correct skill name, every data category disclosed, Privacy &amp; Compliance toggle answers matching the policy text, and a URL that loads on mobile and desktop without authentication.</p>
 
-    <h2 id="example-policy">Sample Alexa Skill Privacy Policy You Can Copy</h2>
+    <h2 id="example-policy">Alexa Skill Privacy Policy Example You Can Copy</h2>
 
     <p>Below is a complete privacy policy written for a fictional Alexa skill called "[Your Skill Name]." It covers the data categories most skills handle -- voice utterances, Amazon user IDs, account linking, skill permissions, persistent attributes, and children's privacy. Copy the entire block, replace the bracketed placeholders with your skill's details, and remove any sections that do not apply.</p>
 
@@ -342,7 +343,7 @@ const modifiedDate = "2026-09-08";
 
     <p>Private skills distributed solely through Alexa for Business bypass this gate, but every other distribution path -- public, beta, or organization-restricted through the Developer Console -- goes through it. Plan the policy at the start, not at the submission deadline.</p>
 
-    <h2 id="host-and-add">Where to Host the URL and Add It in the Developer Console</h2>
+    <h2 id="host-and-add">Where to Host Your Privacy Policy URL and Add It in the Developer Console</h2>
 
     <p>The privacy policy needs a permanent, publicly accessible URL. Three hosting approaches cover most Alexa skill developers.</p>
 
@@ -381,6 +382,8 @@ const modifiedDate = "2026-09-08";
     </ol>
 
     <p>After approval, the privacy policy link appears on your skill's detail page in the Alexa Skills Store. Customers can review it before enabling the skill.</p>
+
+    <RelatedGuides currentSlug="resources/alexa-skill-privacy-policy" />
 
     <h2 id="faq">Frequently Asked Questions</h2>
 
@@ -448,6 +451,21 @@ const modifiedDate = "2026-09-08";
       <div class="faq-item">
         <h3>Do health-related Alexa skills have extra privacy policy requirements?</h3>
         <p>Yes. Skills that provide health information, news, facts, or tips must include a disclaimer in both the skill description and the privacy policy stating that the skill is not a substitute for professional medical advice. Skills that provide drug dosage or administration information face additional requirements including account linking for clinician-patient verification. Skills processing Protected Health Information under HIPAA must sign Amazon's Business Associate Agreement, though Amazon ended support for third-party HIPAA skills in the public store in December 2022.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How long does the Alexa skill certification review take?</h3>
+        <p>Amazon typically completes certification review within a few business days, though the timeline varies by complexity. Skills with account linking, Alexa permissions, or child-directed content may take longer because the reviewer must cross-check additional data disclosures against the privacy policy. A rejection resets the clock -- after fixing the cited issue and resubmitting, the review period starts over. The fastest path through certification is submitting a skill whose Privacy &amp; Compliance answers, privacy policy URL, and policy content all match on the first attempt.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I update my Alexa skill privacy policy after certification?</h3>
+        <p>Yes. You can update the hosted privacy policy document at any time without resubmitting the skill for certification, as long as the URL stays the same. If you need to change the privacy policy URL itself, update the link in the Developer Console under Distribution &gt; Skill Preview and resubmit the skill for a new certification review. Whenever you change the policy content, update the "last modified" date in the document so Amazon's periodic re-reviews and your users can see when it was last changed.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do I need a separate privacy policy URL for each Alexa skill?</h3>
+        <p>Not necessarily. You can use one privacy policy URL across multiple skills if the policy explicitly names each skill and describes the data practices of each one in separate sections. Amazon's certification reviewer checks that the policy content is specific to the skill being submitted, so a single-page policy that only mentions one skill will fail review for a different skill. For developers with several skills, a combined policy works as long as each skill's data collection, purposes, and retention are clearly identified.</p>
       </div>
     </div>
 
@@ -584,6 +602,30 @@ const modifiedDate = "2026-09-08";
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes. Health skills must include a disclaimer stating the skill is not a substitute for professional medical advice. Skills providing drug dosage information need account linking for clinician verification. HIPAA-eligible skills require Amazon's Business Associate Agreement, though third-party HIPAA skills in the public store ended in December 2022."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does the Alexa skill certification review take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Amazon typically completes certification review within a few business days, though the timeline varies by complexity. Skills with account linking or child-directed content may take longer. A rejection resets the clock. The fastest path through certification is submitting a skill whose Privacy & Compliance answers, privacy policy URL, and policy content all match on the first attempt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I update my Alexa skill privacy policy after certification?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You can update the hosted privacy policy document at any time without resubmitting the skill, as long as the URL stays the same. If you need to change the URL itself, update it in the Developer Console and resubmit for certification review. Update the last modified date whenever you change the content."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a separate privacy policy URL for each Alexa skill?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not necessarily. You can use one privacy policy URL across multiple skills if the policy explicitly names each skill and describes the data practices of each one. Amazon's reviewer checks that the policy is specific to the skill being submitted, so a combined policy must clearly identify each skill's data collection and purposes."
       }
     }
   ]

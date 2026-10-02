@@ -1,0 +1,83 @@
+---
+import relatedData from '../data/related-guides.json';
+
+interface Props {
+  currentSlug: string;
+}
+
+const { currentSlug } = Astro.props;
+
+const related = relatedData.related[currentSlug] || [];
+const cards = related.map((item) => {
+  const page = relatedData.pages[item.slug];
+  return page ? { title: page.title, href: page.href, reason: item.reason } : null;
+}).filter(Boolean);
+---
+
+{cards.length > 0 && (
+  <div class="related-guides">
+    <h2 class="related-guides-heading">Related Guides</h2>
+    <div class="related-guides-grid">
+      {cards.map((card) => (
+        <a href={card.href} class="related-guide-card">
+          <span class="related-guide-title">{card.title}</span>
+          <span class="related-guide-reason">{card.reason}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+)}
+
+<style>
+  .related-guides {
+    margin: 32px 0;
+    padding: 24px;
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+  }
+  .related-guides-heading {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #111827 !important;
+    margin: 0 0 16px 0 !important;
+    padding: 0 !important;
+  }
+  .related-guides-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .related-guide-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px;
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .related-guide-card:hover {
+    border-color: #2563EB;
+    box-shadow: 0 1px 4px rgba(37, 99, 235, 0.1);
+    text-decoration: none;
+  }
+  .related-guide-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2563EB;
+    line-height: 1.4;
+  }
+  .related-guide-reason {
+    font-size: 13px;
+    color: #6B7280;
+    line-height: 1.5;
+  }
+  @media (min-width: 640px) {
+    .related-guides-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

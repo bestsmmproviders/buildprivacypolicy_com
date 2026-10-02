@@ -1,0 +1,593 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import RelatedGuides from '../../../components/RelatedGuides.astro';
+
+const title = "Slack App Privacy Policy — Guide & Template";
+const description = "Learn what the Slack App Directory requires for privacy policies, what data your app collects through OAuth scopes and the Events API, and use a free template.";
+const publishDate = "2026-10-02";
+const modifiedDate = "2026-10-02";
+---
+
+<Layout title={title} description={description}>
+
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="128" height="128" rx="28" fill="#1E3A5F"/><path d="M64 24C64 24 40 34 32 38V62C32 82 46 98 64 104C82 98 96 82 96 62V38C88 34 64 24 64 24Z" fill="#2E5A8F" stroke="#5B9BD5" stroke-width="2.5"/><path d="M52 64L60 72L78 54" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+</div>
+
+<main>
+<article class="page-container">
+  <div class="page-card">
+    <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
+    <h1>Slack App Privacy Policy: What the App Directory Requires and How to Write One</h1>
+    <p class="last-updated">Published October 2, 2026</p>
+
+    <p>The Slack App Directory requires every publicly distributed app to provide a privacy policy URL before it can be submitted for review. The privacy policy field is mandatory in the submission form at <code>api.slack.com/apps</code> -- without a valid URL, the review process cannot start. This applies to every distributed app, whether it uses OAuth, the Events API, slash commands, or interactive components like modals and buttons.</p>
+
+    <p>This guide walks through what Slack's app review actually checks, what data a Slack app receives through OAuth scopes and the Events API, how to map your requested scopes to privacy disclosures, GDPR obligations and data retention, and a copy-ready sample policy you can adapt for your own app. If you want a finished policy without writing one from scratch, <a href="https://buildprivacypolicy.com/">use the free privacy policy generator</a> and get a hosted URL you can paste straight into your app settings.</p>
+
+    <nav class="toc">
+      <p class="toc-title">Contents</p>
+      <ol>
+        <li><a href="#app-directory-requirements">What the Slack App Directory Review Requires</a></li>
+        <li><a href="#what-slack-apps-collect">What Data a Slack App Actually Collects</a></li>
+        <li><a href="#scopes-disclosure-map">OAuth Scopes as the Disclosure Map</a></li>
+        <li><a href="#gdpr-retention">GDPR Legal Basis, Retention, and Sub-Processors</a></li>
+        <li><a href="#sample-policy">Sample Slack App Privacy Policy</a></li>
+        <li><a href="#hosting">Hosting Your Policy and Setting the URL</a></li>
+        <li><a href="#faq">Frequently Asked Questions</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="app-directory-requirements">What the Slack App Directory Review Requires</h2>
+
+    <p>Slack's app review team evaluates privacy policies as part of the submission process. On the app configuration page at <code>api.slack.com/apps</code>, the <strong>Privacy Policy URL</strong> field sits alongside the app description, support URL, and redirect URLs under the "Manage Distribution" section. Apps that leave this field blank cannot be submitted to the directory.</p>
+
+    <p>The review looks for specifics. Slack's <a href="https://api.slack.com/developer-policy" rel="nofollow">Developer Policy</a> requires that apps clearly disclose what information they collect, how they use and share it, and what choices users have. A generic boilerplate policy that never mentions Slack-specific data types -- OAuth tokens, workspace data, message content received through the Events API -- gets flagged. The policy has to match what the app actually does with the scopes it requests.</p>
+
+    <p>Internal apps distributed within a single workspace do not go through the App Directory review and do not need a public privacy policy URL from Slack's side. But any app submitted to the public directory must have one, and it must be hosted at a URL that loads over HTTPS without authentication. The same pattern applies elsewhere: Discord requires a privacy policy URL in the Developer Portal before <a href="/resources/discord-bot-privacy-policy/">bot verification</a>, and Google enforces one for every Chrome Web Store extension listing.</p>
+
+    <h2 id="what-slack-apps-collect">What Data a Slack App Actually Collects</h2>
+
+    <p>What your app receives depends on which API surfaces it uses. The gap between what developers think their app collects and what actually flows through their endpoints is where most privacy policy gaps appear.</p>
+
+    <ul>
+      <li><strong>OAuth tokens and identity.</strong> When a user or workspace admin installs your app, the OAuth 2.0 flow (<code>oauth.v2.access</code>) returns a bot token or user token scoped to the permissions the installer approved. The response payload includes <code>team.id</code>, <code>team.name</code>, <code>authed_user.id</code>, and the <code>access_token</code> itself. For apps requesting user tokens, <code>authed_user.access_token</code> grants access to data on behalf of that specific user -- the token is a credential that represents their identity and persists until revoked.</li>
+
+      <li><strong>User profiles.</strong> Apps with the <code>users:read</code> scope can call <code>users.info</code> and <code>users.list</code> to retrieve display names, real names, status text, time zones, and profile images. Adding the <code>users:read.email</code> scope exposes email addresses. These are personal data under GDPR regardless of whether you persist them to a database.</li>
+
+      <li><strong>Channel and conversation metadata.</strong> The <code>channels:read</code> scope exposes the names, topics, purposes, and member counts of public channels. <code>groups:read</code> does the same for private channels the app has been invited to. <code>conversations.list</code> and <code>conversations.info</code> are the Web API methods that return this data.</li>
+
+      <li><strong>Message content via the Events API.</strong> Apps subscribed to the <code>message.channels</code>, <code>message.groups</code>, <code>message.im</code>, or <code>message.mpim</code> event types receive message payloads in real time. Each event payload includes the sender's <code>user</code> ID, <code>text</code>, <code>ts</code> (timestamp), <code>channel</code>, and any <code>files</code>, <code>blocks</code>, or <code>attachments</code>. If your app subscribes to these events, it is processing message content -- disclose that in the policy even if the data never hits a database.</li>
+
+      <li><strong>Files.</strong> The <code>files:read</code> scope lets your app call <code>files.info</code> and <code>files.list</code> to retrieve file metadata and download shared files. File objects include the uploader's <code>user</code> ID, <code>name</code>, <code>filetype</code>, <code>size</code>, and a <code>url_private</code> download link that requires the bot token to access.</li>
+
+      <li><strong>Slash commands and interactive payloads.</strong> When a user invokes a slash command, Slack sends a POST request to your configured endpoint with <code>user_id</code>, <code>user_name</code>, <code>team_id</code>, <code>channel_id</code>, <code>channel_name</code>, and the command <code>text</code>. Interactive components -- buttons, overflow menus, date pickers, modals submitted via <code>views.submit</code> -- send similar payloads including a <code>trigger_id</code> and the user's action or form input data.</li>
+    </ul>
+
+    <p>The takeaway: even a minimal app that stores nothing still processes user IDs, workspace identifiers, and command text in memory on every request. <a href="/resources/how-to-write-privacy-policy-for-app/">Writing a privacy policy for any app</a> starts with auditing what you actually receive, not just what you save.</p>
+
+    <h2 id="scopes-disclosure-map">OAuth Scopes as the Disclosure Map</h2>
+
+    <p>Slack's permission model is granular enough to serve as the skeleton of your privacy policy's data-collection section. Each scope your app requests maps directly to a category of data you must disclose. Review your app's scope list at <code>api.slack.com/apps</code> under "OAuth &amp; Permissions" -- every checked scope is a disclosure obligation.</p>
+
+    <table class="scope-table">
+      <thead>
+        <tr>
+          <th>Scope</th>
+          <th>Data accessed</th>
+          <th>Disclose as</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>users:read</code></td>
+          <td>Display name, real name, status, time zone, profile image</td>
+          <td>User profile information</td>
+        </tr>
+        <tr>
+          <td><code>users:read.email</code></td>
+          <td>Email addresses of workspace members</td>
+          <td>Email addresses</td>
+        </tr>
+        <tr>
+          <td><code>channels:read</code></td>
+          <td>Public channel names, topics, member counts</td>
+          <td>Workspace channel metadata</td>
+        </tr>
+        <tr>
+          <td><code>channels:history</code></td>
+          <td>Full message text, files, and reactions in public channels</td>
+          <td>Message content in public channels</td>
+        </tr>
+        <tr>
+          <td><code>groups:history</code></td>
+          <td>Full message text, files, and reactions in private channels</td>
+          <td>Message content in private channels</td>
+        </tr>
+        <tr>
+          <td><code>im:history</code></td>
+          <td>Direct message text and attachments</td>
+          <td>Direct message content</td>
+        </tr>
+        <tr>
+          <td><code>files:read</code></td>
+          <td>File metadata and download URLs</td>
+          <td>Shared files and file metadata</td>
+        </tr>
+        <tr>
+          <td><code>chat:write</code></td>
+          <td>Ability to post messages (write-only, not read)</td>
+          <td>Outbound messages posted by the app</td>
+        </tr>
+        <tr>
+          <td><code>reactions:read</code></td>
+          <td>Emoji reactions on messages</td>
+          <td>Reaction data and associated messages</td>
+        </tr>
+        <tr>
+          <td><code>team:read</code></td>
+          <td>Workspace name, email domain, icon</td>
+          <td>Workspace-level metadata</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>If your app requests a scope, the policy must name the data that scope grants access to. This table covers the most common bot token scopes; user token scopes like <code>search:read</code> or <code>stars:read</code> carry their own disclosure requirements. The full list of available scopes is documented in the <a href="https://api.slack.com/scopes" rel="nofollow">Slack API scopes reference</a>.</p>
+
+    <h2 id="gdpr-retention">GDPR Legal Basis, Retention, and Sub-Processors</h2>
+
+    <p>Most Slack workspaces include users in the EU or UK, putting GDPR in play regardless of where the developer is based. The two legal bases that apply to most Slack apps:</p>
+
+    <ul>
+      <li><strong>Legitimate interest</strong> (Article 6(1)(f)) -- processing workspace data to deliver the app's core function. A summarization app that reads channel history, a standup bot that posts scheduled prompts, a moderation tool that scans messages for policy violations -- each processes data the user expects when the app is installed.</li>
+      <li><strong>Consent</strong> (Article 6(1)(a)) -- any processing beyond the app's stated purpose: analytics on message patterns, sharing message content with a third-party AI service, using workspace data for product improvement or model training. A workspace admin installing the app is not GDPR consent from individual users -- if your basis is consent, it must come from each user directly.</li>
+    </ul>
+
+    <p>For retention, state concrete periods. "We retain message data for 30 days to provide search functionality, then delete it" is a meaningful disclosure. "We retain data as long as necessary" is not. Slack's <a href="https://api.slack.com/developer-policy" rel="nofollow">Developer Policy</a> requires that apps delete data obtained through the API when the <code>app_uninstalled</code> or <code>tokens_revoked</code> event fires, unless the data has been aggregated and fully anonymized. Subscribe to both events and build the deletion handler before you ship.</p>
+
+    <p>Sub-processors must be named. If your app runs on AWS or GCP, stores data in a managed database like Supabase or PlanetScale, calls the OpenAI API with message content, or uses Sentry for error tracking, each of those is a sub-processor receiving workspace data. List them by name and state what data each receives.</p>
+
+    <h2 id="sample-policy">Sample Slack App Privacy Policy</h2>
+
+    <p>A template for an app called "[Your App Name]." Copy it, fill in the bracketed fields, and remove any section that does not apply.</p>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-label">Sample Privacy Policy — ready to copy</span>
+      </div>
+      <div class="copy-block-body" id="sample-policy-text">
+<p><strong>Privacy Policy for [Your App Name]</strong></p>
+<p><em>Last updated: [Date]</em></p>
+
+<p><strong>1. Introduction</strong></p>
+<p>[Your Name / Organization] ("we," "us," or "our") operates the [Your App Name] Slack app ("the App"). This policy explains what data the App collects through the Slack API, why it collects it, who else receives it, how long it is kept, and your rights regarding that data.</p>
+
+<p><strong>2. Data We Collect</strong></p>
+<p>The App requests the following OAuth scopes and processes the data they grant access to:</p>
+<ul>
+<li><em>Workspace identity</em> — team ID, team name, and installing user ID, received during the OAuth installation flow.</li>
+<li><em>User profiles</em> [if users:read is requested] — display name, real name, time zone, status, and profile image via the users.info and users.list Web API methods. [Add: and email address, if users:read.email is requested.]</li>
+<li><em>Channel metadata</em> [if channels:read or groups:read is requested] — channel names, topics, purposes, and member counts.</li>
+<li><em>Message content</em> [if channels:history, groups:history, im:history, or Events API subscriptions are used] — message text, sender user ID, timestamp, attached files, reactions, and threaded replies. [State whether processed in memory only or stored, and for how long.]</li>
+<li><em>Files</em> [if files:read is requested] — file metadata (name, type, size, uploader) and file content.</li>
+<li><em>Slash command and interaction data</em> — user ID, channel ID, and input text sent when a user invokes a slash command or interacts with a button, menu, or modal.</li>
+</ul>
+
+<p><strong>3. How We Use This Data</strong></p>
+<p>To operate the App's features as described in its Slack App Directory listing: [describe core function, e.g., summarize channel discussions / run daily standups / moderate messages]. We do not use workspace data for advertising, sell it to third parties, or use it to train machine learning models.</p>
+
+<p><strong>4. Third-Party Services</strong></p>
+<p><strong>[Hosting provider, e.g., AWS / Vercel / Railway]</strong> — runs the App's backend. <strong>[Database provider, e.g., Supabase / PlanetScale]</strong> — stores [specify what is stored]. <strong>[AI provider, if applicable, e.g., OpenAI]</strong> — processes [message content / query text] to [describe purpose]. <strong>[Error tracking, e.g., Sentry]</strong> — receives error logs that may include request metadata. No other third party receives workspace data.</p>
+
+<p><strong>5. Data Retention</strong></p>
+<p>[Message content / processed data] is deleted within [number] days. Workspace configuration and user preferences are kept while the App is installed and deleted within [number] days after the App is uninstalled (triggered by the app_uninstalled event). OAuth tokens are revoked and deleted immediately upon uninstallation. Error logs are retained for [number] days.</p>
+
+<p><strong>6. Your Rights</strong></p>
+<p>You may request a copy of your data, ask us to correct or delete it, or object to its processing by contacting [your-email@example.com]. We respond within 30 days. If you are in the EU or UK, you have rights under GDPR including the right to lodge a complaint with your local data protection authority. If you are in California, you have rights under CCPA including the right to know what data we hold and to request its deletion. We do not sell personal information.</p>
+
+<p><strong>7. Children</strong></p>
+<p>The App is not directed at users under 16. We do not knowingly collect data from children and will delete it promptly if we become aware of it.</p>
+
+<p><strong>8. Changes</strong></p>
+<p>We update the "Last updated" date above when this policy changes. Material changes are announced [in our changelog / via Slack message / at (URL)].</p>
+
+<p><strong>9. Contact</strong></p>
+<p>[your-email@example.com]</p>
+      </div>
+      <button class="copy-btn" id="copy-policy-btn" type="button">Copy to clipboard</button>
+    </div>
+
+    <p>Apps with complex data flows -- multiple AI providers, cross-workspace federation, or Slack Connect channels -- need additional sections for each data path. Want a policy generated from your app's actual data practices? <a href="https://buildprivacypolicy.com/">Build one for free with the generator</a> and get a hosted URL you can paste directly into your app's settings.</p>
+
+    <h2 id="hosting">Hosting Your Policy and Setting the URL</h2>
+
+    <p>The privacy policy URL must load over HTTPS, resolve without authentication, and display the full text without requiring a Slack login or app installation.</p>
+
+    <ul>
+      <li><strong>Your app's website</strong> -- a path like <code>yourapp.com/privacy</code>. Gives you full control over content, uptime, and branding.</li>
+      <li><strong>A free generated policy</strong> -- <a href="https://buildprivacypolicy.com/">generate and host a privacy policy at no cost</a> and use the permanent URL it provides.</li>
+      <li><strong>GitHub Pages</strong> -- a static HTML file in a public repository. Common for open-source Slack apps, works as long as it loads without a GitHub login.</li>
+    </ul>
+
+    <p>Avoid Google Docs, Notion pages, or Pastebin links -- they can change visibility, move behind authentication, or disappear. Once you have the URL, go to <code>api.slack.com/apps</code>, select your app, open <strong>Manage Distribution</strong>, and paste the URL in the <strong>Privacy Policy URL</strong> field. For apps using an <a href="https://api.slack.com/reference/manifests" rel="nofollow">app manifest</a>, set the <code>settings.org_deploy_enabled</code> or the display information's <code>privacy_policy_url</code> field. The URL is shown to workspace admins during the app's installation flow and on the App Directory listing page.</p>
+
+    <RelatedGuides currentSlug="resources/slack-app-privacy-policy" />
+
+    <h2 id="faq">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Does every Slack app need a privacy policy?</h3>
+        <p>Every app submitted to the public Slack App Directory must have a privacy policy URL. Internal apps distributed only within a single workspace are not required to have one by Slack, but it is still good practice, especially if the app handles message content or user data covered by GDPR.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What does Slack check during app review?</h3>
+        <p>The review team verifies that the privacy policy URL is accessible, loads over HTTPS, and describes the app's data practices in enough detail to cover the OAuth scopes the app requests. Generic policies that do not mention Slack-specific data types -- OAuth tokens, workspace data, Events API payloads -- are flagged and the app is not approved until the policy is updated.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What data does a Slack app collect through OAuth?</h3>
+        <p>At minimum, the OAuth flow returns a <code>team.id</code>, <code>team.name</code>, <code>authed_user.id</code>, and an <code>access_token</code>. Beyond that, each requested scope opens access to additional data: <code>users:read</code> exposes user profiles, <code>channels:history</code> exposes full message content in public channels, and <code>files:read</code> exposes shared file metadata and download links. Your policy must disclose what each requested scope accesses.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do I need to handle the app_uninstalled event?</h3>
+        <p>Yes. Slack's Developer Policy requires apps to delete workspace data when a workspace uninstalls the app. Subscribe to the <code>app_uninstalled</code> and <code>tokens_revoked</code> events in your app's Event Subscriptions, and build a handler that deletes all stored data for that workspace when either event fires.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How do I add a privacy policy URL to my Slack app?</h3>
+        <p>Go to <code>api.slack.com/apps</code>, select your app, navigate to <strong>Manage Distribution</strong>, and enter the URL in the <strong>Privacy Policy URL</strong> field. The URL must load over HTTPS without requiring authentication. It appears to workspace admins during the installation flow and on your App Directory listing.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does my Slack app's privacy policy need to cover the Events API?</h3>
+        <p>If your app subscribes to any event types -- <code>message.channels</code>, <code>message.groups</code>, <code>message.im</code>, <code>app_mention</code>, <code>file_shared</code>, or others -- the policy must disclose that the app receives those event payloads. Each event delivers the sender's user ID, channel ID, and the event-specific data (message text, file metadata, reaction details). Even if the data is processed in memory and not stored, that processing must be disclosed.</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+</main>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Slack App Privacy Policy: What the App Directory Requires and How to Write One",
+  "description": description,
+  "datePublished": publishDate,
+  "dateModified": modifiedDate,
+  "author": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buildprivacypolicy.com/resources/slack-app-privacy-policy/"
+  }
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does every Slack app need a privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every app submitted to the public Slack App Directory must have a privacy policy URL. Internal apps distributed only within a single workspace are not required to have one by Slack, but it is still good practice, especially if the app handles message content or user data covered by GDPR."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does Slack check during app review?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The review team verifies that the privacy policy URL is accessible, loads over HTTPS, and describes the app's data practices in enough detail to cover the OAuth scopes the app requests. Generic policies that do not mention Slack-specific data types are flagged and the app is not approved until the policy is updated."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What data does a Slack app collect through OAuth?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At minimum, the OAuth flow returns a team.id, team.name, authed_user.id, and an access_token. Beyond that, each requested scope opens access to additional data: users:read exposes user profiles, channels:history exposes full message content in public channels, and files:read exposes shared file metadata and download links."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to handle the app_uninstalled event?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Slack's Developer Policy requires apps to delete workspace data when a workspace uninstalls the app. Subscribe to the app_uninstalled and tokens_revoked events, and build a handler that deletes all stored data for that workspace when either event fires."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I add a privacy policy URL to my Slack app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Go to api.slack.com/apps, select your app, navigate to Manage Distribution, and enter the URL in the Privacy Policy URL field. The URL must load over HTTPS without requiring authentication. It appears to workspace admins during the installation flow and on your App Directory listing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does my Slack app's privacy policy need to cover the Events API?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If your app subscribes to any event types like message.channels, message.groups, message.im, app_mention, or file_shared, the policy must disclose that the app receives those event payloads. Each event delivers the sender's user ID, channel ID, and the event-specific data. Even if the data is processed in memory and not stored, that processing must be disclosed."
+      }
+    }
+  ]
+})} />
+
+</Layout>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-link:hover {
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+  .page-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 16px 80px;
+  }
+  .page-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px 36px;
+    border: 1px solid #E5E7EB;
+  }
+  .breadcrumb {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 16px;
+  }
+  .breadcrumb a {
+    color: #6B7280;
+    text-decoration: underline;
+  }
+  .page-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .last-updated {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 24px;
+  }
+  .page-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .page-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  .page-card p {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .page-card ul, .page-card ol {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+  .page-card li {
+    margin-bottom: 8px;
+  }
+  .page-card a {
+    color: #2563EB;
+    text-decoration: underline;
+  }
+  .page-card strong {
+    font-weight: 600;
+  }
+  .page-card em {
+    font-style: italic;
+  }
+  .toc {
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 8px;
+  }
+  .toc-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .toc ol {
+    margin-bottom: 0;
+    padding-left: 20px;
+  }
+  .toc li {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .toc a {
+    color: #2563EB;
+  }
+  .scope-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 20px;
+    font-size: 14px;
+  }
+  .scope-table th {
+    background: #F3F4F6;
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #374151;
+    border: 1px solid #E5E7EB;
+  }
+  .scope-table td {
+    padding: 10px 12px;
+    border: 1px solid #E5E7EB;
+    color: #374151;
+    vertical-align: top;
+  }
+  .scope-table code {
+    background: #E5E7EB;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+  .faq-list {
+    margin-top: 8px;
+  }
+  .faq-item {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 20px;
+    margin-bottom: 8px;
+  }
+  .faq-item h3 {
+    margin-top: 0;
+  }
+  .faq-item p {
+    margin-bottom: 8px;
+  }
+  .copy-block {
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    margin: 20px 0;
+    overflow: hidden;
+  }
+  .copy-block-header {
+    background: #F3F4F6;
+    padding: 10px 16px;
+    border-bottom: 1px solid #D1D5DB;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .copy-block-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4B5563;
+  }
+  .copy-block-body {
+    padding: 24px 28px;
+    background: #FAFAFA;
+    max-height: 480px;
+    overflow-y: auto;
+  }
+  .copy-block-body p {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .copy-block-body ul {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    padding-left: 22px;
+  }
+  .copy-block-body li {
+    margin-bottom: 4px;
+  }
+  .copy-block-body code {
+    background: #E5E7EB;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+  .copy-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #1E3A5F;
+    color: white;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .copy-btn:hover {
+    background: #2E5A8F;
+  }
+</style>
+
+<script>
+  document.getElementById('copy-policy-btn')?.addEventListener('click', function() {
+    const el = document.getElementById('sample-policy-text');
+    if (!el) return;
+    const text = el.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copy-policy-btn');
+      if (btn) {
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy to clipboard'; }, 2000);
+      }
+    });
+  });
+</script>

@@ -1,0 +1,240 @@
+{
+  "pages": {
+    "resources/alexa-skill-privacy-policy": {
+      "title": "Alexa Skill Privacy Policy",
+      "href": "/resources/alexa-skill-privacy-policy/"
+    },
+    "resources/chrome-extension-privacy-policy": {
+      "title": "Chrome Extension Privacy Policy",
+      "href": "/resources/chrome-extension-privacy-policy/"
+    },
+    "resources/discord-bot-privacy-policy": {
+      "title": "Discord Bot Privacy Policy",
+      "href": "/resources/discord-bot-privacy-policy/"
+    },
+    "resources/do-i-need-a-privacy-policy-for-my-website": {
+      "title": "Do I Need a Privacy Policy?",
+      "href": "/resources/do-i-need-a-privacy-policy-for-my-website/"
+    },
+    "resources/does-gdpr-apply-to-us-companies": {
+      "title": "Does GDPR Apply to US Companies?",
+      "href": "/resources/does-gdpr-apply-to-us-companies/"
+    },
+    "resources/etsy-privacy-policy-generator": {
+      "title": "Etsy Privacy Policy Generator",
+      "href": "/resources/etsy-privacy-policy-generator/"
+    },
+    "resources/gdpr-eu-representative": {
+      "title": "GDPR EU Representative Guide",
+      "href": "/resources/gdpr-eu-representative/"
+    },
+    "resources/how-to-add-privacy-policy-to-website": {
+      "title": "How to Add a Privacy Policy to Your Website",
+      "href": "/resources/how-to-add-privacy-policy-to-website/"
+    },
+    "resources/how-to-write-privacy-policy-for-app": {
+      "title": "How to Write a Privacy Policy for Your App",
+      "href": "/resources/how-to-write-privacy-policy-for-app/"
+    },
+    "resources/privacy-policy-for-clothing-website": {
+      "title": "Clothing Website Privacy Policy",
+      "href": "/resources/privacy-policy-for-clothing-website/"
+    },
+    "resources/privacy-policy-for-dropshipping-website": {
+      "title": "Dropshipping Website Privacy Policy",
+      "href": "/resources/privacy-policy-for-dropshipping-website/"
+    },
+    "resources/privacy-policy-for-ecommerce-website": {
+      "title": "Ecommerce Privacy Policy Guide",
+      "href": "/resources/privacy-policy-for-ecommerce-website/"
+    },
+    "resources/privacy-policy-for-marketing-agency": {
+      "title": "Marketing Agency Privacy Policy",
+      "href": "/resources/privacy-policy-for-marketing-agency/"
+    },
+    "resources/privacy-policy-for-photography-website": {
+      "title": "Photography Website Privacy Policy",
+      "href": "/resources/privacy-policy-for-photography-website/"
+    },
+    "resources/privacy-policy-for-small-business": {
+      "title": "Small Business Privacy Policy",
+      "href": "/resources/privacy-policy-for-small-business/"
+    },
+    "resources/shopify-privacy-policy-generator": {
+      "title": "Shopify Privacy Policy Generator",
+      "href": "/resources/shopify-privacy-policy-generator/"
+    },
+    "resources/slack-app-privacy-policy": {
+      "title": "Slack App Privacy Policy",
+      "href": "/resources/slack-app-privacy-policy/"
+    },
+    "resources/squarespace-privacy-policy-generator": {
+      "title": "Squarespace Privacy Policy Generator",
+      "href": "/resources/squarespace-privacy-policy-generator/"
+    },
+    "resources/telegram-bot-privacy-policy": {
+      "title": "Telegram Bot Privacy Policy",
+      "href": "/resources/telegram-bot-privacy-policy/"
+    },
+    "resources/wix-privacy-policy-generator": {
+      "title": "Wix Privacy Policy Generator",
+      "href": "/resources/wix-privacy-policy-generator/"
+    },
+    "tools/app-store-privacy-requirements": {
+      "title": "App Store Privacy Requirements Checker",
+      "href": "/tools/app-store-privacy-requirements/"
+    },
+    "tools/data-retention-schedule": {
+      "title": "Data Retention Schedule Builder",
+      "href": "/tools/data-retention-schedule/"
+    },
+    "tools/gdpr-compliance-checklist": {
+      "title": "GDPR Compliance Checklist",
+      "href": "/tools/gdpr-compliance-checklist/"
+    },
+    "tools/privacy-law-checker": {
+      "title": "Privacy Law Applicability Checker",
+      "href": "/tools/privacy-law-checker/"
+    },
+    "tools/privacy-policy-checker": {
+      "title": "Privacy Policy Completeness Checker",
+      "href": "/tools/privacy-policy-checker/"
+    },
+    "tools/sdk-disclosure-generator": {
+      "title": "SDK Disclosure Generator",
+      "href": "/tools/sdk-disclosure-generator/"
+    }
+  },
+  "related": {
+    "resources/alexa-skill-privacy-policy": [
+      { "slug": "resources/chrome-extension-privacy-policy", "reason": "Same pattern: platform-specific policy for a developer tool distributed through a review process." },
+      { "slug": "resources/discord-bot-privacy-policy", "reason": "Another bot/integration that requires a hosted privacy policy URL before approval." },
+      { "slug": "resources/telegram-bot-privacy-policy", "reason": "Covers the equivalent privacy policy requirements for Telegram's bot platform." }
+    ],
+    "resources/chrome-extension-privacy-policy": [
+      { "slug": "resources/discord-bot-privacy-policy", "reason": "Another developer integration where a platform review team checks your privacy policy." },
+      { "slug": "resources/slack-app-privacy-policy", "reason": "Slack's App Directory has similar privacy disclosure requirements to the Chrome Web Store." },
+      { "slug": "resources/alexa-skill-privacy-policy", "reason": "Covers Amazon's certification review, which mirrors Chrome's store listing requirements." }
+    ],
+    "resources/discord-bot-privacy-policy": [
+      { "slug": "resources/telegram-bot-privacy-policy", "reason": "Telegram's BotFather verification has similar privacy disclosure steps to Discord." },
+      { "slug": "resources/slack-app-privacy-policy", "reason": "Slack bots face comparable app directory listing requirements." },
+      { "slug": "resources/chrome-extension-privacy-policy", "reason": "Chrome extensions share the same publish-then-review model for privacy policies." }
+    ],
+    "resources/do-i-need-a-privacy-policy-for-my-website": [
+      { "slug": "resources/how-to-add-privacy-policy-to-website", "reason": "Once you know you need one, this guide shows where and how to add it." },
+      { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "Building an app instead? The requirements differ from websites." },
+      { "slug": "tools/privacy-law-checker", "reason": "Check exactly which data-protection laws apply to your site and audience." }
+    ],
+    "resources/does-gdpr-apply-to-us-companies": [
+      { "slug": "resources/gdpr-eu-representative", "reason": "If GDPR applies to you, Article 27 may require an EU-based representative." },
+      { "slug": "tools/gdpr-compliance-checklist", "reason": "Walk through every GDPR requirement with an interactive checklist." },
+      { "slug": "tools/privacy-law-checker", "reason": "Check whether GDPR and other data-protection laws apply to your specific situation." }
+    ],
+    "resources/etsy-privacy-policy-generator": [
+      { "slug": "resources/shopify-privacy-policy-generator", "reason": "Selling on Shopify too? The privacy policy requirements overlap but differ in key areas." },
+      { "slug": "resources/privacy-policy-for-ecommerce-website", "reason": "Covers the broader ecommerce privacy clauses that apply beyond Etsy's marketplace." },
+      { "slug": "resources/wix-privacy-policy-generator", "reason": "Many Etsy sellers also host a standalone Wix site that needs its own policy." }
+    ],
+    "resources/gdpr-eu-representative": [
+      { "slug": "resources/does-gdpr-apply-to-us-companies", "reason": "First step: confirm whether GDPR actually applies to your company." },
+      { "slug": "tools/gdpr-compliance-checklist", "reason": "The representative is one requirement — this checklist covers the rest." },
+      { "slug": "tools/privacy-law-checker", "reason": "Check which other data-protection laws apply alongside GDPR." }
+    ],
+    "resources/how-to-add-privacy-policy-to-website": [
+      { "slug": "resources/do-i-need-a-privacy-policy-for-my-website", "reason": "Not sure whether your site actually needs a policy? Start here." },
+      { "slug": "resources/wix-privacy-policy-generator", "reason": "Platform-specific steps for adding a privacy policy to a Wix site." },
+      { "slug": "resources/squarespace-privacy-policy-generator", "reason": "Squarespace has its own placement options — this guide covers them." }
+    ],
+    "resources/how-to-write-privacy-policy-for-app": [
+      { "slug": "tools/app-store-privacy-requirements", "reason": "Check which privacy disclosures Apple and Google require for your app listing." },
+      { "slug": "resources/how-to-add-privacy-policy-to-website", "reason": "Your app likely has a companion website that also needs a hosted policy." },
+      { "slug": "tools/sdk-disclosure-generator", "reason": "Third-party SDKs in your app create disclosure obligations — generate them here." }
+    ],
+    "resources/privacy-policy-for-clothing-website": [
+      { "slug": "resources/privacy-policy-for-ecommerce-website", "reason": "Clothing stores share core ecommerce privacy requirements with all online retailers." },
+      { "slug": "resources/shopify-privacy-policy-generator", "reason": "Many clothing brands run on Shopify — this covers platform-specific needs." },
+      { "slug": "resources/privacy-policy-for-dropshipping-website", "reason": "If you dropship inventory, additional third-party data sharing disclosures apply." }
+    ],
+    "resources/privacy-policy-for-dropshipping-website": [
+      { "slug": "resources/privacy-policy-for-ecommerce-website", "reason": "Covers the baseline ecommerce clauses that also apply to dropshipping stores." },
+      { "slug": "resources/shopify-privacy-policy-generator", "reason": "Most dropshipping stores run on Shopify — this covers platform-specific privacy needs." },
+      { "slug": "resources/privacy-policy-for-clothing-website", "reason": "Clothing is a common dropshipping niche with overlapping policy requirements." }
+    ],
+    "resources/privacy-policy-for-ecommerce-website": [
+      { "slug": "resources/shopify-privacy-policy-generator", "reason": "Shopify is the most common ecommerce platform — this covers its specific requirements." },
+      { "slug": "resources/privacy-policy-for-dropshipping-website", "reason": "Dropshipping adds third-party fulfillment disclosures on top of standard ecommerce clauses." },
+      { "slug": "resources/privacy-policy-for-clothing-website", "reason": "Clothing stores have specific data practices around sizing, returns, and wishlists." }
+    ],
+    "resources/privacy-policy-for-marketing-agency": [
+      { "slug": "resources/privacy-policy-for-small-business", "reason": "Agencies are small businesses too — this covers the foundational privacy requirements." },
+      { "slug": "resources/does-gdpr-apply-to-us-companies", "reason": "Agencies handling EU client data may fall under GDPR even if based in the US." },
+      { "slug": "resources/do-i-need-a-privacy-policy-for-my-website", "reason": "Covers when a privacy policy is legally required versus optional for your agency site." }
+    ],
+    "resources/privacy-policy-for-photography-website": [
+      { "slug": "resources/privacy-policy-for-small-business", "reason": "Photography businesses share core small-business privacy requirements." },
+      { "slug": "resources/privacy-policy-for-marketing-agency", "reason": "Agencies and photographers both handle client data — the policy structure overlaps." },
+      { "slug": "resources/how-to-add-privacy-policy-to-website", "reason": "Step-by-step guide to placing your finished policy on your portfolio site." }
+    ],
+    "resources/privacy-policy-for-small-business": [
+      { "slug": "resources/privacy-policy-for-marketing-agency", "reason": "If your business is an agency, this guide covers industry-specific clauses." },
+      { "slug": "resources/do-i-need-a-privacy-policy-for-my-website", "reason": "Find out whether your small business website is legally required to have one." },
+      { "slug": "resources/privacy-policy-for-ecommerce-website", "reason": "Selling products online adds ecommerce-specific data handling requirements." }
+    ],
+    "resources/shopify-privacy-policy-generator": [
+      { "slug": "resources/wix-privacy-policy-generator", "reason": "Comparing platforms? Wix has different privacy policy placement and requirements." },
+      { "slug": "resources/etsy-privacy-policy-generator", "reason": "Many Shopify sellers also list on Etsy, which has its own marketplace policy needs." },
+      { "slug": "resources/privacy-policy-for-ecommerce-website", "reason": "Covers the broader ecommerce privacy clauses beyond Shopify-specific steps." }
+    ],
+    "resources/slack-app-privacy-policy": [
+      { "slug": "resources/discord-bot-privacy-policy", "reason": "Discord bots face similar app directory review and privacy disclosure requirements." },
+      { "slug": "resources/telegram-bot-privacy-policy", "reason": "Another messaging-platform bot with its own privacy policy verification process." },
+      { "slug": "resources/chrome-extension-privacy-policy", "reason": "Chrome extensions share the same review-gated distribution model as Slack apps." }
+    ],
+    "resources/squarespace-privacy-policy-generator": [
+      { "slug": "resources/wix-privacy-policy-generator", "reason": "Wix is the closest alternative — this covers its equivalent privacy setup steps." },
+      { "slug": "resources/shopify-privacy-policy-generator", "reason": "If you sell products on Squarespace, Shopify's ecommerce policy guide is relevant too." },
+      { "slug": "resources/how-to-add-privacy-policy-to-website", "reason": "General guide to placing your policy, including options beyond Squarespace's built-in pages." }
+    ],
+    "resources/telegram-bot-privacy-policy": [
+      { "slug": "resources/discord-bot-privacy-policy", "reason": "Discord's bot verification process mirrors Telegram's privacy disclosure requirements." },
+      { "slug": "resources/slack-app-privacy-policy", "reason": "Slack apps face comparable directory listing requirements for privacy policies." },
+      { "slug": "resources/alexa-skill-privacy-policy", "reason": "Alexa skills need a hosted policy URL before Amazon certification — same gating pattern." }
+    ],
+    "resources/wix-privacy-policy-generator": [
+      { "slug": "resources/squarespace-privacy-policy-generator", "reason": "Squarespace is the most similar platform — see how its privacy setup compares." },
+      { "slug": "resources/shopify-privacy-policy-generator", "reason": "Adding a store to your Wix site? Shopify's ecommerce policy requirements may also apply." },
+      { "slug": "resources/how-to-add-privacy-policy-to-website", "reason": "General placement guide covering options beyond Wix's built-in legal pages feature." }
+    ],
+    "tools/app-store-privacy-requirements": [
+      { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "Covers how to write the privacy policy that app stores require you to link." },
+      { "slug": "tools/privacy-policy-checker", "reason": "After writing your policy, check whether it covers the required clauses." },
+      { "slug": "tools/sdk-disclosure-generator", "reason": "Third-party SDKs in your app require additional privacy disclosures in your listing." }
+    ],
+    "tools/data-retention-schedule": [
+      { "slug": "tools/gdpr-compliance-checklist", "reason": "Data retention is one GDPR requirement — this checklist covers the rest." },
+      { "slug": "resources/does-gdpr-apply-to-us-companies", "reason": "Check whether GDPR's retention rules apply to your company before building your schedule." },
+      { "slug": "tools/privacy-law-checker", "reason": "Different laws have different retention requirements — find which ones apply to you." }
+    ],
+    "tools/gdpr-compliance-checklist": [
+      { "slug": "resources/does-gdpr-apply-to-us-companies", "reason": "First confirm whether GDPR actually applies to your company." },
+      { "slug": "resources/gdpr-eu-representative", "reason": "Article 27 representation is a checklist item many companies overlook." },
+      { "slug": "tools/data-retention-schedule", "reason": "Build the data retention schedule that the GDPR checklist asks you to have." }
+    ],
+    "tools/privacy-law-checker": [
+      { "slug": "resources/do-i-need-a-privacy-policy-for-my-website", "reason": "Once you know which laws apply, find out if they require a privacy policy." },
+      { "slug": "tools/gdpr-compliance-checklist", "reason": "If GDPR applies, walk through its requirements with this interactive checklist." },
+      { "slug": "resources/does-gdpr-apply-to-us-companies", "reason": "Detailed breakdown of when GDPR reaches US-based companies." }
+    ],
+    "tools/privacy-policy-checker": [
+      { "slug": "tools/privacy-law-checker", "reason": "Not sure which laws to select? This tool tells you which ones apply to your site." },
+      { "slug": "resources/do-i-need-a-privacy-policy-for-my-website", "reason": "Background on why certain clauses are required and which laws mandate them." },
+      { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "If your policy scores low, this guide explains what each section should say." }
+    ],
+    "tools/sdk-disclosure-generator": [
+      { "slug": "tools/app-store-privacy-requirements", "reason": "SDK disclosures feed directly into your app store privacy listing." },
+      { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "Your privacy policy must also describe each SDK's data collection." },
+      { "slug": "tools/privacy-policy-checker", "reason": "After updating your policy with SDK disclosures, verify it covers all required clauses." }
+    ]
+  }
+}

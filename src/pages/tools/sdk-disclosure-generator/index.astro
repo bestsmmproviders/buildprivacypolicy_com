@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import RelatedGuides from '../../../components/RelatedGuides.astro';
 
 const title = "Third-Party SDK Disclosure Generator - BuildPrivacyPolicy";
 const description = "Free tool: select the third-party SDKs your app uses and instantly generate privacy policy disclosure paragraphs ready to copy into your policy. No signup.";
@@ -156,6 +157,8 @@ const publishDate = "2026-09-05";
     <p>Getting the disclosure wrong has consequences. Google Play can reject your app update or suspend your listing if your Data Safety form contradicts your privacy policy. Apple's app review flags inconsistencies between your Nutrition Labels and your manifest. Regulators can fine you for incomplete disclosure -- and class-action lawsuits have targeted apps whose privacy policies failed to mention specific SDKs that were actively collecting user data.</p>
 
     <p>The most common mistake is not malice but oversight. Developers add SDKs during development, update them across versions, and forget to update the privacy policy. This tool eliminates that gap by generating the disclosure text directly from your SDK selections, so the policy stays current every time you add or remove a service.</p>
+
+    <RelatedGuides currentSlug="tools/sdk-disclosure-generator" />
 
     <h2 id="faq">Frequently Asked Questions</h2>
 
