@@ -1,0 +1,1128 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import RelatedGuides from '../../../components/RelatedGuides.astro';
+
+const title = "Play Store Data Safety Form Helper - BuildPrivacyPolicy";
+const description = "Free tool: answer Google Play's Data Safety questions step by step. Get copy-ready declarations for every data type with flags for rejection-prone combinations.";
+const publishDate = "2026-10-04";
+---
+
+<Layout title={title} description={description}>
+
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="128" height="128" rx="28" fill="#1E3A5F"/><path d="M64 24C64 24 40 34 32 38V62C32 82 46 98 64 104C82 98 96 82 96 62V38C88 34 64 24 64 24Z" fill="#2E5A8F" stroke="#5B9BD5" stroke-width="2.5"/><path d="M52 64L60 72L78 54" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+</div>
+
+<main>
+<article class="page-container">
+  <div class="page-card">
+    <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Tools</p>
+    <h1>Play Store Data Safety Form Helper</h1>
+    <p class="last-updated">Published October 4, 2026 &middot; Data categories snapshot: October 2026</p>
+
+    <p>Google Play's Data Safety section asks you to declare every data type your app collects or shares, whether each is required or optional, and whether the data is encrypted in transit and deletable on request. Getting it wrong is one of the most common reasons apps are rejected or flagged during review. Select the data types your app handles below, answer a few questions about each one, and this tool generates the exact declarations you need to enter in Play Console -- plus warnings for combinations that commonly cause rejections.</p>
+
+    <div class="tool-container">
+      <div class="tool-form" id="data-safety-form">
+
+        <div class="form-section">
+          <label class="section-label">Does your app collect or share any user data?</label>
+          <p class="section-hint">If your app does not collect or share any user data at all, you can declare "No" in Play Console and skip the rest of this form.</p>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="collects-data" value="yes" /> Yes, my app collects or shares user data</label>
+            <label class="radio-label"><input type="radio" name="collects-data" value="no" /> No, my app does not collect or share any user data</label>
+          </div>
+        </div>
+
+        <div id="data-type-sections" style="display:none;">
+
+          <div class="form-section">
+            <label class="section-label">Security practices</label>
+            <p class="section-hint">These apply to all data your app handles.</p>
+            <div class="checkbox-group">
+              <label class="checkbox-label"><input type="checkbox" id="encrypted-transit" checked /> All data is encrypted in transit</label>
+              <label class="checkbox-label"><input type="checkbox" id="deletion-request" /> Users can request deletion of their data</label>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <label class="section-label">Which data types does your app collect or share?</label>
+            <p class="section-hint">Select all that apply. For each selected type, indicate whether it is collected, shared, or both, and whether it is required or optional.</p>
+          </div>
+
+          <div id="category-sections"></div>
+
+          <button type="button" class="generate-btn" id="generate-btn" disabled>Generate Data Safety Declarations</button>
+        </div>
+
+      </div>
+
+      <div class="tool-results" id="results" style="display:none;">
+        <h2 class="results-heading">Your Data Safety Declarations</h2>
+        <p class="results-hint">Review the declarations below, then enter them in Google Play Console under App content &rarr; Data safety. These are draft answers based on your selections -- always confirm against the current Play Console form before submitting.</p>
+
+        <div id="warnings-container" style="display:none;">
+          <div class="warnings-box" id="warnings-box"></div>
+        </div>
+
+        <div class="copy-block">
+          <div class="copy-block-header">
+            <span class="copy-block-label">Data Safety declarations -- ready to copy</span>
+          </div>
+          <div class="copy-block-body" id="declarations-text"></div>
+          <button class="copy-btn" id="copy-btn" type="button">Copy to clipboard</button>
+        </div>
+
+        <h2 class="results-heading data-heading">Summary Table</h2>
+        <p class="results-hint">A quick reference of every data type, how it is handled, and its collection purpose.</p>
+        <div id="summary-table-container"></div>
+
+        <div class="next-steps">
+          <h3>What to do next</h3>
+          <ol>
+            <li>Open <strong>Google Play Console &rarr; App content &rarr; Data safety</strong> and enter each declaration.</li>
+            <li>Make sure your privacy policy matches these declarations -- if you do not have one, <a href="https://buildprivacypolicy.com/">create a free privacy policy</a> with our generator.</li>
+            <li>Check which SDKs in your app contribute to these data types with the <a href="/tools/sdk-disclosure-generator/">SDK Disclosure Generator</a>.</li>
+            <li>Review your full app privacy posture with the <a href="/resources/how-to-write-privacy-policy-for-app/">app privacy policy guide</a>.</li>
+          </ol>
+        </div>
+
+        <button type="button" class="reset-btn" id="reset-btn">Start Over</button>
+      </div>
+    </div>
+
+    <h2 id="how-to-use">How to Use This Tool</h2>
+
+    <p>Start by confirming your app collects or shares user data, then set your security practices -- whether all data is encrypted in transit and whether users can request deletion. Next, work through each data category (Location, Personal info, Financial info, and so on) and check every data type your app handles. For each selected type, choose whether it is collected, shared, or both, pick a purpose, and mark it as required or optional. Hit "Generate Data Safety Declarations" to see a plain-text summary of every answer you need to enter in Play Console, along with any warnings about combinations that commonly trigger rejections. Copy the output and walk through the Play Console Data Safety form field by field.</p>
+
+    <h2 id="why-data-safety-matters">Why the Data Safety Form Matters</h2>
+
+    <p>Every app published on Google Play must complete the Data Safety section. This is not a suggestion -- it is a hard requirement. Google displays your Data Safety declarations on your app's store listing, right below the screenshots, so users see exactly what data your app collects before they install it. If you leave the section blank, Google marks your listing with a "No info available" label that discourages downloads and can trigger additional review scrutiny.</p>
+
+    <p>The form itself asks you to declare every data type your app handles, organized into categories like Location, Personal info, Financial info, Health and fitness, Messages, Photos and videos, Audio, Files and docs, Calendar, Contacts, App activity, Web browsing, App info and performance, and Device or other IDs. For each data type, you state whether your app collects it (the data leaves the device to your server), shares it (the data is transferred to a third party), what the purpose is, whether it is required or optional, and whether users can request its deletion.</p>
+
+    <p>Getting the declarations wrong has real consequences. If your Data Safety form contradicts what your app actually does -- for example, you declare "no data collected" but your app includes Firebase Analytics -- Google can reject your app update, suspend your listing, or require you to fix the form before your next release goes live. The declarations must also be consistent with your privacy policy. If your privacy policy says you collect location data but your Data Safety form says you do not, that mismatch is a review flag.</p>
+
+    <p>The most common mistakes are not intentional -- they come from developers who add an SDK without realizing it collects device identifiers, or who mark a data type as "not shared" when a third-party advertising SDK is transferring it to an ad network. This tool helps by surfacing warnings for the combinations that most often cause problems, so you can fix them before submitting.</p>
+
+    <RelatedGuides currentSlug="tools/play-data-safety-answers" />
+
+    <h2 id="faq">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>What is Google Play's Data Safety section?</h3>
+        <p>The Data Safety section is a required part of every Google Play listing. It lets you declare what user data your app collects, shares, and how it handles that data. Google displays these declarations on your store listing so users can review your data practices before installing. You fill it out in Google Play Console under App content, and it must be consistent with your app's actual behavior and your privacy policy.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What happens if I fill out the Data Safety form incorrectly?</h3>
+        <p>Google reviews your Data Safety declarations against your app's actual behavior. If there is a mismatch -- for example, your app collects advertising identifiers but you declared no data collection -- Google can reject your app update, require you to correct the form, or in severe cases suspend your listing. Inconsistencies between the Data Safety form and your privacy policy are also flagged during review.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do I need to declare data collected by third-party SDKs?</h3>
+        <p>Yes. Google's policy requires you to declare all data collected or shared by your app, including data handled by third-party libraries and SDKs. If your app includes Firebase Analytics, that SDK's data collection must appear in your Data Safety declarations. Use the <a href="/tools/sdk-disclosure-generator/">SDK Disclosure Generator</a> to identify what each SDK collects.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What is the difference between "collected" and "shared" in the Data Safety form?</h3>
+        <p>Data is "collected" when it is sent from the user's device to your server or a server you control. Data is "shared" when it is transferred to a third party -- for example, sending advertising identifiers to an ad network, or sharing analytics data with a third-party service. A single data type can be both collected and shared if your app sends it to your own server and also transfers it to a third party.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does this tool replace the Play Console Data Safety form?</h3>
+        <p>No. This tool helps you prepare your answers before you enter them in Play Console. It generates a plain-text summary of your declarations and flags common issues, but you still need to enter each answer in the actual Data Safety form in Google Play Console. Google changes the form's categories and requirements periodically, so always verify your answers against the current version of the form.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How often should I update my Data Safety declarations?</h3>
+        <p>Update your Data Safety declarations whenever you change what data your app collects or shares. This includes adding or removing SDKs, adding new features that collect user data, or changing how you handle existing data. Google recommends keeping your declarations current with every app update. If you update your privacy policy, review your Data Safety form to make sure they still match.</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+</main>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Play Store Data Safety Form Helper",
+  "description": description,
+  "url": "https://buildprivacypolicy.com/tools/play-data-safety-answers/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "datePublished": publishDate
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Google Play's Data Safety section?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Data Safety section is a required part of every Google Play listing. It lets you declare what user data your app collects, shares, and how it handles that data. Google displays these declarations on your store listing so users can review your data practices before installing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I fill out the Data Safety form incorrectly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Google reviews your Data Safety declarations against your app's actual behavior. If there is a mismatch, Google can reject your app update, require you to correct the form, or in severe cases suspend your listing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to declare data collected by third-party SDKs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Google's policy requires you to declare all data collected or shared by your app, including data handled by third-party libraries and SDKs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between collected and shared in the Data Safety form?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Data is collected when it is sent from the user's device to your server. Data is shared when it is transferred to a third party. A single data type can be both collected and shared."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this tool replace the Play Console Data Safety form?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. This tool helps you prepare your answers before you enter them in Play Console. You still need to enter each answer in the actual Data Safety form in Google Play Console."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should I update my Data Safety declarations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Update your Data Safety declarations whenever you change what data your app collects or shares. This includes adding or removing SDKs, adding new features that collect user data, or changing how you handle existing data."
+      }
+    }
+  ]
+})} />
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+
+    /* ───── PLAY DATA SAFETY CATEGORIES (snapshot October 2026) ───── */
+
+    var DATA_CATEGORIES = {
+      "Location": [
+        { id: "approximate_location", label: "Approximate location", desc: "City-level or area within 3 square kilometers" },
+        { id: "precise_location", label: "Precise location", desc: "Exact coordinates (GPS, Wi-Fi, cell tower)" }
+      ],
+      "Personal info": [
+        { id: "name", label: "Name", desc: "First or last name, nickname" },
+        { id: "email_address", label: "Email address", desc: "Including hashed or encrypted email" },
+        { id: "user_ids", label: "User IDs", desc: "Screen name, account ID, account number, or other user-level ID" },
+        { id: "address", label: "Address", desc: "Mailing or home address" },
+        { id: "phone_number", label: "Phone number", desc: "Phone number" },
+        { id: "race_ethnicity", label: "Race and ethnicity", desc: "Racial or ethnic information" },
+        { id: "political_religious", label: "Political or religious beliefs", desc: "Political or religious views" },
+        { id: "sexual_orientation", label: "Sexual orientation", desc: "Sexual orientation information" },
+        { id: "other_personal_info", label: "Other personal info", desc: "Any other personal information such as date of birth, gender, or veteran status" }
+      ],
+      "Financial info": [
+        { id: "user_payment_info", label: "User payment info", desc: "Credit card number, bank account number, or other financial account info" },
+        { id: "purchase_history", label: "Purchase history", desc: "Information about purchases the user has made" },
+        { id: "credit_score", label: "Credit score", desc: "User's credit score" },
+        { id: "other_financial_info", label: "Other financial info", desc: "Salary, debts, or any other financial information" }
+      ],
+      "Health and fitness": [
+        { id: "health_info", label: "Health information", desc: "Medical records, health conditions, clinical data" },
+        { id: "fitness_info", label: "Fitness information", desc: "Exercise or fitness activity data" }
+      ],
+      "Messages": [
+        { id: "emails", label: "Emails", desc: "Email content including subject, sender, recipients, body" },
+        { id: "sms_mms", label: "SMS or MMS", desc: "Text or multimedia message content" },
+        { id: "other_messages", label: "Other in-app messages", desc: "Other message types such as instant messages or chat content" }
+      ],
+      "Photos and videos": [
+        { id: "photos", label: "Photos", desc: "User's photos" },
+        { id: "videos", label: "Videos", desc: "User's videos" }
+      ],
+      "Audio files": [
+        { id: "voice_recordings", label: "Voice or sound recordings", desc: "User's voice or audio recordings" },
+        { id: "music_files", label: "Music files", desc: "User's music files" },
+        { id: "other_audio", label: "Other audio files", desc: "Any other audio files created by or provided by the user" }
+      ],
+      "Files and docs": [
+        { id: "files_docs", label: "Files and docs", desc: "User's files or documents, or information about their files or documents such as file names" }
+      ],
+      "Calendar": [
+        { id: "calendar_events", label: "Calendar events", desc: "Information from the user's calendar such as events, notes, and attendees" }
+      ],
+      "Contacts": [
+        { id: "contacts", label: "Contacts", desc: "User's contact list or address book, including contact names, message history, social graph information" }
+      ],
+      "App activity": [
+        { id: "app_interactions", label: "App interactions", desc: "Information about how the user interacts with the app (pages visited, taps, features used)" },
+        { id: "in_app_search_history", label: "In-app search history", desc: "What the user has searched for in your app" },
+        { id: "installed_apps", label: "Installed apps", desc: "List of apps installed on the user's device" },
+        { id: "other_user_content", label: "Other user-generated content", desc: "Any other content created by the user (bios, notes, responses)" },
+        { id: "other_actions", label: "Other actions", desc: "Any other user activity not listed here, such as gameplay or dialog options" }
+      ],
+      "Web browsing": [
+        { id: "web_browsing_history", label: "Web browsing history", desc: "List of web pages the user has visited" }
+      ],
+      "App info and performance": [
+        { id: "crash_logs", label: "Crash logs", desc: "Crash data from the app" },
+        { id: "diagnostics", label: "Diagnostics", desc: "Performance data such as battery, loading time, latency, framerate, or diagnostics" },
+        { id: "other_app_performance", label: "Other app performance data", desc: "Any other data related to app performance not listed here" }
+      ],
+      "Device or other IDs": [
+        { id: "device_ids", label: "Device or other IDs", desc: "Device identifiers such as IMEI, MAC address, Widevine ID, Firebase ID, or advertising identifier" }
+      ]
+    };
+
+    var PURPOSES = [
+      "App functionality",
+      "Analytics",
+      "Developer communications",
+      "Advertising or marketing",
+      "Fraud prevention, security, and compliance",
+      "Personalization",
+      "Account management"
+    ];
+
+    /* ───── WARNING RULES ───── */
+
+    function checkWarnings(selections) {
+      var warnings = [];
+
+      selections.forEach(function(s) {
+        /* Shared with no purpose */
+        if (s.shared && !s.purpose) {
+          warnings.push({ severity: 'error', msg: '<strong>' + s.label + '</strong>: marked as shared but no purpose selected. Play Console requires a purpose for every shared data type.' });
+        }
+        /* Collected with no purpose */
+        if (s.collected && !s.purpose) {
+          warnings.push({ severity: 'error', msg: '<strong>' + s.label + '</strong>: marked as collected but no purpose selected. Play Console requires a purpose for every collected data type.' });
+        }
+      });
+
+      /* Location with no in-app disclosure warning */
+      var hasLocation = selections.some(function(s) {
+        return (s.id === 'precise_location' || s.id === 'approximate_location') && (s.collected || s.shared);
+      });
+      if (hasLocation) {
+        warnings.push({ severity: 'warning', msg: '<strong>Location data</strong>: Google requires a prominent in-app disclosure before collecting location data. Make sure your app shows a clear disclosure screen before requesting location permissions.' });
+      }
+
+      /* Advertising ID shared without advertising purpose */
+      var hasDeviceIdShared = selections.some(function(s) {
+        return s.id === 'device_ids' && s.shared;
+      });
+      var hasAdPurpose = selections.some(function(s) {
+        return s.id === 'device_ids' && s.purpose === 'Advertising or marketing';
+      });
+      if (hasDeviceIdShared && !hasAdPurpose) {
+        warnings.push({ severity: 'warning', msg: '<strong>Device IDs shared</strong>: you are sharing device identifiers but did not select "Advertising or marketing" as the purpose. If any ad SDK reads the advertising ID, this purpose should be declared.' });
+      }
+
+      /* Sensitive data types that need careful handling */
+      var sensitiveTypes = ['race_ethnicity', 'political_religious', 'sexual_orientation', 'health_info'];
+      selections.forEach(function(s) {
+        if (sensitiveTypes.indexOf(s.id) !== -1 && (s.collected || s.shared)) {
+          warnings.push({ severity: 'warning', msg: '<strong>' + s.label + '</strong> is a sensitive data type. Google may require additional review. Make sure you have explicit user consent and a clear purpose for collecting this data.' });
+        }
+      });
+
+      /* Not encrypted in transit */
+      var encrypted = document.getElementById('encrypted-transit').checked;
+      if (!encrypted) {
+        warnings.push({ severity: 'error', msg: '<strong>Data not encrypted in transit</strong>: Google expects all data transmitted from the device to be encrypted. Not encrypting data in transit will be flagged during review and displayed prominently on your store listing.' });
+      }
+
+      /* No deletion mechanism */
+      var deletable = document.getElementById('deletion-request').checked;
+      if (!deletable && selections.length > 0) {
+        warnings.push({ severity: 'warning', msg: '<strong>No deletion mechanism</strong>: users cannot request deletion of their data. While not strictly required for all data types, Google recommends providing a deletion path. Lack of a deletion option is displayed on your store listing.' });
+      }
+
+      return warnings;
+    }
+
+    /* ───── STATE ───── */
+
+    var selectedTypes = {};
+
+    /* ───── DOM REFS ───── */
+
+    var generateBtn = document.getElementById('generate-btn');
+    var resetBtn = document.getElementById('reset-btn');
+    var resultsDiv = document.getElementById('results');
+    var formDiv = document.getElementById('data-safety-form');
+    var declarationsText = document.getElementById('declarations-text');
+    var copyBtn = document.getElementById('copy-btn');
+    var warningsContainer = document.getElementById('warnings-container');
+    var warningsBox = document.getElementById('warnings-box');
+    var summaryTableContainer = document.getElementById('summary-table-container');
+    var categorySections = document.getElementById('category-sections');
+    var dataTypeSections = document.getElementById('data-type-sections');
+
+    /* ───── BUILD FORM ───── */
+
+    function buildCategorySections() {
+      var html = '';
+      var catKeys = Object.keys(DATA_CATEGORIES);
+
+      catKeys.forEach(function(catName) {
+        var types = DATA_CATEGORIES[catName];
+        html += '<div class="data-category">';
+        html += '<h2 class="category-label">' + catName + '</h2>';
+
+        types.forEach(function(dt) {
+          html += '<div class="data-type-row">';
+          html += '<label class="checkbox-label dt-check"><input type="checkbox" class="dt-checkbox" data-id="' + dt.id + '" data-label="' + dt.label + '" /> ' + dt.label + '</label>';
+          html += '<span class="dt-desc">' + dt.desc + '</span>';
+
+          html += '<div class="dt-options" id="opts-' + dt.id + '" style="display:none;">';
+
+          /* Collected / Shared */
+          html += '<div class="opt-row"><span class="opt-label">How is this data handled?</span>';
+          html += '<label class="checkbox-label small"><input type="checkbox" class="dt-collected" data-id="' + dt.id + '" /> Collected</label>';
+          html += '<label class="checkbox-label small"><input type="checkbox" class="dt-shared" data-id="' + dt.id + '" /> Shared with third parties</label>';
+          html += '</div>';
+
+          /* Purpose */
+          html += '<div class="opt-row"><span class="opt-label">Purpose</span>';
+          html += '<select class="dt-purpose" data-id="' + dt.id + '"><option value="">-- Select purpose --</option>';
+          PURPOSES.forEach(function(p) {
+            html += '<option value="' + p + '">' + p + '</option>';
+          });
+          html += '</select></div>';
+
+          /* Required / Optional */
+          html += '<div class="opt-row"><span class="opt-label">Is this data required?</span>';
+          html += '<label class="radio-label small"><input type="radio" name="req-' + dt.id + '" value="required" checked /> Required</label>';
+          html += '<label class="radio-label small"><input type="radio" name="req-' + dt.id + '" value="optional" /> Optional</label>';
+          html += '</div>';
+
+          html += '</div>'; /* close dt-options */
+          html += '</div>'; /* close data-type-row */
+        });
+
+        html += '</div>'; /* close data-category */
+      });
+
+      categorySections.innerHTML = html;
+      attachTypeListeners();
+    }
+
+    function attachTypeListeners() {
+      document.querySelectorAll('.dt-checkbox').forEach(function(cb) {
+        cb.addEventListener('change', function() {
+          var id = this.getAttribute('data-id');
+          var opts = document.getElementById('opts-' + id);
+          if (this.checked) {
+            selectedTypes[id] = true;
+            opts.style.display = 'block';
+            /* Default to collected */
+            var collectedCb = opts.querySelector('.dt-collected');
+            if (collectedCb && !collectedCb.checked) {
+              collectedCb.checked = true;
+            }
+          } else {
+            delete selectedTypes[id];
+            opts.style.display = 'none';
+          }
+          updateGenerateBtn();
+        });
+      });
+    }
+
+    function updateGenerateBtn() {
+      generateBtn.disabled = Object.keys(selectedTypes).length === 0;
+    }
+
+    buildCategorySections();
+
+    /* ───── COLLECTS DATA RADIO ───── */
+
+    document.querySelectorAll('input[name="collects-data"]').forEach(function(radio) {
+      radio.addEventListener('change', function() {
+        if (this.value === 'yes') {
+          dataTypeSections.style.display = 'block';
+        } else {
+          dataTypeSections.style.display = 'none';
+        }
+      });
+    });
+
+    /* ───── GENERATE ───── */
+
+    generateBtn.addEventListener('click', function() {
+      var selections = [];
+      var encrypted = document.getElementById('encrypted-transit').checked;
+      var deletable = document.getElementById('deletion-request').checked;
+
+      Object.keys(selectedTypes).forEach(function(id) {
+        var opts = document.getElementById('opts-' + id);
+        var checkbox = document.querySelector('.dt-checkbox[data-id="' + id + '"]');
+        var label = checkbox.getAttribute('data-label');
+        var collected = opts.querySelector('.dt-collected').checked;
+        var shared = opts.querySelector('.dt-shared').checked;
+        var purpose = opts.querySelector('.dt-purpose').value;
+        var reqRadios = document.querySelectorAll('input[name="req-' + id + '"]');
+        var required = true;
+        reqRadios.forEach(function(r) { if (r.checked && r.value === 'optional') required = false; });
+
+        selections.push({
+          id: id,
+          label: label,
+          collected: collected,
+          shared: shared,
+          purpose: purpose,
+          required: required
+        });
+      });
+
+      /* Build declarations */
+      var lines = [];
+      lines.push('<p><strong>Data Safety Declarations for Google Play Console</strong></p>');
+      lines.push('<p><em>Generated on ' + new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) + ' -- verify against current Play Console before submitting.</em></p>');
+      lines.push('<hr/>');
+
+      lines.push('<p><strong>Security Practices</strong></p>');
+      lines.push('<p>Data encrypted in transit: <strong>' + (encrypted ? 'Yes' : 'No') + '</strong></p>');
+      lines.push('<p>Users can request data deletion: <strong>' + (deletable ? 'Yes' : 'No') + '</strong></p>');
+      lines.push('<hr/>');
+
+      /* Group by category for display */
+      var catKeys = Object.keys(DATA_CATEGORIES);
+      catKeys.forEach(function(catName) {
+        var types = DATA_CATEGORIES[catName];
+        var catSelections = [];
+
+        types.forEach(function(dt) {
+          var match = selections.filter(function(s) { return s.id === dt.id; });
+          if (match.length > 0) catSelections.push(match[0]);
+        });
+
+        if (catSelections.length === 0) return;
+
+        lines.push('<p><strong>' + catName + '</strong></p>');
+
+        catSelections.forEach(function(s) {
+          var handling = [];
+          if (s.collected) handling.push('Collected');
+          if (s.shared) handling.push('Shared');
+          if (handling.length === 0) handling.push('Collected');
+
+          var line = s.label + ': ' + handling.join(' & ') +
+            ' | Purpose: ' + (s.purpose || 'Not specified') +
+            ' | ' + (s.required ? 'Required' : 'Optional');
+          lines.push('<p>' + line + '</p>');
+        });
+
+        lines.push('<hr/>');
+      });
+
+      declarationsText.innerHTML = lines.join('\n');
+
+      /* Build summary table */
+      var tableHtml = '<table class="data-table"><thead><tr><th>Data Type</th><th>Collected</th><th>Shared</th><th>Purpose</th><th>Required</th></tr></thead><tbody>';
+      selections.forEach(function(s) {
+        tableHtml += '<tr>';
+        tableHtml += '<td>' + s.label + '</td>';
+        tableHtml += '<td>' + (s.collected ? 'Yes' : 'No') + '</td>';
+        tableHtml += '<td>' + (s.shared ? 'Yes' : 'No') + '</td>';
+        tableHtml += '<td>' + (s.purpose || '--') + '</td>';
+        tableHtml += '<td>' + (s.required ? 'Required' : 'Optional') + '</td>';
+        tableHtml += '</tr>';
+      });
+      tableHtml += '</tbody></table>';
+      summaryTableContainer.innerHTML = tableHtml;
+
+      /* Check warnings */
+      var warnings = checkWarnings(selections);
+      if (warnings.length > 0) {
+        var wHtml = '<h3 class="warnings-title">Warnings (' + warnings.length + ')</h3>';
+        warnings.forEach(function(w) {
+          wHtml += '<div class="warning-item ' + w.severity + '">';
+          wHtml += '<span class="warning-icon">' + (w.severity === 'error' ? '&#9888;' : '&#9432;') + '</span>';
+          wHtml += '<span class="warning-text">' + w.msg + '</span>';
+          wHtml += '</div>';
+        });
+        warningsBox.innerHTML = wHtml;
+        warningsContainer.style.display = 'block';
+      } else {
+        warningsContainer.style.display = 'none';
+      }
+
+      formDiv.style.display = 'none';
+      resultsDiv.style.display = 'block';
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'tool_complete', tool: 'play_data_safety', types_selected: selections.length });
+
+      resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    /* ───── COPY ───── */
+
+    copyBtn.addEventListener('click', function() {
+      var el = document.getElementById('declarations-text');
+      if (!el) return;
+      var text = el.innerText;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() { showCopyConfirm(); });
+      } else {
+        var textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showCopyConfirm();
+      }
+    });
+
+    function showCopyConfirm() {
+      copyBtn.textContent = 'Copied!';
+      setTimeout(function() { copyBtn.textContent = 'Copy to clipboard'; }, 2000);
+    }
+
+    /* ───── RESET ───── */
+
+    resetBtn.addEventListener('click', function() {
+      selectedTypes = {};
+      document.querySelectorAll('.dt-checkbox').forEach(function(cb) { cb.checked = false; });
+      document.querySelectorAll('.dt-options').forEach(function(o) { o.style.display = 'none'; });
+      document.querySelectorAll('.dt-collected, .dt-shared').forEach(function(cb) { cb.checked = false; });
+      document.querySelectorAll('.dt-purpose').forEach(function(sel) { sel.selectedIndex = 0; });
+      document.querySelectorAll('input[name="collects-data"]').forEach(function(r) { r.checked = false; });
+      document.getElementById('encrypted-transit').checked = true;
+      document.getElementById('deletion-request').checked = false;
+      dataTypeSections.style.display = 'none';
+      generateBtn.disabled = true;
+      resultsDiv.style.display = 'none';
+      formDiv.style.display = 'block';
+      formDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</Layout>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-link:hover {
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+  .page-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 16px 80px;
+  }
+  .page-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px 36px;
+    border: 1px solid #E5E7EB;
+  }
+  .breadcrumb {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 16px;
+  }
+  .breadcrumb a {
+    color: #6B7280;
+    text-decoration: underline;
+  }
+  .page-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .last-updated {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 24px;
+  }
+  .page-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .page-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  .page-card p {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .page-card ul, .page-card ol {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+  .page-card li {
+    margin-bottom: 8px;
+  }
+  .page-card a {
+    color: #2563EB;
+    text-decoration: underline;
+  }
+  .page-card strong {
+    font-weight: 600;
+  }
+  .page-card code {
+    background: #E5E7EB;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+
+  /* Tool form */
+  .tool-container {
+    margin: 28px 0 12px;
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    padding: 28px 24px;
+  }
+  .form-section {
+    margin-bottom: 24px;
+  }
+  .section-label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 6px;
+  }
+  .section-hint {
+    font-size: 13px !important;
+    color: #6B7280 !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* Radio and checkbox groups */
+  .radio-group, .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .radio-label, .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    color: #374151;
+    cursor: pointer;
+  }
+  .radio-label.small, .checkbox-label.small {
+    font-size: 14px;
+  }
+  .radio-label input, .checkbox-label input {
+    accent-color: #2563EB;
+  }
+
+  /* Data categories */
+  .data-category {
+    margin-bottom: 28px;
+    border-bottom: 1px solid #E5E7EB;
+    padding-bottom: 20px;
+  }
+  .data-category:last-child {
+    border-bottom: none;
+    margin-bottom: 16px;
+  }
+  .category-label {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #6B7280 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px !important;
+    margin-top: 0 !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* Data type rows */
+  .data-type-row {
+    margin-bottom: 12px;
+    padding: 10px 14px;
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+  }
+  .dt-check {
+    font-weight: 500;
+  }
+  .dt-desc {
+    display: block;
+    font-size: 12px;
+    color: #9CA3AF;
+    margin-top: 2px;
+    margin-left: 26px;
+  }
+  .dt-options {
+    margin-top: 12px;
+    margin-left: 26px;
+    padding: 12px 16px;
+    background: #F3F4F6;
+    border-radius: 6px;
+  }
+  .opt-row {
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+  .opt-row:last-child {
+    margin-bottom: 0;
+  }
+  .opt-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4B5563;
+    min-width: 140px;
+  }
+  .dt-purpose {
+    padding: 6px 10px;
+    font-size: 13px;
+    font-family: inherit;
+    border: 1px solid #D1D5DB;
+    border-radius: 6px;
+    background: white;
+    color: #374151;
+    max-width: 280px;
+  }
+
+  /* Generate button */
+  .generate-btn {
+    width: 100%;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    color: white;
+    background: #2563EB;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+    margin-top: 8px;
+  }
+  .generate-btn:hover:not(:disabled) {
+    background: #1D4ED8;
+  }
+  .generate-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Results */
+  .results-heading {
+    margin-top: 0 !important;
+    margin-bottom: 12px !important;
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+  }
+  .data-heading {
+    margin-top: 32px !important;
+  }
+  .results-hint {
+    font-size: 14px !important;
+    color: #6B7280 !important;
+    margin-bottom: 16px !important;
+  }
+
+  /* Warnings */
+  .warnings-box {
+    margin-bottom: 20px;
+    padding: 16px 20px;
+    background: #FEF3C7;
+    border: 1px solid #F59E0B;
+    border-radius: 8px;
+  }
+  .warnings-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #92400E;
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
+  .warning-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #92400E;
+  }
+  .warning-item:last-child {
+    margin-bottom: 0;
+  }
+  .warning-item.error {
+    color: #991B1B;
+  }
+  .warning-item.error .warning-icon {
+    color: #DC2626;
+  }
+  .warning-icon {
+    flex-shrink: 0;
+    font-size: 16px;
+    margin-top: 1px;
+  }
+
+  /* Copy block */
+  .copy-block {
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    margin: 16px 0;
+    overflow: hidden;
+  }
+  .copy-block-header {
+    background: #F3F4F6;
+    padding: 10px 16px;
+    border-bottom: 1px solid #D1D5DB;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .copy-block-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4B5563;
+  }
+  .copy-block-body {
+    padding: 24px 28px;
+    background: #FAFAFA;
+    max-height: 480px;
+    overflow-y: auto;
+  }
+  .copy-block-body p {
+    font-size: 14px !important;
+    color: #374151 !important;
+    line-height: 1.7 !important;
+    margin-bottom: 10px !important;
+  }
+  .copy-block-body hr {
+    border: none;
+    border-top: 1px solid #E5E7EB;
+    margin: 14px 0;
+  }
+  .copy-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #1E3A5F;
+    color: white;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .copy-btn:hover {
+    background: #2E5A8F;
+  }
+
+  /* Summary table */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 12px 0;
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .data-table thead {
+    background: #F3F4F6;
+  }
+  .data-table th {
+    text-align: left;
+    padding: 10px 14px;
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 1px solid #E5E7EB;
+  }
+  .data-table td {
+    padding: 10px 14px;
+    color: #4B5563;
+    border-bottom: 1px solid #F3F4F6;
+    line-height: 1.5;
+  }
+  .data-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Next steps */
+  .next-steps {
+    margin-top: 28px;
+    padding: 20px 24px;
+    background: #EFF6FF;
+    border: 1px solid #BFDBFE;
+    border-radius: 8px;
+  }
+  .next-steps h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1E40AF;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  .next-steps ol {
+    font-size: 14px;
+    color: #1E40AF;
+    line-height: 1.7;
+    margin-bottom: 0;
+    padding-left: 20px;
+  }
+  .next-steps li {
+    margin-bottom: 6px;
+  }
+  .next-steps a {
+    color: #1D4ED8;
+  }
+
+  /* Reset */
+  .reset-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    color: #374151;
+    background: white;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .reset-btn:hover {
+    background: #F9FAFB;
+  }
+
+  /* FAQ */
+  .faq-list {
+    margin-top: 8px;
+  }
+  .faq-item {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 20px;
+    margin-bottom: 8px;
+  }
+  .faq-item h3 {
+    margin-top: 0;
+  }
+  .faq-item p {
+    margin-bottom: 8px;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .page-card {
+      padding: 24px 18px;
+    }
+    .tool-container {
+      padding: 20px 16px;
+    }
+    .dt-options {
+      margin-left: 0;
+      padding: 10px 12px;
+    }
+    .opt-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+    .opt-label {
+      min-width: unset;
+    }
+    .dt-purpose {
+      max-width: 100%;
+      width: 100%;
+    }
+    .copy-block-body {
+      padding: 16px 18px;
+    }
+    .data-table th, .data-table td {
+      padding: 8px 10px;
+      font-size: 13px;
+    }
+  }
+</style>
