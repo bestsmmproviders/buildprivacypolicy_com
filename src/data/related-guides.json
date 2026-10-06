@@ -103,6 +103,10 @@
     "tools/sdk-disclosure-generator": {
       "title": "SDK Disclosure Generator",
       "href": "/tools/sdk-disclosure-generator/"
+    },
+    "tools/play-data-safety-answers": {
+      "title": "Play Store Data Safety Form Helper",
+      "href": "/tools/play-data-safety-answers/"
     }
   },
   "related": {
@@ -235,6 +239,11 @@
       { "slug": "tools/app-store-privacy-requirements", "reason": "SDK disclosures feed directly into your app store privacy listing." },
       { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "Your privacy policy must also describe each SDK's data collection." },
       { "slug": "tools/privacy-policy-checker", "reason": "After updating your policy with SDK disclosures, verify it covers all required clauses." }
+    ],
+    "tools/play-data-safety-answers": [
+      { "slug": "tools/app-store-privacy-requirements", "reason": "Covers Apple's App Store privacy requirements alongside Google Play's Data Safety form." },
+      { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "Your app's privacy policy needs to match the data practices declared in the Data Safety form." },
+      { "slug": "tools/sdk-disclosure-generator", "reason": "Third-party SDKs in your app affect which data types you must declare in the Data Safety form." }
     ]
   }
 }
