@@ -24,6 +24,10 @@
       "title": "Etsy Privacy Policy Generator",
       "href": "/resources/etsy-privacy-policy-generator/"
     },
+    "resources/facebook-app-privacy-policy": {
+      "title": "Facebook App Privacy Policy",
+      "href": "/resources/facebook-app-privacy-policy/"
+    },
     "resources/gdpr-eu-representative": {
       "title": "GDPR EU Representative Guide",
       "href": "/resources/gdpr-eu-representative/"
@@ -139,6 +143,11 @@
       { "slug": "resources/shopify-privacy-policy-generator", "reason": "Selling on Shopify too? The privacy policy requirements overlap but differ in key areas." },
       { "slug": "resources/privacy-policy-for-ecommerce-website", "reason": "Covers the broader ecommerce privacy clauses that apply beyond Etsy's marketplace." },
       { "slug": "resources/wix-privacy-policy-generator", "reason": "Many Etsy sellers also host a standalone Wix site that needs its own policy." }
+    ],
+    "resources/facebook-app-privacy-policy": [
+      { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "General guide to writing a privacy policy for any app, covering GDPR and app store requirements." },
+      { "slug": "resources/slack-app-privacy-policy", "reason": "Slack's App Directory has a similar review-gated privacy policy requirement to Meta's App Review." },
+      { "slug": "tools/sdk-disclosure-generator", "reason": "Generate data-collection disclosures for any third-party SDKs bundled alongside the Facebook SDK." }
     ],
     "resources/gdpr-eu-representative": [
       { "slug": "resources/does-gdpr-apply-to-us-companies", "reason": "First step: confirm whether GDPR actually applies to your company." },

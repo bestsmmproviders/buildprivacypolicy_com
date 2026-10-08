@@ -1,0 +1,648 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import RelatedGuides from '../../../components/RelatedGuides.astro';
+
+const title = "Facebook App Privacy Policy for Meta App Review";
+const description = "Where Meta requires a privacy policy URL, what Facebook Platform Terms demand it disclose, Graph API permissions to cover, and why App Review rejects policies.";
+const publishDate = "2026-10-08";
+const modifiedDate = "2026-10-08";
+---
+
+<Layout title={title} description={description}>
+
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="128" height="128" rx="28" fill="#1E3A5F"/><path d="M64 24C64 24 40 34 32 38V62C32 82 46 98 64 104C82 98 96 82 96 62V38C88 34 64 24 64 24Z" fill="#2E5A8F" stroke="#5B9BD5" stroke-width="2.5"/><path d="M52 64L60 72L78 54" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+</div>
+
+<main>
+<article class="page-container">
+  <div class="page-card">
+    <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
+    <h1>Facebook App Privacy Policy: What Meta App Review Requires and How to Pass It</h1>
+    <p class="last-updated">Published October 8, 2026</p>
+
+    <p>Meta requires every Facebook app to provide a privacy policy URL before it can go live to the public. The privacy policy field sits in <strong>App Dashboard &gt; Settings &gt; Basic</strong> and must contain a publicly accessible HTTPS link that returns an HTTP 200 response. Without a valid URL in that field, you cannot submit your app for App Review, and no one outside your app's development team can use it.</p>
+
+    <p>This guide covers exactly where Meta asks for the URL, what Facebook's Platform Terms require your policy to disclose, the data each Graph API permission returns and how to map it to privacy disclosures, Facebook Pages and Lead Ads requirements, and common reasons App Review rejects a privacy policy. If you need a finished policy without writing one from scratch, <a href="https://buildprivacypolicy.com/">generate a free privacy policy</a> and get a hosted URL you can paste directly into your App Dashboard.</p>
+
+    <nav class="toc">
+      <p class="toc-title">Contents</p>
+      <ol>
+        <li><a href="#where-meta-asks">Where Meta Asks for a Privacy Policy URL</a></li>
+        <li><a href="#platform-terms">What Meta's Platform Terms Require the Policy to Disclose</a></li>
+        <li><a href="#permissions-data">Facebook Login and Graph API Permissions: Data Each Returns</a></li>
+        <li><a href="#pages-lead-ads">Facebook Pages and Lead Ads Privacy Requirements</a></li>
+        <li><a href="#rejection-reasons">Why App Review Rejects a Privacy Policy URL</a></li>
+        <li><a href="#disclosure-template">Copy-Ready Facebook App Disclosure Block</a></li>
+        <li><a href="#faq">Frequently Asked Questions</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="where-meta-asks">Where Meta Asks for a Privacy Policy URL</h2>
+
+    <p>Meta checks for a valid privacy policy URL at multiple points in the app lifecycle. Missing it at any stage blocks your progress.</p>
+
+    <ul>
+      <li><strong>App Dashboard &gt; Settings &gt; Basic.</strong> The <code>Privacy Policy URL</code> field appears directly below the <code>App Domains</code> field on the Basic Settings page. This is the primary location where Meta reads your policy URL. The field accepts any publicly accessible HTTPS URL -- it cannot be blank, cannot point to <code>localhost</code>, and cannot sit behind authentication. Meta's crawler must be able to reach it and receive an HTTP 200 response. Use the <a href="https://developers.facebook.com/tools/debug/" rel="nofollow">Sharing Debugger</a> to confirm the URL resolves correctly before saving.</li>
+
+      <li><strong>App Review submission.</strong> When you submit permissions or features for App Review at <code>App Dashboard &gt; App Review &gt; Permissions and Features</code>, Meta's review team visits your privacy policy URL as part of their evaluation. The review checks that the policy matches the data your app actually accesses through the permissions you requested. A policy that does not mention the specific permissions under review will be rejected.</li>
+
+      <li><strong>Business Verification.</strong> Apps requesting advanced access to certain permissions must complete Business Verification through the <code>App Dashboard &gt; Settings &gt; Advanced &gt; Business Verification</code> section. The verification process requires a legal entity with a privacy policy URL that matches the business identity. The policy must be hosted on a domain the business controls or on a verified website.</li>
+
+      <li><strong>Data Use Checkup.</strong> Meta periodically requires apps to complete a Data Use Checkup through a banner notification in the App Dashboard. The checkup asks developers to re-confirm how they use each approved permission and verifies that the privacy policy URL is still active. Apps that fail the checkup or let it expire have their permissions revoked.</li>
+    </ul>
+
+    <h2 id="platform-terms">What Meta's Platform Terms Require the Policy to Disclose</h2>
+
+    <p>Section 4 of Meta's <a href="https://developers.facebook.com/terms/" rel="nofollow">Platform Terms</a> sets out the privacy policy requirements. The policy must be available at a publicly accessible URL, cannot be geo-blocked, and must be clearly labeled as a privacy policy. It must be your own policy, not another company's boilerplate. Meta summarizes the requirements in their <a href="https://developers.facebook.com/docs/development/terms-and-policies/privacy-policy/" rel="nofollow">Privacy Policy Expectations</a> documentation.</p>
+
+    <p>The policy must disclose:</p>
+
+    <ul>
+      <li><strong>What data is collected.</strong> Every category of information your app collects from or about users, whether obtained directly through Facebook's APIs, through third-party SDKs, or gathered independently (browser information, IP addresses, device identifiers, server logs). If your app requests the <code>email</code> permission, your policy must state that you collect email addresses from Facebook. If you request <code>user_birthday</code>, you must disclose that you collect date of birth.</li>
+
+      <li><strong>How the data is used.</strong> Each specific purpose for processing the data. Meta expects concrete descriptions -- "to personalize content recommendations," "to send weekly summary emails," "to match users with relevant groups" -- not vague catch-alls like "to improve our services." The purpose must match what you described in your App Review submission.</li>
+
+      <li><strong>How users can request deletion.</strong> A working method for users to request that their data be deleted. This can be an email address, a contact form, or, for apps that support it, Meta's <a href="https://developers.facebook.com/docs/development/create-an-app/app-dashboard/data-deletion-callback" rel="nofollow">Data Deletion Request Callback</a>. The URL or contact method you provide must be active and monitored -- Meta's review team tests it. If your app implements the Data Deletion Callback, configure it at <code>App Dashboard &gt; Settings &gt; Basic &gt; Data Deletion</code> with either a callback URL or a data deletion instructions URL.</li>
+
+      <li><strong>Third-party sharing.</strong> Whether data obtained through Facebook's APIs is shared with any third party, and if so, which parties and for what purposes. Meta's Platform Terms prohibit transferring data received through their APIs to any data broker, ad network, or data reseller, even if your policy discloses it.</li>
+
+      <li><strong>Data retention.</strong> How long you keep data obtained through the APIs. When a user removes your app or when Meta sends an <code>app_deauthorize</code> callback, you must delete all data received through their APIs within a reasonable period unless the data has been aggregated and anonymized.</li>
+    </ul>
+
+    <p>A privacy policy that fails to cover these points is treated as incomplete during App Review. <a href="/resources/how-to-write-privacy-policy-for-app/">Writing a complete privacy policy for any app</a> starts with auditing which data your app actually touches, not guessing from the code.</p>
+
+    <h2 id="permissions-data">Facebook Login and Graph API Permissions: Data Each Returns</h2>
+
+    <p>Every permission your app requests through Facebook Login maps directly to a category of user data your policy must disclose. The table below covers the most common permissions. Review your app's permission list at <code>App Dashboard &gt; App Review &gt; Permissions and Features</code> and cross-reference it against your policy.</p>
+
+    <table class="scope-table">
+      <thead>
+        <tr>
+          <th>Permission</th>
+          <th>Data accessed</th>
+          <th>Disclose as</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>public_profile</code></td>
+          <td>User ID, first name, last name, profile picture URL, link to profile, name format, short name (granted automatically to all apps)</td>
+          <td>Basic profile information</td>
+        </tr>
+        <tr>
+          <td><code>email</code></td>
+          <td>Primary email address associated with the Facebook account</td>
+          <td>Email address</td>
+        </tr>
+        <tr>
+          <td><code>user_birthday</code></td>
+          <td>Date of birth from the Facebook profile</td>
+          <td>Date of birth</td>
+        </tr>
+        <tr>
+          <td><code>user_age_range</code></td>
+          <td>Age range (e.g. 18-20, 21+) from the Facebook profile</td>
+          <td>Age range</td>
+        </tr>
+        <tr>
+          <td><code>user_gender</code></td>
+          <td>Gender from the Facebook profile</td>
+          <td>Gender</td>
+        </tr>
+        <tr>
+          <td><code>user_hometown</code></td>
+          <td>Hometown city name from the Facebook profile</td>
+          <td>Hometown location</td>
+        </tr>
+        <tr>
+          <td><code>user_location</code></td>
+          <td>Current city name from the profile's location field</td>
+          <td>Current location</td>
+        </tr>
+        <tr>
+          <td><code>user_link</code></td>
+          <td>URL to the user's Facebook profile</td>
+          <td>Profile URL</td>
+        </tr>
+        <tr>
+          <td><code>user_friends</code></td>
+          <td>List of friends who also use the same app</td>
+          <td>Friends list (app-scoped)</td>
+        </tr>
+        <tr>
+          <td><code>user_photos</code></td>
+          <td>Photos the user has uploaded or been tagged in</td>
+          <td>User photos</td>
+        </tr>
+        <tr>
+          <td><code>user_posts</code></td>
+          <td>Posts the user has published on their timeline</td>
+          <td>Timeline posts</td>
+        </tr>
+        <tr>
+          <td><code>user_videos</code></td>
+          <td>Videos the user has uploaded</td>
+          <td>User videos</td>
+        </tr>
+        <tr>
+          <td><code>pages_read_engagement</code></td>
+          <td>Content posted by the Page, follower names, PSIDs, profile pictures, Page metadata and insights</td>
+          <td>Page engagement data and follower information</td>
+        </tr>
+        <tr>
+          <td><code>pages_read_user_content</code></td>
+          <td>Posts, comments, and ratings made by users on the Page</td>
+          <td>User-generated content on managed Pages</td>
+        </tr>
+        <tr>
+          <td><code>pages_manage_metadata</code></td>
+          <td>Page webhooks, settings, and real-time activity notifications</td>
+          <td>Page settings and activity data</td>
+        </tr>
+        <tr>
+          <td><code>read_insights</code></td>
+          <td>Analytics and insights data for Pages, apps, and web domains the user owns</td>
+          <td>Insights and analytics data</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>If your app requests a permission, your privacy policy must name the data that permission grants access to. Apps that request permissions they do not use will be rejected during App Review -- Meta expects a one-to-one match between requested permissions and stated functionality. Generate the data-collection disclosures for any third-party SDKs your app bundles with the <a href="/tools/sdk-disclosure-generator/">SDK disclosure generator</a>.</p>
+
+    <h2 id="pages-lead-ads">Facebook Pages and Lead Ads Privacy Requirements</h2>
+
+    <p>Facebook Pages and Lead Ads have their own privacy policy requirements that exist independently of the App Review process.</p>
+
+    <ul>
+      <li><strong>Facebook Pages.</strong> Any Page that collects information from visitors -- through messaging, Lead Ads, or Shop features -- must link to a privacy policy. For Pages managed through a third-party app, the app's privacy policy must also disclose that it accesses Page data. The <code>pages_read_engagement</code> scope gives access to follower PSIDs (Page-Scoped User IDs) and profile pictures, which are personal data under GDPR even though they differ from the user's global Facebook ID.</li>
+
+      <li><strong>Lead Ads.</strong> When you create a Lead Ad form in Ads Manager, the <code>Privacy Policy</code> field is mandatory. The form cannot be published without a valid URL. The URL appears as a clickable link at the bottom of the lead form, directly above the submit button. Users must be able to read the policy before submitting their information. Lead Ad forms collect whatever custom fields you define -- name, email, phone number, job title, company -- and your policy must disclose each one. If you use the Conversions API (<code>server_events</code>) or the Meta Pixel to send event data back to Meta, those data flows must also be disclosed.</li>
+
+      <li><strong>Custom Audiences.</strong> If your app uploads customer lists to create Custom Audiences (via <code>ads_management</code> or the Marketing API), your privacy policy must disclose that you share user data with Meta for advertising purposes. This includes hashed email addresses, phone numbers, and any other identifiers used for matching.</li>
+    </ul>
+
+    <h2 id="rejection-reasons">Why App Review Rejects a Privacy Policy URL</h2>
+
+    <p>Meta's App Review team rejects privacy policy submissions for specific, fixable reasons. These are the most common rejection patterns based on publicly documented review feedback and developer community reports:</p>
+
+    <ol>
+      <li><strong>"The privacy policy URL provided is not accessible."</strong> The URL returns a 404, 403, 500, or times out. Meta's crawler cannot reach pages behind authentication, VPNs, or geo-restrictions. Before submitting, test the URL in the <a href="https://developers.facebook.com/tools/debug/" rel="nofollow">Sharing Debugger</a> -- if the debugger cannot scrape the page, the review team cannot read it either. The URL must load over HTTPS without redirecting through a login page.</li>
+
+      <li><strong>"Your app's privacy policy must clearly explain the data you are collecting and how you are using it."</strong> The policy exists but does not mention Facebook-specific data types. A generic template that says "we collect personal information" without naming <code>public_profile</code> fields, email addresses obtained through Facebook Login, or Graph API data will be flagged. The fix is to list each requested permission and the specific data it accesses, as shown in the permissions table above.</li>
+
+      <li><strong>"The privacy policy does not explain how users can request deletion of their data."</strong> The policy lacks a deletion mechanism or the contact information is missing. Provide a working email address, a link to a contact form, or configure the Data Deletion Request Callback at <code>App Dashboard &gt; Settings &gt; Basic &gt; Data Deletion</code>.</li>
+
+      <li><strong>"The privacy policy URL does not load a page that is clearly a privacy policy."</strong> The URL points to a homepage, an "About" page, or a terms-of-service page that buries privacy information in a larger document. The page must be clearly titled "Privacy Policy" and dedicated entirely to privacy disclosures.</li>
+
+      <li><strong>"We were unable to test your app."</strong> This is not strictly a privacy policy rejection, but it blocks the entire submission. If the review team cannot log in, navigate, or exercise the features that use the requested permissions, the full submission fails. Provide test credentials and step-by-step instructions in the <code>App Review &gt; Submissions</code> notes field.</li>
+
+      <li><strong>Policy hosted on a non-HTTPS URL.</strong> Meta requires the privacy policy URL to load over HTTPS. HTTP-only URLs are rejected outright. Free hosting services that do not provide TLS certificates will not work.</li>
+    </ol>
+
+    <p>Each of these is documented in the rejection feedback email Meta sends after a failed review. Fix the specific issue cited, resubmit, and the turnaround for re-review is typically 1 to 5 business days.</p>
+
+    <h2 id="disclosure-template">Copy-Ready Facebook App Disclosure Block</h2>
+
+    <p>Add this block to your existing privacy policy to cover your app's Facebook integration. Replace the bracketed fields with your actual data practices and remove any sections that do not apply.</p>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-label">Facebook App Privacy Disclosure &mdash; ready to copy</span>
+      </div>
+      <div class="copy-block-body" id="disclosure-text">
+<p><strong>Facebook Integration</strong></p>
+
+<p>Our application integrates with Facebook's platform through the Graph API and Facebook Login. This section describes the data we receive through these integrations.</p>
+
+<p><strong>Data We Collect Through Facebook Login</strong></p>
+<p>When you log in with Facebook, we receive and store the following information from your Facebook account, based on the permissions you grant:</p>
+<ul>
+<li><em>Basic profile information</em> (granted automatically) &mdash; your user ID, first name, last name, and profile picture URL.</li>
+<li><em>Email address</em> [if email permission is requested] &mdash; the primary email address associated with your Facebook account.</li>
+<li>[Add additional permissions as applicable, e.g.: <em>Date of birth</em> (user_birthday permission), <em>Friends list</em> (user_friends permission &mdash; limited to friends who also use this app).]</li>
+</ul>
+
+<p><strong>How We Use Facebook Data</strong></p>
+<p>We use the data received through Facebook's APIs to: [describe each specific purpose, e.g., authenticate your identity and create your account / personalize your experience / display your profile information within the app]. We do not use Facebook data for advertising, sell it to third parties, or share it with data brokers.</p>
+
+<p><strong>Data Deletion</strong></p>
+<p>You may request deletion of all data we received through Facebook by [contacting us at your-email@example.com / using the deletion form at (URL) / revoking the app's access in your Facebook Settings &gt; Apps and Websites, which triggers our automated deletion process via Meta's Data Deletion Request Callback]. We process deletion requests within [number] days.</p>
+
+<p><strong>Third-Party Services Receiving Facebook Data</strong></p>
+<p>[Name each service and what it receives, e.g.: <strong>AWS</strong> hosts our servers and stores your Facebook profile data. <strong>Sentry</strong> receives error logs that may include your user ID. No other third party receives data obtained through Facebook's APIs.]</p>
+
+<p><strong>Data Retention</strong></p>
+<p>Data received through Facebook's APIs is retained for [number] days while your account is active. When you delete your account or revoke our app's access through Facebook, we delete all Facebook-obtained data within [number] days.</p>
+      </div>
+      <button class="copy-btn" id="copy-disclosure-btn" type="button">Copy to clipboard</button>
+    </div>
+
+    <p>Need a complete privacy policy rather than just the Facebook section? <a href="https://buildprivacypolicy.com/">Use the free privacy policy generator</a> to build a full policy that covers GDPR, CCPA, and app store requirements, then host it at a permanent URL you can paste into your App Dashboard.</p>
+
+    <RelatedGuides currentSlug="resources/facebook-app-privacy-policy" />
+
+    <h2 id="faq">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Does every Facebook app need a privacy policy?</h3>
+        <p>Every app that goes through App Review or is made available to users beyond the app's development team must have a privacy policy URL in the App Dashboard. Apps used only by people with a role on the app (administrator, developer, tester) can function without one, but any public-facing app cannot pass App Review without it.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Where do I add the privacy policy URL in the Facebook App Dashboard?</h3>
+        <p>Go to <code>App Dashboard &gt; Settings &gt; Basic</code> and enter the URL in the <strong>Privacy Policy URL</strong> field. The field appears below the <code>App Domains</code> field. The URL must load over HTTPS, return an HTTP 200 response, and be accessible without authentication. After saving, use the <a href="https://developers.facebook.com/tools/debug/" rel="nofollow">Sharing Debugger</a> to verify Meta can reach the page.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What does Meta check during App Review for the privacy policy?</h3>
+        <p>The review team visits the privacy policy URL and verifies that the page is accessible, loads over HTTPS, is clearly labeled as a privacy policy, and describes the app's data practices in enough detail to cover each requested permission. The policy must explain what data is collected, how it is used, how users can request deletion, and whether data is shared with third parties. Generic policies that do not mention Facebook-specific data are rejected.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What data does the public_profile permission give access to?</h3>
+        <p>The <code>public_profile</code> permission is granted automatically to every app and provides access to the user's ID, first name, last name, profile picture URL, profile link, name format, and short name. It does not include email, birthday, gender, location, or friends list -- those require separate permissions and separate App Review approval.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I use Google Docs or Notion to host my privacy policy?</h3>
+        <p>It is not recommended. Google Docs and Notion pages can change their sharing settings, move behind authentication, or have URLs that redirect unpredictably. Meta's crawler needs a stable HTTPS URL that consistently returns an HTTP 200 response. Use a dedicated page on your own website, or <a href="https://buildprivacypolicy.com/">generate and host a free privacy policy</a> with a permanent URL.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How long does App Review take after fixing a privacy policy rejection?</h3>
+        <p>Re-review after fixing a privacy policy issue typically takes 1 to 5 business days. Fix the specific issue cited in the rejection email, update the policy at the same URL, and resubmit through <code>App Dashboard &gt; App Review &gt; Submissions</code>. Do not change the URL unless the original was unreachable -- the review team recognizes resubmissions to the same URL.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do I need a separate privacy policy for Lead Ads?</h3>
+        <p>You do not need a separate document, but your existing privacy policy must cover the data collected through Lead Ad forms. When creating a Lead Ad form in Ads Manager, the <code>Privacy Policy</code> field requires a URL, and the same policy can serve both the app and the ad forms as long as it discloses the lead form data fields (name, email, phone, job title, or whatever custom fields you defined).</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What happens if my privacy policy URL breaks after App Review approval?</h3>
+        <p>Meta periodically re-checks privacy policy URLs through the Data Use Checkup and automated crawls. A broken URL -- one that returns a 404, 500, or redirects to a login page -- can result in your app's permissions being suspended. The App Dashboard will display a warning, and you will receive an email notification. Fix the URL promptly and complete any required Data Use Checkup to restore permissions.</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+</main>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Facebook App Privacy Policy: What Meta App Review Requires and How to Pass It",
+  "description": description,
+  "datePublished": publishDate,
+  "dateModified": modifiedDate,
+  "author": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buildprivacypolicy.com/resources/facebook-app-privacy-policy/"
+  }
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does every Facebook app need a privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every app that goes through App Review or is made available to users beyond the development team must have a privacy policy URL in the App Dashboard. Apps used only by people with a role on the app can function without one, but any public-facing app cannot pass App Review without it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where do I add the privacy policy URL in the Facebook App Dashboard?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Go to App Dashboard > Settings > Basic and enter the URL in the Privacy Policy URL field. The field appears below the App Domains field. The URL must load over HTTPS, return an HTTP 200 response, and be accessible without authentication."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does Meta check during App Review for the privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The review team visits the privacy policy URL and verifies that the page is accessible, loads over HTTPS, is clearly labeled as a privacy policy, and describes the app's data practices in enough detail to cover each requested permission. The policy must explain what data is collected, how it is used, how users can request deletion, and whether data is shared with third parties."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What data does the public_profile permission give access to?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The public_profile permission is granted automatically to every app and provides access to the user's ID, first name, last name, profile picture URL, profile link, name format, and short name. It does not include email, birthday, gender, location, or friends list -- those require separate permissions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use Google Docs or Notion to host my privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is not recommended. Google Docs and Notion pages can change their sharing settings or move behind authentication. Meta's crawler needs a stable HTTPS URL that consistently returns an HTTP 200 response. Use a dedicated page on your own website or a free hosted privacy policy generator."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does App Review take after fixing a privacy policy rejection?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Re-review after fixing a privacy policy issue typically takes 1 to 5 business days. Fix the specific issue cited in the rejection email, update the policy at the same URL, and resubmit through App Dashboard > App Review > Submissions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a separate privacy policy for Lead Ads?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You do not need a separate document, but your existing privacy policy must cover the data collected through Lead Ad forms. The same policy can serve both the app and the ad forms as long as it discloses the lead form data fields."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if my privacy policy URL breaks after App Review approval?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Meta periodically re-checks privacy policy URLs through the Data Use Checkup and automated crawls. A broken URL can result in your app's permissions being suspended. Fix the URL promptly and complete any required Data Use Checkup to restore permissions."
+      }
+    }
+  ]
+})} />
+
+</Layout>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-link:hover {
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+  .page-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 16px 80px;
+  }
+  .page-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px 36px;
+    border: 1px solid #E5E7EB;
+  }
+  .breadcrumb {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 16px;
+  }
+  .breadcrumb a {
+    color: #6B7280;
+    text-decoration: underline;
+  }
+  .page-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .last-updated {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 24px;
+  }
+  .page-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .page-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  .page-card p {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .page-card ul, .page-card ol {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+  .page-card li {
+    margin-bottom: 8px;
+  }
+  .page-card a {
+    color: #2563EB;
+    text-decoration: underline;
+  }
+  .page-card strong {
+    font-weight: 600;
+  }
+  .page-card em {
+    font-style: italic;
+  }
+  .toc {
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 8px;
+  }
+  .toc-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .toc ol {
+    margin-bottom: 0;
+    padding-left: 20px;
+  }
+  .toc li {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .toc a {
+    color: #2563EB;
+  }
+  .scope-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 20px;
+    font-size: 14px;
+  }
+  .scope-table th {
+    background: #F3F4F6;
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #374151;
+    border: 1px solid #E5E7EB;
+  }
+  .scope-table td {
+    padding: 10px 12px;
+    border: 1px solid #E5E7EB;
+    color: #374151;
+    vertical-align: top;
+  }
+  .scope-table code {
+    background: #E5E7EB;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+  .faq-list {
+    margin-top: 8px;
+  }
+  .faq-item {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 20px;
+    margin-bottom: 8px;
+  }
+  .faq-item h3 {
+    margin-top: 0;
+  }
+  .faq-item p {
+    margin-bottom: 8px;
+  }
+  .copy-block {
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    margin: 20px 0;
+    overflow: hidden;
+  }
+  .copy-block-header {
+    background: #F3F4F6;
+    padding: 10px 16px;
+    border-bottom: 1px solid #D1D5DB;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .copy-block-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4B5563;
+  }
+  .copy-block-body {
+    padding: 24px 28px;
+    background: #FAFAFA;
+    max-height: 480px;
+    overflow-y: auto;
+  }
+  .copy-block-body p {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .copy-block-body ul {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    padding-left: 22px;
+  }
+  .copy-block-body li {
+    margin-bottom: 4px;
+  }
+  .copy-block-body code {
+    background: #E5E7EB;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+  .copy-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #1E3A5F;
+    color: white;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .copy-btn:hover {
+    background: #2E5A8F;
+  }
+</style>
+
+<script>
+  document.getElementById('copy-disclosure-btn')?.addEventListener('click', function() {
+    const el = document.getElementById('disclosure-text');
+    if (!el) return;
+    const text = el.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copy-disclosure-btn');
+      if (btn) {
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy to clipboard'; }, 2000);
+      }
+    });
+  });
+</script>
