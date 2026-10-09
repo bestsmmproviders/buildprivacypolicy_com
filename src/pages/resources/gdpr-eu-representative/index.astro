@@ -3,9 +3,9 @@ import Layout from '../../../layouts/Layout.astro';
 import RelatedGuides from '../../../components/RelatedGuides.astro';
 
 const title = "GDPR EU Representative: What Article 27 Requires";
-const description = "Learn when GDPR Article 27 requires a non-EU company to appoint an EU representative, who is exempt, and how to name your representative in your privacy policy.";
+const description = "Learn what GDPR Article 27 requires for an EU representative, who is exempt, UK GDPR parallels, Art. 83 penalties, and sample privacy policy clause wording.";
 const publishDate = "2026-09-19";
-const modifiedDate = "2026-09-19";
+const modifiedDate = "2026-10-09";
 ---
 
 <Layout title={title} description={description}>
@@ -24,7 +24,7 @@ const modifiedDate = "2026-09-19";
   <div class="page-card">
     <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
     <h1>GDPR EU Representative: What Article 27 Requires and How to Comply</h1>
-    <p class="last-updated">Published September 19, 2026</p>
+    <p class="last-updated">Published September 19, 2026 &middot; Updated October 9, 2026</p>
 
     <p>A GDPR EU representative is a person or organization based in the European Union that a non-EU company designates as its local contact point for data protection authorities and individuals whose data it processes. Article 27 of the GDPR requires this appointment whenever a company outside the EU is subject to the regulation under Article 3(2) -- meaning it offers goods or services to people in the EU, or monitors their behavior. If your app or website serves EU users and you have no EU establishment, you almost certainly need one.</p>
 
@@ -38,6 +38,8 @@ const modifiedDate = "2026-09-19";
         <li><a href="#representative-vs-dpo">What a Representative Does (and Does Not Do)</a></li>
         <li><a href="#how-to-appoint">How to Appoint an EU Representative</a></li>
         <li><a href="#privacy-policy-clause">Naming Your Representative in Your Privacy Policy</a></li>
+        <li><a href="#uk-gdpr-representative">The UK GDPR Representative Requirement</a></li>
+        <li><a href="#article-83-penalties">Article 83 Penalties for Non-Compliance</a></li>
         <li><a href="#faq">Frequently Asked Questions</a></li>
       </ol>
     </nav>
@@ -151,6 +153,41 @@ const modifiedDate = "2026-09-19";
 
     <p>If you are building a privacy policy from scratch and want to make sure all required GDPR sections are covered -- including the representative disclosure -- you can <a href="https://buildprivacypolicy.com/">generate a privacy policy with the free generator</a>. To check whether your app's setup triggers GDPR at all (and which other laws may apply), the <a href="/tools/privacy-law-checker/">privacy law checker</a> walks through the factors in a few clicks.</p>
 
+    <h2 id="uk-gdpr-representative">The UK GDPR Representative Requirement</h2>
+
+    <p>After Brexit, the United Kingdom retained the GDPR as domestic law under the name "UK GDPR." Article 27 of the UK GDPR mirrors its EU counterpart almost word for word, but applies independently. If your company is outside the UK and processes personal data of people in the UK under UK GDPR Article 3(2) -- by offering them goods or services, or monitoring their behavior -- you must appoint a separate representative based in the United Kingdom.</p>
+
+    <p>The practical consequence is that a non-EU, non-UK company serving users in both the EU and the UK may need two representatives: one in an EU member state under EU GDPR Article 27, and one in the UK under UK GDPR Article 27. An EU-based representative does not satisfy the UK requirement, and a UK-based representative does not satisfy the EU requirement. They are separate legal obligations under separate legal regimes.</p>
+
+    <h3>How the UK GDPR representative differs</h3>
+
+    <ul>
+      <li><strong>Location.</strong> The UK representative must be established in the United Kingdom, not in an EU member state. Article 27(3) of the UK GDPR requires the representative to be in the UK where the data subjects whose data you process are located.</li>
+      <li><strong>Supervisory authority.</strong> The UK representative's counterpart is the Information Commissioner's Office (ICO), not an EU data protection authority. The ICO enforces the UK GDPR and the Data Protection Act 2018.</li>
+      <li><strong>Exemptions.</strong> The same two exemptions apply -- occasional processing that meets all three conditions of Article 27(2)(a), and public authorities under Article 27(2)(b). The threshold analysis is the same.</li>
+      <li><strong>Penalties.</strong> Non-compliance with the UK GDPR representative requirement carries fines under UK GDPR Article 83(4)(a), mirroring the EU fine structure: up to 8.7 million pounds or 2% of annual worldwide turnover, whichever is higher (the UK-adjusted equivalent of the EU's 10 million euro tier).</li>
+    </ul>
+
+    <p>If your privacy policy already names an EU representative, add a parallel disclosure for your UK representative. The sample clause format in the previous section works for the UK representative as well -- replace the Article reference with "Article 27 of the UK GDPR" and list the UK-based representative's contact details separately. For a full walkthrough of how UK data protection law intersects with the GDPR for US-based companies, see our guide on <a href="/resources/does-gdpr-apply-to-us-companies/">whether GDPR applies to US companies</a>.</p>
+
+    <h2 id="article-83-penalties">Article 83 Penalties for Non-Compliance</h2>
+
+    <p>Failure to appoint a representative under Article 27 is not a minor procedural oversight -- the GDPR treats it as a sanctionable violation with a dedicated penalty tier.</p>
+
+    <p>Article 83(4)(a) of the GDPR lists the representative obligation among the violations subject to administrative fines of up to <strong>10 million euros, or 2% of the total worldwide annual turnover</strong> of the preceding financial year, whichever is higher. This is the GDPR's "standard" fine tier -- the same tier that covers violations of data controller and processor obligations under Articles 8, 11, 25 through 39, and 42 and 43.</p>
+
+    <p>For context, the GDPR's upper fine tier under Article 83(5) -- up to 20 million euros or 4% of worldwide turnover -- is reserved for violations of the core data processing principles, lawfulness conditions, data subject rights, and international transfer rules. The Article 27 obligation falls in the lower tier, but "lower" is relative: 10 million euros or 2% of turnover is a material exposure for any company.</p>
+
+    <h3>How enforcement works in practice</h3>
+
+    <p>Supervisory authorities consider several factors under Article 83(2) when deciding the amount of a fine, including the nature, gravity, and duration of the infringement; whether the violation was intentional or negligent; what measures the company took to mitigate damage; the degree of cooperation with the supervisory authority; and the categories of personal data affected.</p>
+
+    <p>A company that has never appointed a representative and ignores correspondence from a supervisory authority faces a worse outcome than one that appointed a representative late but cooperated fully once contacted. The absence of a representative also creates a practical enforcement problem: without a local contact point, supervisory authorities may have difficulty reaching you, which can lead to default decisions and higher penalties.</p>
+
+    <p>The representative obligation interacts with other compliance requirements. A supervisory authority investigating a data breach or a data subject complaint will notice the absence of a representative as an additional violation, compounding the total exposure. It is rarely the primary reason for a large fine, but it adds to the list of infringements and signals systemic non-compliance, which Article 83(2)(b) treats as an aggravating factor when the supervisory authority finds "relevant previous infringements by the controller or processor."</p>
+
+    <p>If you need to verify whether your current privacy setup meets the GDPR's baseline requirements -- including the representative disclosure, lawful basis statements, and data subject rights sections -- the <a href="/tools/gdpr-compliance-checklist/">GDPR compliance checklist</a> covers each obligation with a pass/fail check.</p>
+
     <RelatedGuides currentSlug="resources/gdpr-eu-representative" />
 
     <h2 id="faq">Frequently Asked Questions</h2>
@@ -184,6 +221,21 @@ const modifiedDate = "2026-09-19";
       <div class="faq-item">
         <h3>Does appointing a representative protect me from GDPR fines?</h3>
         <p>No. Article 27(5) states that appointing a representative is "without prejudice to legal actions which could be initiated against the controller or the processor themselves." The representative is a compliance requirement, not a liability shield. You remain fully responsible for your data processing practices and can still be subject to fines and enforcement actions directly.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do I need a separate representative for the UK after Brexit?</h3>
+        <p>Yes, if your company processes personal data of people in the UK under UK GDPR Article 3(2). The UK GDPR retained Article 27 as domestic law, and it requires a representative established in the United Kingdom -- not in the EU. A company serving users in both the EU and the UK may need two separate representatives: one in an EU member state and one in the UK.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I appoint the same person as both my EU representative and my DPO?</h3>
+        <p>The GDPR does not explicitly prohibit it, but the European Data Protection Board has noted that combining the roles may create a conflict of interest. The DPO must act independently under Article 38(3) and cannot receive instructions on how to carry out their tasks. Because the representative acts on the controller's mandate and the DPO must act independently of it, most compliance advisors recommend keeping the two roles separate to avoid undermining the DPO's independence.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What records must the EU representative keep under Article 30?</h3>
+        <p>The representative must hold a copy of the controller's or processor's records of processing activities as required by Article 30. For controllers, this includes the name and contact details of the controller and representative, the purposes of processing, categories of data subjects and personal data, categories of recipients, international transfer details, and retention periods. For processors, it includes the name of each controller on whose behalf processing is carried out, the categories of processing, international transfer details, and a general description of technical and organizational security measures.</p>
       </div>
     </div>
 
@@ -264,6 +316,30 @@ const modifiedDate = "2026-09-19";
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "No. Article 27(5) states that appointing a representative is without prejudice to legal actions which could be initiated against the controller or the processor themselves. The representative is a compliance requirement, not a liability shield. You remain fully responsible for your data processing practices."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a separate representative for the UK after Brexit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, if your company processes personal data of people in the UK under UK GDPR Article 3(2). The UK GDPR retained Article 27 as domestic law, and it requires a representative established in the United Kingdom, not in the EU. A company serving users in both the EU and the UK may need two separate representatives."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I appoint the same person as both my EU representative and my DPO?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The GDPR does not explicitly prohibit it, but the European Data Protection Board has noted that combining the roles may create a conflict of interest. The DPO must act independently under Article 38(3). Because the representative acts on the controller's mandate and the DPO must act independently of it, most compliance advisors recommend keeping the two roles separate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What records must the EU representative keep under Article 30?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The representative must hold a copy of the controller's or processor's records of processing activities as required by Article 30. For controllers, this includes the name and contact details of the controller and representative, the purposes of processing, categories of data subjects and personal data, categories of recipients, international transfer details, and retention periods. For processors, it includes the name of each controller on whose behalf processing is carried out, the categories of processing, international transfer details, and a description of security measures."
       }
     }
   ]
