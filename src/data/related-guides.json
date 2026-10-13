@@ -125,9 +125,9 @@
       { "slug": "resources/alexa-skill-privacy-policy", "reason": "Covers Amazon's certification review, which mirrors Chrome's store listing requirements." }
     ],
     "resources/discord-bot-privacy-policy": [
-      { "slug": "resources/telegram-bot-privacy-policy", "reason": "Telegram's BotFather verification has similar privacy disclosure steps to Discord." },
-      { "slug": "resources/slack-app-privacy-policy", "reason": "Slack bots face comparable app directory listing requirements." },
-      { "slug": "resources/chrome-extension-privacy-policy", "reason": "Chrome extensions share the same publish-then-review model for privacy policies." }
+      { "slug": "resources/chrome-extension-privacy-policy", "reason": "Chrome extensions share the same publish-then-review model for privacy policies." },
+      { "slug": "resources/facebook-app-privacy-policy", "reason": "Facebook's App Review process mirrors Discord's verification flow for bots that access user data." },
+      { "slug": "resources/alexa-skill-privacy-policy", "reason": "Amazon's Alexa skill certification requires a privacy policy link, similar to Discord's bot verification." }
     ],
     "resources/do-i-need-a-privacy-policy-for-my-website": [
       { "slug": "resources/how-to-add-privacy-policy-to-website", "reason": "Once you know you need one, this guide shows where and how to add it." },
@@ -161,8 +161,8 @@
     ],
     "resources/how-to-write-privacy-policy-for-app": [
       { "slug": "tools/app-store-privacy-requirements", "reason": "Check which privacy disclosures Apple and Google require for your app listing." },
-      { "slug": "resources/how-to-add-privacy-policy-to-website", "reason": "Your app likely has a companion website that also needs a hosted policy." },
-      { "slug": "tools/sdk-disclosure-generator", "reason": "Third-party SDKs in your app create disclosure obligations — generate them here." }
+      { "slug": "tools/sdk-disclosure-generator", "reason": "Third-party SDKs in your app create disclosure obligations — generate them here." },
+      { "slug": "resources/facebook-app-privacy-policy", "reason": "Building on Facebook's platform adds Meta-specific data handling disclosures to your app's privacy policy." }
     ],
     "resources/privacy-policy-for-clothing-website": [
       { "slug": "resources/privacy-policy-for-ecommerce-website", "reason": "Clothing stores share core ecommerce privacy requirements with all online retailers." },
@@ -182,7 +182,7 @@
     "resources/privacy-policy-for-marketing-agency": [
       { "slug": "resources/privacy-policy-for-small-business", "reason": "Agencies are small businesses too — this covers the foundational privacy requirements." },
       { "slug": "resources/does-gdpr-apply-to-us-companies", "reason": "Agencies handling EU client data may fall under GDPR even if based in the US." },
-      { "slug": "resources/do-i-need-a-privacy-policy-for-my-website", "reason": "Covers when a privacy policy is legally required versus optional for your agency site." }
+      { "slug": "resources/privacy-policy-for-photography-website", "reason": "Photographers and agencies share similar client data handling needs, from contracts to portfolio consent." }
     ],
     "resources/privacy-policy-for-photography-website": [
       { "slug": "resources/privacy-policy-for-small-business", "reason": "Photography businesses share core small-business privacy requirements." },
@@ -192,7 +192,7 @@
     "resources/privacy-policy-for-small-business": [
       { "slug": "resources/privacy-policy-for-marketing-agency", "reason": "If your business is an agency, this guide covers industry-specific clauses." },
       { "slug": "resources/do-i-need-a-privacy-policy-for-my-website", "reason": "Find out whether your small business website is legally required to have one." },
-      { "slug": "resources/privacy-policy-for-ecommerce-website", "reason": "Selling products online adds ecommerce-specific data handling requirements." }
+      { "slug": "resources/privacy-policy-for-photography-website", "reason": "Photographers handle client images and booking data that require specific privacy disclosures." }
     ],
     "resources/shopify-privacy-policy-generator": [
       { "slug": "resources/wix-privacy-policy-generator", "reason": "Comparing platforms? Wix has different privacy policy placement and requirements." },
@@ -200,9 +200,9 @@
       { "slug": "resources/privacy-policy-for-ecommerce-website", "reason": "Covers the broader ecommerce privacy clauses beyond Shopify-specific steps." }
     ],
     "resources/slack-app-privacy-policy": [
-      { "slug": "resources/discord-bot-privacy-policy", "reason": "Discord bots face similar app directory review and privacy disclosure requirements." },
-      { "slug": "resources/telegram-bot-privacy-policy", "reason": "Another messaging-platform bot with its own privacy policy verification process." },
-      { "slug": "resources/chrome-extension-privacy-policy", "reason": "Chrome extensions share the same review-gated distribution model as Slack apps." }
+      { "slug": "resources/chrome-extension-privacy-policy", "reason": "Chrome extensions share the same review-gated distribution model as Slack apps." },
+      { "slug": "resources/facebook-app-privacy-policy", "reason": "Facebook apps go through Meta's App Review with privacy policy requirements comparable to Slack's App Directory." },
+      { "slug": "resources/alexa-skill-privacy-policy", "reason": "Alexa skills require a hosted privacy policy URL before Amazon certifies them — the same gating model as Slack." }
     ],
     "resources/squarespace-privacy-policy-generator": [
       { "slug": "resources/wix-privacy-policy-generator", "reason": "Wix is the closest alternative — this covers its equivalent privacy setup steps." },
@@ -220,9 +220,9 @@
       { "slug": "resources/how-to-add-privacy-policy-to-website", "reason": "General placement guide covering options beyond Wix's built-in legal pages feature." }
     ],
     "tools/app-store-privacy-requirements": [
-      { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "Covers how to write the privacy policy that app stores require you to link." },
       { "slug": "tools/privacy-policy-checker", "reason": "After writing your policy, check whether it covers the required clauses." },
-      { "slug": "tools/sdk-disclosure-generator", "reason": "Third-party SDKs in your app require additional privacy disclosures in your listing." }
+      { "slug": "tools/sdk-disclosure-generator", "reason": "Third-party SDKs in your app require additional privacy disclosures in your listing." },
+      { "slug": "tools/play-data-safety-answers", "reason": "Google Play's Data Safety form is the Android counterpart to Apple's privacy nutrition labels." }
     ],
     "tools/data-retention-schedule": [
       { "slug": "tools/gdpr-compliance-checklist", "reason": "Data retention is one GDPR requirement — this checklist covers the rest." },
@@ -246,8 +246,8 @@
     ],
     "tools/sdk-disclosure-generator": [
       { "slug": "tools/app-store-privacy-requirements", "reason": "SDK disclosures feed directly into your app store privacy listing." },
-      { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "Your privacy policy must also describe each SDK's data collection." },
-      { "slug": "tools/privacy-policy-checker", "reason": "After updating your policy with SDK disclosures, verify it covers all required clauses." }
+      { "slug": "tools/privacy-policy-checker", "reason": "After updating your policy with SDK disclosures, verify it covers all required clauses." },
+      { "slug": "tools/play-data-safety-answers", "reason": "SDK data collection directly determines which categories you must declare in Google Play's Data Safety form." }
     ],
     "tools/play-data-safety-answers": [
       { "slug": "tools/app-store-privacy-requirements", "reason": "Covers Apple's App Store privacy requirements alongside Google Play's Data Safety form." },
