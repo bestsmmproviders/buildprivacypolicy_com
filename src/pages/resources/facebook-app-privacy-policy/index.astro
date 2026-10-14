@@ -2,10 +2,10 @@
 import Layout from '../../../layouts/Layout.astro';
 import RelatedGuides from '../../../components/RelatedGuides.astro';
 
-const title = "Facebook App Privacy Policy for Meta App Review";
-const description = "Where Meta requires a privacy policy URL, what Facebook Platform Terms demand it disclose, Graph API permissions to cover, and why App Review rejects policies.";
+const title = "Facebook Privacy Policy for Apps, Ads & Pages";
+const description = "Privacy policy requirements for Facebook apps, Meta Lead Ads forms, and Facebook Pages. Where to add the URL, what to disclose, and how to pass App Review.";
 const publishDate = "2026-10-08";
-const modifiedDate = "2026-10-08";
+const modifiedDate = "2026-10-14";
 ---
 
 <Layout title={title} description={description}>
@@ -23,12 +23,12 @@ const modifiedDate = "2026-10-08";
 <article class="page-container">
   <div class="page-card">
     <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
-    <h1>Facebook App Privacy Policy: What Meta App Review Requires and How to Pass It</h1>
-    <p class="last-updated">Published October 8, 2026</p>
+    <h1>Facebook Privacy Policy: What to Disclose for Apps, Ads, and Pages</h1>
+    <p class="last-updated">Updated October 14, 2026</p>
 
-    <p>Meta requires every Facebook app to provide a privacy policy URL before it can go live to the public. The privacy policy field sits in <strong>App Dashboard &gt; Settings &gt; Basic</strong> and must contain a publicly accessible HTTPS link that returns an HTTP 200 response. Without a valid URL in that field, you cannot submit your app for App Review, and no one outside your app's development team can use it.</p>
+    <p>Meta requires a privacy policy URL in three distinct places: the <strong>App Dashboard &gt; Settings &gt; Basic</strong> field for apps going through App Review, the <strong>Privacy Policy</strong> link field inside every Lead Ads instant form built in Ads Manager, and the <strong>Page Settings &gt; Page Info</strong> section for Facebook Pages that collect visitor data. Each surface enforces the requirement differently, and a policy that satisfies one may still be incomplete for the others.</p>
 
-    <p>This guide covers exactly where Meta asks for the URL, what Facebook's Platform Terms require your policy to disclose, the data each Graph API permission returns and how to map it to privacy disclosures, Facebook Pages and Lead Ads requirements, and common reasons App Review rejects a privacy policy. If you need a finished policy without writing one from scratch, <a href="https://buildprivacypolicy.com/">generate a free privacy policy</a> and get a hosted URL you can paste directly into your App Dashboard.</p>
+    <p>This guide covers where Meta asks for the URL across apps, ads, and Pages, what Facebook's Platform Terms and Business Tools Terms require your policy to disclose, the data each Graph API permission returns, the privacy policy field inside Lead Ads instant forms, the disclosure obligations that come with Meta Pixel and the Conversions API, and common reasons App Review rejects a privacy policy. If you need a finished policy without writing one from scratch, <a href="https://buildprivacypolicy.com/">generate a free privacy policy</a> and get a hosted URL you can paste into your App Dashboard or Lead Ads form.</p>
 
     <nav class="toc">
       <p class="toc-title">Contents</p>
@@ -37,6 +37,8 @@ const modifiedDate = "2026-10-08";
         <li><a href="#platform-terms">What Meta's Platform Terms Require the Policy to Disclose</a></li>
         <li><a href="#permissions-data">Facebook Login and Graph API Permissions: Data Each Returns</a></li>
         <li><a href="#pages-lead-ads">Facebook Pages and Lead Ads Privacy Requirements</a></li>
+        <li><a href="#lead-ads-instant-forms">Privacy Policy URL in Meta Lead Ads Instant Forms</a></li>
+        <li><a href="#page-pixel-capi">Privacy Policy for a Facebook Page and Meta Pixel / Conversions API</a></li>
         <li><a href="#rejection-reasons">Why App Review Rejects a Privacy Policy URL</a></li>
         <li><a href="#disclosure-template">Copy-Ready Facebook App Disclosure Block</a></li>
         <li><a href="#faq">Frequently Asked Questions</a></li>
@@ -187,6 +189,76 @@ const modifiedDate = "2026-10-08";
       <li><strong>Custom Audiences.</strong> If your app uploads customer lists to create Custom Audiences (via <code>ads_management</code> or the Marketing API), your privacy policy must disclose that you share user data with Meta for advertising purposes. This includes hashed email addresses, phone numbers, and any other identifiers used for matching.</li>
     </ul>
 
+    <h2 id="lead-ads-instant-forms">Privacy Policy URL in Meta Lead Ads Instant Forms</h2>
+
+    <p>Every Lead Ad campaign in Meta Ads Manager requires an instant form, and every instant form requires a privacy policy URL before it can be published. This requirement applies to anyone running lead generation ads on Facebook or Instagram -- you do not need a Facebook app or App Review to encounter it.</p>
+
+    <h3>Where the field sits in Ads Manager</h3>
+
+    <p>When you create a campaign with the <strong>Leads</strong> objective in <strong>Meta Ads Manager</strong>, the ad-level setup includes an <strong>Instant Form</strong> section. Inside the form builder, the <strong>Privacy Policy</strong> step appears after you define your form fields (name, email, phone, or custom questions). The field is labeled <code>Privacy Policy Link</code> and accepts a single HTTPS URL. You cannot save or publish the instant form without filling it in. Meta displays the URL as a clickable "Privacy Policy" hyperlink at the bottom of the rendered form, directly below the custom disclaimer (if any) and above the <strong>Submit</strong> button. The user sees and can tap the link before submitting their information.</p>
+
+    <h3>What Meta rejects</h3>
+
+    <p>Meta validates the privacy policy URL when you save the instant form. The URL must return an HTTP 200 response over HTTPS. A URL that redirects through a login wall, returns a 404, points to <code>localhost</code>, or loads a page that is not recognizably a privacy policy will cause the form to fail validation. Meta's <a href="https://www.facebook.com/legal/lead_ads_terms" rel="nofollow">Lead Ads Terms</a> require that the linked policy be your own (not a third party's boilerplate) and that it accurately describe how you handle the data collected through the form.</p>
+
+    <h3>What the policy must disclose about lead data</h3>
+
+    <p>The instant form collects exactly the fields you configure: standard fields such as <strong>Full Name</strong>, <strong>Email Address</strong>, <strong>Phone Number</strong>, <strong>Job Title</strong>, <strong>Company Name</strong>, and <strong>Work Email</strong>, plus any <strong>Custom Questions</strong> you add (short-answer, multiple-choice, or conditional). Your privacy policy must list each category of data the form collects and explain:</p>
+
+    <ul>
+      <li><strong>Purpose of collection.</strong> Why you are collecting each field -- for example, "to send a quote by email" or "to schedule a consultation call." Vague purposes such as "to improve our services" do not satisfy Meta's Lead Ads Terms.</li>
+      <li><strong>Third-party sharing.</strong> Whether the lead data is sent to a CRM (Salesforce, HubSpot, Zoho), an email marketing platform (Mailchimp, ActiveCampaign), or any other downstream service. Name each recipient. If you use Meta's <strong>CRM Integration</strong> in the instant form settings to push leads directly to a third-party system, that data flow must be disclosed.</li>
+      <li><strong>Data retention and deletion.</strong> How long you keep the lead data and how someone who submitted the form can request deletion. Lead data downloaded from Ads Manager or received via the Leads API does not expire automatically on your end -- you are responsible for the retention lifecycle once it leaves Meta.</li>
+    </ul>
+
+    <p>If you also use the <strong>Meta Pixel</strong> or <strong>Conversions API</strong> to send conversion events back to Meta when a lead converts (for example, firing a <code>Lead</code> event or a <code>Purchase</code> event), those data flows create a separate disclosure obligation covered in the next section. To generate a privacy policy that covers both Lead Ads form fields and Pixel event data, <a href="https://buildprivacypolicy.com/">use the free privacy policy generator</a>.</p>
+
+    <h2 id="page-pixel-capi">Privacy Policy for a Facebook Page and Meta Pixel / Conversions API</h2>
+
+    <p>Running a Facebook Page, installing the Meta Pixel on your website, or sending server-side events through the Conversions API each triggers a privacy policy obligation under Meta's <a href="https://www.facebook.com/legal/terms/businesstools" rel="nofollow">Business Tools Terms</a> (formerly "Facebook Business Tools Terms"). These requirements are separate from App Review and apply to marketers, publishers, and business owners who never build a Facebook app.</p>
+
+    <h3>Facebook Page privacy policy requirements</h3>
+
+    <p>Any Facebook Page that collects information from visitors must make a privacy policy accessible. The collection happens through several built-in Page features:</p>
+
+    <ul>
+      <li><strong>Messenger conversations.</strong> When a visitor messages your Page, Meta stores the conversation and makes the sender's name, profile picture, and Page-Scoped User ID (PSID) available to you through the <strong>Page Inbox</strong> or the <strong>Messenger Platform API</strong>. Your policy must disclose that you collect and store messages and sender identity data from Facebook Messenger.</li>
+      <li><strong>Page Insights.</strong> Meta provides Page administrators with aggregated demographics and engagement data through <strong>Page Insights</strong> (accessible at <code>Page &gt; Insights</code> or via the <code>read_insights</code> Graph API permission). Under the GDPR, Page administrators and Meta are joint controllers for the processing that produces Page Insights data, as established by the Court of Justice of the European Union in <em>Wirtschaftsakademie</em> (Case C-210/16). Your policy should state that you receive aggregated analytics about Page visitors from Meta.</li>
+      <li><strong>Shop and checkout.</strong> Pages with an active <strong>Facebook Shop</strong> collect order information (name, shipping address, email, payment method) through Meta's Commerce Manager. Each data point collected at checkout must appear in your privacy policy.</li>
+    </ul>
+
+    <p>You can add your privacy policy URL in <strong>Page Settings &gt; Page Info &gt; Privacy Policy</strong> (under the "Additional Information" section). While Meta does not block a Page from operating without this field, running Lead Ads, Commerce features, or Messenger automations from a Page without a linked policy violates Meta's terms and exposes you to enforcement action.</p>
+
+    <h3>Meta Pixel disclosure obligations</h3>
+
+    <p>The <strong>Meta Pixel</strong> (formerly Facebook Pixel) is a JavaScript snippet you install on your website that fires HTTP requests to <code>facebook.com/tr/</code> whenever a visitor loads a page or triggers an event. Section 2 of Meta's <a href="https://www.facebook.com/legal/terms/businesstools" rel="nofollow">Business Tools Terms</a> requires you to provide clear and prominent notice to your website visitors about the data you collect and share with Meta through Business Tools, and to obtain any consent required by applicable law before using them.</p>
+
+    <p>The Pixel collects and transmits the following data to Meta with every event fire:</p>
+
+    <ul>
+      <li><strong>Browser and device data:</strong> IP address, User Agent string, screen resolution, browser language, and time zone.</li>
+      <li><strong>Page data:</strong> the full URL of the page viewed, the referring URL, and the page title.</li>
+      <li><strong>Facebook cookies:</strong> the <code>_fbp</code> first-party cookie (a browser identifier set by the Pixel) and the <code>_fbc</code> cookie (which stores the click identifier from an ad click, <code>fbclid</code>).</li>
+      <li><strong>Event parameters:</strong> for standard events like <code>ViewContent</code>, <code>AddToCart</code>, <code>Purchase</code>, or <code>Lead</code>, the Pixel sends event-specific parameters you configure -- product IDs, values, currencies, content categories.</li>
+      <li><strong>Advanced Matching data (if enabled):</strong> when you turn on <strong>Automatic Advanced Matching</strong> in <strong>Events Manager &gt; Settings &gt; Advanced Matching</strong>, the Pixel reads form fields on your page and hashes and sends personal data including email address, phone number, first name, last name, city, state, zip code, date of birth, and gender to Meta for identity resolution.</li>
+    </ul>
+
+    <p>Your privacy policy must disclose that you use the Meta Pixel, name the categories of data listed above that apply to your implementation, state that this data is shared with Meta for ad measurement and optimization, and explain how visitors can opt out. Point users to Meta's <a href="https://www.facebook.com/adpreferences" rel="nofollow">Ad Preferences</a> page and to your own cookie consent mechanism if you operate one.</p>
+
+    <h3>Conversions API disclosure obligations</h3>
+
+    <p>The <strong>Conversions API</strong> (CAPI, formerly Server-Side API) sends event data from your server directly to Meta's <code>graph.facebook.com</code> endpoint, bypassing the browser. You configure it in <strong>Events Manager &gt; Settings &gt; Conversions API</strong> or through a partner integration (Shopify, WordPress, Google Tag Manager server container). The data you send through CAPI is structurally the same as what the Pixel collects -- event name, event parameters, and user data parameters for matching -- but because it is server-to-server, it can include data the browser Pixel never sees, such as CRM records, offline purchase data, or call center outcomes.</p>
+
+    <p>Meta's Business Tools Terms apply to CAPI identically to the Pixel. Your privacy policy must disclose:</p>
+
+    <ul>
+      <li>That you send event data from your server to Meta for ad measurement, optimization, and audience building.</li>
+      <li>The categories of user data parameters you include in CAPI payloads -- typically hashed email (<code>em</code>), hashed phone (<code>ph</code>), IP address (<code>client_ip_address</code>), User Agent (<code>client_user_agent</code>), and the Facebook click ID (<code>fbc</code>) and browser ID (<code>fbp</code>).</li>
+      <li>Whether you send offline events (in-store purchases, phone orders) through CAPI, and if so, that customer data from those transactions is shared with Meta in hashed form.</li>
+    </ul>
+
+    <p>If you run both Meta Pixel and Conversions API (the setup Meta calls <strong>redundant event tracking</strong> for deduplication), a single disclosure section in your privacy policy can cover both, as long as it names both the client-side Pixel and the server-side API and describes the data each transmits. <a href="https://buildprivacypolicy.com/">Generate a free privacy policy</a> that includes Meta Business Tools disclosures alongside your other data practices.</p>
+
     <h2 id="rejection-reasons">Why App Review Rejects a Privacy Policy URL</h2>
 
     <p>Meta's App Review team rejects privacy policy submissions for specific, fixable reasons. These are the most common rejection patterns based on publicly documented review feedback and developer community reports:</p>
@@ -289,6 +361,16 @@ const modifiedDate = "2026-10-08";
         <h3>What happens if my privacy policy URL breaks after App Review approval?</h3>
         <p>Meta periodically re-checks privacy policy URLs through the Data Use Checkup and automated crawls. A broken URL -- one that returns a 404, 500, or redirects to a login page -- can result in your app's permissions being suspended. The App Dashboard will display a warning, and you will receive an email notification. Fix the URL promptly and complete any required Data Use Checkup to restore permissions.</p>
       </div>
+
+      <div class="faq-item">
+        <h3>Do I need a privacy policy to run Facebook or Instagram ads?</h3>
+        <p>If you run Lead Ads, yes -- Meta Ads Manager requires a privacy policy URL in the <code>Privacy Policy Link</code> field of every instant form, and the form cannot be published without one. For non-lead ad formats (traffic, conversions, engagement), Meta does not block the ad from running without a linked policy, but if you use the Meta Pixel or Conversions API on your landing page, Meta's <a href="https://www.facebook.com/legal/terms/businesstools" rel="nofollow">Business Tools Terms</a> require you to disclose the data collection in your privacy policy and obtain any consent required by applicable law.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What must my privacy policy say about Meta Pixel?</h3>
+        <p>Your policy must state that you use the Meta Pixel on your website, that it collects browser data (IP address, User Agent, page URLs), sets the <code>_fbp</code> and <code>_fbc</code> cookies, and shares this data with Meta for ad measurement and optimization. If you enable Automatic Advanced Matching in Events Manager, you must also disclose that hashed personal data (email, phone, name) is sent to Meta. Point users to Meta's <a href="https://www.facebook.com/adpreferences" rel="nofollow">Ad Preferences</a> page for opt-out.</p>
+      </div>
     </div>
 
   </div>
@@ -298,7 +380,7 @@ const modifiedDate = "2026-10-08";
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Facebook App Privacy Policy: What Meta App Review Requires and How to Pass It",
+  "headline": "Facebook Privacy Policy: What to Disclose for Apps, Ads, and Pages",
   "description": description,
   "datePublished": publishDate,
   "dateModified": modifiedDate,
@@ -384,6 +466,22 @@ const modifiedDate = "2026-10-08";
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Meta periodically re-checks privacy policy URLs through the Data Use Checkup and automated crawls. A broken URL can result in your app's permissions being suspended. Fix the URL promptly and complete any required Data Use Checkup to restore permissions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a privacy policy to run Facebook or Instagram ads?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you run Lead Ads, yes -- Meta Ads Manager requires a privacy policy URL in the Privacy Policy Link field of every instant form. For non-lead ad formats, Meta does not block the ad, but if you use the Meta Pixel or Conversions API, Meta's Business Tools Terms require you to disclose the data collection in your privacy policy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What must my privacy policy say about Meta Pixel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your policy must state that you use the Meta Pixel, that it collects browser data (IP address, User Agent, page URLs), sets the _fbp and _fbc cookies, and shares this data with Meta for ad measurement and optimization. If you enable Automatic Advanced Matching, you must also disclose that hashed personal data is sent to Meta."
       }
     }
   ]
