@@ -5,7 +5,7 @@ import RelatedGuides from '../../../components/RelatedGuides.astro';
 const title = "Alexa Skill Privacy Policy URL | Generator & Guide";
 const description = "Need an Alexa skill privacy policy URL for certification? See what Amazon reviews, copy a ready-made example, or generate and host a compliant policy for free.";
 const publishDate = "2026-08-13";
-const modifiedDate = "2026-10-01";
+const modifiedDate = "2026-10-15";
 ---
 
 <Layout title={title} description={description}>
@@ -24,7 +24,7 @@ const modifiedDate = "2026-10-01";
   <div class="page-card">
     <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
     <h1>Alexa Skill Privacy Policy: What Amazon Requires and How to Create One</h1>
-    <p class="last-updated">Published August 13, 2026 &middot; Updated October 1, 2026</p>
+    <p class="last-updated">Published August 13, 2026 &middot; Updated October 15, 2026</p>
 
     <p>Every Alexa skill that collects personal information, uses account linking, or includes advertising needs a hosted privacy policy URL before Amazon will approve it for the Alexa Skills Store. The policy must live at a publicly accessible web address, load without authentication, and describe how the skill handles user data. Skip it and the skill fails certification. Submit a vague or boilerplate document and Amazon's review team rejects it just the same -- they read the policy, not just the URL.</p>
 
@@ -32,7 +32,7 @@ const modifiedDate = "2026-10-01";
 
     <div class="generator-callout">
       <p class="generator-callout-title">Get Your Alexa Skill Privacy Policy URL</p>
-      <p>If you just need the URL the Developer Console is asking for, skip ahead: the Distribution &gt; Skill Preview field expects a fully qualified <code>https://</code> link that opens straight to your policy text, with no login wall or redirect. Three steps get you there:</p>
+      <p>If you just need the URL the Developer Console is asking for, <a href="#host-and-add">skip ahead to the URL section</a>: the Distribution &gt; Skill Preview field expects a fully qualified <code>https://</code> link that opens straight to your policy text, with no login wall or redirect. Three steps get you there:</p>
       <ol class="generator-callout-steps">
         <li>Answer a short set of questions about your skill's data -- voice utterances, account linking, Alexa permissions, persistent attributes.</li>
         <li>The tool assembles a policy covering each data type you selected, worded for Amazon's certification reviewers.</li>
@@ -45,16 +45,16 @@ const modifiedDate = "2026-10-01";
       <p class="toc-title">Contents</p>
       <ol>
         <li><a href="#why-amazon-requires">Why Amazon Requires a Privacy Policy URL for Skills</a></li>
-        <li><a href="#what-certification-checks">What the Alexa Skill Certification Review Checks</a></li>
+        <li><a href="#what-certification-checks">Alexa Skill Privacy Review: What Certification Checks</a></li>
         <li><a href="#troubleshooting-rejections">Troubleshooting Certification Rejections</a></li>
         <li><a href="#data-developers-overlook">Data a Skill Collects That Developers Overlook</a></li>
         <li><a href="#what-policy-must-state">What Your Policy Must State</a></li>
         <li><a href="#child-directed-skills">Privacy Policies for Child-Directed Skills</a></li>
         <li><a href="#health-skills">Privacy Policies for Health Skills</a></li>
-        <li><a href="#generate-policy">How to Generate an Alexa Skill Privacy Policy</a></li>
+        <li><a href="#generate-policy">Alexa Skill Privacy Policy Generator: How It Works</a></li>
         <li><a href="#example-policy">Alexa Skill Privacy Policy Example You Can Copy</a></li>
         <li><a href="#private-beta-skills">Privacy Policies for Private and Beta-Distributed Skills</a></li>
-        <li><a href="#host-and-add">Where to Host Your Privacy Policy URL and Add It in the Developer Console</a></li>
+        <li><a href="#host-and-add">Alexa Skill Privacy Policy URL: Where to Host It and What to Paste</a></li>
         <li><a href="#faq">Frequently Asked Questions</a></li>
       </ol>
     </nav>
@@ -71,9 +71,9 @@ const modifiedDate = "2026-10-01";
 
     <p>Other non-mobile platforms enforce the same pattern. Google requires a hosted policy before listing a <a href="/resources/chrome-extension-privacy-policy/">Chrome extension in its Web Store</a>, and Discord blocks bot verification past 100 servers without <a href="/resources/discord-bot-privacy-policy/">a working policy URL in the Developer Portal</a>. The requirement specifics differ, but the gating mechanism is identical: no policy, no distribution.</p>
 
-    <h2 id="what-certification-checks">What the Alexa Skill Certification Review Checks</h2>
+    <h2 id="what-certification-checks">Alexa Skill Privacy Review: What Certification Checks and Common Rejection Reasons</h2>
 
-    <p>Amazon's certification team does not just confirm the URL field is populated. Reviewers open the link and verify several conditions before approving a submission.</p>
+    <p>Amazon's certification team does not just confirm the URL field is populated. Reviewers open the link and verify several conditions before approving a submission. Amazon's own <a href="https://developer.amazon.com/en-US/blogs/alexa/alexa-skills-kit/2023/02/certification-requirements-privacy-urls-feb-2023" rel="nofollow">certification guidance on privacy policy URLs</a> boils the privacy review down to three tests: the link must take users exactly to the privacy section of your site or service, the page must be written in one of the skill's languages, and the content should be specific to the skill being submitted. In practice, reviewers check four things:</p>
 
     <ul>
       <li><strong>The URL loads directly to the policy text.</strong> The link must open to the actual privacy policy content -- not a homepage, not an "about" page, not a landing page that mentions privacy in a sidebar. URLs that redirect to a login wall, return a 404, or require scrolling past unrelated content fail review.</li>
@@ -231,13 +231,15 @@ const modifiedDate = "2026-10-01";
 
     <p>If your skill handles any health-adjacent data -- fitness tracking, wellness tips, symptom logging, medication reminders -- and you are unsure whether it crosses into regulated territory, err on the side of disclosure. Include a health disclaimer in both the skill description and the privacy policy, and state clearly whether the skill collects, stores, or transmits any health-related information.</p>
 
-    <h2 id="generate-policy">How to Generate an Alexa Skill Privacy Policy</h2>
+    <h2 id="generate-policy">Alexa Skill Privacy Policy Generator: How It Works</h2>
 
     <p>Writing an Alexa skill privacy policy from scratch means auditing every data flow in your Lambda function, mapping each to a legal basis under every jurisdiction your skill reaches, and formatting the result into a document that satisfies Amazon's certification reviewers. For a skill that uses account linking, requests multiple Alexa permissions, and ships to several locales, that process can take hours of legal research and drafting.</p>
 
     <p>A privacy policy generator compresses the work into a guided questionnaire. You select the platforms your skill runs on, the data types it handles (voice utterances, user IDs, account linking data, persistent attributes), the third-party services your backend calls, and the regulations you need to cover. The generator produces a policy with the correct disclosure language for each selection -- no boilerplate guessing, no missed data categories.</p>
 
     <p>The output is typically a hosted document at a permanent HTTPS URL that you paste directly into the Developer Console's Privacy Policy URL field. That eliminates the separate hosting step and avoids the certification rejections caused by unstable URLs like Google Docs, Notion, or Pastebin links.</p>
+
+    <p>Third-party services behind the skill need the same treatment. If your Lambda function sends user data to an outside provider -- Auth0 running the OAuth flow for account linking, Sentry capturing errors, Mixpanel or Amplitude recording usage events -- each one needs its own disclosure naming the service, the data it receives, and why. The <a href="/tools/sdk-disclosure-generator/">third-party service disclosure builder</a> drafts those paragraphs for roughly 25 common providers, ready to drop into the third-parties section of the <a href="#example-policy">sample policy below</a> or your generated document.</p>
 
     <h3>Generator vs. template vs. manual drafting</h3>
 
@@ -343,9 +345,9 @@ const modifiedDate = "2026-10-01";
 
     <p>Private skills distributed solely through Alexa for Business bypass this gate, but every other distribution path -- public, beta, or organization-restricted through the Developer Console -- goes through it. Plan the policy at the start, not at the submission deadline.</p>
 
-    <h2 id="host-and-add">Where to Host Your Privacy Policy URL and Add It in the Developer Console</h2>
+    <h2 id="host-and-add">Alexa Skill Privacy Policy URL: Where to Host It and What to Paste</h2>
 
-    <p>The privacy policy needs a permanent, publicly accessible URL. Three hosting approaches cover most Alexa skill developers.</p>
+    <p>Your Alexa skill privacy policy URL is the single web address Amazon's reviewers open to read your policy, and the link customers see on the skill's detail page once it is live. It needs to be permanent and publicly accessible. Three hosting approaches cover most Alexa skill developers.</p>
 
     <h3>Hosting options</h3>
 
@@ -370,6 +372,29 @@ const modifiedDate = "2026-10-01";
 
     <p>For multi-locale skills, you submit one URL per locale. You can reuse the same URL across all locales if the policy language matches at least one of the skill's supported languages, or provide locale-specific URLs for policies translated into each language.</p>
 
+    <h3>Exactly what to paste into the Privacy Policy URL field</h3>
+
+    <p>Open the <strong>Distribution</strong> tab, stay on <strong>Skill Preview</strong>, and scroll to <strong>Privacy Policy URL</strong>. It sits after Category and Keywords, directly above the separate <strong>Terms of Use URL</strong> field. Paste one complete address, <code>https://</code> included, that opens on the policy text for this skill. Nothing else belongs in the field: no surrounding text, no second link, no link shortener that redirects.</p>
+
+    <div class="table-wrap">
+      <table class="url-table">
+        <thead>
+          <tr><th>What you paste</th><th>Outcome at review</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>https://www.yourdomain.com/daily-habits/privacy</code></td><td><strong>Passes.</strong> Opens directly on a policy that names the skill, written in the skill's language.</td></tr>
+          <tr><td><code>https://www.yourdomain.com/</code></td><td><strong>Fails.</strong> Amazon treats a link that opens on your homepage as invalid, even when the policy is one click away.</td></tr>
+          <tr><td><code>https://www.yourdomain.com/privacy-es</code> (Spanish) for an en-US and de-DE skill</td><td><strong>Fails.</strong> The page must be in one of the skill's languages.</td></tr>
+          <tr><td><code>https://www.yourdomain.com/other-app/privacy</code></td><td><strong>Fails.</strong> A policy that names a different skill or company is not valid for this submission.</td></tr>
+          <tr><td><code>https://docs.google.com/document/d/...</code></td><td><strong>Fails.</strong> Shared documents can prompt for sign-in or show editing controls instead of a stable public page.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Before you submit, open the pasted link in a private browser window on a phone and on a desktop. That is the same check the reviewer runs, and it catches login prompts, redirects, and expired hosting before Amazon does.</p>
+
+    <p>Two other addresses often get confused with this one. Your skill's own URL -- its detail page in the Alexa Skills Store, or a Quick Link that launches it on an Echo device -- only exists after certification and is not what this field asks for. And Amazon's own Alexa privacy notice describes Amazon's data handling, not yours, so pasting it here fails the requirement that the policy name your skill and company. Both are covered in the <a href="#faq">FAQ below</a>.</p>
+
     <h3>Adding the URL in the Alexa Developer Console</h3>
 
     <ol>
@@ -388,6 +413,36 @@ const modifiedDate = "2026-10-01";
     <h2 id="faq">Frequently Asked Questions</h2>
 
     <div class="faq-list">
+      <div class="faq-item">
+        <h3>What is Alexa's privacy policy?</h3>
+        <p>Amazon's own Alexa privacy terms -- the Amazon Privacy Notice and its "Alexa, Echo Devices, and Your Privacy" help page -- explain how Amazon handles voice recordings, transcripts, and device data. They cover Amazon only. When a customer uses a third-party skill, the data that skill receives is governed by the skill developer's own privacy policy, which is why Amazon requires developers to publish one at a Privacy Policy URL. If you build a skill, that URL must point to a policy naming your skill and your company; linking to Amazon's notice instead will not pass certification.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I create my own Alexa skill?</h3>
+        <p>Yes. Sign in to the Alexa Developer Console with a free Amazon developer account, create a custom skill, and either let Amazon host the backend (Alexa-hosted skills, within AWS Free Tier limits) or connect your own AWS Lambda function or HTTPS endpoint. You can test the skill in the console's simulator and on Echo devices registered to your account before submitting it for certification. If the skill collects personal information, uses account linking, or includes advertising, it needs a privacy policy URL before it can pass review. If you do not have one yet, <a href="https://buildprivacypolicy.com/">a free policy builder with hosting</a> covers that step in a few minutes.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How to get an Alexa skill URL?</h3>
+        <p>A skill gets a public URL only after it passes certification and goes live. Every published skill has a detail page in the Alexa Skills Store on Amazon's website; find your skill there and copy the address from your browser. For a link that opens a custom skill directly on a customer's Echo device, Amazon's Quick Links format uses your skill ID, which you copy from the Skills list in the Alexa Developer Console: <code>https://alexa-skills.amazon.com/apis/custom/skills/&lt;skill-id&gt;/launch</code> (swap the domain for each marketplace). Neither of these is your privacy policy URL, which points to your policy document and is required before certification.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What does it mean when it says enter your mobile app or Alexa skill URL?</h3>
+        <p>That prompt comes from the Amazon Associates sign-up form, which skill developers complete to earn referral fees through Alexa Shopping. Under "Enter Your Mobile App or Alexa Skill URL(s)," Amazon wants the URL of your skill's detail page in the Alexa Skills Store -- not your privacy policy URL, your skill ID, or your website -- and asks you not to add other websites, apps, or social media handles. Because the detail page only exists once the skill is certified and published, publish first and register second.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Where can I find the Alexa privacy settings page?</h3>
+        <p>In the Alexa app, open the menu, go to Settings, and choose Alexa Privacy. That hub holds Review Voice History and Manage Skill Permissions, where customers can switch off any permission a skill was granted, such as name, email address, phone number, or device address. Because customers can revoke access at any time, a skill's privacy policy should tell them they can withdraw permissions there, and the skill itself should handle a missing permission gracefully.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How can I view my Alexa voice history?</h3>
+        <p>In the Alexa app, go to Settings, then Alexa Privacy, then Review Voice History, where you can filter recordings by date or device, play them back, and delete them. Those recordings are stored by Amazon under the customer's Amazon account. A third-party skill never receives the audio -- its backend gets each request as text, such as the matched intent and slot values -- so a skill's privacy policy should describe what the skill's own backend receives and stores, and leave voice recordings to Amazon's notice.</p>
+      </div>
+
       <div class="faq-item">
         <h3>Do all Alexa skills need a privacy policy?</h3>
         <p>Not all, but most. Amazon requires a privacy policy for any skill that collects personal information, uses account linking, or includes advertising. Skills that do none of these can skip the policy, though Amazon still recommends providing one. If your skill requests any Alexa permissions (name, email, phone, address, lists, reminders) or stores user data in DynamoDB or another database, you need a policy.</p>
@@ -502,130 +557,50 @@ const modifiedDate = "2026-10-01";
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Do all Alexa skills need a privacy policy?",
+      "name": "What is Alexa's privacy policy?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Not all, but most. Amazon requires a privacy policy for any skill that collects personal information, uses account linking, or includes advertising. Skills that do none of these can skip the policy, though Amazon still recommends providing one. If your skill requests any Alexa permissions or stores user data, you need a policy."
+        "text": "Amazon's own Alexa privacy terms -- the Amazon Privacy Notice and its \"Alexa, Echo Devices, and Your Privacy\" help page -- explain how Amazon handles voice recordings, transcripts, and device data. They cover Amazon only. When a customer uses a third-party skill, the data that skill receives is governed by the skill developer's own privacy policy, which is why Amazon requires developers to publish one at a Privacy Policy URL. If you build a skill, that URL must point to a policy naming your skill and your company; linking to Amazon's notice instead will not pass certification."
       }
     },
     {
       "@type": "Question",
-      "name": "What happens if I submit a skill without a privacy policy?",
+      "name": "Can I create my own Alexa skill?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "If the skill collects personal data or uses account linking and no privacy policy URL is provided, certification will reject the submission. Amazon will not publish the skill to the Alexa Skills Store until a valid policy URL is added and the skill passes re-review."
+        "text": "Yes. Sign in to the Alexa Developer Console with a free Amazon developer account, create a custom skill, and either let Amazon host the backend (Alexa-hosted skills, within AWS Free Tier limits) or connect your own AWS Lambda function or HTTPS endpoint. You can test the skill in the console's simulator and on Echo devices registered to your account before submitting it for certification. If the skill collects personal information, uses account linking, or includes advertising, it needs a privacy policy URL before it can pass review."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I use the same privacy policy for my Alexa skill and my mobile app?",
+      "name": "How to get an Alexa skill URL?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, if the policy covers the data practices of both. Many developers maintain a single policy that addresses their app, website, and Alexa skill under separate sections. The key requirement is that the policy specifically describes the Alexa skill's data collection."
+        "text": "A skill gets a public URL only after it passes certification and goes live. Every published skill has a detail page in the Alexa Skills Store on Amazon's website; find your skill there and copy the address from your browser. For a link that opens a custom skill directly on a customer's Echo device, Amazon's Quick Links format uses your skill ID, which you copy from the Skills list in the Alexa Developer Console: https://alexa-skills.amazon.com/apis/custom/skills/<skill-id>/launch (swap the domain for each marketplace). Neither of these is your privacy policy URL, which points to your policy document and is required before certification."
       }
     },
     {
       "@type": "Question",
-      "name": "Where does the privacy policy URL go in the Alexa Developer Console?",
+      "name": "What does it mean when it says enter your mobile app or Alexa skill URL?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "In the Developer Console, select your skill, go to the Distribution tab, and find the Privacy Policy URL field under Skill Preview. You also need to complete the Privacy and Compliance section under Distribution."
+        "text": "That prompt comes from the Amazon Associates sign-up form, which skill developers complete to earn referral fees through Alexa Shopping. Under \"Enter Your Mobile App or Alexa Skill URL(s),\" Amazon wants the URL of your skill's detail page in the Alexa Skills Store -- not your privacy policy URL, your skill ID, or your website -- and asks you not to add other websites, apps, or social media handles. Because the detail page only exists once the skill is certified and published, publish first and register second."
       }
     },
     {
       "@type": "Question",
-      "name": "Does my privacy policy need to be in a specific language?",
+      "name": "Where can I find the Alexa privacy settings page?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Amazon requires the privacy policy to be written in at least one of the languages your skill supports. A policy in a language the skill does not support will be rejected during certification."
+        "text": "In the Alexa app, open the menu, go to Settings, and choose Alexa Privacy. That hub holds Review Voice History and Manage Skill Permissions, where customers can switch off any permission a skill was granted, such as name, email address, phone number, or device address. Because customers can revoke access at any time, a skill's privacy policy should tell them they can withdraw permissions there, and the skill itself should handle a missing permission gracefully."
       }
     },
     {
       "@type": "Question",
-      "name": "What format should the privacy policy be in?",
+      "name": "How can I view my Alexa voice history?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The policy must be a publicly accessible web page, not a PDF, Word document, or Google Doc. It should load on iOS, Android, and desktop browsers without requiring authentication. A static HTML page on your own domain or a free hosted policy page both work."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I generate a privacy policy for my Alexa skill?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Use a privacy policy generator that asks about the data types your skill collects, the Alexa permissions it requests, and the jurisdictions you need to comply with. The generator produces a complete policy with the correct legal disclosures. Many generators also host the finished policy at a permanent HTTPS URL so you can paste the link directly into the Developer Console."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What URL format does Amazon accept for the privacy policy?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Amazon requires a fully qualified HTTPS URL that links directly to the privacy policy text. The URL must load the policy immediately with no redirects to a homepage, no login wall, and no interstitial pages. The Developer Console validates the URL format when you save, but the actual page load is tested by reviewers during certification."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I host my Alexa skill privacy policy for free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. You can use a free privacy policy generator that includes hosting, a GitHub Pages site with a single HTML page, or any free-tier static hosting provider that supports HTTPS. The URL must be permanent, publicly accessible without login, and render correctly on mobile and desktop browsers."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What happens if my privacy policy URL breaks after the skill is live?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Amazon periodically re-reviews published skills. If the privacy policy URL returns a 404 or redirects to an unrelated page during a re-review, Amazon can suspend or unpublish the skill from the Alexa Skills Store until the link is fixed and the skill passes re-certification. Use stable hosting and check your URL periodically."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What does Amazon's certification reviewer actually check on the privacy policy?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The reviewer opens the URL and verifies that the page loads directly to the policy text, the language matches the skill's locale, the content names the correct skill and developer, and the data practices match the Privacy & Compliance toggle answers in the Developer Console. Account linking disclosures are also checked."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does a child-directed Alexa skill need a privacy policy?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. The policy must state that the skill is directed at children, confirm COPPA compliance, describe what data the skill does and does not collect, and provide a parental contact email. Amazon prohibits child-directed skills from collecting personal information or using account linking."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do health-related Alexa skills have extra privacy policy requirements?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Health skills must include a disclaimer stating the skill is not a substitute for professional medical advice. Skills providing drug dosage information need account linking for clinician verification. HIPAA-eligible skills require Amazon's Business Associate Agreement, though third-party HIPAA skills in the public store ended in December 2022."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How long does the Alexa skill certification review take?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Amazon typically completes certification review within a few business days, though the timeline varies by complexity. Skills with account linking or child-directed content may take longer. A rejection resets the clock. The fastest path through certification is submitting a skill whose Privacy & Compliance answers, privacy policy URL, and policy content all match on the first attempt."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I update my Alexa skill privacy policy after certification?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. You can update the hosted privacy policy document at any time without resubmitting the skill, as long as the URL stays the same. If you need to change the URL itself, update it in the Developer Console and resubmit for certification review. Update the last modified date whenever you change the content."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do I need a separate privacy policy URL for each Alexa skill?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Not necessarily. You can use one privacy policy URL across multiple skills if the policy explicitly names each skill and describes the data practices of each one. Amazon's reviewer checks that the policy is specific to the skill being submitted, so a combined policy must clearly identify each skill's data collection and purposes."
+        "text": "In the Alexa app, go to Settings, then Alexa Privacy, then Review Voice History, where you can filter recordings by date or device, play them back, and delete them. Those recordings are stored by Amazon under the customer's Amazon account. A third-party skill never receives the audio -- its backend gets each request as text, such as the matched intent and slot values -- so a skill's privacy policy should describe what the skill's own backend receives and stores, and leave voice recordings to Amazon's notice."
       }
     }
   ]
@@ -794,6 +769,32 @@ const modifiedDate = "2026-10-01";
   }
   .toc a {
     color: #2563EB;
+  }
+  .table-wrap {
+    overflow-x: auto;
+    margin-bottom: 16px;
+  }
+  .url-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.6;
+  }
+  .url-table th, .url-table td {
+    border: 1px solid #E5E7EB;
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .url-table th {
+    background: #F9FAFB;
+    font-weight: 600;
+    color: #111827;
+  }
+  .url-table code {
+    font-size: 13px;
+    word-break: break-all;
   }
   .faq-list {
     margin-top: 8px;

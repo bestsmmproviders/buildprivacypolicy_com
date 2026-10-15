@@ -1,0 +1,514 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import RelatedGuides from '../../../components/RelatedGuides.astro';
+
+const title = "Which Platforms Require a Privacy Policy? 8 Compared";
+const description = "Apple, Google Play, Chrome, Alexa, Meta, Discord, Slack and Telegram all gate approval on a privacy policy. Compare each field, disclosure and rejection reason.";
+const publishDate = "2026-10-15";
+const modifiedDate = "2026-10-15";
+---
+
+<Layout title={title} description={description}>
+
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="128" height="128" rx="28" fill="#1E3A5F"/><path d="M64 24C64 24 40 34 32 38V62C32 82 46 98 64 104C82 98 96 82 96 62V38C88 34 64 24 64 24Z" fill="#2E5A8F" stroke="#5B9BD5" stroke-width="2.5"/><path d="M52 64L60 72L78 54" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+</div>
+
+<main>
+<article class="page-container">
+  <div class="page-card">
+    <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
+    <h1>Which Platforms Require a Privacy Policy? Eight Developer Platforms Compared</h1>
+    <p class="last-updated">Published October 15, 2026 &middot; Checked against each platform's own documentation</p>
+
+    <p>All eight major developer platforms make a privacy policy a condition of distribution, but only two demand a hosted URL from every submission with no exceptions: the <strong>Apple App Store</strong> and <strong>Google Play</strong>. The <strong>Chrome Web Store</strong>, <strong>Amazon Alexa</strong> and <strong>Meta</strong> require one once your product handles user data. <strong>Discord</strong> requires one from every application and enforces it when a bot needs verification to grow past 100 servers. The <strong>Slack Marketplace</strong> checks it at submission, and <strong>Telegram</strong> applies its own Standard Privacy Policy unless your bot does more than that template covers.</p>
+
+    <p>The table compares all eight on four points: whether a hosted URL is mandatory, where the field lives, what the policy must disclose, and what gets a submission rejected. Each row names its source document and links to a full setup guide.</p>
+
+    <nav class="toc">
+      <p class="toc-title">Contents</p>
+      <ol>
+        <li><a href="#why-platforms-gate">Why Platforms Gate Approval on a Privacy Policy URL</a></li>
+        <li><a href="#comparison-table">Privacy Policy Requirements by Platform</a></li>
+        <li><a href="#common-requirements">What Every Platform Asks For Regardless</a></li>
+        <li><a href="#key-differences">The Three Requirements That Differ Most</a></li>
+        <li><a href="#faq">Frequently Asked Questions</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="why-platforms-gate">Why Platforms Gate Approval on a Privacy Policy URL</h2>
+
+    <p>No platform can audit everything it distributes, so each writes the privacy obligation into its developer contract and makes the URL field the checkpoint:</p>
+
+    <ul>
+      <li><strong>The policy becomes the rule you are held to.</strong> Meta's Platform Terms (Section 4) let you process Platform Data only as your policy describes, and Telegram's Bot Developer Terms (Section 4) terminate bots that break their own policy.</li>
+      <li><strong>A URL can be re-checked by machine.</strong> Meta requires the page to be reachable "including by our crawlers"; Google Play requires an active, public, non-geofenced URL that is not a PDF.</li>
+      <li><strong>Users see it before they install.</strong> Amazon shows the policy on the skill's detail page, Chrome on the extension listing, and Apple in the App Privacy section of the product page, so a broken URL is a broken listing.</li>
+    </ul>
+
+    <h2 id="comparison-table">Privacy Policy Requirements by Platform: Side-by-Side Table</h2>
+
+    <p>Read across a row for one platform, or down a column to compare one obligation across all eight. On a phone, scroll the table sideways.</p>
+
+    <div class="table-scroll" role="region" aria-label="Privacy policy requirements by platform" tabindex="0">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th scope="col">Platform and source document</th>
+            <th scope="col">Hosted URL mandatory?</th>
+            <th scope="col">Where the field lives</th>
+            <th scope="col">What the policy must disclose</th>
+            <th scope="col">What gets you rejected</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><a href="/tools/app-store-privacy-requirements/">Apple App Store</a><span class="src">App Review Guidelines 5.1.1(i); App Store Connect Help</span></th>
+            <td><strong>Yes, every app.</strong></td>
+            <td>App Store Connect &gt; <strong>App Privacy</strong> &gt; Privacy Policy &gt; <code>Privacy Policy URL</code>, plus a link inside the app.</td>
+            <td>Data collected, how, and every use; equal protection from third parties (analytics, ad networks, SDKs); retention and deletion; how to revoke consent or request deletion.</td>
+            <td>Guideline 5.1.1 rejection: no in-app link, or a required element missing.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/tools/play-data-safety-answers/">Google Play</a><span class="src">Developer Program Policy: User Data &gt; Privacy Policy</span></th>
+            <td><strong>Yes, every app</strong>, even one that accesses no personal data.</td>
+            <td>Play Console &gt; <strong>Policy and programs &gt; App content</strong> &gt; Privacy policy, plus inside the app.</td>
+            <td>Developer details and privacy contact; personal and sensitive data handled; who receives it; secure handling; retention and deletion; a "privacy policy" label.</td>
+            <td>Inactive, geofenced, editable or PDF URL; neither the app nor the listing entity named; Data safety answers that contradict it.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/resources/chrome-extension-privacy-policy/">Chrome Web Store</a><span class="src">Program Policies: Protecting User Privacy &gt; Privacy Policy</span></th>
+            <td><strong>Yes, if the extension handles any user data.</strong></td>
+            <td>Developer Dashboard &gt; your item &gt; <strong>Privacy</strong> tab, privacy policy field.</td>
+            <td>How user data is collected, used and shared, and every party receiving it, consistent with the tab's Data usage certification.</td>
+            <td><strong>Purple Lithium</strong>: policy missing, in the wrong field (such as the description), broken or incomplete. <strong>Purple Nickel</strong>: no prominent disclosure.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/resources/alexa-skill-privacy-policy/">Amazon Alexa</a><span class="src">Security Requirements for Alexa Skills; ASK privacy URL certification guidance</span></th>
+            <td><strong>Yes, with account linking or personal information collection</strong>; otherwise optional, but reviewed if supplied.</td>
+            <td>Developer Console &gt; <strong>Distribution</strong> &gt; Skill Preview &gt; <code>Privacy Policy URL</code>; Privacy &amp; Compliance answers must match.</td>
+            <td>The customer information collected and how it is used, as a legally adequate notice shown on the skill's detail page.</td>
+            <td>Link opens a homepage; policy in a language the skill doesn't support; text naming a different skill or company.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/resources/facebook-app-privacy-policy/">Meta App Review</a><span class="src">Meta Platform Terms, Section 4 (Privacy Policy)</span></th>
+            <td><strong>Yes.</strong> Required by the Platform Terms and before an app can go live.</td>
+            <td>App Dashboard &gt; <strong>App settings &gt; Basic</strong> &gt; <code>Privacy Policy URL</code>.</td>
+            <td>What data you process, how and why, and how users request deletion.</td>
+            <td>URL Meta's crawlers can't reach, geoblocked or login-gated; processing the policy doesn't describe.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/resources/discord-bot-privacy-policy/">Discord</a><span class="src">Developer Terms of Service, Section 5(a)</span></th>
+            <td><strong>Yes, every application</strong>; enforced through App Verification, required to pass 100 servers.</td>
+            <td>Developer Portal &gt; <strong>General Information</strong> &gt; <code>Privacy Policy URL</code>.</td>
+            <td>Data collected, how it is used and shared with Discord and third parties, and how users request deletion.</td>
+            <td>Incomplete App Verification checklist; missing or non-public policy link; team owner's Stripe identity check unfinished.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/resources/slack-app-privacy-policy/">Slack Marketplace</a> (formerly App Directory)<span class="src">Marketplace app guidelines; App Developer Policy: Use of Data</span></th>
+            <td><strong>Yes, for a public Marketplace listing</strong>; internal apps skip review.</td>
+            <td>api.slack.com/apps &gt; <strong>Submit to Slack Marketplace</strong>; also linked from the app's landing page.</td>
+            <td>Data collected and its use; retention period; how to request access, transfer or deletion; an email or webform; data received but unused (such as slash-command payload IDs).</td>
+            <td>Missing minimum item; physical address as only contact; PDF, document or repo link; login-gated or broken link.</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/resources/telegram-bot-privacy-policy/">Telegram</a><span class="src">Bot Developer Terms of Service, Section 4</span></th>
+            <td><strong>No.</strong> The Standard Privacy Policy for Bots and Mini Apps applies until your bot goes beyond it.</td>
+            <td>Set in <strong>@BotFather</strong>; Mini Apps show it via the Privacy Policy button in Settings.</td>
+            <td>What data is stored, how it is collected and why; deletion on request, when no longer needed, and at shutdown (Section 4.2).</td>
+            <td>No pre-launch review; bots that mishandle data or break their own policy are terminated.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Platform documents cited</h3>
+    <ul class="source-list">
+      <li>Apple: <a href="https://developer.apple.com/app-store/review/guidelines/" rel="nofollow">App Review Guidelines</a> and <a href="https://developer.apple.com/help/app-store-connect/manage-app-information/manage-app-privacy" rel="nofollow">App Store Connect Help: Manage app privacy</a></li>
+      <li>Google Play: <a href="https://support.google.com/googleplay/android-developer/answer/10144311" rel="nofollow">User Data policy</a></li>
+      <li>Chrome Web Store: <a href="https://developer.chrome.com/docs/webstore/program-policies/policies" rel="nofollow">Program Policies</a> and <a href="https://developer.chrome.com/docs/webstore/troubleshooting" rel="nofollow">violation troubleshooting</a></li>
+      <li>Amazon: <a href="https://developer.amazon.com/en-US/docs/alexa/custom-skills/security-testing-for-an-alexa-skill.html" rel="nofollow">Security Requirements for Alexa Skills</a></li>
+      <li>Meta: <a href="https://developers.facebook.com/terms/" rel="nofollow">Platform Terms</a></li>
+      <li>Discord: <a href="https://support-dev.discord.com/hc/en-us/articles/8562894815383-Discord-Developer-Terms-of-Service" rel="nofollow">Developer Terms of Service</a></li>
+      <li>Slack: <a href="https://docs.slack.dev/slack-marketplace/slack-marketplace-app-guidelines-and-requirements/" rel="nofollow">Marketplace app guidelines</a> and <a href="https://docs.slack.dev/developer-policy" rel="nofollow">App Developer Policy</a></li>
+      <li>Telegram: <a href="https://telegram.org/tos/bot-developers" rel="nofollow">Bot Developer Terms of Service</a></li>
+    </ul>
+
+    <h2 id="common-requirements">What Every Platform Asks For Regardless</h2>
+
+    <p>Strip away the wording and the eight documents converge on five requirements:</p>
+
+    <ol>
+      <li><strong>A public, dedicated page.</strong> No login, geoblocking or PDF (Google Play, Meta, Slack), and the link must open on the policy itself, not your homepage (Amazon).</li>
+      <li><strong>Written for this product.</strong> Google Play wants the app or listing entity named, Amazon rejects text naming another skill or company, and Chrome reads the policy against your Data usage certification.</li>
+      <li><strong>What you collect, how and why.</strong> All eight ask for it; only the categories differ, from OAuth scopes on Slack to permissions on Chrome and account-linking data on Alexa.</li>
+      <li><strong>Who else receives the data.</strong> Apple wants analytics tools, ad networks and SDKs covered; Google Play and Chrome want recipients named; Discord counts sharing with Discord itself.</li>
+      <li><strong>A deletion route.</strong> Six of the eight require one, and Slack sets a deadline: 14 business days after a user removes your app or you discontinue it.</li>
+    </ol>
+
+    <p>That overlap means one well-built policy can serve several platforms, as long as it lists what each integration receives. You can <a href="https://buildprivacypolicy.com/">describe your platforms and SDKs once and get a hosted policy URL</a> for every field in the table.</p>
+
+    <h2 id="key-differences">The Three Requirements That Differ Most</h2>
+
+    <p>Three differences catch developers who reuse one platform's checklist on another.</p>
+
+    <h3>1. Who needs a policy, and when it is checked</h3>
+
+    <p>Apple and Google Play require a URL from every app, even one that collects nothing. Chrome, Amazon and Meta tie the requirement to data: any user data, account linking or personal information, Platform Data. Discord and Slack enforce at a milestone, either App Verification to pass 100 servers or Marketplace submission. Telegram never asks a bot that stays within its Standard Privacy Policy for a URL at all.</p>
+
+    <h3>2. Where the link must appear</h3>
+
+    <p>Most platforms only need the console field. Apple (Guideline 5.1.1(i)) and Google Play also require a link inside the app, Discord's terms require the policy to be easily accessible from the application, and Slack wants it on your landing page. On those four, a policy that satisfies the console can still fail review. This <a href="/resources/how-to-write-privacy-policy-for-app/">walkthrough for creating an app privacy policy URL</a> covers the in-app side.</p>
+
+    <h3>3. The declaration your policy must match</h3>
+
+    <p>Apple's App Privacy details, Google Play's Data safety section, Chrome's Data usage certification and Amazon's Privacy &amp; Compliance questions are each compared against your policy. A form that says no personal data is collected, next to a policy that describes storing email addresses, fails on the mismatch. Fill in both from one data inventory: <a href="/tools/app-store-privacy-requirements/">see which disclosures each app store expects for your data types</a>, then <a href="/tools/play-data-safety-answers/">work through Google's Data safety questions one data type at a time</a>.</p>
+
+    <RelatedGuides currentSlug="resources/platform-privacy-policy-requirements" />
+
+    <h2 id="faq">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>What is a privacy policy URL?</h3>
+        <p>It is the permanent public address where your privacy policy lives. Platforms link it from your listing and re-check it later, so it must open straight to the policy with no login, homepage redirect or PDF download.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Is it a legal requirement to have a privacy policy, or just a platform rule?</h3>
+        <p>Both, independently. Laws such as the GDPR and California's CalOPPA require one when you collect personal data from the people they protect, while platforms require one by contract even where no law applies. <a href="/resources/do-i-need-a-privacy-policy-for-my-website/">Which laws trigger the requirement</a> has its own guide.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Where can I find the privacy policy URL field for my Play Store app?</h3>
+        <p>In Play Console, open Policy and programs &gt; App content, select Start (or Manage) under Privacy policy, paste the URL and save. Google's User Data policy also requires a link inside the app.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How do I create a privacy policy URL for my Facebook app?</h3>
+        <p>Publish the policy on a public page that is not login-gated or geoblocked, then paste the address into App Dashboard &gt; App settings &gt; Basic &gt; Privacy Policy URL. Meta's Platform Terms require it to explain what data you process, why, and how users request deletion.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What happens if I don't have a privacy policy on a platform that requires one?</h3>
+        <p>The submission stops: Apple, Google Play and Amazon won't publish, Chrome rejects under Purple Lithium, and an unverified Discord bot stalls at 100 servers. After approval, Google requires the URL to stay active and Telegram terminates bots that break their own policy.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do I need a different privacy policy for each platform?</h3>
+        <p>Not necessarily. One policy can cover several platforms if it names each product and lists what each integration receives, such as Discord message content or Slack OAuth scopes. What changes per platform is the paired form and the field you paste the URL into.</p>
+      </div>
+    </div>
+
+  </div>
+</article>
+</main>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Which Platforms Require a Privacy Policy? Eight Developer Platforms Compared",
+  "description": description,
+  "datePublished": publishDate,
+  "dateModified": modifiedDate,
+  "author": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buildprivacypolicy.com/resources/platform-privacy-policy-requirements/"
+  }
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a privacy policy URL?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is the permanent public address where your privacy policy lives. Platforms link it from your listing and re-check it later, so it must open straight to the policy with no login, homepage redirect or PDF download."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it a legal requirement to have a privacy policy, or just a platform rule?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both, independently. Laws such as the GDPR and California's CalOPPA require one when you collect personal data from the people they protect, while platforms require one by contract even where no law applies."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where can I find the privacy policy URL field for my Play Store app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In Play Console, open Policy and programs > App content, select Start (or Manage) under Privacy policy, paste the URL and save. Google's User Data policy also requires a link inside the app."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I create a privacy policy URL for my Facebook app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Publish the policy on a public page that is not login-gated or geoblocked, then paste the address into App Dashboard > App settings > Basic > Privacy Policy URL. Meta's Platform Terms require it to explain what data you process, why, and how users request deletion."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I don't have a privacy policy on a platform that requires one?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The submission stops: Apple, Google Play and Amazon won't publish, Chrome rejects under Purple Lithium, and an unverified Discord bot stalls at 100 servers. After approval, Google requires the URL to stay active and Telegram terminates bots that break their own policy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a different privacy policy for each platform?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not necessarily. One policy can cover several platforms if it names each product and lists what each integration receives, such as Discord message content or Slack OAuth scopes. What changes per platform is the paired form and the field you paste the URL into."
+      }
+    }
+  ]
+})} />
+
+</Layout>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-link:hover {
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+  .page-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 16px 80px;
+  }
+  .page-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px 36px;
+    border: 1px solid #E5E7EB;
+  }
+  .breadcrumb {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 16px;
+  }
+  .breadcrumb a {
+    color: #6B7280;
+    text-decoration: underline;
+  }
+  .page-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .last-updated {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 24px;
+  }
+  .page-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .page-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  .page-card p {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .page-card ul, .page-card ol {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+  .page-card li {
+    margin-bottom: 8px;
+  }
+  .page-card a {
+    color: #2563EB;
+    text-decoration: underline;
+  }
+  .page-card strong {
+    font-weight: 600;
+  }
+  .toc {
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 8px;
+  }
+  .toc-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .toc ol {
+    margin-bottom: 0;
+    padding-left: 20px;
+  }
+  .toc li {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 16px 0 20px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+  }
+  .table-scroll:focus {
+    outline: 2px solid #2563EB;
+    outline-offset: 2px;
+  }
+  .compare-table {
+    width: 100%;
+    min-width: 860px;
+    border-collapse: collapse;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .compare-table thead th {
+    background: #F3F4F6;
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    vertical-align: bottom;
+  }
+  .compare-table tbody th {
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #111827;
+    background: #F9FAFB;
+    border-top: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    vertical-align: top;
+    width: 150px;
+  }
+  .compare-table td {
+    padding: 10px 12px;
+    border-top: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    color: #374151;
+    vertical-align: top;
+  }
+  .compare-table th:last-child,
+  .compare-table td:last-child {
+    border-right: none;
+  }
+  .compare-table .src {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #6B7280;
+  }
+  .compare-table code {
+    background: #E5E7EB;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 12px;
+  }
+  .source-list {
+    font-size: 14px !important;
+  }
+  .source-list li {
+    margin-bottom: 4px !important;
+  }
+  .faq-list {
+    margin-top: 8px;
+  }
+  .faq-item {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 20px;
+    margin-bottom: 8px;
+  }
+  .faq-item h3 {
+    margin-top: 0;
+  }
+  .faq-item p {
+    margin-bottom: 8px;
+  }
+  @media (max-width: 640px) {
+    .page-card {
+      padding: 28px 20px;
+    }
+    .page-card h1 {
+      font-size: 24px;
+    }
+  }
+</style>

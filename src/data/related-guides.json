@@ -40,6 +40,10 @@
       "title": "How to Write a Privacy Policy for Your App",
       "href": "/resources/how-to-write-privacy-policy-for-app/"
     },
+    "resources/platform-privacy-policy-requirements": {
+      "title": "Which Platforms Require a Privacy Policy?",
+      "href": "/resources/platform-privacy-policy-requirements/"
+    },
     "resources/privacy-policy-for-clothing-website": {
       "title": "Clothing Website Privacy Policy",
       "href": "/resources/privacy-policy-for-clothing-website/"
@@ -163,6 +167,11 @@
       { "slug": "tools/app-store-privacy-requirements", "reason": "Check which privacy disclosures Apple and Google require for your app listing." },
       { "slug": "tools/sdk-disclosure-generator", "reason": "Third-party SDKs in your app create disclosure obligations — generate them here." },
       { "slug": "resources/facebook-app-privacy-policy", "reason": "Building on Facebook's platform adds Meta-specific data handling disclosures to your app's privacy policy." }
+    ],
+    "resources/platform-privacy-policy-requirements": [
+      { "slug": "resources/discord-bot-privacy-policy", "reason": "Full walkthrough of the Developer Portal fields, privileged intents and checks behind Discord's App Verification." },
+      { "slug": "resources/chrome-extension-privacy-policy", "reason": "Covers the Chrome Web Store Privacy tab, permission justifications and the Data usage certification in depth." },
+      { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "Writing the policy itself for an iOS or Android app, including the App Store and Google Play disclosures." }
     ],
     "resources/privacy-policy-for-clothing-website": [
       { "slug": "resources/privacy-policy-for-ecommerce-website", "reason": "Clothing stores share core ecommerce privacy requirements with all online retailers." },
