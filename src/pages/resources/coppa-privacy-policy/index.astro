@@ -1,0 +1,552 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import RelatedGuides from '../../../components/RelatedGuides.astro';
+
+const title = "COPPA Privacy Policy for Kids' Apps: Rules & Template";
+const description = "What a COPPA privacy policy must disclose under 16 CFR 312.4, how verifiable parental consent works, and the Google Play Families and Apple Kids Category gates.";
+const publishDate = "2026-10-17";
+const modifiedDate = "2026-10-17";
+---
+
+<Layout title={title} description={description}>
+
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="128" height="128" rx="28" fill="#1E3A5F"/><path d="M64 24C64 24 40 34 32 38V62C32 82 46 98 64 104C82 98 96 82 96 62V38C88 34 64 24 64 24Z" fill="#2E5A8F" stroke="#5B9BD5" stroke-width="2.5"/><path d="M52 64L60 72L78 54" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+</div>
+
+<main>
+<article class="page-container">
+  <div class="page-card">
+    <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
+    <h1>COPPA Privacy Policy for Kids' Apps: What the Rule and the App Stores Require</h1>
+    <p class="last-updated">Published October 17, 2026 &middot; Checked against the amended 16 CFR Part 312</p>
+
+    <p>A COPPA privacy policy is the <strong>online notice</strong> required by <strong>16 CFR 312.4(d)</strong> of the FTC's Children's Online Privacy Protection Rule. If your app or website is directed to children under 13, or you know you collect personal information from a child under 13, the notice must name every operator, describe what you collect from children and how you use and disclose it, publish your written data retention policy, explain any persistent identifiers collected for internal operations, and tell parents how to review, delete and stop further collection. The amended Rule took effect on June 23, 2025, with a compliance date of April 22, 2026.</p>
+
+    <p>For apps, the Rule is only half the gate: Google Play's Families Policy and Apple's Kids Category rules add their own SDK, identifier and advertising restrictions. This guide states what each source requires and cites the section. It is not legal advice.</p>
+
+    <nav class="toc">
+      <p class="toc-title">Contents</p>
+      <ol>
+        <li><a href="#when-coppa-applies">When COPPA Applies to Your App or Website</a></li>
+        <li><a href="#what-to-disclose">What a COPPA Privacy Policy Must Disclose, Clause by Clause</a></li>
+        <li><a href="#platform-gates">Platform Gates: Google Play Families Policy and Apple's Kids Category</a></li>
+        <li><a href="#disclosure-block">Copy-Ready Children's Privacy Disclosure Block</a></li>
+        <li><a href="#faq">Frequently Asked Questions</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="when-coppa-applies">When COPPA Applies to Your App or Website</h2>
+
+    <p>COPPA covers <strong>operators</strong> of commercial websites and online services, apps included, that collect personal information from children under 13 (16 CFR 312.2). It applies when your service is <strong>directed to children</strong>, or when you run a general-audience service and have <strong>actual knowledge</strong> that a user is under 13.</p>
+
+    <p>"Personal information" under 312.2 goes well beyond names and emails. It includes <strong>persistent identifiers</strong> that recognize a user over time (cookie IDs, IP addresses, device identifiers), photos, video or audio containing a child's image or voice, street-level geolocation and, since the 2025 amendments, <strong>biometric identifiers</strong> such as voiceprints and facial templates.</p>
+
+    <h3>What "directed to children" means</h3>
+
+    <p>The 312.2 definition lists the factors the FTC weighs: subject matter, visual content, animated characters, child-oriented activities and incentives, music, models' ages, language, child-targeted ads, empirical audience data and marketing evidence. Merely linking to a child-directed service does not make yours one.</p>
+
+    <h3>The mixed-audience test</h3>
+
+    <p>The 2025 amendments define a <strong>mixed audience</strong> service as one that meets those factors but does not target children as its <em>primary</em> audience. Before collecting personal information from anyone (beyond the 312.5(c) exceptions), it must run a neutral age screen that does not default to a set age or encourage false answers, then apply COPPA to users who say they are under 13.</p>
+
+    <div class="table-scroll" role="region" aria-label="How COPPA treats each audience type" tabindex="0">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th scope="col">Your audience</th>
+            <th scope="col">What 16 CFR Part 312 expects</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Primarily children</th>
+            <td>Treat every user as under 13: notice and verifiable parental consent before collection, unless a 312.5(c) exception applies.</td>
+          </tr>
+          <tr>
+            <th scope="row">Mixed audience</th>
+            <td>Neutral age screen first; COPPA protections for users under 13.</td>
+          </tr>
+          <tr>
+            <th scope="row">General audience</th>
+            <td>Obligations start once you have actual knowledge a user is under 13.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 id="what-to-disclose">What a COPPA Privacy Policy Must Disclose, Clause by Clause</h2>
+
+    <p>The Rule requires two notices: the public <strong>online notice</strong> (312.4(d)) and a <strong>direct notice</strong> to the parent before you collect (312.4(c)). Link the online notice prominently from your home or landing page and from every point where you collect children's information.</p>
+
+    <h3>The online notice, section by section</h3>
+
+    <ol>
+      <li><strong>Operator identity (312.4(d)(1)).</strong> Name, address, phone and email of every operator collecting or maintaining children's information through your service. One may be named as the contact for parents if all are listed.</li>
+      <li><strong>Information practices (312.4(d)(2)).</strong> What you collect, whether children can make information public, how you use it, the identities or categories of third parties receiving it and why, and your 312.10 data retention policy.</li>
+      <li><strong>Persistent identifiers (312.4(d)(3)).</strong> If you rely on the internal-operations exception in 312.5(c)(7), which operations the identifier supports and how you stop it being used to contact a child, for behavioral advertising or to build a profile.</li>
+      <li><strong>Audio files (312.4(d)(4)).</strong> If you collect a child's voice under 312.5(c)(9), how it is used and that it is deleted immediately after the request is answered.</li>
+      <li><strong>Parental rights (312.4(d)(5)).</strong> That parents can review or delete the child's information and refuse further collection, and how (backed by 312.6).</li>
+    </ol>
+
+    <h3>The direct notice and verifiable parental consent</h3>
+
+    <p>Under 312.4(c)(1), the direct notice tells the parent that consent is required, what you will collect and disclose, which third parties receive it and why, how to consent, and that contact details collected only for the notice are deleted if the parent does not respond. It must link to the online notice.</p>
+
+    <p>Accepted consent methods are listed in 312.5(b)(2): a signed form, a payment card transaction, a call or video conference with trained staff, a checked government ID, knowledge-based questions, a photo ID matched to a live face image, and <strong>email plus</strong> or <strong>text message plus</strong>, which are only available if you do not disclose children's information.</p>
+
+    <p>The 2025 amendments added <strong>312.5(a)(2)</strong>: parents must be able to consent to collection without consenting to third-party disclosure, and any disclosure not integral to the service needs <strong>separate</strong> consent. The FTC's 2025 rulemaking statement names targeted advertising and AI training as not integral.</p>
+
+    <h3>The written programs behind the policy</h3>
+
+    <p>Section 312.8 now requires a <strong>written information security program</strong> with annual risk assessments, plus written assurances from anyone receiving children's data. Section 312.10 requires a <strong>written data retention policy</strong> giving the purpose, business need and deletion timeframe for each category. Children's information "may not be retained indefinitely", and the retention policy must appear in the online notice.</p>
+
+    <h2 id="platform-gates">Platform Gates: Google Play Families Policy and Apple's Kids Category</h2>
+
+    <p>Both stores make COPPA compliance a listing condition and add stricter technical limits.</p>
+
+    <h3>Google Play: Families Policy</h3>
+
+    <p>Select any age group under 13 in Play Console's <strong>Target audience and content</strong> section and the <strong>Families Policy</strong> applies:</p>
+
+    <ul>
+      <li><strong>Legal compliance.</strong> The app and every API and SDK it uses must comply with COPPA, and the app needs a privacy policy that accurately reflects its data practices.</li>
+      <li><strong>Restricted identifiers.</strong> No transmitting the AAID, SIM serial, build serial, BSSID, MAC, SSID, IMEI or IMSI from children or users of unknown age.</li>
+      <li><strong>Self-certified ad SDKs.</strong> Ads to children or users of unknown age may only come from SDKs in the <strong>Families Self-Certified Ads SDK Program</strong>, with no interest-based ads or remarketing.</li>
+      <li><strong>Approved SDKs and permissions.</strong> Apps that solely target children may not include SDKs unapproved for child-directed services, request location permission, or request <code>AD_ID</code> when targeting API level 33 or higher.</li>
+    </ul>
+
+    <p>These answers must agree with your Data safety section, so <a href="/tools/play-data-safety-answers/">work through Google's Data safety questions one data type at a time</a> before you submit.</p>
+
+    <h3>Apple: Kids Category rules</h3>
+
+    <ul>
+      <li><strong>Guideline 1.3 (Kids Category).</strong> No links out, purchases or other distractions unless behind a <strong>parental gate</strong>. No personally identifiable or device information sent to third parties, and no third-party analytics or advertising, except analytics that never collect the IDFA or identifiable information about children or their devices, and contextual ads from services with published Kids Category practices including human review of ad creatives.</li>
+      <li><strong>Guideline 5.1.4 (Kids).</strong> Ask for birthdate and parental contact only to comply with laws like COPPA. Kids Category apps, and apps collecting personal information from minors, must include a privacy policy. A parental gate is <em>not</em> parental consent.</li>
+      <li><strong>Guideline 2.3.8.</strong> "For Kids" and "For Children" in metadata are reserved for the Kids Category.</li>
+    </ul>
+
+    <p>Both stores turn on what your SDKs collect, so <a href="/tools/sdk-disclosure-generator/">list what each bundled analytics and ads SDK collects</a> and remove any that fail Guideline 1.3 or the Families Policy before writing the policy.</p>
+
+    <h2 id="disclosure-block">Copy-Ready Children's Privacy Disclosure Block</h2>
+
+    <p>This block follows 312.4(d)(1) through (d)(5) for a child-directed app that obtains parental consent. Replace every bracketed item and delete clauses that don't apply. It is a starting structure, not a guarantee of compliance.</p>
+
+    <div class="disclosure-block">
+      <p class="disclosure-label">Children's privacy section (copy and edit)</p>
+<pre>Children's Privacy (Users Under 13)
+
+Who we are. [App name] is operated by [Company legal name],
+[street address], [phone], [email]. [List any other operators that
+collect children's information through the app, such as plug-in
+providers, or state that we are the only operator.]
+
+What we collect from children. With a parent's verifiable consent we
+collect: [e.g. first name or nickname, parent email address, game
+progress, drawings]. Children [can / cannot] make information
+publicly available in the app.
+
+How we use it. We use this information to [run the child's account,
+save progress, respond to support requests]. We do not use it for
+behavioral advertising or to build profiles.
+
+Persistent identifiers. Without parental consent we collect only
+[app instance ID] to support internal operations such as [security
+and maintaining the app]. We do not use it to contact a child or for
+behavioral advertising.
+
+Who we share it with. We disclose children's information to
+[service provider categories, e.g. cloud hosting] solely to operate
+the app. [We do not disclose children's information to other third
+parties.] / [We will ask for separate parental consent before
+disclosing it to (third party) for (purpose).]
+
+How long we keep it. We keep [category] for [period] because
+[business need], then delete it. We do not retain children's
+personal information indefinitely.
+
+Parents' rights. A parent may review the child's information, ask us
+to delete it, and refuse further collection or use by contacting
+[email or in-app parent area]. We will verify that you are the
+child's parent before acting.</pre>
+    </div>
+
+    <p>The rest of your policy still has to cover adult users, platforms and SDKs. In <a href="https://buildprivacypolicy.com/">the free policy builder</a>, choose "Directed to children" or "Mixed, may include children" for who the app is for, then pick your children's privacy model (parent consent, school consent, mixed age controls or no personal data).</p>
+
+    <RelatedGuides currentSlug="resources/coppa-privacy-policy" />
+
+    <h2 id="faq">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Does COPPA force age verification?</h3>
+        <p>No. A mixed-audience service must run a neutral age screen before collecting personal information (16 CFR 312.2), but the Rule does not require verifying age. A February 2026 FTC policy statement says the agency will not take enforcement action against general- or mixed-audience operators that collect information solely to verify age, if they meet its conditions, including deleting it afterwards.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Is COPPA a privacy law?</h3>
+        <p>Yes. The Children's Online Privacy Protection Act is a 1998 federal statute (15 U.S.C. 6501–6506), enforced by the FTC through the Children's Online Privacy Protection Rule, 16 CFR Part 312.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does COPPA require parental consent?</h3>
+        <p>Yes, before you collect, use or disclose a child's personal information, unless one of the nine exceptions in 312.5(c) applies. Third-party disclosure that is not integral to the service needs separate consent under 312.5(a)(2).</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What are some examples of COPPA violations?</h3>
+        <p>Epic Games agreed in 2022 to a $275 million civil penalty for collecting Fortnite players' data without parental consent. Google and YouTube paid $170 million in 2019 over persistent identifiers collected from viewers of child-directed channels, and Musical.ly (now TikTok) paid $5.7 million in 2019.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does COPPA apply to apps outside the United States?</h3>
+        <p>It can. FTC guidance says foreign-operated services must comply if they are directed to children in the U.S. or knowingly collect personal information from U.S. children. Google Play and Apple also require COPPA compliance as a listing condition.</p>
+      </div>
+    </div>
+
+    <p class="disclaimer-note">This page summarizes the COPPA Rule and app store policies as of the date above; it is not legal advice. Sources: <a href="https://www.ecfr.gov/current/title-16/chapter-I/subchapter-C/part-312" rel="nofollow">16 CFR Part 312</a>, <a href="https://www.ftc.gov/business-guidance/privacy-security/childrens-privacy" rel="nofollow">FTC children's privacy guidance</a>, <a href="https://support.google.com/googleplay/android-developer/answer/9893335" rel="nofollow">Google Play Families Policy</a>, <a href="https://developer.apple.com/app-store/review/guidelines/" rel="nofollow">Apple App Review Guidelines</a>.</p>
+
+  </div>
+</article>
+</main>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "COPPA Privacy Policy for Kids' Apps: What the Rule and the App Stores Require",
+  "description": description,
+  "datePublished": publishDate,
+  "dateModified": modifiedDate,
+  "author": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buildprivacypolicy.com/resources/coppa-privacy-policy/"
+  }
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does COPPA force age verification?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. A mixed-audience service must run a neutral age screen before collecting personal information (16 CFR 312.2), but the Rule does not require verifying age. A February 2026 FTC policy statement says the agency will not take enforcement action against general- or mixed-audience operators that collect information solely to verify age, if they meet its conditions, including deleting it afterwards."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is COPPA a privacy law?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The Children's Online Privacy Protection Act is a 1998 federal statute (15 U.S.C. 6501–6506), enforced by the FTC through the Children's Online Privacy Protection Rule, 16 CFR Part 312."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does COPPA require parental consent?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, before you collect, use or disclose a child's personal information, unless one of the nine exceptions in 312.5(c) applies. Third-party disclosure that is not integral to the service needs separate consent under 312.5(a)(2)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are some examples of COPPA violations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Epic Games agreed in 2022 to a $275 million civil penalty for collecting Fortnite players' data without parental consent. Google and YouTube paid $170 million in 2019 over persistent identifiers collected from viewers of child-directed channels, and Musical.ly (now TikTok) paid $5.7 million in 2019."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does COPPA apply to apps outside the United States?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It can. FTC guidance says foreign-operated services must comply if they are directed to children in the U.S. or knowingly collect personal information from U.S. children. Google Play and Apple also require COPPA compliance as a listing condition."
+      }
+    }
+  ]
+})} />
+
+</Layout>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-link:hover {
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+  .page-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 16px 80px;
+  }
+  .page-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px 36px;
+    border: 1px solid #E5E7EB;
+  }
+  .breadcrumb {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 16px;
+  }
+  .breadcrumb a {
+    color: #6B7280;
+    text-decoration: underline;
+  }
+  .page-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .last-updated {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 24px;
+  }
+  .page-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .page-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  .page-card p {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .page-card ul, .page-card ol {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+  .page-card li {
+    margin-bottom: 8px;
+  }
+  .page-card a {
+    color: #2563EB;
+    text-decoration: underline;
+  }
+  .page-card strong {
+    font-weight: 600;
+  }
+  .toc {
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 8px;
+  }
+  .toc-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .toc ol {
+    margin-bottom: 0;
+    padding-left: 20px;
+  }
+  .toc li {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 16px 0 20px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+  }
+  .table-scroll:focus {
+    outline: 2px solid #2563EB;
+    outline-offset: 2px;
+  }
+  .compare-table {
+    width: 100%;
+    min-width: 860px;
+    border-collapse: collapse;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .compare-table thead th {
+    background: #F3F4F6;
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    vertical-align: bottom;
+  }
+  .compare-table tbody th {
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #111827;
+    background: #F9FAFB;
+    border-top: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    vertical-align: top;
+    width: 150px;
+  }
+  .compare-table td {
+    padding: 10px 12px;
+    border-top: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    color: #374151;
+    vertical-align: top;
+  }
+  .compare-table th:last-child,
+  .compare-table td:last-child {
+    border-right: none;
+  }
+  .compare-table .src {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #6B7280;
+  }
+  .compare-table code {
+    background: #E5E7EB;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 12px;
+  }
+  .source-list {
+    font-size: 14px !important;
+  }
+  .source-list li {
+    margin-bottom: 4px !important;
+  }
+  .faq-list {
+    margin-top: 8px;
+  }
+  .faq-item {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 20px;
+    margin-bottom: 8px;
+  }
+  .faq-item h3 {
+    margin-top: 0;
+  }
+  .faq-item p {
+    margin-bottom: 8px;
+  }
+  .disclosure-block {
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 16px 0 20px;
+  }
+  .disclosure-label {
+    font-size: 13px !important;
+    font-weight: 600;
+    color: #6B7280 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px !important;
+  }
+  .disclosure-block pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #1F2937;
+    margin: 0;
+  }
+  .page-card code {
+    background: #E5E7EB;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+  .disclaimer-note {
+    font-size: 13px !important;
+    color: #6B7280 !important;
+    border-top: 1px solid #E5E7EB;
+    padding-top: 16px;
+    margin-top: 24px;
+  }
+  .compare-table {
+    min-width: 520px !important;
+  }
+  @media (max-width: 640px) {
+    .page-card {
+      padding: 28px 20px;
+    }
+    .page-card h1 {
+      font-size: 24px;
+    }
+  }
+</style>
