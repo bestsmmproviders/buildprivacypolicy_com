@@ -5,7 +5,7 @@ import RelatedGuides from '../../../components/RelatedGuides.astro';
 const title = "Facebook Privacy Policy for Apps, Ads & Pages";
 const description = "Privacy policy requirements for Facebook apps, Meta Lead Ads forms, and Facebook Pages. Where to add the URL, what to disclose, and how to pass App Review.";
 const publishDate = "2026-10-08";
-const modifiedDate = "2026-10-14";
+const modifiedDate = "2026-10-20";
 ---
 
 <Layout title={title} description={description}>
@@ -24,9 +24,9 @@ const modifiedDate = "2026-10-14";
   <div class="page-card">
     <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
     <h1>Facebook Privacy Policy: What to Disclose for Apps, Ads, and Pages</h1>
-    <p class="last-updated">Updated October 14, 2026</p>
+    <p class="last-updated">Updated October 20, 2026</p>
 
-    <p>Meta requires a privacy policy URL in three distinct places: the <strong>App Dashboard &gt; Settings &gt; Basic</strong> field for apps going through App Review, the <strong>Privacy Policy</strong> link field inside every Lead Ads instant form built in Ads Manager, and the <strong>Page Settings &gt; Page Info</strong> section for Facebook Pages that collect visitor data. Each surface enforces the requirement differently, and a policy that satisfies one may still be incomplete for the others.</p>
+    <p>Meta requires a privacy policy URL in three distinct places: the <strong>Privacy Policy URL</strong> field under <strong>App settings &gt; Basic</strong> in the App Dashboard, the <strong>Link URL</strong> field in the Privacy section of every Lead Ads instant form, and the <strong>Page Settings &gt; Page Info</strong> section for Facebook Pages that collect visitor data. Only the first two block you: an app cannot switch to Live mode, and an instant form cannot be published, while the field is empty.</p>
 
     <p>This guide covers where Meta asks for the URL across apps, ads, and Pages, what Facebook's Platform Terms and Business Tools Terms require your policy to disclose, the data each Graph API permission returns, the privacy policy field inside Lead Ads instant forms, the disclosure obligations that come with Meta Pixel and the Conversions API, and common reasons App Review rejects a privacy policy. If you need a finished policy without writing one from scratch, <a href="https://buildprivacypolicy.com/">generate a free privacy policy</a> and get a hosted URL you can paste into your App Dashboard or Lead Ads form.</p>
 
@@ -47,10 +47,10 @@ const modifiedDate = "2026-10-14";
 
     <h2 id="where-meta-asks">Where Meta Asks for a Privacy Policy URL</h2>
 
-    <p>Meta checks for a valid privacy policy URL at multiple points in the app lifecycle. Missing it at any stage blocks your progress.</p>
+    <p>Inside the App Dashboard you enter the URL once; three later checkpoints re-read it.</p>
 
     <ul>
-      <li><strong>App Dashboard &gt; Settings &gt; Basic.</strong> The <code>Privacy Policy URL</code> field appears directly below the <code>App Domains</code> field on the Basic Settings page. This is the primary location where Meta reads your policy URL. The field accepts any publicly accessible HTTPS URL -- it cannot be blank, cannot point to <code>localhost</code>, and cannot sit behind authentication. Meta's crawler must be able to reach it and receive an HTTP 200 response. Use the <a href="https://developers.facebook.com/tools/debug/" rel="nofollow">Sharing Debugger</a> to confirm the URL resolves correctly before saving.</li>
+      <li><strong>App settings &gt; Basic.</strong> Two fields matter here. <code>Privacy Policy URL</code> sits below <code>App Domains</code>, beside <code>Terms of Service URL</code>; Platform Terms clause 4.a requires your policy URL to be disclosed in this field. Directly beneath it, <code>User data deletion</code> takes either a <code>Data Deletion Instructions URL</code> (a page telling users how to request deletion) or a <code>Data Deletion Callback URL</code> (an endpoint Meta calls when a user removes your app). Leave the privacy field blank and the Development-to-Live toggle refuses to switch, with an error pointing back to this page. Run the URL through the <a href="https://developers.facebook.com/tools/debug/" rel="nofollow">Sharing Debugger</a> first: anything other than a 200 response code fails review.</li>
 
       <li><strong>App Review submission.</strong> When you submit permissions or features for App Review at <code>App Dashboard &gt; App Review &gt; Permissions and Features</code>, Meta's review team visits your privacy policy URL as part of their evaluation. The review checks that the policy matches the data your app actually accesses through the permissions you requested. A policy that does not mention the specific permissions under review will be rejected.</li>
 
@@ -61,7 +61,7 @@ const modifiedDate = "2026-10-14";
 
     <h2 id="platform-terms">What Meta's Platform Terms Require the Policy to Disclose</h2>
 
-    <p>Section 4 of Meta's <a href="https://developers.facebook.com/terms/" rel="nofollow">Platform Terms</a> sets out the privacy policy requirements. The policy must be available at a publicly accessible URL, cannot be geo-blocked, and must be clearly labeled as a privacy policy. It must be your own policy, not another company's boilerplate. Meta summarizes the requirements in their <a href="https://developers.facebook.com/docs/development/terms-and-policies/privacy-policy/" rel="nofollow">Privacy Policy Expectations</a> documentation.</p>
+    <p>Section 4 of Meta's <a href="https://developers.facebook.com/terms/" rel="nofollow">Platform Terms</a> is titled "Privacy Policy." Clause 4.a makes the URL mandatory: "You will provide, maintain, and comply with a privacy policy that is available through an active, publicly available, easily accessible (including by our crawlers), and non-geoblocked URL. This URL must also be disclosed in the privacy policy field in the settings of your App Dashboard." Clause 4.b sets the content: the policy "must clearly explain what data you are Processing, how you are Processing it, the purposes for which you are Processing it, and how Users may request deletion of that data." Meta's <a href="https://developers.facebook.com/docs/development/terms-and-policies/privacy-policy/" rel="nofollow">Privacy Policy Expectations</a> page adds that it "must be your own privacy policy, and not the policy of another company."</p>
 
     <p>The policy must disclose:</p>
 
@@ -70,18 +70,18 @@ const modifiedDate = "2026-10-14";
 
       <li><strong>How the data is used.</strong> Each specific purpose for processing the data. Meta expects concrete descriptions -- "to personalize content recommendations," "to send weekly summary emails," "to match users with relevant groups" -- not vague catch-alls like "to improve our services." The purpose must match what you described in your App Review submission.</li>
 
-      <li><strong>How users can request deletion.</strong> A working method for users to request that their data be deleted. This can be an email address, a contact form, or, for apps that support it, Meta's <a href="https://developers.facebook.com/docs/development/create-an-app/app-dashboard/data-deletion-callback" rel="nofollow">Data Deletion Request Callback</a>. The URL or contact method you provide must be active and monitored -- Meta's review team tests it. If your app implements the Data Deletion Callback, configure it at <code>App Dashboard &gt; Settings &gt; Basic &gt; Data Deletion</code> with either a callback URL or a data deletion instructions URL.</li>
+      <li><strong>How users can request deletion.</strong> A working method for users to request that their data be deleted. This can be an email address, a contact form, or, for apps that support it, Meta's <a href="https://developers.facebook.com/docs/development/create-an-app/app-dashboard/data-deletion-callback" rel="nofollow">Data Deletion Request Callback</a>. The URL or contact method you provide must be active and monitored -- Meta's review team tests it. If your app implements the Data Deletion Callback, enter it under <code>App settings &gt; Basic &gt; User data deletion</code> as a callback URL or a data deletion instructions URL.</li>
 
       <li><strong>Third-party sharing.</strong> Whether data obtained through Facebook's APIs is shared with any third party, and if so, which parties and for what purposes. Meta's Platform Terms prohibit transferring data received through their APIs to any data broker, ad network, or data reseller, even if your policy discloses it.</li>
 
-      <li><strong>Data retention.</strong> How long you keep data obtained through the APIs. When a user removes your app or when Meta sends an <code>app_deauthorize</code> callback, you must delete all data received through their APIs within a reasonable period unless the data has been aggregated and anonymized.</li>
+      <li><strong>Data retention.</strong> How long you keep data obtained through the APIs. Platform Terms clause 3.d requires deletion when a user asks, when they no longer have an account with you, and when you stop operating the product that collected the data. Meta signals app removals to the <code>Deauthorize Callback URL</code> set under Facebook Login settings.</li>
     </ul>
 
-    <p>A privacy policy that fails to cover these points is treated as incomplete during App Review. <a href="/resources/how-to-write-privacy-policy-for-app/">Writing a complete privacy policy for any app</a> starts with auditing which data your app actually touches, not guessing from the code.</p>
+    <p>Clause 4.c then limits you to processing Platform Data "as clearly described in your privacy policy," so data missing from the list above is data you may not use. <a href="/resources/how-to-write-privacy-policy-for-app/">Writing a complete privacy policy for any app</a> starts with auditing which data your app actually touches.</p>
 
     <h2 id="permissions-data">Facebook Login and Graph API Permissions: Data Each Returns</h2>
 
-    <p>Every permission your app requests through Facebook Login maps directly to a category of user data your policy must disclose. The table below covers the most common permissions. Review your app's permission list at <code>App Dashboard &gt; App Review &gt; Permissions and Features</code> and cross-reference it against your policy.</p>
+    <p>Only <code>public_profile</code> is granted automatically. <code>user_photos</code>, the <code>pages_*</code> permissions, <code>read_insights</code>, and <code>ads_management</code> need Advanced Access through App Review before they work for people without a role on your app, and the reviewer checks your policy against the list at <code>App Review &gt; Permissions and Features</code>.</p>
 
     <table class="scope-table">
       <thead>
@@ -168,6 +168,16 @@ const modifiedDate = "2026-10-14";
           <td>Page settings and activity data</td>
         </tr>
         <tr>
+          <td><code>pages_show_list</code></td>
+          <td>Names and IDs of the Pages the user manages</td>
+          <td>List of Pages you manage</td>
+        </tr>
+        <tr>
+          <td><code>ads_management</code></td>
+          <td>Read and write access to ad accounts the user owns or was granted: campaigns, ads, audiences, ad metrics</td>
+          <td>Ad account data and ad performance</td>
+        </tr>
+        <tr>
           <td><code>read_insights</code></td>
           <td>Analytics and insights data for Pages, apps, and web domains the user owns</td>
           <td>Insights and analytics data</td>
@@ -175,16 +185,16 @@ const modifiedDate = "2026-10-14";
       </tbody>
     </table>
 
-    <p>If your app requests a permission, your privacy policy must name the data that permission grants access to. Apps that request permissions they do not use will be rejected during App Review -- Meta expects a one-to-one match between requested permissions and stated functionality. Generate the data-collection disclosures for any third-party SDKs your app bundles with the <a href="/tools/sdk-disclosure-generator/">SDK disclosure generator</a>.</p>
+    <p>What each permission obliges the policy to say: for <code>public_profile</code>, that you store the app-scoped user ID, name, and profile picture; for <code>email</code>, that you receive the account's primary email and what you send to it; for <code>user_photos</code>, which photos you read, whether you copy them to your own storage, and for how long; for <code>pages_show_list</code>, that you read the Pages a person manages (Meta's submission form asks for "specific examples of why your app needs to access the list of pages that a user owns"); for <code>ads_management</code>, that you read and change ad accounts on the user's behalf, which also requires Business Verification. A permission with no matching feature in your screencast is rejected even when the policy covers it. Generate the data-collection disclosures for any third-party SDKs your app bundles with the <a href="/tools/sdk-disclosure-generator/">SDK disclosure generator</a>.</p>
 
     <h2 id="pages-lead-ads">Facebook Pages and Lead Ads Privacy Requirements</h2>
 
-    <p>Facebook Pages and Lead Ads have their own privacy policy requirements that exist independently of the App Review process.</p>
+    <p>Neither surface below goes through App Review; Ads Manager and Page settings enforce them instead.</p>
 
     <ul>
       <li><strong>Facebook Pages.</strong> Any Page that collects information from visitors -- through messaging, Lead Ads, or Shop features -- must link to a privacy policy. For Pages managed through a third-party app, the app's privacy policy must also disclose that it accesses Page data. The <code>pages_read_engagement</code> scope gives access to follower PSIDs (Page-Scoped User IDs) and profile pictures, which are personal data under GDPR even though they differ from the user's global Facebook ID.</li>
 
-      <li><strong>Lead Ads.</strong> When you create a Lead Ad form in Ads Manager, the <code>Privacy Policy</code> field is mandatory. The form cannot be published without a valid URL. The URL appears as a clickable link at the bottom of the lead form, directly above the submit button. Users must be able to read the policy before submitting their information. Lead Ad forms collect whatever custom fields you define -- name, email, phone number, job title, company -- and your policy must disclose each one. If you use the Conversions API (<code>server_events</code>) or the Meta Pixel to send event data back to Meta, those data flows must also be disclosed.</li>
+      <li><strong>Lead Ads.</strong> Every instant form needs a policy URL before it publishes, and the policy must name each field the form collects. The form builder steps are in the next section.</li>
 
       <li><strong>Custom Audiences.</strong> If your app uploads customer lists to create Custom Audiences (via <code>ads_management</code> or the Marketing API), your privacy policy must disclose that you share user data with Meta for advertising purposes. This includes hashed email addresses, phone numbers, and any other identifiers used for matching.</li>
     </ul>
@@ -195,7 +205,7 @@ const modifiedDate = "2026-10-14";
 
     <h3>Where the field sits in Ads Manager</h3>
 
-    <p>When you create a campaign with the <strong>Leads</strong> objective in <strong>Meta Ads Manager</strong>, the ad-level setup includes an <strong>Instant Form</strong> section. Inside the form builder, the <strong>Privacy Policy</strong> step appears after you define your form fields (name, email, phone, or custom questions). The field is labeled <code>Privacy Policy Link</code> and accepts a single HTTPS URL. You cannot save or publish the instant form without filling it in. Meta displays the URL as a clickable "Privacy Policy" hyperlink at the bottom of the rendered form, directly below the custom disclaimer (if any) and above the <strong>Submit</strong> button. The user sees and can tap the link before submitting their information.</p>
+    <p>In <strong>Meta Ads Manager</strong>, choose the <strong>Leads</strong> objective, set the ad set's conversion location to <strong>Instant forms</strong>, then click <strong>Create form</strong> at the ad level. The editor runs in this order: <strong>Form type</strong>, <strong>Intro</strong>, <strong>Questions</strong>, <strong>Privacy</strong>, <strong>Message for leads</strong>. The Privacy section holds two required fields, <code>Link text</code> (the words shown on the form) and <code>Link URL</code> (your policy), plus an optional custom disclaimer for consent wording such as a marketing opt-in. The form will not publish until <code>Link URL</code> holds an HTTPS address. On the rendered form the link appears on the final review screen, next to Meta's notice that the info is sent to your business, before the user taps <strong>Submit</strong>.</p>
 
     <h3>What Meta rejects</h3>
 
@@ -261,23 +271,23 @@ const modifiedDate = "2026-10-14";
 
     <h2 id="rejection-reasons">Why App Review Rejects a Privacy Policy URL</h2>
 
-    <p>Meta's App Review team rejects privacy policy submissions for specific, fixable reasons. These are the most common rejection patterns based on publicly documented review feedback and developer community reports:</p>
+    <p>Rejection notes appear per permission under <code>App Review &gt; Requests</code>. For privacy policy problems they trace back to the clauses quoted above:</p>
 
     <ol>
-      <li><strong>"The privacy policy URL provided is not accessible."</strong> The URL returns a 404, 403, 500, or times out. Meta's crawler cannot reach pages behind authentication, VPNs, or geo-restrictions. Before submitting, test the URL in the <a href="https://developers.facebook.com/tools/debug/" rel="nofollow">Sharing Debugger</a> -- if the debugger cannot scrape the page, the review team cannot read it either. The URL must load over HTTPS without redirecting through a login page.</li>
+      <li><strong>URL not reachable by Meta's crawler.</strong> Clause 4.a requires a URL that is "easily accessible (including by our crawlers), and non-geoblocked." Login walls, VPN-only staging hosts, Cloudflare bot challenges, country blocks, and HTTP-only pages all fail. Meta's Privacy Policy Expectations page warns: "Broken privacy policy links are considered violations and are subject to enforcement." Check the response code in the <a href="https://developers.facebook.com/tools/debug/" rel="nofollow">Sharing Debugger</a> before submitting.</li>
 
-      <li><strong>"Your app's privacy policy must clearly explain the data you are collecting and how you are using it."</strong> The policy exists but does not mention Facebook-specific data types. A generic template that says "we collect personal information" without naming <code>public_profile</code> fields, email addresses obtained through Facebook Login, or Graph API data will be flagged. The fix is to list each requested permission and the specific data it accesses, as shown in the permissions table above.</li>
+      <li><strong>Page is not clearly a privacy policy.</strong> The URL points to a homepage, About page, or terms of service with a privacy paragraph buried inside. The expectations page says "the linked page must be clearly marked as a privacy policy."</li>
 
-      <li><strong>"The privacy policy does not explain how users can request deletion of their data."</strong> The policy lacks a deletion mechanism or the contact information is missing. Provide a working email address, a link to a contact form, or configure the Data Deletion Request Callback at <code>App Dashboard &gt; Settings &gt; Basic &gt; Data Deletion</code>.</li>
+      <li><strong>Someone else's policy.</strong> Linking to Meta's own Privacy Policy, an app store listing, or a template vendor's policy fails the "must be your own privacy policy" rule.</li>
 
-      <li><strong>"The privacy policy URL does not load a page that is clearly a privacy policy."</strong> The URL points to a homepage, an "About" page, or a terms-of-service page that buries privacy information in a larger document. The page must be clearly titled "Privacy Policy" and dedicated entirely to privacy disclosures.</li>
+      <li><strong>No deletion route.</strong> Clause 4.b requires the policy to explain "how Users may request deletion of that data," and the <code>User data deletion</code> field must hold a working instructions URL or callback. A contact page that never mentions deletion gets cited here.</li>
 
-      <li><strong>"We were unable to test your app."</strong> This is not strictly a privacy policy rejection, but it blocks the entire submission. If the review team cannot log in, navigate, or exercise the features that use the requested permissions, the full submission fails. Provide test credentials and step-by-step instructions in the <code>App Review &gt; Submissions</code> notes field.</li>
+      <li><strong>Permission data missing from the policy.</strong> A template saying "we collect personal information" without naming the Facebook data each requested permission returns (see the table above) is rejected for that permission, even if the others pass.</li>
 
-      <li><strong>Policy hosted on a non-HTTPS URL.</strong> Meta requires the privacy policy URL to load over HTTPS. HTTP-only URLs are rejected outright. Free hosting services that do not provide TLS certificates will not work.</li>
+      <li><strong>Reviewer cannot test the app.</strong> Not a policy defect, but it fails the whole submission. Provide non-expiring test credentials without two-factor prompts, plus step-by-step instructions in the submission notes.</li>
     </ol>
 
-    <p>Each of these is documented in the rejection feedback email Meta sends after a failed review. Fix the specific issue cited, resubmit, and the turnaround for re-review is typically 1 to 5 business days.</p>
+    <p>Fix the cited item, keep the same URL, and resubmit from <code>App Review &gt; Requests</code>.</p>
 
     <h2 id="disclosure-template">Copy-Ready Facebook App Disclosure Block</h2>
 
@@ -329,7 +339,7 @@ const modifiedDate = "2026-10-14";
 
       <div class="faq-item">
         <h3>Where do I add the privacy policy URL in the Facebook App Dashboard?</h3>
-        <p>Go to <code>App Dashboard &gt; Settings &gt; Basic</code> and enter the URL in the <strong>Privacy Policy URL</strong> field. The field appears below the <code>App Domains</code> field. The URL must load over HTTPS, return an HTTP 200 response, and be accessible without authentication. After saving, use the <a href="https://developers.facebook.com/tools/debug/" rel="nofollow">Sharing Debugger</a> to verify Meta can reach the page.</p>
+        <p>Go to <code>App settings &gt; Basic</code> in the App Dashboard and enter the URL in the <strong>Privacy Policy URL</strong> field. The field appears below the <code>App Domains</code> field. The URL must load over HTTPS, return an HTTP 200 response, and be accessible without authentication. After saving, use the <a href="https://developers.facebook.com/tools/debug/" rel="nofollow">Sharing Debugger</a> to verify Meta can reach the page.</p>
       </div>
 
       <div class="faq-item">
@@ -349,7 +359,7 @@ const modifiedDate = "2026-10-14";
 
       <div class="faq-item">
         <h3>How long does App Review take after fixing a privacy policy rejection?</h3>
-        <p>Re-review after fixing a privacy policy issue typically takes 1 to 5 business days. Fix the specific issue cited in the rejection email, update the policy at the same URL, and resubmit through <code>App Dashboard &gt; App Review &gt; Submissions</code>. Do not change the URL unless the original was unreachable -- the review team recognizes resubmissions to the same URL.</p>
+        <p>Re-review after fixing a privacy policy issue typically takes 1 to 5 business days. Fix the specific issue cited in the rejection email, update the policy at the same URL, and resubmit through <code>App Dashboard &gt; App Review &gt; Requests</code>. Do not change the URL unless the original was unreachable -- the review team recognizes resubmissions to the same URL.</p>
       </div>
 
       <div class="faq-item">
@@ -364,7 +374,7 @@ const modifiedDate = "2026-10-14";
 
       <div class="faq-item">
         <h3>Do I need a privacy policy to run Facebook or Instagram ads?</h3>
-        <p>If you run Lead Ads, yes -- Meta Ads Manager requires a privacy policy URL in the <code>Privacy Policy Link</code> field of every instant form, and the form cannot be published without one. For non-lead ad formats (traffic, conversions, engagement), Meta does not block the ad from running without a linked policy, but if you use the Meta Pixel or Conversions API on your landing page, Meta's <a href="https://www.facebook.com/legal/terms/businesstools" rel="nofollow">Business Tools Terms</a> require you to disclose the data collection in your privacy policy and obtain any consent required by applicable law.</p>
+        <p>If you run Lead Ads, yes -- Meta Ads Manager requires a privacy policy URL in the <code>Link URL</code> field of every instant form's Privacy section, and the form cannot be published without one. For non-lead ad formats (traffic, conversions, engagement), Meta does not block the ad from running without a linked policy, but if you use the Meta Pixel or Conversions API on your landing page, Meta's <a href="https://www.facebook.com/legal/terms/businesstools" rel="nofollow">Business Tools Terms</a> require you to disclose the data collection in your privacy policy and obtain any consent required by applicable law.</p>
       </div>
 
       <div class="faq-item">
@@ -417,7 +427,7 @@ const modifiedDate = "2026-10-14";
       "name": "Where do I add the privacy policy URL in the Facebook App Dashboard?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Go to App Dashboard > Settings > Basic and enter the URL in the Privacy Policy URL field. The field appears below the App Domains field. The URL must load over HTTPS, return an HTTP 200 response, and be accessible without authentication."
+        "text": "Go to App settings > Basic in the App Dashboard and enter the URL in the Privacy Policy URL field. The field appears below the App Domains field. The URL must load over HTTPS, return an HTTP 200 response, and be accessible without authentication."
       }
     },
     {
@@ -449,7 +459,7 @@ const modifiedDate = "2026-10-14";
       "name": "How long does App Review take after fixing a privacy policy rejection?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Re-review after fixing a privacy policy issue typically takes 1 to 5 business days. Fix the specific issue cited in the rejection email, update the policy at the same URL, and resubmit through App Dashboard > App Review > Submissions."
+        "text": "Re-review after fixing a privacy policy issue typically takes 1 to 5 business days. Fix the specific issue cited in the rejection email, update the policy at the same URL, and resubmit through App Dashboard > App Review > Requests."
       }
     },
     {
@@ -473,7 +483,7 @@ const modifiedDate = "2026-10-14";
       "name": "Do I need a privacy policy to run Facebook or Instagram ads?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "If you run Lead Ads, yes -- Meta Ads Manager requires a privacy policy URL in the Privacy Policy Link field of every instant form. For non-lead ad formats, Meta does not block the ad, but if you use the Meta Pixel or Conversions API, Meta's Business Tools Terms require you to disclose the data collection in your privacy policy."
+        "text": "If you run Lead Ads, yes -- Meta Ads Manager requires a privacy policy URL in the Link URL field of every instant form's Privacy section. For non-lead ad formats, Meta does not block the ad, but if you use the Meta Pixel or Conversions API, Meta's Business Tools Terms require you to disclose the data collection in your privacy policy."
       }
     },
     {

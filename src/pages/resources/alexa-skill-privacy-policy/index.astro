@@ -152,7 +152,7 @@ const modifiedDate = "2026-10-15";
       <li><strong>Persistent attributes.</strong> The ASK SDK's persistent attributes feature (typically backed by DynamoDB) stores preferences, scores, or conversation history across sessions. Tied to a userId, that is personal data storage.</li>
     </ul>
 
-    <p>The rule is simple: if your Lambda function receives, processes, or stores anything that traces back to a specific user or device, disclose it. Not sure which privacy laws apply? A <a href="/tools/privacy-law-checker/">quick compliance check based on your platform and audience</a> can clarify.</p>
+    <p>The rule is simple: if your Lambda function receives, processes, or stores anything that traces back to a specific user or device, disclose it.</p>
 
     <h2 id="what-policy-must-state">What Your Policy Must State</h2>
 
@@ -194,7 +194,7 @@ const modifiedDate = "2026-10-15";
 
     <p>Amazon's policy requirements state that a child-directed skill will be rejected if any of the following is true: the skill is a custom skill and the developer is not an Amazon-approved kid skill developer; it promotes products, content, or services; it directs users to engage with content outside of Alexa; it sells physical products or services; it sells digital products without using Amazon In-Skill Purchasing; it collects any personal information from end users; it uses account linking; it includes recommendations for skills not directed to children; or it includes content not suitable for all ages.</p>
 
-    <p>The critical restriction for privacy policies is the ban on personal information collection. Under COPPA (the Children's Online Privacy Protection Act), operators of online services directed at children under 13 may not collect, use, or disclose personal information without verifiable parental consent. Amazon enforces this by prohibiting kid skills from collecting personal information as defined by COPPA. That means no account linking, no Alexa permissions requests (name, email, phone, address), and no persistent attributes tied to identifiable users.</p>
+    <p>The critical restriction for privacy policies is the ban on personal information collection. Under COPPA (the Children's Online Privacy Protection Act; see our <a href="/resources/coppa-privacy-policy/">COPPA privacy policy guide</a>), operators of online services directed at children under 13 may not collect, use, or disclose personal information without verifiable parental consent. Amazon enforces this by prohibiting kid skills from collecting personal information as defined by COPPA. That means no account linking, no Alexa permissions requests (name, email, phone, address), and no persistent attributes tied to identifiable users.</p>
 
     <h3>What the privacy policy must say</h3>
 

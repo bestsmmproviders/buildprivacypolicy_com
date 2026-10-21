@@ -124,7 +124,7 @@
   "related": {
     "resources/alexa-skill-privacy-policy": [
       { "slug": "resources/chrome-extension-privacy-policy", "reason": "Same pattern: platform-specific policy for a developer tool distributed through a review process." },
-      { "slug": "resources/discord-bot-privacy-policy", "reason": "Another bot/integration that requires a hosted privacy policy URL before approval." },
+      { "slug": "resources/coppa-privacy-policy", "reason": "Child-directed skills fall under COPPA; covers the children's disclosures and parental consent rules behind Amazon's kid-skill restrictions." },
       { "slug": "resources/telegram-bot-privacy-policy", "reason": "Covers the equivalent privacy policy requirements for Telegram's bot platform." }
     ],
     "resources/chrome-extension-privacy-policy": [
@@ -158,7 +158,7 @@
       { "slug": "resources/wix-privacy-policy-generator", "reason": "Many Etsy sellers also host a standalone Wix site that needs its own policy." }
     ],
     "resources/facebook-app-privacy-policy": [
-      { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "General guide to writing a privacy policy for any app, covering GDPR and app store requirements." },
+      { "slug": "resources/platform-privacy-policy-requirements", "reason": "Compares Meta App Review's privacy policy URL requirement with Apple, Google Play, Chrome, Alexa and three others." },
       { "slug": "resources/slack-app-privacy-policy", "reason": "Slack's App Directory has a similar review-gated privacy policy requirement to Meta's App Review." },
       { "slug": "tools/sdk-disclosure-generator", "reason": "Generate data-collection disclosures for any third-party SDKs bundled alongside the Facebook SDK." }
     ],
@@ -218,7 +218,7 @@
       { "slug": "resources/privacy-policy-for-ecommerce-website", "reason": "Covers the broader ecommerce privacy clauses beyond Shopify-specific steps." }
     ],
     "resources/slack-app-privacy-policy": [
-      { "slug": "resources/chrome-extension-privacy-policy", "reason": "Chrome extensions share the same review-gated distribution model as Slack apps." },
+      { "slug": "resources/platform-privacy-policy-requirements", "reason": "Side-by-side table of the Slack App Directory's privacy policy rules against seven other platforms." },
       { "slug": "resources/facebook-app-privacy-policy", "reason": "Facebook apps go through Meta's App Review with privacy policy requirements comparable to Slack's App Directory." },
       { "slug": "resources/alexa-skill-privacy-policy", "reason": "Alexa skills require a hosted privacy policy URL before Amazon certifies them — the same gating model as Slack." }
     ],
@@ -229,7 +229,7 @@
     ],
     "resources/telegram-bot-privacy-policy": [
       { "slug": "resources/discord-bot-privacy-policy", "reason": "Discord's bot verification process mirrors Telegram's privacy disclosure requirements." },
-      { "slug": "resources/slack-app-privacy-policy", "reason": "Slack apps face comparable directory listing requirements for privacy policies." },
+      { "slug": "resources/platform-privacy-policy-requirements", "reason": "Compares Telegram's privacy policy requirement side by side with seven other developer platforms." },
       { "slug": "resources/alexa-skill-privacy-policy", "reason": "Alexa skills need a hosted policy URL before Amazon certification — same gating pattern." }
     ],
     "resources/wix-privacy-policy-generator": [
@@ -239,7 +239,7 @@
     ],
     "tools/app-store-privacy-requirements": [
       { "slug": "tools/privacy-policy-checker", "reason": "After writing your policy, check whether it covers the required clauses." },
-      { "slug": "tools/sdk-disclosure-generator", "reason": "Third-party SDKs in your app require additional privacy disclosures in your listing." },
+      { "slug": "resources/coppa-privacy-policy", "reason": "Kids Category and Families apps must also meet COPPA's children's privacy policy and parental consent requirements." },
       { "slug": "tools/play-data-safety-answers", "reason": "Google Play's Data Safety form is the Android counterpart to Apple's privacy nutrition labels." }
     ],
     "tools/data-retention-schedule": [
@@ -269,7 +269,7 @@
     ],
     "tools/play-data-safety-answers": [
       { "slug": "tools/app-store-privacy-requirements", "reason": "Covers Apple's App Store privacy requirements alongside Google Play's Data Safety form." },
-      { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "Your app's privacy policy needs to match the data practices declared in the Data Safety form." },
+      { "slug": "resources/coppa-privacy-policy", "reason": "Apps in Google Play's Families program need a COPPA-compliant children's privacy policy on top of the Data Safety form." },
       { "slug": "tools/sdk-disclosure-generator", "reason": "Third-party SDKs in your app affect which data types you must declare in the Data Safety form." }
     ]
   }
