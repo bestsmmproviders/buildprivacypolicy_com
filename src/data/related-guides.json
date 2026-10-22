@@ -32,6 +32,10 @@
       "title": "Facebook App Privacy Policy",
       "href": "/resources/facebook-app-privacy-policy/"
     },
+    "resources/google-ads-remarketing-privacy-policy": {
+      "title": "Google Ads Remarketing Privacy Policy",
+      "href": "/resources/google-ads-remarketing-privacy-policy/"
+    },
     "resources/gdpr-eu-representative": {
       "title": "GDPR EU Representative Guide",
       "href": "/resources/gdpr-eu-representative/"
@@ -195,12 +199,14 @@
     "resources/privacy-policy-for-ecommerce-website": [
       { "slug": "resources/shopify-privacy-policy-generator", "reason": "Shopify is the most common ecommerce platform — this covers its specific requirements." },
       { "slug": "resources/privacy-policy-for-dropshipping-website", "reason": "Dropshipping adds third-party fulfillment disclosures on top of standard ecommerce clauses." },
-      { "slug": "resources/privacy-policy-for-clothing-website", "reason": "Clothing stores have specific data practices around sizing, returns, and wishlists." }
+      { "slug": "resources/privacy-policy-for-clothing-website", "reason": "Clothing stores have specific data practices around sizing, returns, and wishlists." },
+      { "slug": "resources/google-ads-remarketing-privacy-policy", "reason": "Running Google Ads remarketing tags? Google requires specific third-party cookie and opt-out wording in your policy." }
     ],
     "resources/privacy-policy-for-marketing-agency": [
       { "slug": "resources/privacy-policy-for-small-business", "reason": "Agencies are small businesses too — this covers the foundational privacy requirements." },
       { "slug": "resources/does-gdpr-apply-to-us-companies", "reason": "Agencies handling EU client data may fall under GDPR even if based in the US." },
-      { "slug": "resources/privacy-policy-for-photography-website", "reason": "Photographers and agencies share similar client data handling needs, from contracts to portfolio consent." }
+      { "slug": "resources/privacy-policy-for-photography-website", "reason": "Photographers and agencies share similar client data handling needs, from contracts to portfolio consent." },
+      { "slug": "resources/google-ads-remarketing-privacy-policy", "reason": "Agencies running Google Ads remarketing for clients need the advertiser disclosures Google's policies require." }
     ],
     "resources/privacy-policy-for-photography-website": [
       { "slug": "resources/privacy-policy-for-small-business", "reason": "Photography businesses share core small-business privacy requirements." },
@@ -265,12 +271,18 @@
     "tools/sdk-disclosure-generator": [
       { "slug": "tools/app-store-privacy-requirements", "reason": "SDK disclosures feed directly into your app store privacy listing." },
       { "slug": "tools/privacy-policy-checker", "reason": "After updating your policy with SDK disclosures, verify it covers all required clauses." },
-      { "slug": "tools/play-data-safety-answers", "reason": "SDK data collection directly determines which categories you must declare in Google Play's Data Safety form." }
+      { "slug": "tools/play-data-safety-answers", "reason": "SDK data collection directly determines which categories you must declare in Google Play's Data Safety form." },
+      { "slug": "resources/google-ads-remarketing-privacy-policy", "reason": "Using AdMob or Google Analytics? See the exact advertising disclosures Google's publisher and Analytics policies require." }
     ],
     "tools/play-data-safety-answers": [
       { "slug": "tools/app-store-privacy-requirements", "reason": "Covers Apple's App Store privacy requirements alongside Google Play's Data Safety form." },
       { "slug": "resources/coppa-privacy-policy", "reason": "Apps in Google Play's Families program need a COPPA-compliant children's privacy policy on top of the Data Safety form." },
       { "slug": "tools/sdk-disclosure-generator", "reason": "Third-party SDKs in your app affect which data types you must declare in the Data Safety form." }
+    ],
+    "resources/google-ads-remarketing-privacy-policy": [
+      { "slug": "tools/sdk-disclosure-generator", "reason": "List what the AdMob and Firebase SDKs collect before writing the advertising section of an app's policy." },
+      { "slug": "resources/privacy-policy-for-ecommerce-website", "reason": "Online stores running remarketing tags also need payment, order and shipping disclosures in the same policy." },
+      { "slug": "resources/does-gdpr-apply-to-us-companies", "reason": "Google's EU user consent policy applies to EEA visitors; check whether GDPR reaches your business too." }
     ]
   }
 }
