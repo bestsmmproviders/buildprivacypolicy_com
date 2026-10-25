@@ -5,7 +5,7 @@ import RelatedGuides from '../../../components/RelatedGuides.astro';
 const title = "Alexa Skill Privacy Policy URL | Generator & Guide";
 const description = "Need an Alexa skill privacy policy URL for certification? See what Amazon reviews, copy a ready-made example, or generate and host a compliant policy for free.";
 const publishDate = "2026-08-13";
-const modifiedDate = "2026-10-15";
+const modifiedDate = "2026-10-25";
 ---
 
 <Layout title={title} description={description}>
@@ -24,7 +24,7 @@ const modifiedDate = "2026-10-15";
   <div class="page-card">
     <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
     <h1>Alexa Skill Privacy Policy: What Amazon Requires and How to Create One</h1>
-    <p class="last-updated">Published August 13, 2026 &middot; Updated October 15, 2026</p>
+    <p class="last-updated">Published August 13, 2026 &middot; Updated October 25, 2026</p>
 
     <p>Every Alexa skill that collects personal information, uses account linking, or includes advertising needs a hosted privacy policy URL before Amazon will approve it for the Alexa Skills Store. The policy must live at a publicly accessible web address, load without authentication, and describe how the skill handles user data. Skip it and the skill fails certification. Submit a vague or boilerplate document and Amazon's review team rejects it just the same -- they read the policy, not just the URL.</p>
 
@@ -253,7 +253,7 @@ const modifiedDate = "2026-10-15";
 
     <h2 id="example-policy">Alexa Skill Privacy Policy Example You Can Copy</h2>
 
-    <p>Below is a complete privacy policy written for a fictional Alexa skill called "[Your Skill Name]." It covers the data categories most skills handle -- voice utterances, Amazon user IDs, account linking, skill permissions, persistent attributes, and children's privacy. Copy the entire block, replace the bracketed placeholders with your skill's details, and remove any sections that do not apply.</p>
+    <p>Below is a complete privacy policy written for a fictional Alexa skill called "[Your Skill Name]." It covers the data categories most skills handle -- voice utterances, Amazon user IDs, slot values, session attributes, account linking and access tokens, skill permissions including device address, persistent attributes (typically stored in DynamoDB), and children's privacy. Copy the entire block, replace the bracketed placeholders with your skill's details, and remove any sections that do not apply.</p>
 
     <div class="copy-block">
       <div class="copy-block-header">
@@ -269,8 +269,12 @@ const modifiedDate = "2026-10-15";
 <p><strong>2. Data We Collect</strong></p>
 <p><em>Voice utterances.</em> When you speak to the skill, Amazon's Alexa service converts your speech into text and sends the transcription to our backend for processing. We use these transcriptions solely to understand your request and return an appropriate response. Transcription logs are retained in [AWS CloudWatch / your logging service] for [number] days for debugging purposes and then automatically deleted.</p>
 <p><em>Amazon user ID.</em> Each request includes a unique <code>userId</code> string assigned by Amazon to your account. We store this identifier in [Amazon DynamoDB / your database] to persist your preferences and session history across interactions.</p>
+<p><em>Slot values.</em> When your request includes specific details -- for example a [city / item name / date / number] -- Alexa extracts them as slot values and sends them to our backend along with the transcription. We use slot values only to fulfil the request you made. [We do not store slot values beyond the current request. / We store [describe which slot values] as part of your persistent attributes, described below.]</p>
+<p><em>Session attributes.</em> While a conversation with the skill is open, we keep temporary session attributes (such as [the current question / step in a game / items added so far]) so the skill can follow a multi-turn conversation. Session attributes are held only for the duration of the session and are discarded when the session ends.</p>
 <p><em>Account linking data.</em> If you link your [third-party service] account through the skill, we receive your name and email address via [Login with Amazon / OAuth 2.0]. We use your email to [send notifications / personalize responses] and your name to address you in skill responses.</p>
+<p><em>Access tokens.</em> When your account is linked, Alexa includes an access token issued by [Login with Amazon / your OAuth provider] with each request. We use this token only to retrieve the account data described above from [provider], and we do not store it beyond [the request / the token's expiry]. Alexa also supplies a short-lived API access token that the skill uses to request permissioned data (such as your device address) from Amazon on your behalf.</p>
 <p><em>Skill permissions data.</em> If you grant the skill access to Alexa permissions such as your first name, email address, phone number, or device address, we receive that data from Amazon's API when the skill is invoked. Each permission is used only for the purpose described at the time of the request.</p>
+<p><em>Device address.</em> If you grant the [Country and Postal Code / Full Address] permission, the skill requests the address associated with your Echo device from Amazon's Device Address API, using the device identifier included in each request. We use this address only to [find nearby results / calculate delivery times / describe purpose]. [We do not store your address. / We store your address in [database] until you disable the skill or revoke the permission in the Alexa app.] If you do not grant the permission, the skill [still works without location-based features / asks you to say your city instead].</p>
 <p><em>Persistent attributes.</em> The skill stores [preferences / scores / history / other data] in [Amazon DynamoDB / your database], keyed to your Amazon user ID, so your data carries over between sessions.</p>
 
 <p><strong>3. How We Use Your Data</strong></p>
@@ -291,6 +295,7 @@ const modifiedDate = "2026-10-15";
 
 <p><strong>5. Data Retention</strong></p>
 <p>Voice transcription logs are deleted after [number] days. Persistent attributes (preferences and history) are retained while the skill is enabled on your account and deleted within [30] days after you disable the skill. Account linking tokens are revoked immediately upon unlinking.</p>
+<p>Session attributes are discarded at the end of each session. Because Amazon issues a new user ID if you disable and re-enable the skill, data stored under your previous user ID is not carried over if you enable the skill again later.</p>
 
 <p><strong>6. Children's Privacy (COPPA)</strong></p>
 <p>[If the skill is NOT directed at children:] This skill is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13. If we learn that we have inadvertently collected such information, we will delete it promptly.</p>
