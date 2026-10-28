@@ -139,11 +139,12 @@
     "resources/discord-bot-privacy-policy": [
       { "slug": "resources/chrome-extension-privacy-policy", "reason": "Chrome extensions share the same publish-then-review model for privacy policies." },
       { "slug": "resources/facebook-app-privacy-policy", "reason": "Facebook's App Review process mirrors Discord's verification flow for bots that access user data." },
-      { "slug": "resources/alexa-skill-privacy-policy", "reason": "Amazon's Alexa skill certification requires a privacy policy link, similar to Discord's bot verification." }
+      { "slug": "resources/alexa-skill-privacy-policy", "reason": "Amazon's Alexa skill certification requires a privacy policy link, similar to Discord's bot verification." },
+      { "slug": "resources/telegram-bot-privacy-policy", "reason": "Telegram bots read the same kind of chat data as Discord bots and need their own policy, set in BotFather or covered by Telegram's standard one." }
     ],
     "resources/coppa-privacy-policy": [
       { "slug": "tools/play-data-safety-answers", "reason": "Families Policy declarations must agree with the data types you declare in Google Play's Data safety form." },
-      { "slug": "tools/sdk-disclosure-generator", "reason": "List what each bundled SDK collects before checking it against the Families Policy and Apple's Guideline 1.3." },
+      { "slug": "resources/alexa-skill-privacy-policy", "reason": "COPPA treats a child's voice recording as personal information; see how Amazon applies that to child-directed Alexa skills." },
       { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "The children's section sits inside a full app privacy policy that also covers adult users and store disclosures." }
     ],
     "resources/do-i-need-a-privacy-policy-for-my-website": [
@@ -164,7 +165,7 @@
     "resources/facebook-app-privacy-policy": [
       { "slug": "resources/platform-privacy-policy-requirements", "reason": "Compares Meta App Review's privacy policy URL requirement with Apple, Google Play, Chrome, Alexa and three others." },
       { "slug": "resources/slack-app-privacy-policy", "reason": "Slack's App Directory has a similar review-gated privacy policy requirement to Meta's App Review." },
-      { "slug": "tools/sdk-disclosure-generator", "reason": "Generate data-collection disclosures for any third-party SDKs bundled alongside the Facebook SDK." }
+      { "slug": "resources/telegram-bot-privacy-policy", "reason": "Building a bot for Telegram as well as Messenger? Telegram requires a privacy policy for every bot and Mini App that handles users' messages." }
     ],
     "resources/gdpr-eu-representative": [
       { "slug": "resources/does-gdpr-apply-to-us-companies", "reason": "First step: confirm whether GDPR actually applies to your company." },
@@ -184,10 +185,10 @@
     "resources/platform-privacy-policy-requirements": [
       { "slug": "resources/discord-bot-privacy-policy", "reason": "Full walkthrough of the Developer Portal fields, privileged intents and checks behind Discord's App Verification." },
       { "slug": "resources/chrome-extension-privacy-policy", "reason": "Covers the Chrome Web Store Privacy tab, permission justifications and the Data usage certification in depth." },
-      { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "Writing the policy itself for an iOS or Android app, including the App Store and Google Play disclosures." }
+      { "slug": "resources/slack-app-privacy-policy", "reason": "Full walkthrough of the Slack App Directory review, the OAuth scopes that map to disclosures, and a sample Slack app policy." }
     ],
     "resources/privacy-policy-for-clothing-website": [
-      { "slug": "resources/privacy-policy-for-ecommerce-website", "reason": "Clothing stores share core ecommerce privacy requirements with all online retailers." },
+      { "slug": "resources/etsy-privacy-policy-generator", "reason": "Selling handmade or vintage clothing on Etsy? Your shop's policy has to work alongside Etsy's own marketplace privacy terms." },
       { "slug": "resources/shopify-privacy-policy-generator", "reason": "Many clothing brands run on Shopify — this covers platform-specific needs." },
       { "slug": "resources/privacy-policy-for-dropshipping-website", "reason": "If you dropship inventory, additional third-party data sharing disclosures apply." }
     ],
@@ -197,14 +198,13 @@
       { "slug": "resources/privacy-policy-for-clothing-website", "reason": "Clothing is a common dropshipping niche with overlapping policy requirements." }
     ],
     "resources/privacy-policy-for-ecommerce-website": [
-      { "slug": "resources/shopify-privacy-policy-generator", "reason": "Shopify is the most common ecommerce platform — this covers its specific requirements." },
+      { "slug": "resources/etsy-privacy-policy-generator", "reason": "Selling on Etsy as well as your own store? Etsy splits privacy duties between the marketplace and the seller — this covers the seller's share." },
       { "slug": "resources/privacy-policy-for-dropshipping-website", "reason": "Dropshipping adds third-party fulfillment disclosures on top of standard ecommerce clauses." },
       { "slug": "resources/privacy-policy-for-clothing-website", "reason": "Clothing stores have specific data practices around sizing, returns, and wishlists." },
       { "slug": "resources/google-ads-remarketing-privacy-policy", "reason": "Running Google Ads remarketing tags? Google requires specific third-party cookie and opt-out wording in your policy." }
     ],
     "resources/privacy-policy-for-marketing-agency": [
       { "slug": "resources/privacy-policy-for-small-business", "reason": "Agencies are small businesses too — this covers the foundational privacy requirements." },
-      { "slug": "resources/does-gdpr-apply-to-us-companies", "reason": "Agencies handling EU client data may fall under GDPR even if based in the US." },
       { "slug": "resources/privacy-policy-for-photography-website", "reason": "Photographers and agencies share similar client data handling needs, from contracts to portfolio consent." },
       { "slug": "resources/google-ads-remarketing-privacy-policy", "reason": "Agencies running Google Ads remarketing for clients need the advertiser disclosures Google's policies require." }
     ],
@@ -230,17 +230,17 @@
     ],
     "resources/squarespace-privacy-policy-generator": [
       { "slug": "resources/wix-privacy-policy-generator", "reason": "Wix is the closest alternative — this covers its equivalent privacy setup steps." },
-      { "slug": "resources/shopify-privacy-policy-generator", "reason": "If you sell products on Squarespace, Shopify's ecommerce policy guide is relevant too." },
+      { "slug": "resources/privacy-policy-for-photography-website", "reason": "Running a Squarespace portfolio with client proofing or booking forms? This covers the extra disclosures for galleries, model releases and EXIF data." },
       { "slug": "resources/how-to-add-privacy-policy-to-website", "reason": "General guide to placing your policy, including options beyond Squarespace's built-in pages." }
     ],
     "resources/telegram-bot-privacy-policy": [
       { "slug": "resources/discord-bot-privacy-policy", "reason": "Discord's bot verification process mirrors Telegram's privacy disclosure requirements." },
       { "slug": "resources/platform-privacy-policy-requirements", "reason": "Compares Telegram's privacy policy requirement side by side with seven other developer platforms." },
-      { "slug": "resources/alexa-skill-privacy-policy", "reason": "Alexa skills need a hosted policy URL before Amazon certification — same gating pattern." }
+      { "slug": "resources/slack-app-privacy-policy", "reason": "Slack apps, like Telegram bots, receive message content from the conversations they join — see what the Slack App Directory review requires." }
     ],
     "resources/wix-privacy-policy-generator": [
       { "slug": "resources/squarespace-privacy-policy-generator", "reason": "Squarespace is the most similar platform — see how its privacy setup compares." },
-      { "slug": "resources/shopify-privacy-policy-generator", "reason": "Adding a store to your Wix site? Shopify's ecommerce policy requirements may also apply." },
+      { "slug": "resources/privacy-policy-for-photography-website", "reason": "Showing client galleries or taking shoot bookings on a Wix portfolio? This covers model releases, EXIF metadata and gallery platforms." },
       { "slug": "resources/how-to-add-privacy-policy-to-website", "reason": "General placement guide covering options beyond Wix's built-in legal pages feature." }
     ],
     "tools/app-store-privacy-requirements": [
@@ -277,7 +277,7 @@
     "tools/play-data-safety-answers": [
       { "slug": "tools/app-store-privacy-requirements", "reason": "Covers Apple's App Store privacy requirements alongside Google Play's Data Safety form." },
       { "slug": "resources/coppa-privacy-policy", "reason": "Apps in Google Play's Families program need a COPPA-compliant children's privacy policy on top of the Data Safety form." },
-      { "slug": "tools/sdk-disclosure-generator", "reason": "Third-party SDKs in your app affect which data types you must declare in the Data Safety form." }
+      { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "Your Data safety answers must match the privacy policy linked from your Play listing — this guide covers writing that policy." }
     ],
     "resources/google-ads-remarketing-privacy-policy": [
       { "slug": "tools/sdk-disclosure-generator", "reason": "List what the AdMob and Firebase SDKs collect before writing the advertising section of an app's policy." },
