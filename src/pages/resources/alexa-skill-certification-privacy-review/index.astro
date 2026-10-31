@@ -1,0 +1,480 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import RelatedGuides from '../../../components/RelatedGuides.astro';
+
+const title = "Alexa Skill Certification Privacy Review: What Amazon Checks";
+const description = "What Alexa skill certification checks on privacy: Amazon's policy URL tests, account linking and voice code rules, Privacy & Compliance answers and kid skills.";
+const publishDate = "2026-10-31";
+const modifiedDate = "2026-10-31";
+---
+
+<Layout title={title} description={description}>
+
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="128" height="128" rx="28" fill="#1E3A5F"/><path d="M64 24C64 24 40 34 32 38V62C32 82 46 98 64 104C82 98 96 82 96 62V38C88 34 64 24 64 24Z" fill="#2E5A8F" stroke="#5B9BD5" stroke-width="2.5"/><path d="M52 64L60 72L78 54" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+</div>
+
+<main>
+<article class="page-container">
+  <div class="page-card">
+    <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
+    <h1>Alexa Skill Certification Privacy Review: What Amazon Checks Before Your Skill Goes Live</h1>
+    <p class="last-updated">Published October 31, 2026 &middot; Checked against Amazon's Alexa developer documentation on that date</p>
+
+    <p>Alexa skill certification reviews privacy in four places. Reviewers open your <strong>Privacy Policy URL</strong> and apply Amazon's three privacy-URL tests. They check the <strong>Privacy requirements</strong> and <strong>Skills that use account linking</strong> sections of the Security Requirements. They compare your answers on the <strong>Privacy &amp; Compliance</strong> page with what the skill actually does. And if the skill targets children, they apply section 2 of the Policy Requirements, <strong>Child-directed Alexa skills</strong>. A policy URL is mandatory when a skill uses account linking or collects personal information, whether through voice or through skill permissions.</p>
+
+    <p>This page covers the review itself. For the policy document, an example and hosting, see the <a href="/resources/alexa-skill-privacy-policy/">Alexa skill privacy policy guide and example</a>. This page is not legal advice.</p>
+
+    <nav class="toc">
+      <p class="toc-title">Contents</p>
+      <ol>
+        <li><a href="#what-certification-checks">What Certification Checks on Privacy</a></li>
+        <li><a href="#rejection-reasons">Why Skills Get Rejected on Privacy, and How to Pre-empt Each Reason</a></li>
+        <li><a href="#policy-url-console">Where the Policy URL Goes and What Makes It Fail</a></li>
+        <li><a href="#child-directed">Child-Directed Skills: The Extra Gates</a></li>
+        <li><a href="#faq">Frequently Asked Questions</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="what-certification-checks">What Alexa Certification Checks on Privacy</h2>
+
+    <p>The privacy review draws on four Amazon documents, and each can trigger a rejection on its own.</p>
+
+    <div class="table-scroll" role="region" aria-label="Amazon documents behind the Alexa certification privacy review" tabindex="0">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th scope="col">Amazon document and section</th>
+            <th scope="col">What reviewers check</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><em>Certification requirements for privacy policy URLs</em> (Alexa Skills Kit blog, February 2023)</th>
+            <td>That a policy exists when required, that the link lands on the privacy section, that it is in one of the skill's languages, and that it is specific to the skill.</td>
+          </tr>
+          <tr>
+            <th scope="row">Security Requirements: <strong>Privacy requirements</strong></th>
+            <td>How personal information is collected and used, which identifiers a skill may never ask for by voice, and which it may only read out behind a voice code.</td>
+          </tr>
+          <tr>
+            <th scope="row">Security Requirements: <strong>Skills that use account linking</strong> and <strong>Skills that require voice codes</strong></th>
+            <td>Working privacy policy and terms of use links, the authorization server and login page, test credentials, and voice code behavior.</td>
+          </tr>
+          <tr>
+            <th scope="row">Policy Requirements: section 2 <strong>Child-directed Alexa skills</strong>, plus 3 Health and 5 Advertising</th>
+            <td>Whether a skill aimed at children does anything that is barred for kid skills, and whether health or advertising content follows its own rules.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Under <strong>Privacy requirements</strong>, item 4 says that before collecting personal information (name, address, email, date of birth, phone number) you must show a legally adequate privacy notice on the skill detail page, use the data only as users consented, keep collection in line with that notice and the law, and collect only what the skill's features need. Item 5 bars collecting or reciting passport, social security or national ID numbers and full bank or card numbers. Item 6 allows reading out a full date of birth, driver's license, vehicle registration or insurance policy number only behind a voice code set during account linking.</p>
+
+    <h2 id="rejection-reasons">Why Skills Get Rejected on Privacy, and How to Pre-empt Each Reason</h2>
+
+    <ul>
+      <li><strong>No policy where one is required.</strong> A skill that uses account linking or collects user information without a valid policy "will not be published", according to Amazon's privacy-URL guidance. <em>Pre-empt:</em> if any permission or slot captures a name, email, address or phone number, or account linking is on, add a policy.</li>
+      <li><strong>An optional policy that fails anyway.</strong> A skill that collects nothing needs no policy, but one you add is still reviewed. <em>Pre-empt:</em> make sure it passes the URL tests below.</li>
+      <li><strong>Privacy &amp; Compliance answers that contradict the skill.</strong> If you answer "No" to "Does this Alexa skill collect users' personal information?" while the skill asks for the email permission, the answers and the behavior disagree. <em>Pre-empt:</em> answer each question from what the skill does in testing, then make the policy say the same.</li>
+      <li><strong>An account linking login page that fails the ownership rules.</strong> On your own authorization server, you must own the login domain, it must reflect your brand, skill or developer name, the page must show that name, and it must use HTTPS. With another OAuth provider, you "cannot directly handle, store, or transmit credentials" for the user. <em>Pre-empt:</em> send users to the provider's HTTPS login page; never collect passwords in your own form.</li>
+      <li><strong>No statement of what account linking collects.</strong> With Login with Amazon, you "must clearly state the customer information that your skill collects and uses", either on the login page or in your privacy policy. <em>Pre-empt:</em> name each profile field you request and what you use it for.</li>
+      <li><strong>Sensitive identifiers by voice, or reading out data without a voice code.</strong> These break items 5 and 6. <em>Pre-empt:</em> remove any intent that asks for those numbers. If the skill must read back a date of birth or license number, add a voice code of at least four digits, requested every new session and never shown on cards or screens.</li>
+      <li><strong>Missing test access.</strong> Reviewers need valid test account credentials for each locale you submit. <em>Pre-empt:</em> enter them in <strong>Testing Instructions</strong>, with steps for account linking and permissions.</li>
+    </ul>
+
+    <h2 id="policy-url-console">Where the Policy URL Goes in the Developer Console and What Makes It Fail</h2>
+
+    <p>In the Alexa developer console, open the <strong>Distribution</strong> page, choose <strong>Skill Preview</strong>, select a language such as English (US), and fill in the <strong>Privacy Policy URL</strong> under <strong>Primary Details</strong>. The <strong>Terms of Use URL</strong> sits next to it. Both are set per language, so a skill published in three locales has three sets of fields to complete. Amazon's field note says the privacy policy URL is required when the skill "uses account linking, includes advertising, or collects user information."</p>
+
+    <p>The same Distribution page has <strong>Privacy &amp; Compliance</strong> in its left menu. Amazon's documentation currently lists five questions there:</p>
+
+    <ol>
+      <li>"Does this skill allow users to make purchases or spend real money?"</li>
+      <li>"Does this skill use Alexa Shopping Actions?"</li>
+      <li>"Does this Alexa skill collect users' personal information?"</li>
+      <li>"Is this skill directed to or does it target children under the age of 13?"</li>
+      <li>"Does this skill contain advertising?"</li>
+    </ol>
+
+    <p>Amazon names the conditions that make a policy URL fail review:</p>
+
+    <ul>
+      <li><strong>It does not open the privacy section.</strong> A link to your home page fails, even if the policy is one click away.</li>
+      <li><strong>It is in the wrong language.</strong> The policy must be in one of the skill's own languages. A skill submitted in en-GB and de-DE can use an English or German policy, but not a Spanish one, even though Alexa supports Spanish.</li>
+      <li><strong>It names another skill or company.</strong> A recycled policy from a different product is not valid.</li>
+      <li><strong>It does not load.</strong> For account-linked skills, the Security Requirements state that the privacy policy and terms of use links must each open to a valid web page, because Amazon shows them on the skill detail page and in the Alexa app.</li>
+    </ul>
+
+    <p>For example URLs that pass and fail, and hosting options that stay stable, see <a href="/resources/alexa-skill-privacy-policy/#host-and-add">what to paste into the Alexa Privacy Policy URL field</a>. To compare Amazon with other stores, see <a href="/resources/platform-privacy-policy-requirements/">which platforms require a privacy policy</a>.</p>
+
+    <h2 id="child-directed">Child-Directed Skills and the Extra Gates</h2>
+
+    <p>Section 2 of the Policy Requirements applies when a skill is directed to children under 13 in the US, India or Canada, under 16 in the UK, Germany, Japan, France, Italy, Spain, Mexico, the Netherlands or Australia, or under 18 in Saudi Arabia. Such a skill is rejected or suspended if any one of these is true:</p>
+
+    <ol>
+      <li>It is a custom skill and you are not an Amazon-approved developer.</li>
+      <li>It promotes products, content or services, or sends users to content outside Alexa.</li>
+      <li>It sells physical products or services.</li>
+      <li>It sells digital products or services without using In-Skill Purchasing.</li>
+      <li>It collects personal information from users.</li>
+      <li>It uses account linking.</li>
+      <li>It recommends skills that are not directed to children.</li>
+      <li>It includes content not suitable for all ages.</li>
+    </ol>
+
+    <p>The first gate comes before review: automated validation may block a custom kids skill from an unapproved developer. Request approval through the developer portal's contact form, or build with Alexa Blueprints, which is open to all developers. Declare the audience by answering "Yes" to the children question on Privacy &amp; Compliance, which also covers the under-16 countries. If you answer "No" and reviewers find child-directed content, the skill can be rejected.</p>
+
+    <p>For the disclosures COPPA expects and how parental consent works, see the <a href="/resources/coppa-privacy-policy/">COPPA privacy policy guide for kids' apps</a>.</p>
+
+    <RelatedGuides currentSlug="resources/alexa-skill-certification-privacy-review" />
+
+    <h2 id="faq">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>What is Alexa's privacy policy?</h3>
+        <p>Amazon's Alexa privacy terms cover how Amazon handles voice recordings and device data, not your skill. Data a third-party skill receives falls under the developer's own policy, so linking Amazon's notice fails review: a policy naming a different company is not valid.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Are there privacy concerns with Alexa?</h3>
+        <p>Researchers have raised them mainly about third-party skills. The Alexa skill ecosystem study at alexa-skill-analysis.org reported that only 24.2% of skills had a privacy policy. Certification now makes a policy mandatory for skills that link accounts or collect personal information.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Is Alexa listening to my private conversations?</h3>
+        <p>From a skill developer's side, a custom skill only gets a request after a user opens it, and that request arrives as structured data, such as an intent and its slot values. Voice history is Amazon's, managed under Alexa Privacy in the Alexa app. A skill's privacy policy should describe only the request data the skill itself receives, stores and shares.</p>
+      </div>
+    </div>
+
+    <p class="disclaimer-note">This page summarizes Amazon's Alexa developer documentation as of the date above; it is not legal advice. Sources: <a href="https://developer.amazon.com/en-US/blogs/alexa/alexa-skills-kit/2023/02/certification-requirements-privacy-urls-feb-2023" rel="nofollow">Certification requirements for privacy policy URLs</a>, <a href="https://developer.amazon.com/en-US/docs/alexa/custom-skills/security-testing-for-an-alexa-skill.html" rel="nofollow">Security Requirements for Alexa Skills</a>, <a href="https://developer.amazon.com/en-US/docs/alexa/custom-skills/policy-requirements-for-an-alexa-skill.html" rel="nofollow">Policy Requirements for Alexa Skills</a>, <a href="https://developer.amazon.com/en-US/docs/alexa/devconsole/launch-your-skill.html" rel="nofollow">Define Skill Store Details for Publication</a>, <a href="https://developer.amazon.com/en-US/blogs/alexa/alexa-skills-kit/2021/09/create-a-child-directed-skill" rel="nofollow">How to Create a Child-Directed Skill</a>.</p>
+
+  </div>
+</article>
+</main>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Alexa Skill Certification Privacy Review: What Amazon Checks Before Your Skill Goes Live",
+  "description": description,
+  "datePublished": publishDate,
+  "dateModified": modifiedDate,
+  "author": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buildprivacypolicy.com/resources/alexa-skill-certification-privacy-review/"
+  }
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Alexa's privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Amazon's Alexa privacy terms cover how Amazon handles voice recordings and device data, not your skill. Data a third-party skill receives falls under the developer's own policy, so linking Amazon's notice fails review: a policy naming a different company is not valid."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are there privacy concerns with Alexa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Researchers have raised them mainly about third-party skills. The Alexa skill ecosystem study at alexa-skill-analysis.org reported that only 24.2% of skills had a privacy policy. Certification now makes a policy mandatory for skills that link accounts or collect personal information."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Alexa listening to my private conversations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "From a skill developer's side, a custom skill only gets a request after a user opens it, and that request arrives as structured data, such as an intent and its slot values. Voice history is Amazon's, managed under Alexa Privacy in the Alexa app. A skill's privacy policy should describe only the request data the skill itself receives, stores and shares."
+      }
+    }
+  ]
+})} />
+
+</Layout>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-link:hover {
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+  .page-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 16px 80px;
+  }
+  .page-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px 36px;
+    border: 1px solid #E5E7EB;
+  }
+  .breadcrumb {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 16px;
+  }
+  .breadcrumb a {
+    color: #6B7280;
+    text-decoration: underline;
+  }
+  .page-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .last-updated {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 24px;
+  }
+  .page-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .page-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  .page-card p {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .page-card ul, .page-card ol {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+  .page-card li {
+    margin-bottom: 8px;
+  }
+  .page-card a {
+    color: #2563EB;
+    text-decoration: underline;
+  }
+  .page-card strong {
+    font-weight: 600;
+  }
+  .toc {
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 8px;
+  }
+  .toc-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .toc ol {
+    margin-bottom: 0;
+    padding-left: 20px;
+  }
+  .toc li {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 16px 0 20px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+  }
+  .table-scroll:focus {
+    outline: 2px solid #2563EB;
+    outline-offset: 2px;
+  }
+  .compare-table {
+    width: 100%;
+    min-width: 860px;
+    border-collapse: collapse;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .compare-table thead th {
+    background: #F3F4F6;
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    vertical-align: bottom;
+  }
+  .compare-table tbody th {
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #111827;
+    background: #F9FAFB;
+    border-top: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    vertical-align: top;
+    width: 150px;
+  }
+  .compare-table td {
+    padding: 10px 12px;
+    border-top: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    color: #374151;
+    vertical-align: top;
+  }
+  .compare-table th:last-child,
+  .compare-table td:last-child {
+    border-right: none;
+  }
+  .compare-table .src {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #6B7280;
+  }
+  .compare-table code {
+    background: #E5E7EB;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 12px;
+  }
+  .source-list {
+    font-size: 14px !important;
+  }
+  .source-list li {
+    margin-bottom: 4px !important;
+  }
+  .faq-list {
+    margin-top: 8px;
+  }
+  .faq-item {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 20px;
+    margin-bottom: 8px;
+  }
+  .faq-item h3 {
+    margin-top: 0;
+  }
+  .faq-item p {
+    margin-bottom: 8px;
+  }
+  .disclosure-block {
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 16px 0 20px;
+  }
+  .disclosure-label {
+    font-size: 13px !important;
+    font-weight: 600;
+    color: #6B7280 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px !important;
+  }
+  .disclosure-block pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #1F2937;
+    margin: 0;
+  }
+  .page-card code {
+    background: #E5E7EB;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+  .disclaimer-note {
+    font-size: 13px !important;
+    color: #6B7280 !important;
+    border-top: 1px solid #E5E7EB;
+    padding-top: 16px;
+    margin-top: 24px;
+  }
+  .compare-table {
+    min-width: 520px !important;
+  }
+  @media (max-width: 640px) {
+    .page-card {
+      padding: 28px 20px;
+    }
+    .page-card h1 {
+      font-size: 24px;
+    }
+  }
+</style>

@@ -4,6 +4,10 @@
       "title": "Alexa Skill Privacy Policy",
       "href": "/resources/alexa-skill-privacy-policy/"
     },
+    "resources/alexa-skill-certification-privacy-review": {
+      "title": "Alexa Skill Certification Privacy Review",
+      "href": "/resources/alexa-skill-certification-privacy-review/"
+    },
     "resources/chrome-extension-privacy-policy": {
       "title": "Chrome Extension Privacy Policy",
       "href": "/resources/chrome-extension-privacy-policy/"
@@ -127,9 +131,15 @@
   },
   "related": {
     "resources/alexa-skill-privacy-policy": [
+      { "slug": "resources/alexa-skill-certification-privacy-review", "reason": "Walks through each Amazon review check (URL tests, account linking, voice codes, Privacy & Compliance answers) before you submit." },
       { "slug": "resources/chrome-extension-privacy-policy", "reason": "Same pattern: platform-specific policy for a developer tool distributed through a review process." },
       { "slug": "resources/coppa-privacy-policy", "reason": "Child-directed skills fall under COPPA; covers the children's disclosures and parental consent rules behind Amazon's kid-skill restrictions." },
       { "slug": "resources/telegram-bot-privacy-policy", "reason": "Covers the equivalent privacy policy requirements for Telegram's bot platform." }
+    ],
+    "resources/alexa-skill-certification-privacy-review": [
+      { "slug": "resources/alexa-skill-privacy-policy", "reason": "The policy document itself: what it must state, an example to copy and a hosted URL for the Developer Console." },
+      { "slug": "resources/coppa-privacy-policy", "reason": "COPPA disclosures and parental consent rules behind Amazon's child-directed skill restrictions." },
+      { "slug": "resources/platform-privacy-policy-requirements", "reason": "Compare Amazon's review with Apple, Google Play, Chrome, Discord and Slack." }
     ],
     "resources/chrome-extension-privacy-policy": [
       { "slug": "resources/discord-bot-privacy-policy", "reason": "Another developer integration where a platform review team checks your privacy policy." },
@@ -143,6 +153,7 @@
       { "slug": "resources/telegram-bot-privacy-policy", "reason": "Telegram bots read the same kind of chat data as Discord bots and need their own policy, set in BotFather or covered by Telegram's standard one." }
     ],
     "resources/coppa-privacy-policy": [
+      { "slug": "resources/alexa-skill-certification-privacy-review", "reason": "Amazon's eight gates for child-directed Alexa skills, including the bans on personal information collection and account linking." },
       { "slug": "tools/play-data-safety-answers", "reason": "Families Policy declarations must agree with the data types you declare in Google Play's Data safety form." },
       { "slug": "resources/alexa-skill-privacy-policy", "reason": "COPPA treats a child's voice recording as personal information; see how Amazon applies that to child-directed Alexa skills." },
       { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "The children's section sits inside a full app privacy policy that also covers adult users and store disclosures." }
