@@ -40,6 +40,10 @@
       "title": "Google Ads Remarketing Privacy Policy",
       "href": "/resources/google-ads-remarketing-privacy-policy/"
     },
+    "resources/google-oauth-consent-screen-privacy-policy": {
+      "title": "Google OAuth Consent Screen Privacy Policy",
+      "href": "/resources/google-oauth-consent-screen-privacy-policy/"
+    },
     "resources/gdpr-eu-representative": {
       "title": "GDPR EU Representative Guide",
       "href": "/resources/gdpr-eu-representative/"
@@ -191,7 +195,8 @@
     "resources/how-to-write-privacy-policy-for-app": [
       { "slug": "tools/app-store-privacy-requirements", "reason": "Check which privacy disclosures Apple and Google require for your app listing." },
       { "slug": "tools/sdk-disclosure-generator", "reason": "Third-party SDKs in your app create disclosure obligations — generate them here." },
-      { "slug": "resources/facebook-app-privacy-policy", "reason": "Building on Facebook's platform adds Meta-specific data handling disclosures to your app's privacy policy." }
+      { "slug": "resources/facebook-app-privacy-policy", "reason": "Building on Facebook's platform adds Meta-specific data handling disclosures to your app's privacy policy." },
+      { "slug": "resources/google-oauth-consent-screen-privacy-policy", "reason": "If your app requests Google API scopes, OAuth verification requires a Google user data section and a Limited Use statement." }
     ],
     "resources/platform-privacy-policy-requirements": [
       { "slug": "resources/discord-bot-privacy-policy", "reason": "Full walkthrough of the Developer Portal fields, privileged intents and checks behind Discord's App Verification." },
@@ -293,7 +298,13 @@
     "resources/google-ads-remarketing-privacy-policy": [
       { "slug": "tools/sdk-disclosure-generator", "reason": "List what the AdMob and Firebase SDKs collect before writing the advertising section of an app's policy." },
       { "slug": "resources/privacy-policy-for-ecommerce-website", "reason": "Online stores running remarketing tags also need payment, order and shipping disclosures in the same policy." },
-      { "slug": "resources/does-gdpr-apply-to-us-companies", "reason": "Google's EU user consent policy applies to EEA visitors; check whether GDPR reaches your business too." }
+      { "slug": "resources/does-gdpr-apply-to-us-companies", "reason": "Google's EU user consent policy applies to EEA visitors; check whether GDPR reaches your business too." },
+      { "slug": "resources/google-oauth-consent-screen-privacy-policy", "reason": "Requesting Google API scopes through OAuth? Google's Limited Use rules bar using that data for ads and set separate policy and hosting requirements." }
+    ],
+    "resources/google-oauth-consent-screen-privacy-policy": [
+      { "slug": "resources/google-ads-remarketing-privacy-policy", "reason": "Running Google Ads, AdSense or Analytics on the same site? Those products need their own advertising disclosures, kept apart from Google user data." },
+      { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "The Google user data section sits inside a full app privacy policy that also covers your other data, cookies and user rights." },
+      { "slug": "resources/platform-privacy-policy-requirements", "reason": "Compare Google's OAuth verification with the privacy policy rules of Apple, Google Play, Chrome, Discord and Slack." }
     ]
   }
 }

@@ -1,0 +1,514 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import RelatedGuides from '../../../components/RelatedGuides.astro';
+
+const title = "Google OAuth Consent Screen Privacy Policy Requirements";
+const description = "What Google's OAuth verification requires your privacy policy to say and where to host it, plus the Limited Use disclosure for sensitive and restricted scopes.";
+const publishDate = "2026-11-01";
+const modifiedDate = "2026-11-01";
+---
+
+<Layout title={title} description={description}>
+
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="128" height="128" rx="28" fill="#1E3A5F"/><path d="M64 24C64 24 40 34 32 38V62C32 82 46 98 64 104C82 98 96 82 96 62V38C88 34 64 24 64 24Z" fill="#2E5A8F" stroke="#5B9BD5" stroke-width="2.5"/><path d="M52 64L60 72L78 54" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+</div>
+
+<main>
+<article class="page-container">
+  <div class="page-card">
+    <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
+    <h1>Google OAuth Consent Screen Privacy Policy: What Verification Requires</h1>
+    <p class="last-updated">Published November 1, 2026 &middot; Checked against Google's OAuth App Verification Help Center and API Services User Data Policy on that date</p>
+
+    <p>Every public app that asks for Google user data through OAuth must list a privacy policy URL in its <strong>OAuth consent screen</strong> configuration in the Google Cloud Console. To pass verification, that policy must disclose how your app <strong>accesses, uses, stores and shares Google user data</strong>, be hosted on the same verified domain as your homepage, be linked from that homepage with the identical URL, and, for sensitive or restricted scopes, show that your use of the data meets Google's <strong>Limited Use</strong> requirements.</p>
+
+    <p>Below: the Google document behind each rule, the findings reviewers send back, and a disclosure block to adapt. Not legal advice.</p>
+
+    <nav class="toc">
+      <p class="toc-title">Contents</p>
+      <ol>
+        <li><a href="#when-required">When Verification Is Required and Which Scopes Trigger It</a></li>
+        <li><a href="#what-to-state">What the Privacy Policy Must State</a></li>
+        <li><a href="#hosting-rules">Hosting Rules and Why Submissions Fail Them</a></li>
+        <li><a href="#limited-use">The Limited Use Disclosure</a></li>
+        <li><a href="#faq">Frequently Asked Questions</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="when-required">When Verification Is Required and Which Scopes Trigger It</h2>
+
+    <p>Google sorts OAuth scopes into three categories, and the Cloud Console labels each scope's category when you add it. The category decides how much review your app gets.</p>
+
+    <div class="table-scroll" role="region" aria-label="Google OAuth scope categories and verification requirements" tabindex="0">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th scope="col">Scope category</th>
+            <th scope="col">What Google requires</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Non-sensitive</th>
+            <td>Full app verification is not mandatory. To show your app name and logo on the consent screen you still need <strong>brand verification</strong>: a homepage and privacy policy on a verified domain, Google branding guidelines and current project contacts.</td>
+          </tr>
+          <tr>
+            <th scope="row">Sensitive</th>
+            <td>Brand verification plus an appropriate use case, a <strong>demonstration video</strong> of the full OAuth flow, a justification for each scope explaining why a narrower one would not work, and compliance with Limited Use.</td>
+          </tr>
+          <tr>
+            <th scope="row">Restricted</th>
+            <td>Everything required for sensitive scopes, plus an <strong>annual security assessment</strong> by a Google-empanelled assessor and annual re-verification. Google lists the Gmail, Google Drive, Google Fit, Google Chat, Data Portability, Photos Ambient and Google Health APIs as restricted.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Google's page <em>"When is verification not needed"</em> exempts <strong>personal use</strong> apps under 100 users (who click through an "unverified app" warning), <strong>development or testing</strong> projects (same warning and 100-user cap), <strong>service-account-only</strong> apps, <strong>internal</strong> Workspace apps, and apps a Workspace admin has marked <strong>trusted</strong>. Exempt apps must still comply with the User Data Policy.</p>
+
+    <h2 id="what-to-state">What the Privacy Policy Must State</h2>
+
+    <p>Google's quick reference guide <em>"App Privacy Policy"</em> lists the findings reviewers send when a policy falls short. Read as a checklist, your policy must state:</p>
+
+    <ol>
+      <li><strong>What Google user data your app accesses</strong>, named by type (for example, Gmail message metadata, Calendar events or Drive files), not "information from your Google account".</li>
+      <li><strong>How your app uses that data</strong>, tied to the features users see.</li>
+      <li><strong>With whom you share, transfer or disclose it</strong>, including service providers that process it for you.</li>
+      <li><strong>The data protection mechanisms</strong> you apply to sensitive data, such as encryption in transit and at rest and access controls.</li>
+      <li><strong>Retention and deletion</strong>: how long you keep Google user data and how users can have it deleted.</li>
+    </ol>
+
+    <p>Two more findings reject a policy for what it permits: using Google user data, or transferring it to third parties, <strong>for reasons other than providing or improving your application's functionality</strong>. If a general clause allows advertising use or partner sharing, state that it excludes Google user data.</p>
+
+    <p>The <strong>Google API Services User Data Policy</strong> adds that a secondary purpose must be disclosed alongside the primary one, and that before accessing new data types or using data in undisclosed ways you must <strong>update the policy and prompt users to consent</strong>. And the policy must be clearly your own: "Do not submit a template, example, or sample privacy policy."</p>
+
+    <h2 id="hosting-rules">Hosting Rules and Why Submissions Fail Them</h2>
+
+    <p>Google's brand verification requirements set where the policy lives:</p>
+
+    <ul>
+      <li>The policy must be <strong>hosted within the domain that hosts your homepage</strong>, and that domain must be <strong>verified in Google Search Console</strong> by an account listed as an owner or editor on the Cloud project. Every domain under <strong>Authorized domains</strong> needs this verification.</li>
+      <li>Your <strong>homepage must link to the policy</strong>, and that link must match the URL entered on the consent screen.</li>
+      <li>The homepage must describe what your app does; it <strong>cannot be only a login page</strong>.</li>
+      <li>The policy must be current and load for a reviewer with no account in your app: a public page with no sign-in wall.</li>
+    </ul>
+
+    <p>The named findings show how submissions fail these rules:</p>
+
+    <ul>
+      <li><strong>"The provided privacy policy URL is unresponsive"</strong>: the page times out, returns an error, or redirects to a sign-in screen.</li>
+      <li><strong>"The privacy policy URL you gave us is the same as your homepage URL"</strong>: the policy needs its own page, such as <code>/privacy</code>.</li>
+      <li><strong>"Your privacy policy does not appear to be associated with your application/brand"</strong>: the policy never names the app, or carries a different name from the consent screen.</li>
+      <li><strong>"Your privacy policy is improperly formatted"</strong>: the policy cannot be read as a normal page, for example a file download or an image of text.</li>
+    </ul>
+
+    <p>The Cloud Console's warning "Make sure your home page includes a link to your privacy policy" is usually traced, in Stack Overflow and r/googlecloud threads, to a link that renders only after sign-in or a policy on a different domain.</p>
+
+    <p>That second cause catches third-party hosted policies. A policy hosted on a generator's domain, including the free hosted URL from <a href="https://buildprivacypolicy.com/">our privacy policy generator</a>, works for app store listings but sits outside your verified domain. For Google OAuth, use the generator's <strong>Download HTML</strong> option and publish the policy on your own site.</p>
+
+    <h2 id="limited-use">The Limited Use Disclosure</h2>
+
+    <p>Apps granted sensitive or restricted scopes must follow the Limited Use requirements of the User Data Policy. They apply to raw data from those scopes and to anything aggregated, anonymized or derived from it:</p>
+
+    <ul>
+      <li>Use the data only to provide or improve <strong>user-facing features that are prominent</strong> in your app's interface.</li>
+      <li>Transfer it only to provide or improve those features with the user's consent, for security purposes, to comply with law, or in a merger, acquisition or sale of assets after explicit prior consent.</li>
+      <li>Do not let humans read it unless the user affirmatively agreed for specific data, it is needed for security or legal compliance, or the data is aggregated for internal operations.</li>
+      <li>Never transfer or sell it to <strong>advertising platforms, data brokers or information resellers</strong>, use it to <strong>serve ads</strong> (including retargeting and interest-based ads), or use it to determine <strong>creditworthiness</strong> or for lending.</li>
+    </ul>
+
+    <p>Google also wants an explicit statement that you comply. The <strong>Google Workspace user data and developer policy</strong> asks for "an affirmative or other similar statement" in your app or on your website, for example a homepage link to a dedicated page or to your privacy policy, and gives this wording: "The use of information received from Google Workspace scopes will adhere to the Google User Data Policy, including the Limited Use requirements." For scopes outside Workspace, developers commonly write "Google APIs" in place of "Google Workspace scopes", as in the block below.</p>
+
+    <p>The block combines that statement with the five disclosures from the earlier sections. Replace the bracketed items, list only the scopes you request, and delete any line that does not apply.</p>
+
+    <div class="disclosure-block">
+      <p class="disclosure-label">Google user data section (copy and edit)</p>
+<pre>Google User Data
+
+When you connect your Google Account to [App name], we request
+access to the following Google user data:
+- [e.g. Read-only access to your Google Calendar events
+  (https://www.googleapis.com/auth/calendar.readonly)]
+- [Your name, email address and profile picture (openid, email,
+  profile)]
+
+How we use it. We use this data only to [show your schedule on
+the Planner screen and sync changes you make back to Google
+Calendar]. We do not use Google user data for advertising
+[, and we do not use it to train generalized AI models].
+
+Sharing. We do not sell Google user data. We share it only with
+[cloud hosting provider], which processes it on our behalf to run
+[App name], or where required by law. [Name any other recipient
+and why.]
+
+Protection. Google user data is encrypted in transit (TLS) and at
+rest. Access is limited to [roles] who need it to operate the
+service.
+
+Retention and deletion. We keep Google user data for [period /
+as long as your account is connected]. You can remove [App name]'s
+access at any time at https://myaccount.google.com/permissions and
+request deletion of stored data by [emailing privacy@yourapp.com
+/ using Settings &gt; Delete account]. We delete it within [N]
+days of your request.
+
+Limited Use. [App name]'s use and transfer of information
+received from Google APIs will adhere to the Google API Services
+User Data Policy, including the Limited Use requirements.</pre>
+    </div>
+
+    <p>The rest of the policy still needs your other data, cookies and user rights; <a href="/resources/how-to-write-privacy-policy-for-app/">the full structure of an app privacy policy</a> covers those. If the site also runs Google Ads tags, put the <a href="/resources/google-ads-remarketing-privacy-policy/">advertising cookie and opt-out wording Google's ad products require</a> in a separate section, since Limited Use forbids using OAuth data for ads. To compare Google's review with Apple, Chrome and Slack, see <a href="/resources/platform-privacy-policy-requirements/">which developer platforms require a privacy policy URL</a>.</p>
+
+    <RelatedGuides currentSlug="resources/google-oauth-consent-screen-privacy-policy" />
+
+    <h2 id="faq">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>What is the Google OAuth consent screen?</h3>
+        <p>It is the page Google shows when your app asks a user for access to data in their Google Account. It displays your app's name, the access you are requesting, and links to your privacy policy and terms of service, and the user approves or denies the request there. You set it up in the Google Cloud Console, which is where the privacy policy URL field lives.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Is Google OAuth safe?</h3>
+        <p>For users, OAuth means your app never sees their Google password: it receives a token limited to the scopes they approved, and they can revoke it at any time from their Google Account's permissions page. For developers, safety depends on requesting the narrowest scopes, storing tokens securely and, for restricted scopes, passing Google's annual security assessment.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Why is it a bad idea to use OAuth 2.0 for authentication?</h3>
+        <p>OAuth 2.0 on its own is an authorization protocol: an access token proves permission to call an API, not who the user is, so signing users in with an access token alone invites token-substitution mistakes. Google's sign-in uses OpenID Connect, which adds a signed ID token your app can verify. Requesting only openid, email and profile also keeps you in non-sensitive scopes.</p>
+      </div>
+    </div>
+
+    <p class="disclaimer-note">This page summarizes Google's policies as of the date above; it is not legal advice. Sources: <a href="https://support.google.com/cloud/answer/13463073" rel="nofollow">OAuth App Verification Help Center</a>, <a href="https://support.google.com/cloud/answer/13464321" rel="nofollow">Verification requirements</a>, <a href="https://support.google.com/cloud/answer/13464323" rel="nofollow">When is verification not needed</a>, <a href="https://support.google.com/cloud/answer/13464325" rel="nofollow">Restricted scopes</a>, <a href="https://support.google.com/cloud/answer/13806988" rel="nofollow">App Privacy Policy quick reference guide</a>, <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="nofollow">Google API Services User Data Policy</a>, <a href="https://developers.google.com/workspace/workspace-api-user-data-developer-policy" rel="nofollow">Google Workspace user data and developer policy</a>.</p>
+
+  </div>
+</article>
+</main>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Google OAuth Consent Screen Privacy Policy: What Verification Requires",
+  "description": description,
+  "datePublished": publishDate,
+  "dateModified": modifiedDate,
+  "author": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buildprivacypolicy.com/resources/google-oauth-consent-screen-privacy-policy/"
+  }
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the Google OAuth consent screen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is the page Google shows when your app asks a user for access to data in their Google Account. It displays your app's name, the access you are requesting, and links to your privacy policy and terms of service, and the user approves or denies the request there. You set it up in the Google Cloud Console, which is where the privacy policy URL field lives."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Google OAuth safe?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For users, OAuth means your app never sees their Google password: it receives a token limited to the scopes they approved, and they can revoke it at any time from their Google Account's permissions page. For developers, safety depends on requesting the narrowest scopes, storing tokens securely and, for restricted scopes, passing Google's annual security assessment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is it a bad idea to use OAuth 2.0 for authentication?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "OAuth 2.0 on its own is an authorization protocol: an access token proves permission to call an API, not who the user is, so signing users in with an access token alone invites token-substitution mistakes. Google's sign-in uses OpenID Connect, which adds a signed ID token your app can verify. Requesting only openid, email and profile also keeps you in non-sensitive scopes."
+      }
+    }
+  ]
+})} />
+
+</Layout>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-link:hover {
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+  .page-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 16px 80px;
+  }
+  .page-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px 36px;
+    border: 1px solid #E5E7EB;
+  }
+  .breadcrumb {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 16px;
+  }
+  .breadcrumb a {
+    color: #6B7280;
+    text-decoration: underline;
+  }
+  .page-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .last-updated {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 24px;
+  }
+  .page-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .page-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  .page-card p {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .page-card ul, .page-card ol {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+  .page-card li {
+    margin-bottom: 8px;
+  }
+  .page-card a {
+    color: #2563EB;
+    text-decoration: underline;
+  }
+  .page-card strong {
+    font-weight: 600;
+  }
+  .toc {
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 8px;
+  }
+  .toc-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .toc ol {
+    margin-bottom: 0;
+    padding-left: 20px;
+  }
+  .toc li {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 16px 0 20px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+  }
+  .table-scroll:focus {
+    outline: 2px solid #2563EB;
+    outline-offset: 2px;
+  }
+  .compare-table {
+    width: 100%;
+    min-width: 860px;
+    border-collapse: collapse;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .compare-table thead th {
+    background: #F3F4F6;
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    vertical-align: bottom;
+  }
+  .compare-table tbody th {
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #111827;
+    background: #F9FAFB;
+    border-top: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    vertical-align: top;
+    width: 150px;
+  }
+  .compare-table td {
+    padding: 10px 12px;
+    border-top: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    color: #374151;
+    vertical-align: top;
+  }
+  .compare-table th:last-child,
+  .compare-table td:last-child {
+    border-right: none;
+  }
+  .compare-table .src {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #6B7280;
+  }
+  .compare-table code {
+    background: #E5E7EB;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 12px;
+  }
+  .source-list {
+    font-size: 14px !important;
+  }
+  .source-list li {
+    margin-bottom: 4px !important;
+  }
+  .faq-list {
+    margin-top: 8px;
+  }
+  .faq-item {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 20px;
+    margin-bottom: 8px;
+  }
+  .faq-item h3 {
+    margin-top: 0;
+  }
+  .faq-item p {
+    margin-bottom: 8px;
+  }
+  .disclosure-block {
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 16px 0 20px;
+  }
+  .disclosure-label {
+    font-size: 13px !important;
+    font-weight: 600;
+    color: #6B7280 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px !important;
+  }
+  .disclosure-block pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #1F2937;
+    margin: 0;
+  }
+  .page-card code {
+    background: #E5E7EB;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+  .disclaimer-note {
+    font-size: 13px !important;
+    color: #6B7280 !important;
+    border-top: 1px solid #E5E7EB;
+    padding-top: 16px;
+    margin-top: 24px;
+  }
+  .compare-table {
+    min-width: 520px !important;
+  }
+  @media (max-width: 640px) {
+    .page-card {
+      padding: 28px 20px;
+    }
+    .page-card h1 {
+      font-size: 24px;
+    }
+  }
+</style>
