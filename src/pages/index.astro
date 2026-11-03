@@ -12,7 +12,10 @@ import Layout from '../layouts/Layout.astro';
       <span class="logo-text">BuildPrivacyPolicy</span>
     </a>
   </div>
-  <div id="step-indicator" class="step-indicator">Step 1 of 8</div>
+  <div class="header-right">
+    <a href="/account-deletion-page-generator/" class="header-nav-link">Account Deletion Page</a>
+    <div id="step-indicator" class="step-indicator">Step 1 of 8</div>
+  </div>
 </div>
 
 <main>
@@ -938,6 +941,22 @@ import Layout from '../layouts/Layout.astro';
     font-weight: 700;
     color: #111827;
     letter-spacing: -0.3px;
+  }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-nav-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: #4B5563;
+  }
+  .header-nav-link:hover { color: #2563EB; text-decoration: none; }
+  @media (max-width: 560px) {
+    .header-nav-link { font-size: 13px; }
+    /* JS sets display inline when returning to the editor; no room for both on phones */
+    .step-indicator { display: none !important; }
   }
   .step-indicator {
     font-size: 13px;
