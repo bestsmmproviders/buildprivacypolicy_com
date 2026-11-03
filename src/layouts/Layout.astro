@@ -71,18 +71,24 @@ const footerResourceLinks = [
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content="https://buildprivacypolicy.com/og-image.png" />
+    <meta property="og:image" content="https://buildprivacypolicy.com/og.png" />
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://buildprivacypolicy.com/og-image.png" />
+    <meta name="twitter:image" content="https://buildprivacypolicy.com/og.png" />
 
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Organization",
+      "@id": "https://buildprivacypolicy.com/#organization",
       "name": "BuildPrivacyPolicy",
       "url": "https://buildprivacypolicy.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://buildprivacypolicy.com/favicon.svg",
+        "contentUrl": "https://buildprivacypolicy.com/favicon.svg"
+      },
       "description": "Free privacy policy generator for app and website developers. No signup required."
     })} />
 
@@ -90,7 +96,8 @@ const footerResourceLinks = [
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "BuildPrivacyPolicy",
-      "url": "https://buildprivacypolicy.com/"
+      "url": "https://buildprivacypolicy.com/",
+      "publisher": { "@id": "https://buildprivacypolicy.com/#organization" }
     })} />
 
     {turnstile && <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
