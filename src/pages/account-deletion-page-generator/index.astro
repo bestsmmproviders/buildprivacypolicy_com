@@ -1,0 +1,689 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const title = "Free Account Deletion Page Generator for Google Play | BuildPrivacyPolicy";
+const description = "Create the account deletion URL Google Play asks for in the Data safety form. Answer a few questions and get a free hosted page with deletion steps, data kept and timelines.";
+---
+
+<Layout title={title} description={description} turnstile={true}>
+
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="128" height="128" rx="28" fill="#1E3A5F"/><path d="M64 24C64 24 40 34 32 38V62C32 82 46 98 64 104C82 98 96 82 96 62V38C88 34 64 24 64 24Z" fill="#2E5A8F" stroke="#5B9BD5" stroke-width="2.5"/><path d="M52 64L60 72L78 54" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+  <nav class="header-nav">
+    <a href="/" class="header-nav-link">Privacy Policy Generator</a>
+  </nav>
+</div>
+
+<main>
+
+<div id="error-toast" class="error-toast" style="display:none"></div>
+
+<div class="hero-section">
+  <div class="hero-inner">
+    <h1 class="hero-title">Free Account Deletion Page Generator</h1>
+    <p class="hero-sub">Get the "Delete account URL" Google Play asks for in the Data safety form. Free hosted page, no signup.</p>
+  </div>
+</div>
+
+<div class="how-it-works">
+  <div class="how-inner">
+    <h2 class="how-title">Why you need an account deletion page</h2>
+    <p class="how-text">If your app lets people create an account, Google Play requires a web page where users can ask for their account and data to be deleted, even without the app installed. The page must use your app and developer name as shown on your store listing, list the steps to request deletion, and say which data is deleted, which is kept, and for how long. Answer the questions below and we'll host that page for you.</p>
+  </div>
+</div>
+
+<div id="builder-mode">
+<div class="builder-container">
+
+  <!-- 1: App details -->
+  <div class="form-card">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div>
+        <div class="section-title">App Details</div>
+        <div class="section-sub">Use the same names as your Google Play listing</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">App name <span class="required">*</span></label>
+      <input data-field="appName" placeholder="e.g. My Cool App" class="text-input" />
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Developer or company name <span class="required">*</span></label>
+      <div class="field-hint">As shown under your app name on Google Play</div>
+      <input data-field="developerName" placeholder="e.g. Acme Studios" class="text-input" />
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Email for deletion requests <span class="required">*</span></label>
+      <input data-field="contactEmail" placeholder="support@example.com" type="email" class="text-input" />
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Privacy policy URL</label>
+      <div class="field-hint">Optional. Linked at the bottom of the page.</div>
+      <input data-field="privacyPolicyUrl" placeholder="https://..." type="url" class="text-input" />
+    </div>
+  </div>
+
+  <!-- 2: How to delete -->
+  <div class="form-card">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div>
+        <div class="section-title">How Users Delete Their Account</div>
+        <div class="section-sub">Pick every way you accept deletion requests</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Deletion methods <span class="required">*</span></label>
+      <div class="field-hint">Google wants a way that works without the app, so email is selected for you</div>
+      <div class="chip-container" data-chip-field="deletionMethods" data-mode="multi">
+        <div class="chip" data-value="in_app">In the app</div>
+        <div class="chip selected" data-value="email">By email</div>
+        <div class="chip" data-value="web_form">Online form</div>
+        <div class="chip" data-value="support_contact">Contact support</div>
+      </div>
+    </div>
+
+    <div class="field-group" id="in-app-steps-group" style="display:none">
+      <label class="field-label">Steps in the app</label>
+      <div class="field-hint">One step per line</div>
+      <textarea data-field="inAppSteps" rows="4" class="text-input textarea-input" placeholder={"Open the app\nGo to Settings\nTap Delete account and confirm"}></textarea>
+    </div>
+
+    <div class="field-group" id="web-form-group" style="display:none">
+      <label class="field-label">Online form URL <span class="required">*</span></label>
+      <input data-field="webFormUrl" placeholder="https://..." type="url" class="text-input" />
+    </div>
+  </div>
+
+  <!-- 3: Data -->
+  <div class="form-card">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div>
+        <div class="section-title">What Happens to the Data</div>
+        <div class="section-sub">What's deleted, what's kept, and how long it takes</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Data that gets deleted</label>
+      <div class="chip-container" data-chip-field="deletedData" data-mode="multi">
+        <div class="chip selected" data-value="account_info">Account information</div>
+        <div class="chip" data-value="profile">Profile</div>
+        <div class="chip" data-value="user_content">User content</div>
+        <div class="chip" data-value="messages">Messages</div>
+        <div class="chip" data-value="preferences">Settings &amp; preferences</div>
+        <div class="chip" data-value="activity_history">Activity history</div>
+        <div class="chip" data-value="purchase_history">Purchase history</div>
+        <div class="chip" data-value="location">Location</div>
+        <div class="chip" data-value="photos_media">Photos &amp; media</div>
+        <div class="chip" data-value="device_identifiers">Device IDs / push tokens</div>
+        <div class="chip" data-value="analytics_data">Analytics data</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Data you keep after deletion</label>
+      <div class="field-hint">Leave empty if you keep nothing</div>
+      <div class="chip-container" data-chip-field="retainedData" data-mode="multi">
+        <div class="chip" data-value="legal_tax">Legal / tax records</div>
+        <div class="chip" data-value="fraud_security">Fraud &amp; security</div>
+        <div class="chip" data-value="backups">Backups (until they expire)</div>
+        <div class="chip" data-value="anonymized">Anonymized statistics</div>
+        <div class="chip" data-value="active_disputes">Open disputes</div>
+        <div class="chip" data-value="published_content">Content published to other services</div>
+      </div>
+    </div>
+
+    <div class="field-group" id="retention-details-group" style="display:none">
+      <label class="field-label">How long you keep it</label>
+      <textarea data-field="retentionDetails" rows="2" class="text-input textarea-input" placeholder="e.g. Invoices are kept for 7 years as required by tax law. Backups are overwritten within 30 days."></textarea>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">How long deletion takes <span class="required">*</span></label>
+      <div class="chip-container" data-chip-field="processingTime" data-mode="single">
+        <div class="chip" data-value="immediately">Immediately</div>
+        <div class="chip" data-value="within_7_days">Within 7 days</div>
+        <div class="chip" data-value="within_14_days">Within 14 days</div>
+        <div class="chip selected" data-value="within_30_days">Within 30 days</div>
+        <div class="chip" data-value="within_60_days">Within 60 days</div>
+        <div class="chip" data-value="within_90_days">Within 90 days</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="decl-item" data-decl="allowPartial">
+        <div class="decl-checkbox"><span class="decl-check">&#10003;</span></div>
+        <span class="decl-text">Users can also ask to delete <strong>some</strong> of their data without deleting their account.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4: Declarations -->
+  <div class="form-card">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div>
+        <div class="section-title">Declarations</div>
+        <div class="section-sub">Required before generating</div>
+      </div>
+    </div>
+    <div class="field-group">
+      <div class="decl-item" data-decl="declAccurate">
+        <div class="decl-checkbox"><span class="decl-check">&#10003;</span></div>
+        <span class="decl-text">I confirm the answers describe how my app really handles deletion requests.</span>
+      </div>
+      <div class="decl-item" data-decl="declLegal">
+        <div class="decl-checkbox"><span class="decl-check">&#10003;</span></div>
+        <span class="decl-text">I understand this is not legal advice and not a substitute for a qualified lawyer.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="generate-section">
+    <div class="cf-turnstile" data-sitekey="0x4AAAAAADwkcRqAcr9CPdKG" data-callback="onTurnstileSuccess" data-theme="light" data-size="normal"></div>
+    <button id="generate-btn" class="generate-btn" type="button">Generate Deletion Page</button>
+    <div class="generate-sub">Free &middot; No signup &middot; Instant</div>
+  </div>
+
+</div>
+</div>
+
+<!-- Results -->
+<div id="results-mode" style="display:none">
+<div class="results-container">
+
+  <div id="back-to-edit" class="back-btn">
+    <span class="back-arrow">&larr;</span> Back to editor
+  </div>
+
+  <div class="success-header">
+    <div class="success-icon"><span>&#10003;</span></div>
+    <div class="success-title">Your Deletion Page is Ready</div>
+    <div class="success-sub">Paste the URL into Google Play's Data safety form</div>
+  </div>
+
+  <div class="hosted-url-card">
+    <div class="hosted-label">Delete Account URL</div>
+    <a class="hosted-url" id="result-hosted-url" href="#" target="_blank" rel="noopener noreferrer"></a>
+    <div class="hosted-hint">Play Console &rsaquo; App content &rsaquo; Data safety &rsaquo; Delete account URL</div>
+  </div>
+
+  <div class="export-buttons">
+    <button id="btn-copy" class="btn btn-primary" type="button">Copy URL</button>
+    <button id="btn-dl-html" class="btn btn-secondary" type="button">Download HTML</button>
+  </div>
+
+  <div class="policy-preview-card">
+    <div class="preview-label">Page Preview</div>
+    <div id="page-preview" class="policy-content"></div>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Disclaimer:</strong> This page is generated from the answers you provided. It is not legal advice. You are responsible for making sure it matches how your app actually handles deletion requests, and for answering those requests within the time you stated.
+  </div>
+
+</div>
+</div>
+
+</main>
+
+</Layout>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; }
+  .logo-link { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-link:hover { text-decoration: none; }
+  .logo-icon { width: 28px; height: 28px; border-radius: 6px; flex-shrink: 0; }
+  .logo-text { font-size: 18px; font-weight: 700; color: #111827; letter-spacing: -0.3px; }
+  .header-nav-link { font-size: 14px; font-weight: 500; color: #4B5563; }
+  .header-nav-link:hover { color: #2563EB; text-decoration: none; }
+  @media (max-width: 560px) {
+    .logo-text { display: none; }
+  }
+
+  .error-toast {
+    position: fixed;
+    top: 72px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 200;
+    background: #FEF2F2;
+    color: #991B1B;
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: 1px solid #FECACA;
+    font-size: 14px;
+    max-width: 480px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    animation: fadeUp 0.3s ease;
+  }
+
+  .hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #2563EB 0%, #1E40AF 100%);
+    padding: 32px 16px;
+  }
+  .hero-inner { text-align: center; max-width: 700px; width: 100%; }
+  .hero-title { font-size: 22px; font-weight: 700; color: white; letter-spacing: -0.5px; margin: 0 0 8px; }
+  .hero-sub { font-size: 14px; color: rgba(255,255,255,0.9); line-height: 1.5; }
+
+  .how-it-works { padding: 24px 16px 0; }
+  .how-inner { max-width: 680px; margin: 0 auto; }
+  .how-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 8px; }
+  .how-text { font-size: 14px; color: #4B5563; line-height: 1.7; }
+
+  .builder-container { max-width: 680px; margin: 0 auto; padding: 24px 16px 80px; }
+
+  .form-card {
+    background: white;
+    border-radius: 12px;
+    padding: 28px 28px 8px;
+    margin-bottom: 14px;
+    border: 1px solid #E5E7EB;
+  }
+  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+  .section-num {
+    min-width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: #EFF6FF;
+    color: #2563EB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .section-title { font-weight: 700; font-size: 17px; color: #111827; }
+  .section-sub { font-size: 13px; color: #6B7280; margin-top: 1px; }
+
+  .field-group { margin-bottom: 20px; }
+  .field-label { display: block; font-weight: 600; color: #111827; margin-bottom: 6px; font-size: 14px; }
+  .field-hint { font-size: 12px; color: #6B7280; margin-bottom: 8px; }
+  .required { color: #DC2626; }
+  .text-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    font-family: inherit;
+    background: white;
+    color: #111827;
+  }
+  .textarea-input { resize: vertical; }
+
+  .chip-container { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 14px;
+    border-radius: 18px;
+    cursor: pointer;
+    font-size: 13px;
+    background: white;
+    color: #374151;
+    border: 1.5px solid #D1D5DB;
+    user-select: none;
+    transition: all 0.15s ease;
+    font-family: inherit;
+  }
+  .chip:hover { filter: brightness(0.93); }
+  .chip.selected { background: #2563EB; color: white; border-color: #2563EB; }
+
+  .decl-item {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: #FAFAFA;
+    border: 1px solid #F3F4F6;
+  }
+  .decl-item:hover { background: #F3F4F6; }
+  .decl-checkbox {
+    min-width: 18px;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    border: 2px solid #D1D5DB;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+  }
+  .decl-item.checked .decl-checkbox { border-color: #2563EB; background: #2563EB; }
+  .decl-check { color: white; font-size: 12px; font-weight: 700; display: none; }
+  .decl-item.checked .decl-check { display: inline; }
+  .decl-text { font-size: 13px; color: #374151; line-height: 1.5; }
+
+  .generate-section { text-align: center; padding: 8px 0 24px; }
+  .cf-turnstile { min-height: 65px; }
+  .generate-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 48px;
+    background: #2563EB;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    letter-spacing: -0.2px;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.25);
+    transition: background 0.15s ease;
+  }
+  .generate-btn:hover { background: #1D4ED8; }
+  .generate-btn:active { transform: scale(0.98); }
+  .generate-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  .generate-sub { font-size: 12px; color: #4B5563; margin-top: 10px; }
+
+  .results-container { max-width: 760px; margin: 0 auto; padding: 24px 16px 80px; animation: fadeUp 0.4s ease; }
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #6B7280;
+    margin-bottom: 20px;
+  }
+  .back-btn:hover { background: #F3F4F6; color: #111827; }
+  .back-arrow { font-size: 18px; }
+  .success-header { text-align: center; margin-bottom: 28px; }
+  .success-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #ECFDF5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+  }
+  .success-icon span { font-size: 28px; color: #059669; }
+  .success-title { font-size: 24px; font-weight: 700; color: #111827; letter-spacing: -0.3px; }
+  .success-sub { font-size: 15px; color: #6B7280; margin-top: 6px; }
+  .hosted-url-card {
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .hosted-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #9CA3AF;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .hosted-url { font-size: 14px; color: #2563EB; font-weight: 500; word-break: break-all; }
+  .hosted-hint { font-size: 12px; color: #9CA3AF; margin-top: 6px; }
+  .export-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid;
+    font-family: inherit;
+    transition: all 0.15s ease;
+  }
+  .btn-primary { background: #2563EB; color: white; border-color: #2563EB; }
+  .btn-primary:hover { background: #1D4ED8; }
+  .btn-secondary { background: white; color: #374151; border-color: #D1D5DB; }
+  .btn-secondary:hover { background: #F9FAFB; border-color: #9CA3AF; }
+  .policy-preview-card {
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .preview-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #9CA3AF;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+  }
+  .policy-content { font-family: -apple-system, system-ui, sans-serif; line-height: 1.7; color: #1a1a1a; font-size: 15px; }
+  .policy-content :global(h2) { font-size: 19px; margin: 24px 0 8px; }
+  .policy-content :global(h3) { font-size: 16px; margin: 16px 0 6px; }
+  .policy-content :global(p) { margin-bottom: 10px; }
+  .policy-content :global(ul), .policy-content :global(ol) { padding-left: 22px; margin-bottom: 10px; }
+  .policy-content :global(hr) { border: none; border-top: 1px solid #eee; margin: 20px 0; }
+  .policy-content :global(a.button) {
+    display: inline-block;
+    background: #2563EB;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+  }
+  .disclaimer {
+    background: #F9FAFB;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #6B7280;
+    line-height: 1.6;
+  }
+</style>
+
+<script is:inline>
+(function() {
+  var API_BASE = 'https://api.buildprivacypolicy.com';
+
+  var state = {
+    appName: '', developerName: '', contactEmail: '', privacyPolicyUrl: '',
+    deletionMethods: ['email'], inAppSteps: '', webFormUrl: '',
+    deletedData: ['account_info'], retainedData: [], retentionDetails: '',
+    processingTime: 'within_30_days', allowPartial: false,
+    declAccurate: false, declLegal: false
+  };
+  var result = { uuid: '', standaloneHtml: '' };
+  var turnstileToken = '';
+  var errorTimeout = null;
+
+  function $(sel) { return document.querySelector(sel); }
+
+  function pushEvent(name) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: name });
+  }
+
+  function showError(msg) {
+    var el = $('#error-toast');
+    el.textContent = msg;
+    el.style.display = 'block';
+    clearTimeout(errorTimeout);
+    errorTimeout = setTimeout(function() { el.style.display = 'none'; }, 4000);
+  }
+
+  function syncConditional() {
+    $('#in-app-steps-group').style.display = state.deletionMethods.indexOf('in_app') !== -1 ? 'block' : 'none';
+    $('#web-form-group').style.display = state.deletionMethods.indexOf('web_form') !== -1 ? 'block' : 'none';
+    $('#retention-details-group').style.display = state.retainedData.length ? 'block' : 'none';
+  }
+
+  document.addEventListener('input', function(e) {
+    var field = e.target.getAttribute('data-field');
+    if (field && state.hasOwnProperty(field)) state[field] = e.target.value;
+  });
+
+  document.addEventListener('click', function(e) {
+    var chip = e.target.closest('.chip');
+    if (chip) {
+      var container = chip.closest('.chip-container');
+      var field = container.getAttribute('data-chip-field');
+      var value = chip.getAttribute('data-value');
+      if (container.getAttribute('data-mode') === 'single') {
+        state[field] = value;
+        container.querySelectorAll('.chip').forEach(function(c) { c.classList.toggle('selected', c === chip); });
+      } else {
+        var i = state[field].indexOf(value);
+        if (i === -1) state[field].push(value); else state[field].splice(i, 1);
+        chip.classList.toggle('selected', i === -1);
+      }
+      syncConditional();
+      return;
+    }
+
+    var decl = e.target.closest('.decl-item');
+    if (decl) {
+      var key = decl.getAttribute('data-decl');
+      state[key] = !state[key];
+      decl.classList.toggle('checked', state[key]);
+      return;
+    }
+
+    if (e.target.closest('#generate-btn')) { handleGenerate(); return; }
+    if (e.target.closest('#back-to-edit')) {
+      $('#results-mode').style.display = 'none';
+      $('#builder-mode').style.display = 'block';
+      window.scrollTo(0, 0);
+      return;
+    }
+    if (e.target.closest('#btn-copy')) {
+      var url = API_BASE + '/delete/' + result.uuid;
+      var btn = $('#btn-copy');
+      navigator.clipboard.writeText(url).then(function() {
+        btn.textContent = 'Copied!';
+        setTimeout(function() { btn.textContent = 'Copy URL'; }, 2000);
+      });
+      return;
+    }
+    if (e.target.closest('#btn-dl-html')) {
+      var blob = new Blob([result.standaloneHtml], { type: 'text/html' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'account-deletion.html';
+      a.click();
+      URL.revokeObjectURL(a.href);
+      return;
+    }
+  });
+
+  window.onTurnstileSuccess = function(token) { turnstileToken = token; };
+
+  function handleGenerate() {
+    var s = state;
+    if (!s.appName.trim()) { showError('Please enter the app name'); return; }
+    if (!s.developerName.trim()) { showError('Please enter the developer name'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s.contactEmail.trim())) { showError('Please enter a valid email for deletion requests'); return; }
+    if (!s.deletionMethods.length) { showError('Please pick at least one deletion method'); return; }
+    if (s.deletionMethods.indexOf('web_form') !== -1 && !/^https?:\/\//i.test(s.webFormUrl.trim())) {
+      showError('Please enter the online form URL (starting with https://)');
+      return;
+    }
+    if (!s.declAccurate || !s.declLegal) { showError('Please check both declaration boxes in Step 4'); return; }
+
+    var btn = $('#generate-btn');
+    btn.disabled = true;
+    btn.textContent = 'Generating...';
+
+    var payload = {
+      appName: s.appName.trim(),
+      developerName: s.developerName.trim(),
+      contactEmail: s.contactEmail.trim(),
+      privacyPolicyUrl: s.privacyPolicyUrl.trim(),
+      deletionMethods: s.deletionMethods,
+      inAppSteps: s.inAppSteps,
+      webFormUrl: s.webFormUrl.trim(),
+      deletedData: s.deletedData,
+      retainedData: s.retainedData,
+      retentionDetails: s.retentionDetails,
+      processingTime: s.processingTime,
+      allowPartial: s.allowPartial,
+      declAccurate: s.declAccurate,
+      declLegal: s.declLegal,
+      turnstileToken: turnstileToken
+    };
+
+    fetch(API_BASE + '/api/deletion/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function(res) {
+      return res.json().catch(function() { return {}; }).then(function(data) {
+        if (!res.ok || !data.success) throw new Error(data.error || ('Server error (' + res.status + ')'));
+        return data;
+      });
+    })
+    .then(function(data) {
+      btn.disabled = false;
+      btn.textContent = 'Generate Deletion Page';
+      result.uuid = data.uuid;
+      result.standaloneHtml = data.standaloneHtml || '';
+      pushEvent('deletion_page_complete');
+
+      var url = API_BASE + '/delete/' + data.uuid;
+      $('#result-hosted-url').textContent = url;
+      $('#result-hosted-url').href = url;
+      $('#page-preview').innerHTML = data.pageHtml || '';
+      $('#builder-mode').style.display = 'none';
+      $('#results-mode').style.display = 'block';
+      window.scrollTo(0, 0);
+    })
+    .catch(function(err) {
+      btn.disabled = false;
+      btn.textContent = 'Generate Deletion Page';
+      if (window.turnstile) window.turnstile.reset();
+      showError(err.message || 'Generation failed. Please try again.');
+    });
+  }
+
+  syncConditional();
+})();
+</script>
