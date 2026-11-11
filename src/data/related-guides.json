@@ -48,6 +48,10 @@
       "title": "GDPR EU Representative Guide",
       "href": "/resources/gdpr-eu-representative/"
     },
+    "resources/gdpr-privacy-policy-template": {
+      "title": "GDPR Privacy Policy Template",
+      "href": "/resources/gdpr-privacy-policy-template/"
+    },
     "resources/how-to-add-privacy-policy-to-website": {
       "title": "How to Add a Privacy Policy to Your Website",
       "href": "/resources/how-to-add-privacy-policy-to-website/"
@@ -170,7 +174,8 @@
     "resources/does-gdpr-apply-to-us-companies": [
       { "slug": "resources/gdpr-eu-representative", "reason": "If GDPR applies to you, Article 27 may require an EU-based representative." },
       { "slug": "tools/gdpr-compliance-checklist", "reason": "Walk through every GDPR requirement with an interactive checklist." },
-      { "slug": "tools/privacy-law-checker", "reason": "Check whether GDPR and other data-protection laws apply to your specific situation." }
+      { "slug": "tools/privacy-law-checker", "reason": "Check whether GDPR and other data-protection laws apply to your specific situation." },
+      { "slug": "resources/gdpr-privacy-policy-template", "reason": "If GDPR applies, copy a privacy notice template that covers every Article 13 and 14 disclosure." }
     ],
     "resources/etsy-privacy-policy-generator": [
       { "slug": "resources/shopify-privacy-policy-generator", "reason": "Selling on Shopify too? The privacy policy requirements overlap but differ in key areas." },
@@ -182,10 +187,16 @@
       { "slug": "resources/slack-app-privacy-policy", "reason": "Slack's App Directory has a similar review-gated privacy policy requirement to Meta's App Review." },
       { "slug": "resources/telegram-bot-privacy-policy", "reason": "Building a bot for Telegram as well as Messenger? Telegram requires a privacy policy for every bot and Mini App that handles users' messages." }
     ],
+    "resources/gdpr-privacy-policy-template": [
+      { "slug": "resources/does-gdpr-apply-to-us-companies", "reason": "Based outside the EU? Check whether GDPR applies to you before publishing a GDPR notice." },
+      { "slug": "resources/gdpr-eu-representative", "reason": "Non-EU controllers may need an Article 27 representative named in the notice." },
+      { "slug": "tools/gdpr-compliance-checklist", "reason": "A privacy notice is one GDPR obligation; this checklist covers the rest." }
+    ],
     "resources/gdpr-eu-representative": [
       { "slug": "resources/does-gdpr-apply-to-us-companies", "reason": "First step: confirm whether GDPR actually applies to your company." },
       { "slug": "tools/gdpr-compliance-checklist", "reason": "The representative is one requirement — this checklist covers the rest." },
-      { "slug": "tools/privacy-law-checker", "reason": "Check which other data-protection laws apply alongside GDPR." }
+      { "slug": "tools/privacy-law-checker", "reason": "Check which other data-protection laws apply alongside GDPR." },
+      { "slug": "resources/gdpr-privacy-policy-template", "reason": "A copy-ready GDPR privacy notice with a slot for your representative's details." }
     ],
     "resources/how-to-add-privacy-policy-to-website": [
       { "slug": "resources/do-i-need-a-privacy-policy-for-my-website", "reason": "Not sure whether your site actually needs a policy? Start here." },
