@@ -52,6 +52,10 @@
       "title": "GDPR Privacy Policy Template",
       "href": "/resources/gdpr-privacy-policy-template/"
     },
+    "resources/california-privacy-policy-template": {
+      "title": "California Privacy Policy Template",
+      "href": "/resources/california-privacy-policy-template/"
+    },
     "resources/how-to-add-privacy-policy-to-website": {
       "title": "How to Add a Privacy Policy to Your Website",
       "href": "/resources/how-to-add-privacy-policy-to-website/"
@@ -169,7 +173,8 @@
     "resources/do-i-need-a-privacy-policy-for-my-website": [
       { "slug": "resources/how-to-add-privacy-policy-to-website", "reason": "Once you know you need one, this guide shows where and how to add it." },
       { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "Building an app instead? The requirements differ from websites." },
-      { "slug": "tools/privacy-law-checker", "reason": "Check exactly which data-protection laws apply to your site and audience." }
+      { "slug": "tools/privacy-law-checker", "reason": "Check exactly which data-protection laws apply to your site and audience." },
+      { "slug": "resources/california-privacy-policy-template", "reason": "California visitors? CalOPPA requires a posted policy with no revenue threshold; this template covers it and the CCPA." }
     ],
     "resources/does-gdpr-apply-to-us-companies": [
       { "slug": "resources/gdpr-eu-representative", "reason": "If GDPR applies to you, Article 27 may require an EU-based representative." },
@@ -186,6 +191,11 @@
       { "slug": "resources/platform-privacy-policy-requirements", "reason": "Compares Meta App Review's privacy policy URL requirement with Apple, Google Play, Chrome, Alexa and three others." },
       { "slug": "resources/slack-app-privacy-policy", "reason": "Slack's App Directory has a similar review-gated privacy policy requirement to Meta's App Review." },
       { "slug": "resources/telegram-bot-privacy-policy", "reason": "Building a bot for Telegram as well as Messenger? Telegram requires a privacy policy for every bot and Mini App that handles users' messages." }
+    ],
+    "resources/california-privacy-policy-template": [
+      { "slug": "tools/privacy-law-checker", "reason": "Check whether the CCPA, CalOPPA or other state and international privacy laws apply to your site before choosing which clauses to keep." },
+      { "slug": "resources/gdpr-privacy-policy-template", "reason": "Visitors from the EU too? A copy-ready GDPR notice covering every Article 13 and 14 disclosure." },
+      { "slug": "resources/privacy-policy-for-small-business", "reason": "The full small-business policy that a California section usually sits inside." }
     ],
     "resources/gdpr-privacy-policy-template": [
       { "slug": "resources/does-gdpr-apply-to-us-companies", "reason": "Based outside the EU? Check whether GDPR applies to you before publishing a GDPR notice." },
@@ -243,7 +253,8 @@
     "resources/privacy-policy-for-small-business": [
       { "slug": "resources/privacy-policy-for-marketing-agency", "reason": "If your business is an agency, this guide covers industry-specific clauses." },
       { "slug": "resources/do-i-need-a-privacy-policy-for-my-website", "reason": "Find out whether your small business website is legally required to have one." },
-      { "slug": "resources/privacy-policy-for-photography-website", "reason": "Photographers handle client images and booking data that require specific privacy disclosures." }
+      { "slug": "resources/privacy-policy-for-photography-website", "reason": "Photographers handle client images and booking data that require specific privacy disclosures." },
+      { "slug": "resources/california-privacy-policy-template", "reason": "Selling to California customers? A copy-ready California notice with the CCPA categories table, rights list and CalOPPA lines." }
     ],
     "resources/shopify-privacy-policy-generator": [
       { "slug": "resources/wix-privacy-policy-generator", "reason": "Comparing platforms? Wix has different privacy policy placement and requirements." },

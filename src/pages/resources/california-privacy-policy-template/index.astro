@@ -1,0 +1,572 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import RelatedGuides from '../../../components/RelatedGuides.astro';
+
+const title = "California Privacy Policy Template (CCPA/CPRA Sample)";
+const description = "Free California website privacy policy template. Covers CCPA/CPRA thresholds, the categories table, consumer rights, Do Not Sell or Share, and CalOPPA rules.";
+const publishDate = "2026-11-13";
+const modifiedDate = "2026-11-13";
+
+const faqs = [
+  {
+    q: "Do I need a CCPA privacy policy on my website?",
+    a: "Only if your business meets a CCPA threshold: over $26,625,000 in annual revenue, personal information of 100,000+ California consumers or households bought, sold, or shared a year, or half its revenue from selling or sharing it. Below those, CalOPPA still requires a posted policy on any commercial website collecting personal information from Californians."
+  },
+  {
+    q: "What are California's privacy rights?",
+    a: "California residents can ask a covered business to disclose, delete, or correct their personal information, opt out of its sale or sharing, limit the use of sensitive personal information, and use these rights without being charged more or served worse."
+  },
+  {
+    q: "How do you opt out under the California Consumer Privacy Act?",
+    a: "Use the business's \"Do Not Sell or Share My Personal Information\" link, or turn on an opt-out preference signal such as Global Privacy Control in your browser. Businesses that sell or share must honor that signal and cannot require an account to opt out."
+  },
+  {
+    q: "What does \"Do Not Sell or Share My Personal Information\" mean?",
+    a: "It is the required title of the homepage link a business must provide if it sells personal information or shares it for cross-context behavioral advertising. The link leads to a page where a California consumer can stop that selling or sharing."
+  },
+  {
+    q: "How can I create a privacy policy for my website?",
+    a: "List the personal information your site collects and every tool that receives it, then explain why, how long you keep it, and how people use their rights. For California, add the categories table, rights list, and sale and sharing statement shown above."
+  },
+  {
+    q: "What is California's regulation and best practice regarding privacy?",
+    a: "The CCPA as amended by the CPRA (Civil Code §1798.100 onward), enforced by the California Privacy Protection Agency and the Attorney General, with regulations at 11 CCR §7000 onward, plus CalOPPA (Business and Professions Code §22575) for all commercial websites. Both expect an accurate, dated policy; the CCPA requires review every 12 months."
+  }
+];
+---
+
+<Layout title={title} description={description}>
+
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="128" height="128" rx="28" fill="#1E3A5F"/><path d="M64 24C64 24 40 34 32 38V62C32 82 46 98 64 104C82 98 96 82 96 62V38C88 34 64 24 64 24Z" fill="#2E5A8F" stroke="#5B9BD5" stroke-width="2.5"/><path d="M52 64L60 72L78 54" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+</div>
+
+<main>
+<article class="page-container">
+  <div class="page-card">
+    <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
+    <h1>California Website Privacy Policy Template (Free Sample)</h1>
+    <p class="last-updated">Updated November 13, 2026</p>
+
+    <p>A California privacy policy template is a privacy notice built around what the CCPA (as amended by the CPRA) and CalOPPA require a website to disclose: the personal information you collect, its sources, why you use it, who receives it, whether you sell or share it, how long you keep it, and how California residents use their rights. Copy the free sample below, fill in the brackets, and delete anything that doesn't describe your site.</p>
+
+    <p class="note">This page describes what the statutes and California Privacy Protection Agency (CPPA) regulations say. It is not legal advice.</p>
+
+    <nav class="toc">
+      <p class="toc-title">Contents</p>
+      <ol>
+        <li><a href="#who-is-covered">Which Businesses the CCPA/CPRA Covers</a></li>
+        <li><a href="#categories-table">The Notice at Collection and Categories Table</a></li>
+        <li><a href="#consumer-rights">Consumer Rights and the Two Request Channels</a></li>
+        <li><a href="#do-not-sell-or-share">"Do Not Sell or Share" and What Triggers It</a></li>
+        <li><a href="#sample-template">Copy-Ready California Privacy Notice Template</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="who-is-covered">Which Businesses the CCPA/CPRA Covers</h2>
+
+    <p>The CCPA applies to a for-profit business that does business in California, collects consumers' personal information, and meets at least one threshold in Cal. Civ. Code §1798.140(d)(1):</p>
+
+    <ul>
+      <li>Annual gross revenue above <strong>$26,625,000</strong> in the preceding year. The statute says $25,000,000, adjusted every odd-numbered year under §1798.199.95(d); the CPPA set the current figure from January 1, 2025.</li>
+      <li>Buys, sells, or shares the personal information of <strong>100,000 or more</strong> consumers or households a year.</li>
+      <li>Derives <strong>50% or more</strong> of annual revenue from selling or sharing personal information.</li>
+    </ul>
+
+    <p>A "consumer" is any California resident (§1798.140(i)), including visitors, customers and, since January 1, 2023, employees and job applicants.</p>
+
+    <p><strong>CalOPPA has no threshold.</strong> Cal. Bus. &amp; Prof. Code §22575 requires every commercial website collecting personally identifiable information from California residents to post a policy listing the categories collected and third-party recipients, any process for reviewing that data, how policy changes are announced, an effective date, how the site responds to "Do Not Track" signals, and whether other parties track visitors across sites. Unsure which laws apply? Try the <a href="/tools/privacy-law-checker/">privacy law applicability checker</a> or read <a href="/resources/do-i-need-a-privacy-policy-for-my-website/">whether your website needs a privacy policy</a>.</p>
+
+    <h2 id="categories-table">The Notice at Collection and Categories Table, Column by Column</h2>
+
+    <p>The <strong>notice at collection</strong> (§1798.100(a)) must state, at or before collection, the categories collected, the purposes, whether each is sold or shared, and how long each is kept. Online, it can be a link to the matching privacy policy section, placed where data is collected (11 CCR §7012). The <strong>privacy policy</strong> (§1798.130(a)(5)) must cover the past 12 months: categories collected, sources, purposes, categories of third parties, and separate lists of what was sold or shared and what was disclosed for a business purpose. It must be updated at least once every 12 months.</p>
+
+    <p>One table usually covers both, one column per statutory question:</p>
+
+    <ul>
+      <li><strong>Category:</strong> the statutory names in §1798.140(v)(1)(A)–(L), such as identifiers, commercial information, or inferences.</li>
+      <li><strong>Examples:</strong> the actual data points on your site.</li>
+      <li><strong>Sources:</strong> the consumer, their browser or device, service providers, or ad partners.</li>
+      <li><strong>Purpose:</strong> the business or commercial reason.</li>
+      <li><strong>Disclosed to:</strong> categories of third parties.</li>
+      <li><strong>Sold or shared?:</strong> yes or no per category.</li>
+      <li><strong>Retention:</strong> a period, or the criteria for one.</li>
+    </ul>
+
+    <p>Example rows for a small site with a contact form, payments, analytics and an ad pixel:</p>
+
+    <div class="table-scroll" role="region" aria-label="Example CCPA categories table" tabindex="0">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th scope="col">Category</th>
+            <th scope="col">Examples</th>
+            <th scope="col">Sources</th>
+            <th scope="col">Purpose</th>
+            <th scope="col">Disclosed to</th>
+            <th scope="col">Sold or shared?</th>
+            <th scope="col">Retention</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Identifiers</th>
+            <td>Name, email, IP address, cookie IDs</td>
+            <td>You; your browser</td>
+            <td>Inquiries, security, analytics, ads</td>
+            <td>Hosting, email, analytics, ad providers</td>
+            <td>Shared with ad partners</td>
+            <td>24 months after last contact</td>
+          </tr>
+          <tr>
+            <th scope="row">Commercial information</th>
+            <td>Purchases, billing address</td>
+            <td>You</td>
+            <td>Orders and invoices</td>
+            <td>Payment processor, shipping carrier</td>
+            <td>No</td>
+            <td>7 years (tax records)</td>
+          </tr>
+          <tr>
+            <th scope="row">Internet or network activity</th>
+            <td>Pages viewed, clicks, referrer</td>
+            <td>Cookies and tags</td>
+            <td>Analytics, ads</td>
+            <td>Analytics and ad providers</td>
+            <td>Shared with ad partners</td>
+            <td>14 months</td>
+          </tr>
+          <tr>
+            <th scope="row">Geolocation data</th>
+            <td>City or region from IP address</td>
+            <td>Derived from IP</td>
+            <td>Analytics, fraud prevention</td>
+            <td>Analytics provider</td>
+            <td>No</td>
+            <td>14 months</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 id="consumer-rights">Consumer Rights to List and the Two Request Channels</h2>
+
+    <ul>
+      <li><strong>Know</strong> what is collected, from where, why, and who receives it (§1798.110), and what was sold, shared, or disclosed (§1798.115).</li>
+      <li><strong>Delete</strong> personal information collected from the consumer (§1798.105).</li>
+      <li><strong>Correct</strong> inaccurate information (§1798.106).</li>
+      <li><strong>Opt out</strong> of sale or sharing (§1798.120).</li>
+      <li><strong>Limit</strong> the use of sensitive personal information (§1798.121).</li>
+      <li><strong>Non-discrimination</strong> for using these rights (§1798.125).</li>
+    </ul>
+
+    <p><strong>Request channels.</strong> Section 1798.130(a)(1)(A) requires two or more methods for requests to know, delete, or correct, including at minimum a toll-free phone number. A business that operates exclusively online and has a direct relationship with the consumer only needs an email address. A business with a website must also accept requests through it (§1798.130(a)(1)(B)).</p>
+
+    <p><strong>Deadlines.</strong> Responses are due within 45 days of a verifiable request, extendable once by 45 days with notice (§1798.130(a)(2)(A)). Opt-out requests need not be verifiable and cannot require an account (11 CCR §7026).</p>
+
+    <h2 id="do-not-sell-or-share">"Do Not Sell or Share" and What Triggers It</h2>
+
+    <p><strong>Selling</strong> (§1798.140(ad)) is disclosing personal information to a third party for money or other valuable consideration. <strong>Sharing</strong> (§1798.140(ah)) is disclosing it for cross-context behavioral advertising, paid or not: targeting ads using data about a person's activity on other businesses' sites and apps (§1798.140(k)). A retargeting pixel sending cookie IDs and page views to an ad network is the standard example. Disclosures to a contracted service provider (§1798.140(ag)) are neither.</p>
+
+    <p>A business that sells or shares must put a clear and conspicuous homepage link titled <strong>"Do Not Sell or Share My Personal Information"</strong> (§1798.135(a)). If it uses sensitive personal information beyond the purposes in §1798.121(a), it also needs a <strong>"Limit the Use of My Sensitive Personal Information"</strong> link, or one combined link. The regulations (11 CCR §7025) require it to honor opt-out preference signals such as Global Privacy Control.</p>
+
+    <p>Two more rules: selling or sharing data of consumers known to be under 16 needs opt-in consent, from a parent if the child is under 13 (§1798.120(c)). And a business that sells or shares nothing must say so prominently (§1798.130(a)(5)(C)(i)).</p>
+
+    <h2 id="sample-template">Copy-Ready California Privacy Notice Template</h2>
+
+    <p>Use it standalone or as a section of your main policy. Sections marked <em>[CCPA only]</em> can go if you are below every threshold; sections 6 to 8 cover CalOPPA.</p>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-label">Sample California Privacy Notice — ready to copy</span>
+      </div>
+      <div class="copy-block-body" id="sample-policy-text">
+<p><strong>California Privacy Notice for [Your Business Name]</strong></p>
+<p><em>Effective date: [Date] · Last updated: [Date]</em></p>
+
+<p><strong>1. Scope</strong></p>
+<p>This notice supplements our Privacy Policy for California residents using [yourwebsite.com].</p>
+
+<p><strong>2. Personal Information We Collect</strong></p>
+<p>In the past 12 months we collected the categories below. For each: examples; sources; purposes; recipients; whether sold or shared; retention.</p>
+<ul>
+<li><strong>Identifiers:</strong> [name, email, IP address, cookie IDs]; from [you, your browser]; to [respond to inquiries, secure and analyze our site]; disclosed to [hosting, email and analytics providers]; [not sold or shared / shared with advertising partners]; kept [24 months after last contact].</li>
+<li><strong>Commercial information:</strong> [purchases, billing address]; from [you]; to [process orders]; disclosed to [payment processor, shipping carrier]; not sold or shared; kept [7 years for tax records].</li>
+<li><strong>Internet or network activity:</strong> [pages viewed, clicks]; from [cookies and similar technologies]; for [analytics, advertising]; disclosed to [analytics and advertising providers]; [not sold or shared / shared with advertising partners]; kept [14 months].</li>
+<li><strong>Geolocation data:</strong> [approximate location from IP address]; for [analytics, fraud prevention]; disclosed to [analytics provider]; not sold or shared; kept [14 months].</li>
+</ul>
+<p>[We do not collect sensitive personal information.] / [We use [category] only for purposes permitted by Cal. Civ. Code §1798.121(a).]</p>
+
+<p><strong>3. Sale and Sharing</strong></p>
+<p>[We do not sell or share personal information and have not done so in the past 12 months.] / [We share identifiers and internet activity with advertising partners for cross-context behavioral advertising. To opt out, use the "Do Not Sell or Share My Personal Information" link on our homepage. We honor Global Privacy Control signals.] We do not sell or share personal information of consumers we know are under 16.</p>
+
+<p><strong>4. Your California Rights</strong> <em>[CCPA only]</em></p>
+<p>You may request to know the personal information we collected about you, its sources, our purposes, and who received it; to delete it; to correct it; to opt out of its sale or sharing; and to limit our use of sensitive personal information. We will not discriminate against you for using these rights.</p>
+
+<p><strong>5. How to Submit a Request</strong> <em>[CCPA only]</em></p>
+<p>[Call toll-free [1-800-XXX-XXXX]] / [email [privacy@yourwebsite.com]] / [use the form at [URL]]. We verify requests by [method]. An authorized agent may act for you with proof of authority. We respond within 45 days, or tell you if we need 45 more.</p>
+
+<p><strong>6. Reviewing Your Information</strong></p>
+<p>[Update your details in [account settings]] / [email [privacy@yourwebsite.com]] to review or change the personal information we hold.</p>
+
+<p><strong>7. Do Not Track and Third-Party Tracking</strong></p>
+<p>Our site [does not respond to / responds as follows to: [describe]] browser "Do Not Track" signals. [Third parties such as [providers] may collect information about your activity over time and across websites when you use our site.] / [We do not allow third-party tracking across websites.]</p>
+
+<p><strong>8. Changes</strong></p>
+<p>We review this notice at least every 12 months and announce material changes by [updating the date above / emailing registered users].</p>
+
+<p><strong>9. Contact</strong></p>
+<p>[Your Business Name] · [privacy@yourwebsite.com] · [Toll-free number, if applicable] · [Business address]</p>
+      </div>
+      <button class="copy-btn" id="copy-policy-btn" type="button">Copy to clipboard</button>
+    </div>
+
+    <p>Prefer answering questions? The <a href="/">free privacy policy generator</a> builds a full policy, and the <a href="/resources/gdpr-privacy-policy-template/">GDPR privacy notice template</a> covers EU visitors.</p>
+
+    <RelatedGuides currentSlug="resources/california-privacy-policy-template" />
+
+    <h2 id="faq">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      {faqs.map((f) => (
+        <div class="faq-item">
+          <h3>{f.q}</h3>
+          <p>{f.a}</p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</article>
+</main>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "California Website Privacy Policy Template (Free Sample)",
+  "description": description,
+  "datePublished": publishDate,
+  "dateModified": modifiedDate,
+  "author": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buildprivacypolicy.com/resources/california-privacy-policy-template/"
+  }
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((f) => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": f.a
+    }
+  }))
+})} />
+
+</Layout>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-link:hover {
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+  .page-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 16px 80px;
+  }
+  .page-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px 36px;
+    border: 1px solid #E5E7EB;
+  }
+  .breadcrumb {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 16px;
+  }
+  .breadcrumb a {
+    color: #6B7280;
+    text-decoration: underline;
+  }
+  .page-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .last-updated {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 24px;
+  }
+  .page-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .page-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  .page-card p {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .page-card ul, .page-card ol {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+  .page-card li {
+    margin-bottom: 8px;
+  }
+  .page-card a {
+    color: #2563EB;
+    text-decoration: underline;
+  }
+  .page-card strong {
+    font-weight: 600;
+  }
+  .page-card em {
+    font-style: italic;
+  }
+  .toc {
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 8px;
+  }
+  .toc-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .toc ol {
+    margin-bottom: 0;
+    padding-left: 20px;
+  }
+  .toc li {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .toc a {
+    color: #2563EB;
+  }
+  .faq-list {
+    margin-top: 8px;
+  }
+  .faq-item {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 20px;
+    margin-bottom: 8px;
+  }
+  .faq-item h3 {
+    margin-top: 0;
+  }
+  .faq-item p {
+    margin-bottom: 8px;
+  }
+  .copy-block {
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    margin: 20px 0;
+    overflow: hidden;
+  }
+  .copy-block-header {
+    background: #F3F4F6;
+    padding: 10px 16px;
+    border-bottom: 1px solid #D1D5DB;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .copy-block-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4B5563;
+  }
+  .copy-block-body {
+    padding: 24px 28px;
+    background: #FAFAFA;
+    max-height: 480px;
+    overflow-y: auto;
+  }
+  .copy-block-body p {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .copy-block-body ul {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    padding-left: 22px;
+  }
+  .copy-block-body li {
+    margin-bottom: 4px;
+  }
+  .copy-block-body code {
+    background: #E5E7EB;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+  .copy-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #1E3A5F;
+    color: white;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .copy-btn:hover {
+    background: #2E5A8F;
+  }
+  .note {
+    font-size: 13px !important;
+    color: #6B7280 !important;
+    background: #F9FAFB;
+    border-left: 3px solid #D1D5DB;
+    padding: 8px 12px;
+  }
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 16px 0 20px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+  }
+  .table-scroll:focus {
+    outline: 2px solid #2563EB;
+    outline-offset: 2px;
+  }
+  .compare-table {
+    width: 100%;
+    min-width: 820px;
+    border-collapse: collapse;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .compare-table thead th {
+    background: #F3F4F6;
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    vertical-align: bottom;
+  }
+  .compare-table tbody th {
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #111827;
+    background: #F9FAFB;
+    border-top: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    vertical-align: top;
+    width: 130px;
+  }
+  .compare-table td {
+    padding: 10px 12px;
+    border-top: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    color: #374151;
+    vertical-align: top;
+  }
+  .compare-table th:last-child,
+  .compare-table td:last-child {
+    border-right: none;
+  }
+</style>
+
+<script>
+  document.getElementById('copy-policy-btn')?.addEventListener('click', function() {
+    const el = document.getElementById('sample-policy-text');
+    if (!el) return;
+    const text = el.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copy-policy-btn');
+      if (btn) {
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy to clipboard'; }, 2000);
+      }
+    });
+  });
+</script>
