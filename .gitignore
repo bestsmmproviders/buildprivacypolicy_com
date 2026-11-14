@@ -25,3 +25,4 @@ pnpm-debug.log*
 .history
 .vscode
 .claude
+.delete_files
