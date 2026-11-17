@@ -42,7 +42,7 @@ const modifiedDate = "2026-11-11";
 
     <h2 id="article-13-14">What Articles 13 and 14 Require, Field by Field</h2>
 
-    <p>Article 13 applies when you collect data directly from the person, through a form, checkout, or cookies. Article 14 applies when you get it from someone else, such as a partner or a client who shares their staff's details. A GDPR notice must contain:</p>
+    <p>Article 13 applies when you collect data directly from the person, through a form, checkout, or cookies; Article 13(1) makes the information due when the data is obtained, so link the notice from the form itself. Article 14 applies when you get it from someone else, such as a partner or a client who shares their staff's details. A GDPR notice must contain:</p>
 
     <ol>
       <li><strong>Controller identity and contact details</strong> (Art. 13(1)(a)). Your legal entity name, address, and a working email, plus your <a href="/resources/gdpr-eu-representative/">EU representative under Article 27</a> if you are based outside the EU.</li>
@@ -61,17 +61,32 @@ const modifiedDate = "2026-11-11";
 
     <p>Article 14 drops field 11 and adds two more: the <strong>categories of personal data</strong> you hold (Art. 14(1)(d)) and the <strong>source</strong> of the data, including whether it came from publicly accessible sources (Art. 14(2)(f)). Under Article 14(3), you must give this notice within one month of obtaining the data, or earlier if you contact the person or disclose the data first.</p>
 
-    <h2 id="lawful-basis">Lawful Basis: One Worked Example for Each</h2>
+    <p><strong>How it must be written.</strong> Article 12(1) requires concise, intelligible, plain language. The EDPB-endorsed <em>Guidelines on transparency under Regulation 2016/679</em> (WP260 rev.01) flag "We may use your personal data to develop new services" as poor practice. Say what actually happens: "We use your order history to recommend products on your account page."</p>
 
-    <p>Article 6(1) lists six lawful bases. Pick one for each purpose before processing starts, and state it in the notice.</p>
+    <p><strong>Copy from your Article 30 record.</strong> Its fields 30(1)(b) to (f) hold the purposes, data categories, recipients, transfers and erasure time limits the notice needs, so the two never disagree.</p>
+
+    <h3>Worked example: check one sign-up form</h3>
+
+    <p>A German shop's newsletter form says: "We use your email address to send our weekly newsletter, based on your consent. Unsubscribe at any time. Our email provider stores it in the US under the EU-US Data Privacy Framework. We delete it within 30 days of you unsubscribing." Against Article 13:</p>
 
     <ul>
-      <li><strong>Consent (6(1)(a)).</strong> A visitor ticks an unticked box to join your newsletter. Withdrawing must be as easy as giving it, so every email needs an unsubscribe link.</li>
+      <li>Purpose and basis, 13(1)(c): present.</li>
+      <li>Recipient, 13(1)(e), and transfer, 13(1)(f): mechanism given, provider unnamed. Name it.</li>
+      <li>Retention, 13(2)(a), and withdrawal of consent, 13(2)(c): present.</li>
+      <li>Controller identity, 13(1)(a), rights, 13(2)(b), and complaint right, 13(2)(d): missing. Link the full notice beside the form.</li>
+    </ul>
+
+    <h2 id="lawful-basis">Lawful Basis: One Worked Example for Each</h2>
+
+    <p>Article 6(1) lists six lawful bases. Article 13(1)(c) requires the notice to pair every purpose with its basis, so choose one per purpose before processing starts.</p>
+
+    <ul>
+      <li><strong>Consent (6(1)(a)).</strong> A visitor ticks an unticked box to join your newsletter. Article 7(3) makes withdrawing as easy as giving consent, so every email needs an unsubscribe link.</li>
       <li><strong>Contract (6(1)(b)).</strong> You use a customer's shipping address to deliver the order they placed.</li>
-      <li><strong>Legal obligation (6(1)(c)).</strong> You keep invoices for the period your national tax law requires, even after a customer asks for erasure.</li>
+      <li><strong>Legal obligation (6(1)(c)).</strong> You keep invoices for the period your national tax law requires, even after a customer asks for erasure (Art. 17(3)(b)).</li>
       <li><strong>Vital interests (6(1)(d)).</strong> A safety app shares a user's location with emergency services. Most websites never use this basis.</li>
       <li><strong>Public task (6(1)(e)).</strong> A public university processes enrolment data to run its courses. Private businesses rarely qualify.</li>
-      <li><strong>Legitimate interests (6(1)(f)).</strong> You keep server logs with IP addresses briefly to detect fraud and attacks. Name the interest in the notice and document a balancing test showing users' rights don't override it.</li>
+      <li><strong>Legitimate interests (6(1)(f)).</strong> You keep server logs with IP addresses briefly to detect fraud and attacks. Name the interest itself, as Article 13(1)(d) requires ("detecting payment fraud", not "improving our services"), and keep a written balancing test for Article 5(2) accountability.</li>
     </ul>
 
     <p>Health, biometric, religious, and other special-category data under Article 9 needs an Article 9(2) condition, such as explicit consent, on top of the Article 6 basis. If you offer online services directly to children and rely on consent, Article 8 requires parental consent below age 16, which member states may lower to 13.</p>
@@ -81,25 +96,25 @@ const modifiedDate = "2026-11-11";
     <ul>
       <li><strong>Access (Art. 15):</strong> a copy of the data and details of how it is processed.</li>
       <li><strong>Rectification (Art. 16):</strong> correction of inaccurate data.</li>
-      <li><strong>Erasure (Art. 17):</strong> deletion, subject to exceptions such as legal retention duties.</li>
+      <li><strong>Erasure (Art. 17):</strong> deletion on the grounds in Art. 17(1), subject to the Art. 17(3) exceptions such as legal retention duties.</li>
       <li><strong>Restriction (Art. 18):</strong> a pause on processing while accuracy or an objection is checked.</li>
-      <li><strong>Portability (Art. 20):</strong> data in a structured, machine-readable format, where processing is based on consent or contract and carried out by automated means.</li>
-      <li><strong>Objection (Art. 21):</strong> to processing based on legitimate interests or public task, plus an absolute right to object to direct marketing.</li>
+      <li><strong>Portability (Art. 20):</strong> data in a structured, machine-readable format, where processing is based on consent or contract and carried out by automated means (Art. 20(1)(a)-(b)).</li>
+      <li><strong>Objection (Art. 21):</strong> to processing based on legitimate interests or public task (Art. 21(1)), plus an absolute right to object to direct marketing (Art. 21(2)-(3)).</li>
       <li><strong>Automated decisions (Art. 22):</strong> not to be subject to solely automated decisions with legal or similarly significant effects.</li>
     </ul>
 
-    <p><strong>Deadlines.</strong> Article 12(3) requires a response without undue delay and within one month of receiving the request. You can extend by two further months for complex or numerous requests if you tell the person why within the first month. If you won't act, Article 12(4) requires you to say so within one month, with reasons and their right to complain. Responses are free unless a request is manifestly unfounded or excessive.</p>
+    <p><strong>Deadlines.</strong> Article 12(3) requires a response without undue delay and within one month of receiving the request. You can extend by two further months for complex or numerous requests if you tell the person why within the first month. If you won't act, Article 12(4) requires you to say so within one month, with reasons and their right to complain. Under Article 12(5), responses are free unless a request is manifestly unfounded or excessive, in which case you may charge a reasonable fee or refuse.</p>
 
     <p><strong>The separate objection notice.</strong> Article 21(4) requires the right to object to be presented clearly and separately from other information, no later than your first communication with the person. Most free templates bury it in the rights list; the template below gives it its own section.</p>
 
     <h2 id="transfers">Transfers Outside the EEA: What to Name</h2>
 
-    <p>If any recipient stores or accesses data outside the EEA, including US cloud, email, and analytics providers, the notice should name:</p>
+    <p>If any recipient stores or accesses data outside the EEA, including US cloud, email, and analytics providers, Article 13(1)(f) (and 14(1)(f)) requires the notice to state:</p>
 
     <ul>
       <li><strong>The country or region</strong>, for example the United States.</li>
       <li><strong>The Chapter V mechanism:</strong> an adequacy decision under Article 45 (such as those for the UK, Switzerland, Japan, and the EU-US Data Privacy Framework of July 10, 2023, which covers only US companies certified under it); Standard Contractual Clauses under Article 46, using the 2021 set adopted in Commission Implementing Decision (EU) 2021/914; Binding Corporate Rules under Article 47; or, in limited cases, an Article 49 derogation.</li>
-      <li><strong>How to get a copy</strong> of the safeguards. Check each provider's data processing agreement for the mechanism it actually uses.</li>
+      <li><strong>How to get a copy</strong> of the Article 46 or 47 safeguards. Check each provider's data processing agreement for the mechanism it actually uses.</li>
     </ul>
 
     <h2 id="template">Copy-Ready GDPR Privacy Notice Template</h2>
