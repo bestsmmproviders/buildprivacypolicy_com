@@ -5,7 +5,7 @@ import RelatedGuides from '../../../components/RelatedGuides.astro';
 const title = "Photography Privacy Policy Template (Free, Copy-Ready)";
 const description = "Copy-ready photography privacy policy template, free to edit. Covers model releases, EXIF and geotag data, client bookings, gallery platforms and print labs.";
 const publishDate = "2026-08-06";
-const modifiedDate = "2026-10-23";
+const modifiedDate = "2026-11-18";
 ---
 
 <Layout title={title} description={description}>
@@ -24,9 +24,9 @@ const modifiedDate = "2026-10-23";
   <div class="page-card">
     <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
     <h1>Photography Privacy Policy Template (Free Sample)</h1>
-    <p class="last-updated">Updated October 23, 2026</p>
+    <p class="last-updated">Updated November 18, 2026</p>
 
-    <p>A photography privacy policy template is a ready-made policy you edit with your own business details. The free sample below covers what photographers actually handle: client and booking data, model releases, EXIF and geotag metadata, gallery and proofing platforms, print labs, payment processors, and raw-file retention. Copy it, replace the bracketed text, and delete anything that doesn't match how you work.</p>
+    <p>A photography privacy policy template is a ready-made policy you edit with your own business details. The free sample below covers what photographers actually handle: client and booking data, model releases, EXIF and geotag metadata, gallery and proofing platforms (including face-scan search), print labs, payment processors, AI editing tools, and raw-file retention. Copy it, replace the bracketed text, and delete anything that doesn't match how you work.</p>
 
     <nav class="toc">
       <p class="toc-title">Contents</p>
@@ -57,9 +57,11 @@ const modifiedDate = "2026-10-23";
 
 <p><strong>2. Information We Collect</strong></p>
 <p><em>Contact and booking details.</em> When you send an inquiry or book a session, we collect your name, email address, phone number, and details of your shoot, such as the date, location, session type, and any notes you share. For weddings and events, this can include venue addresses, timelines, and the names of family members or guests you give us.</p>
+<p><em>Information we receive from others.</em> Wedding and event guests may appear in our photographs without contacting us. We receive their names, if at all, from the booking client, and they can use the rights in Section 8.</p>
 <p><em>Model release and consent records.</em> If you sign a model release, we keep your name, signature, the date, and the uses you agreed to. For minors, a parent or guardian signs the release, and we keep their details too.</p>
-<p><em>Photographs and image metadata.</em> Photographs of identifiable people are personal data. Image files also contain EXIF metadata, which can include the date, camera details, and GPS coordinates of where a photo was taken. We remove location data from images we publish online. Files delivered to your private gallery [keep / do not keep] their original metadata.</p>
+<p><em>Photographs and image metadata.</em> Photographs of identifiable people are personal data. Image files also contain EXIF metadata, which can include the date, camera details, and GPS coordinates of where a photo was taken. We remove GPS location data from images we publish on our website and social media. Files delivered to your private gallery [keep / do not keep] their original metadata, including location. We do not use image metadata to track or profile anyone.</p>
 <p><em>Gallery and proofing activity.</em> When you use your online gallery, [gallery platform] records your email address, the images you view, favorite, download, or order, and technical details such as your IP address and device.</p>
+<p><em>Face-scan gallery search [delete if not used].</em> If you choose to find your photos by uploading a selfie, [gallery platform] creates a facial template to match you against images in the gallery. This is biometric data. It is used only for that search, with your consent, and is deleted [when the gallery expires / within [X] days].</p>
 <p><em>Payment information.</em> Deposits, invoices, and print orders are paid through [payment processor]. We receive payment confirmations and billing details, but we do not see or store your full card number.</p>
 <p><em>Website usage data.</em> Our website uses [essential cookies only / analytics cookies from [analytics provider]] to understand how visitors use the site. [If applicable: We also use [Meta Pixel / Google Ads tag] to measure our advertising.]</p>
 
@@ -74,42 +76,51 @@ const modifiedDate = "2026-10-23";
 </ul>
 <p>Where the GDPR or UK GDPR applies, our legal bases are: performing our contract with you (bookings, delivery, payment), legal obligation (tax records), consent (marketing emails, non-essential cookies, portfolio use where consent is required), and legitimate interests (running and securing our business).</p>
 
-<p><strong>4. Who We Share Your Information With</strong></p>
+<p><strong>4. How We Use Your Photographs</strong></p>
+<ul>
+<li><strong>Galleries:</strong> your gallery is [password-protected / PIN-protected]. Anyone you share the link and password with can view it.</li>
+<li><strong>Portfolio and social media:</strong> we show images of identifiable people only as agreed in your contract or model release. If you appear in an image we have published, you can ask us to remove it from our website and social media accounts.</li>
+<li><strong>Editing tools:</strong> [We cull and edit on our own computers. / We upload images to [Imagen / other cloud editing service] for culling or editing.] We do not allow your images to be used to train third-party AI models [where the tool lets us opt out].</li>
+</ul>
+
+<p><strong>5. Who We Share Your Information With</strong></p>
 <ul>
 <li><strong>Gallery and proofing platform:</strong> [Pixieset / ShootProof / Pic-Time / SmugMug] hosts your galleries and processes gallery orders.</li>
 <li><strong>Print lab:</strong> [Lab name] receives the images you order and the name and shipping address needed to produce and deliver prints and albums.</li>
 <li><strong>Payment processor:</strong> [Stripe / PayPal / Square] processes your payments.</li>
 <li><strong>Booking and client management:</strong> [HoneyBook / Dubsado / Studio Ninja] stores inquiries, contracts, and invoices.</li>
+<li><strong>Website and forms:</strong> [Showit / Squarespace / WordPress host] hosts our website and receives contact form submissions.</li>
 <li><strong>Cloud storage and backup:</strong> [Google Drive / Dropbox / Backblaze] stores raw and edited files.</li>
 <li><strong>Email and analytics:</strong> [Mailchimp / Flodesk] and [Google Analytics].</li>
 <li><strong>Second shooters and editors:</strong> [If used] contractors who receive only the files and details needed for their work.</li>
 </ul>
 <p>We do not sell your personal information. We may disclose information if the law requires it.</p>
 
-<p><strong>5. How Long We Keep Your Information</strong></p>
+<p><strong>6. How Long We Keep Your Information</strong></p>
 <ul>
 <li>Inquiries that do not lead to a booking: [12 months]</li>
 <li>Contracts, invoices, and booking records: [6 years], for tax and accounting purposes</li>
 <li>Raw (unedited) files: [12 months] after delivery, then deleted</li>
 <li>Edited images: in your online gallery for [12 months], and in our archive for [X years] so we can help with lost files or reprints</li>
 <li>Model releases: for as long as we use the images, plus [3 years]</li>
+<li>Face-scan data: [deleted when the gallery expires]</li>
 <li>Marketing list: until you unsubscribe</li>
 </ul>
 <p>You can ask us to delete your files and data sooner, unless the law requires us to keep them.</p>
 
-<p><strong>6. Children</strong></p>
+<p><strong>7. Children</strong></p>
 <p>Our website is not directed at children under 13, and we do not knowingly collect their personal information online. We photograph minors only with a parent or guardian's consent, and the parent or guardian may contact us at any time to access or delete their child's images and data.</p>
 
-<p><strong>7. Your Privacy Rights</strong></p>
+<p><strong>8. Your Privacy Rights</strong></p>
 <p>Depending on where you live, you may have the right to access, correct, delete, or receive a copy of your personal data, to object to or restrict how we use it, and to withdraw consent at any time, including consent to portfolio or social media use of your images. Withdrawing consent does not undo uses already made, such as printed materials. If you are in the EU or UK, you can also complain to your local data protection authority. To make a request, email [your-email@example.com]. We respond within one month.</p>
 
-<p><strong>8. Security and International Transfers</strong></p>
+<p><strong>9. Security and International Transfers</strong></p>
 <p>We protect your data with password-protected galleries, secured accounts, and encrypted backups. Where providers store data outside your country, they use legally required safeguards such as standard contractual clauses.</p>
 
-<p><strong>9. Changes to This Policy</strong></p>
+<p><strong>10. Changes to This Policy</strong></p>
 <p>We may update this policy from time to time. The "Last updated" date above shows when it last changed.</p>
 
-<p><strong>10. Contact Us</strong></p>
+<p><strong>11. Contact Us</strong></p>
 <p>[Your Photography Business Name]<br />[your-email@example.com]<br />[Business address]</p>
       </div>
       <button class="copy-btn" id="copy-policy-btn" type="button">Copy to clipboard</button>
@@ -123,7 +134,8 @@ const modifiedDate = "2026-10-23";
       <li><strong>List every tool that touches client data.</strong> Replace the bracketed service names and delete lines you don't use. A <a href="/tools/privacy-policy-checker/">privacy policy checker</a> can flag integrations you missed.</li>
       <li><strong>Check what really happens to EXIF data.</strong> In Lightroom Classic, the export dialog's Metadata section has a Remove Location Info option. Check your export presets and gallery settings, then make the template say what actually happens.</li>
       <li><strong>Set retention periods you will actually follow.</strong> Check how long your tax authority requires you to keep invoices, then pick a raw-file period that fits your workflow.</li>
-      <li><strong>Match your model release.</strong> Section 3's portfolio wording should match what your release grants.</li>
+      <li><strong>Match your model release.</strong> Section 4's portfolio wording should match what your release grants.</li>
+      <li><strong>Check your gallery and editing settings.</strong> If face-scan search is switched off, or you edit only on your own computer, delete those clauses.</li>
       <li><strong>Publish it</strong> on its own page and link it from the places listed below.</li>
     </ol>
 
@@ -136,6 +148,10 @@ const modifiedDate = "2026-10-23";
     <p><strong>Wedding and event guests.</strong> Guests appear in your images and on guest lists without ever visiting your website. Say that you receive their details from the booking client and how a guest can contact you.</p>
 
     <p><strong>Print labs and subcontractors.</strong> Print labs, album makers, second shooters, and outsourced editors all receive client files. Name them as recipients.</p>
+
+    <p><strong>Face-scan gallery search.</strong> Some gallery platforms, such as Pic-Time, let guests find their photos by scanning their face. That creates biometric data, which the GDPR treats as special category data and laws such as Illinois' BIPA regulate separately. Disclose it and say when it is deleted.</p>
+
+    <p><strong>AI culling and editing.</strong> Uploading galleries to a cloud editing service shares client images with another company. Name the service, and check whether its terms let it train on your uploads.</p>
 
     <p><strong>Raw-file retention.</strong> Raw files hold every frame and full metadata. Give them their own retention period, not a vague "as long as necessary."</p>
 
@@ -174,7 +190,7 @@ const modifiedDate = "2026-10-23";
 
       <div class="faq-item">
         <h3>Can you provide an example of a privacy policy for a website?</h3>
-        <p>Yes. The sample photography privacy policy on this page is a complete ten-section example covering data collected, uses, recipients, retention, children, rights, security, changes, and contact details. Copy it and replace the bracketed placeholders.</p>
+        <p>Yes. The sample photography privacy policy on this page is a complete eleven-section example covering data collected, uses, use of photographs, recipients, retention, children, rights, security, changes, and contact details. Copy it and replace the bracketed placeholders.</p>
       </div>
 
       <div class="faq-item">
@@ -192,10 +208,6 @@ const modifiedDate = "2026-10-23";
         <p>It depends on the use and location. In the US, photographers usually own the copyright and can often use images in a portfolio, but using your likeness in advertising generally requires a model release. In the EU and UK, photos of identifiable people are personal data, so publishing them needs a lawful basis such as consent. Your contract usually sets the agreed uses.</p>
       </div>
 
-      <div class="faq-item">
-        <h3>Is it legal to use photos on a website without permission?</h3>
-        <p>Generally, no. Photos are copyrighted from the moment they are taken, so you need a license unless fair use applies or the image is in the public domain. Commercial use of photos showing identifiable people may also need their consent or a model release.</p>
-      </div>
     </div>
 
   </div>
@@ -251,7 +263,7 @@ const modifiedDate = "2026-10-23";
       "name": "Can you provide an example of a privacy policy for a website?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. The sample photography privacy policy on this page is a complete ten-section example covering data collected, uses, recipients, retention, children, rights, security, changes, and contact details. Copy it and replace the bracketed placeholders."
+        "text": "Yes. The sample photography privacy policy on this page is a complete eleven-section example covering data collected, uses, use of photographs, recipients, retention, children, rights, security, changes, and contact details. Copy it and replace the bracketed placeholders."
       }
     },
     {
@@ -276,14 +288,6 @@ const modifiedDate = "2026-10-23";
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "It depends on the use and location. In the US, photographers usually own the copyright and can often use images in a portfolio, but using your likeness in advertising generally requires a model release. In the EU and UK, photos of identifiable people are personal data, so publishing them needs a lawful basis such as consent. Your contract usually sets the agreed uses."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is it legal to use photos on a website without permission?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Generally, no. Photos are copyrighted from the moment they are taken, so you need a license unless fair use applies or the image is in the public domain. Commercial use of photos showing identifiable people may also need their consent or a model release."
       }
     }
   ]
