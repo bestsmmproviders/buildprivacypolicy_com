@@ -1,0 +1,639 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import RelatedGuides from '../../../components/RelatedGuides.astro';
+
+const title = "iOS Privacy Policy Generator: App Store Requirements";
+const description = "Make an iOS privacy policy that matches your App Privacy label, ATT prompt and SDKs, then paste a free hosted URL into App Store Connect. No signup needed.";
+const publishDate = "2026-11-19";
+const modifiedDate = "2026-11-19";
+---
+
+<Layout title={title} description={description}>
+
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="128" height="128" rx="28" fill="#1E3A5F"/><path d="M64 24C64 24 40 34 32 38V62C32 82 46 98 64 104C82 98 96 82 96 62V38C88 34 64 24 64 24Z" fill="#2E5A8F" stroke="#5B9BD5" stroke-width="2.5"/><path d="M52 64L60 72L78 54" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+</div>
+
+<main>
+<article class="page-container">
+  <div class="page-card">
+    <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
+    <h1>iOS Privacy Policy Generator: What Apple Checks Before Your App Ships</h1>
+    <p class="last-updated">Published November 19, 2026 &middot; Updated November 19, 2026</p>
+
+    <p>Every iOS app needs a privacy policy URL before it can be submitted to the App Store, even an app that collects nothing. Apple asks for it in App Store Connect under <strong>App Privacy &gt; Privacy Policy</strong>, requires a link inside the app, and expects the text to agree with your App Privacy answers, your App Tracking Transparency (ATT) prompt and the data your SDKs send. A generic website policy that never mentions the app is the usual reason a submission comes back under Guideline 5.1.1.</p>
+
+    <p>To build one, open the <a href="https://buildprivacypolicy.com/">free privacy policy generator</a>, choose <strong>iOS - App Store</strong> as the platform, tick the SDKs in your build and, if you show the tracking prompt, select <strong>Apple ATT prompt</strong> under consent mechanisms. You get a hosted URL to paste into App Store Connect.</p>
+
+    <nav class="toc">
+      <p class="toc-title">Contents</p>
+      <ol>
+        <li><a href="#app-store-connect">Where App Store Connect Asks for the URL, and What It Rejects</a></li>
+        <li><a href="#app-privacy-label">Matching the Policy to Your App Privacy Answers</a></li>
+        <li><a href="#att-idfa">ATT and the IDFA: What Tracking Permission Changes</a></li>
+        <li><a href="#sdks">SDKs That Create Obligations iOS Developers Miss</a></li>
+        <li><a href="#clauses">Copy-Ready iOS Clauses</a></li>
+        <li><a href="#faq">Frequently Asked Questions</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="app-store-connect">Where App Store Connect Asks for the URL, and What It Rejects</h2>
+
+    <p>Apple's App Store Connect Help states that "a privacy policy URL is required for all apps." The field sits with your privacy answers, not in the general app metadata:</p>
+
+    <ol>
+      <li>In App Store Connect, open <strong>Apps</strong> and select your app.</li>
+      <li>In the sidebar, select <strong>App Privacy</strong>.</li>
+      <li>In the <strong>Privacy Policy</strong> section, click <strong>Edit</strong>.</li>
+      <li>Enter the <strong>Privacy Policy URL</strong>. The <strong>User Privacy Choices URL</strong> (where users can access or delete their data) is optional. tvOS apps paste the text into <strong>Apple TV Privacy Policy</strong> instead.</li>
+      <li>Click <strong>Save</strong>. URL changes go out with your next app version.</li>
+    </ol>
+
+    <p>App Review reads the document against Guideline 5.1.1(i): what data the app collects, how, and every use of it; confirmation that third parties (analytics, ad networks, SDKs) give equal protection; retention and deletion policies; and how users revoke consent or request deletion. Submissions most often fail because:</p>
+
+    <ul>
+      <li>The URL returns a 404, opens a login wall, or lands on a homepage instead of the policy.</li>
+      <li>The document never names the app or its SDKs, or there is no link to it inside the app.</li>
+      <li>Users can create an account but cannot delete it in the app (Guideline 5.1.1(v)).</li>
+      <li>Personal data goes to a third-party AI service without disclosure and permission. Apple's November 2025 update named third-party AI in Guideline 5.1.2(i).</li>
+    </ul>
+
+    <h2 id="app-privacy-label">Matching the Policy to Your App Privacy Answers</h2>
+
+    <p>The App Privacy questionnaire produces the "privacy nutrition label" on your product page, split into <strong>Data Used to Track You</strong>, <strong>Data Linked to You</strong> and <strong>Data Not Linked to You</strong>. Apple counts data as "collected" when it leaves the device and you or a partner can access it for longer than it takes to serve the request in real time. On-device processing is not collection, which is worth saying in the policy too.</p>
+
+    <p>For each data type, Apple asks the same questions. The policy should answer each one in words:</p>
+
+    <div class="table-scroll" role="region" aria-label="App Privacy questions and matching privacy policy wording" tabindex="0">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th scope="col">App Privacy question</th>
+            <th scope="col">Apple's options</th>
+            <th scope="col">What the policy must say</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Data types collected</th>
+            <td>Contact Info, Health &amp; Fitness, Financial Info, Location (Precise / Coarse), Sensitive Info, Contacts, User Content, Browsing History, Search History, Identifiers (User ID / Device ID), Purchases, Usage Data, Diagnostics, Surroundings, Body, Other Data</td>
+            <td>The same categories. If the label says <em>Coarse Location</em> and <em>Crash Data</em>, the policy names both.</td>
+          </tr>
+          <tr>
+            <th scope="row">Purposes</th>
+            <td>Third-Party Advertising, Developer's Advertising or Marketing, Analytics, Product Personalization, App Functionality, Other Purposes</td>
+            <td>Each purpose, attached to its data type. "To improve our services" covers none of them.</td>
+          </tr>
+          <tr>
+            <th scope="row">Linked to the user?</th>
+            <td>Yes / No</td>
+            <td>Whether data is tied to an account or device ID, or de-identified first.</td>
+          </tr>
+          <tr>
+            <th scope="row">Used for tracking?</th>
+            <td>Yes / No</td>
+            <td>Which partners and identifiers, and that it happens only after ATT permission.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The label must include data your SDKs collect, not just your own code. You can skip a data type only if it meets every one of Apple's optional-disclosure criteria (no tracking or advertising, infrequent, optional, entered by the user each time). Data Apple's own services such as MapKit collect is not yours to declare. The <a href="/tools/app-store-privacy-requirements/">App Store privacy requirements checker</a> lists each store's forms side by side.</p>
+
+    <h2 id="att-idfa">ATT and the IDFA: What Tracking Permission Changes</h2>
+
+    <p>Since iOS 14.5, an app must get permission through the AppTrackingTransparency framework before it tracks a user or reads the advertising identifier (IDFA). Apple defines tracking as linking your app's data about a user or device with other companies' data for targeted advertising or ad measurement, or sharing it with a data broker. The mechanics:</p>
+
+    <ul>
+      <li>Add <code>NSUserTrackingUsageDescription</code> to <code>Info.plist</code>. That string is the explanation shown in the system prompt.</li>
+      <li>Call <code>ATTrackingManager.requestTrackingAuthorization(completionHandler:)</code> before any tracking starts. The status comes back as <code>.authorized</code>, <code>.denied</code>, <code>.restricted</code> or <code>.notDetermined</code>.</li>
+      <li>Unless the status is <code>.authorized</code>, <code>ASIdentifierManager.shared().advertisingIdentifier</code> returns all zeros (<code>00000000-0000-0000-0000-000000000000</code>).</li>
+      <li>If your privacy manifest sets <code>NSPrivacyTracking</code> to true, list the tracking hosts in <code>NSPrivacyTrackingDomains</code>. iOS blocks requests to those domains until the user grants permission.</li>
+    </ul>
+
+    <p>Turning tracking on adds four things to the policy: that you or named partners track, the identifiers involved (IDFA, often IDFV or hashed email), the partners who receive them, and how to withdraw permission in <strong>Settings &gt; Privacy &amp; Security &gt; Tracking</strong>. Say what happens if the user declines, and keep the usage string, policy and "Used for tracking" answers consistent. SKAdNetwork attribution needs no ATT permission, so if that is all you use, do not claim you track.</p>
+
+    <h2 id="sdks">SDKs That Create Obligations iOS Developers Miss</h2>
+
+    <p>Apple holds you responsible for what your SDKs collect. Since May 2024, new apps and updates that add an SDK from Apple's list of commonly used SDKs must include that SDK's privacy manifest (<code>PrivacyInfo.xcprivacy</code>), and a signature when it ships as a binary. Manifests declare collected data in <code>NSPrivacyCollectedDataTypes</code> and "required reason" APIs in <code>NSPrivacyAccessedAPITypes</code>. In Xcode's Organizer, <strong>Generate Privacy Report</strong> on an archive collects every SDK's declarations in one PDF. Check each one against your policy:</p>
+
+    <div class="table-scroll" role="region" aria-label="Common iOS SDKs and the disclosures they create" tabindex="0">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th scope="col">SDK</th>
+            <th scope="col">What it sends</th>
+            <th scope="col">Label rows and policy line</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">FirebaseCrashlytics</th>
+            <td>Stack traces, device model, OS version, an installation ID</td>
+            <td>Diagnostics (Crash Data), Identifiers. Name Google.</td>
+          </tr>
+          <tr>
+            <th scope="row">Firebase Analytics (GoogleAppMeasurement)</th>
+            <td>App instance ID, screen views, events, coarse location from IP; the IDFA once ATT is granted and AdSupport is linked</td>
+            <td>Usage Data, Identifiers, Coarse Location. If linked to Google Ads, it can count as tracking.</td>
+          </tr>
+          <tr>
+            <th scope="row">FirebaseAuth / GoogleSignIn</th>
+            <td>Email, name, profile photo, user ID</td>
+            <td>Contact Info, User ID, linked. Name the sign-in providers.</td>
+          </tr>
+          <tr>
+            <th scope="row">FirebaseMessaging / OneSignal</th>
+            <td>Push token, device and session data; OneSignal also email or SMS if you use those channels</td>
+            <td>Identifiers (Device ID), Usage Data. Name the push provider.</td>
+          </tr>
+          <tr>
+            <th scope="row">Google Mobile Ads (AdMob)</th>
+            <td>IDFA after ATT, ad interactions, IP-derived location</td>
+            <td>Advertising Data, Device ID, usually Data Used to Track You.</td>
+          </tr>
+          <tr>
+            <th scope="row">FBSDKCoreKit (Meta)</th>
+            <td>Install and session App Events logged automatically unless turned off</td>
+            <td>Usage Data, Identifiers. Name Meta and any ad measurement.</td>
+          </tr>
+          <tr>
+            <th scope="row">AppsFlyer / Adjust / Branch</th>
+            <td>IDFA or IDFV, install and attribution events</td>
+            <td>Usually tracking. Name the attribution partner.</td>
+          </tr>
+          <tr>
+            <th scope="row">RevenueCat</th>
+            <td>App user ID, purchase and subscription history</td>
+            <td>Purchases (Purchase History), User ID.</td>
+          </tr>
+          <tr>
+            <th scope="row">Sentry</th>
+            <td>Crash data, breadcrumbs; IP and user details if <code>sendDefaultPii</code> is on</td>
+            <td>Diagnostics; add Identifiers if PII is enabled.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Cross-platform builds hide more: Flutter's <code>shared_preferences</code> and React Native storage libraries use <code>UserDefaults</code>, a required-reason API that needs a declared reason even when no data leaves the device. The <a href="/tools/sdk-disclosure-generator/">SDK disclosure generator</a> turns an SDK list into policy paragraphs.</p>
+
+    <h2 id="clauses">Copy-Ready iOS Clauses</h2>
+
+    <p>These clauses cover the iOS parts most policies leave out. Add them to a full app policy (see the guide to <a href="/resources/how-to-write-privacy-policy-for-app/">writing a privacy policy for a mobile app</a>), replace the brackets and drop what does not apply.</p>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-label">iOS clauses — ready to copy</span>
+      </div>
+      <div class="copy-block-body" id="sample-policy-text">
+<p><strong>Information collected by [App Name] on iOS</strong></p>
+<p>[App Name] collects [e.g. email address and user ID when you create an account; crash data; coarse location from your IP address] for [app functionality / analytics]. Data processed only on your device, such as [photos you edit], is never sent to us.</p>
+<p><strong>App Tracking Transparency</strong></p>
+<p>We ask permission through Apple's App Tracking Transparency prompt before we or our partners use your advertising identifier (IDFA) or link this app's data with other companies' data for advertising. If you allow tracking, [partner names] receive [IDFA, ad interactions] to [show personalized ads / measure ads]. If you decline, we do not access the IDFA. You can change your choice in Settings &gt; Privacy &amp; Security &gt; Tracking.</p>
+<p><strong>Third-party SDKs</strong></p>
+<p>The app includes third-party software that collects data on our behalf: [Firebase Crashlytics (Google): crash reports; RevenueCat: purchase history; OneSignal: push token]. Each provider must protect this data to a standard equal to this policy.</p>
+<p><strong>Retention and deletion</strong></p>
+<p>We keep account data while your account is active and delete it within [30] days of account deletion. Delete your account in [Settings &gt; Account &gt; Delete Account] or email [privacy@example.com] to request deletion or withdraw consent.</p>
+      </div>
+      <button class="copy-btn" id="copy-policy-btn" type="button">Copy to clipboard</button>
+    </div>
+
+    <p>Rather not edit a template? The <a href="https://buildprivacypolicy.com/">generator on our homepage</a> writes these sections from your answers.</p>
+
+    <RelatedGuides currentSlug="resources/ios-privacy-policy-generator" />
+
+    <h2 id="faq">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Does my iOS app need a privacy policy?</h3>
+        <p>Yes. Apple requires a privacy policy URL for all apps, including apps that collect no data. That policy can be short, but it must load publicly and be linked inside the app.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What is App Tracking Transparency (ATT) and why is it required?</h3>
+        <p>ATT is the framework behind the "Allow to track" prompt. Since iOS 14.5, apps need permission through it before tracking users across other companies' apps and websites or reading the IDFA.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Do I need to disclose all third-party SDKs and frameworks?</h3>
+        <p>Disclose the data every SDK collects, in both the App Privacy answers and the policy. Naming providers (Google for Firebase, Meta for the Facebook SDK) shows who receives it.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What are Privacy Nutrition Labels and how do they relate to my privacy policy?</h3>
+        <p>They are the App Privacy cards on your product page, built from your App Store Connect answers. Their data types, purposes and tracking answers must match the policy.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can Apple reject my app if the privacy policy isn't iOS-specific enough?</h3>
+        <p>Yes. A policy that does not name the app, omits SDK data, or skips retention and deletion can be rejected under Guideline 5.1.1(i).</p>
+      </div>
+      <div class="faq-item">
+        <h3>How does Sign in with Apple affect my privacy policy?</h3>
+        <p>Users can hide their email, so you may receive a relay address ending in <code>privaterelay.appleid.com</code>. Say that you receive a name and an email or relay address from Apple.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How often should I update my iOS app privacy policy?</h3>
+        <p>Whenever you add an SDK, a permission or a new use of data, before submitting that version. Update the App Privacy answers in the same release.</p>
+      </div>
+    </div>
+
+    <p class="disclaimer-note">This page summarizes Apple's requirements as of the date above; it is not legal advice. Sources: <a href="https://developer.apple.com/help/app-store-connect/manage-app-information/manage-app-privacy" rel="nofollow">Manage app privacy (App Store Connect Help)</a>, <a href="https://developer.apple.com/support/app-privacy-on-the-app-store/" rel="nofollow">App privacy details on the App Store</a>, <a href="https://developer.apple.com/support/third-party-SDK-requirements/" rel="nofollow">Third-party SDK requirements</a>, <a href="https://developer.apple.com/app-store/review/guidelines/" rel="nofollow">App Review Guidelines</a>.</p>
+
+  </div>
+</article>
+</main>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "iOS Privacy Policy Generator: What Apple Checks Before Your App Ships",
+  "description": description,
+  "datePublished": publishDate,
+  "dateModified": modifiedDate,
+  "author": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buildprivacypolicy.com/resources/ios-privacy-policy-generator/"
+  }
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does my iOS app need a privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Apple requires a privacy policy URL for all apps, including apps that collect no data. That policy can be short, but it must load publicly and be linked inside the app."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is App Tracking Transparency (ATT) and why is it required?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ATT is the framework behind the \"Allow to track\" prompt. Since iOS 14.5, apps need permission through it before tracking users across other companies' apps and websites or reading the IDFA."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to disclose all third-party SDKs and frameworks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Disclose the data every SDK collects, in both the App Privacy answers and the policy. Naming providers (Google for Firebase, Meta for the Facebook SDK) shows who receives it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are Privacy Nutrition Labels and how do they relate to my privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They are the App Privacy cards on your product page, built from your App Store Connect answers. Their data types, purposes and tracking answers must match the policy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Apple reject my app if the privacy policy isn't iOS-specific enough?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. A policy that does not name the app, omits SDK data, or skips retention and deletion can be rejected under Guideline 5.1.1(i)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Sign in with Apple affect my privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Users can hide their email, so you may receive a relay address ending in privaterelay.appleid.com. Say that you receive a name and an email or relay address from Apple."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should I update my iOS app privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Whenever you add an SDK, a permission or a new use of data, before submitting that version. Update the App Privacy answers in the same release."
+      }
+    }
+  ]
+})} />
+
+</Layout>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-link:hover {
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+  .page-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 16px 80px;
+  }
+  .page-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px 36px;
+    border: 1px solid #E5E7EB;
+  }
+  .breadcrumb {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 16px;
+  }
+  .breadcrumb a {
+    color: #6B7280;
+    text-decoration: underline;
+  }
+  .page-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .last-updated {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 24px;
+  }
+  .page-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .page-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  .page-card p {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .page-card ul, .page-card ol {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+  .page-card li {
+    margin-bottom: 8px;
+  }
+  .page-card a {
+    color: #2563EB;
+    text-decoration: underline;
+  }
+  .page-card strong {
+    font-weight: 600;
+  }
+  .page-card em {
+    font-style: italic;
+  }
+  .toc {
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 8px;
+  }
+  .toc-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .toc ol {
+    margin-bottom: 0;
+    padding-left: 20px;
+  }
+  .toc li {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .toc a {
+    color: #2563EB;
+  }
+  .faq-list {
+    margin-top: 8px;
+  }
+  .faq-item {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 20px;
+    margin-bottom: 8px;
+  }
+  .faq-item h3 {
+    margin-top: 0;
+  }
+  .faq-item p {
+    margin-bottom: 8px;
+  }
+  .copy-block {
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    margin: 20px 0;
+    overflow: hidden;
+  }
+  .copy-block-header {
+    background: #F3F4F6;
+    padding: 10px 16px;
+    border-bottom: 1px solid #D1D5DB;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .copy-block-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4B5563;
+  }
+  .copy-block-body {
+    padding: 24px 28px;
+    background: #FAFAFA;
+    max-height: 480px;
+    overflow-y: auto;
+  }
+  .copy-block-body p {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .copy-block-body ul {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    padding-left: 22px;
+  }
+  .copy-block-body li {
+    margin-bottom: 4px;
+  }
+  .copy-block-body code {
+    background: #E5E7EB;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+  .copy-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #1E3A5F;
+    color: white;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .copy-btn:hover {
+    background: #2E5A8F;
+  }
+
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 16px 0 20px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+  }
+  .table-scroll:focus {
+    outline: 2px solid #2563EB;
+    outline-offset: 2px;
+  }
+  .compare-table {
+    width: 100%;
+    min-width: 640px;
+    border-collapse: collapse;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .compare-table thead th {
+    background: #F3F4F6;
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    vertical-align: bottom;
+  }
+  .compare-table tbody th {
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #111827;
+    background: #F9FAFB;
+    border-top: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    vertical-align: top;
+    width: 150px;
+  }
+  .compare-table td {
+    padding: 10px 12px;
+    border-top: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    color: #374151;
+    vertical-align: top;
+  }
+  .compare-table th:last-child,
+  .compare-table td:last-child {
+    border-right: none;
+  }
+  .page-card code {
+    background: #E5E7EB;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+  }
+  .disclaimer-note {
+    font-size: 13px !important;
+    color: #6B7280 !important;
+    border-top: 1px solid #E5E7EB;
+    padding-top: 16px;
+    margin-top: 24px;
+  }
+  @media (max-width: 640px) {
+    .page-card {
+      padding: 28px 20px;
+    }
+    .page-card h1 {
+      font-size: 24px;
+    }
+  }
+</style>
+
+<script>
+  document.getElementById('copy-policy-btn')?.addEventListener('click', function() {
+    const el = document.getElementById('sample-policy-text');
+    if (!el) return;
+    const text = el.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copy-policy-btn');
+      if (btn) {
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy to clipboard'; }, 2000);
+      }
+    });
+  });
+</script>
