@@ -1,0 +1,646 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import RelatedGuides from '../../../components/RelatedGuides.astro';
+
+const title = "Google Play Privacy Policy Generator: Console Requirements";
+const description = "Make a Google Play privacy policy that matches your Data safety answers, permissions and SDKs, then paste a free hosted URL into Play Console. No signup.";
+const publishDate = "2026-11-20";
+const modifiedDate = "2026-11-20";
+---
+
+<Layout title={title} description={description}>
+
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="128" height="128" rx="28" fill="#1E3A5F"/><path d="M64 24C64 24 40 34 32 38V62C32 82 46 98 64 104C82 98 96 82 96 62V38C88 34 64 24 64 24Z" fill="#2E5A8F" stroke="#5B9BD5" stroke-width="2.5"/><path d="M52 64L60 72L78 54" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+</div>
+
+<main>
+<article class="page-container">
+  <div class="page-card">
+    <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
+    <h1>Google Play Privacy Policy Generator: What Play Console Checks Before Review</h1>
+    <p class="last-updated">Published November 20, 2026 &middot; Updated November 20, 2026</p>
+
+    <p>Every app on Google Play needs a privacy policy, even one that collects no data. Google requires the URL in the <strong>Privacy policy</strong> declaration on the Play Console <strong>App content</strong> page plus a link or the text inside the app. The policy must name your app or the developer on your store listing and agree with your Data safety answers, your manifest permissions and the data your SDKs send.</p>
+
+    <p>To build one, open the <a href="https://buildprivacypolicy.com/">free privacy policy generator</a>, choose <strong>Android - Google Play</strong>, tick your libraries under <strong>Third-party SDKs / services</strong> and your permissions under <strong>Device permissions</strong>, and add an <strong>Account deletion URL</strong> if users can create accounts. You get a hosted URL to paste into Play Console.</p>
+
+    <nav class="toc">
+      <p class="toc-title">Contents</p>
+      <ol>
+        <li><a href="#play-console">Where Play Console Asks for the URL, and What It Rejects</a></li>
+        <li><a href="#data-safety">Matching the Policy to Your Data Safety Answers</a></li>
+        <li><a href="#play-policies">Permissions, Families and Account Deletion</a></li>
+        <li><a href="#sdks">SDKs That Create Disclosure Duties Android Developers Miss</a></li>
+        <li><a href="#clauses">Copy-Ready Google Play Clauses</a></li>
+        <li><a href="#faq">Frequently Asked Questions</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="play-console">Where Play Console Asks for the URL, and What It Rejects</h2>
+
+    <p>Play Console Help says you must link a privacy policy "on your store listing and within your app," even if the app touches no personal data. The field sits with your other policy declarations:</p>
+
+    <ol>
+      <li>Select your app and go to <strong>Monitor and improve &gt; Policy and programs &gt; App content</strong>.</li>
+      <li>Under <strong>Privacy policy</strong>, click <strong>Start declaration</strong> (or <strong>Manage</strong> to change a saved URL).</li>
+      <li>Enter the URL and save. Then link the same page from the app's Settings or About screen.</li>
+    </ol>
+
+    <p>Google sets four conditions for the URL, and each maps to a common rejection:</p>
+
+    <ul>
+      <li><strong>Active and public, with a valid SSL certificate.</strong> A 404, an expired certificate or a staging domain fails.</li>
+      <li><strong>Reachable worldwide, with no geofencing or login.</strong> A sign-in screen or a country block fails.</li>
+      <li><strong>A standard, non-editable web page.</strong> No PDF, no download, no shared document visitors can edit.</li>
+      <li><strong>Specific to the app.</strong> A company website policy that never mentions the app does not count.</li>
+    </ul>
+
+    <p>The User Data policy lists what the text must contain: developer information and a privacy contact, the personal and sensitive data accessed, collected, used and shared, the parties it is shared with, secure handling procedures, your retention and deletion policy, and a clear "Privacy Policy" title.</p>
+
+    <h2 id="data-safety">Matching the Policy to Your Data Safety Answers</h2>
+
+    <p>The Data safety form, also on the <strong>App content</strong> page, builds the Data safety card on your listing. Google says the policy must cover your practices "not limited by the data disclosed in the Data safety section," so the form summarizes the policy, not the reverse. The policy should answer each question in words:</p>
+
+    <div class="table-scroll" role="region" aria-label="Data safety questions and matching privacy policy wording" tabindex="0">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th scope="col">Data safety question</th>
+            <th scope="col">Google's options</th>
+            <th scope="col">What the policy must say</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Data types</th>
+            <td>Location, Personal info, Financial info, Health and fitness, Messages, Photos and videos, Audio files, Files and docs, Calendar, Contacts, App activity, Web browsing, App info and performance, Device or other IDs</td>
+            <td>The same types. If the form lists <em>Approximate location</em> and <em>Crash logs</em>, so does the policy. IP-inferred location counts.</td>
+          </tr>
+          <tr>
+            <th scope="row">Collected or shared</th>
+            <td>Collected / Shared (transfers to service providers, for legal reasons or of anonymized data are not "sharing")</td>
+            <td>The types of recipients, including service providers the form leaves out.</td>
+          </tr>
+          <tr>
+            <th scope="row">Processed ephemerally?</th>
+            <td>Yes / No (held in memory only to serve the request)</td>
+            <td>Data used briefly off the device, such as a location to fetch weather, and that you do not store it.</td>
+          </tr>
+          <tr>
+            <th scope="row">Required or optional</th>
+            <td>Required / Users can choose</td>
+            <td>Which data users can decline, and what stops working.</td>
+          </tr>
+          <tr>
+            <th scope="row">Purposes</th>
+            <td>App functionality, Analytics, Developer communications, Advertising or marketing, Fraud prevention, security, and compliance, Personalization, Account management</td>
+            <td>Each purpose, attached to its data type. "To improve our services" covers none of them.</td>
+          </tr>
+          <tr>
+            <th scope="row">Security practices</th>
+            <td>Is all data encrypted in transit? Can users request deletion?</td>
+            <td>Encryption in transit, and how to request deletion, matching the <strong>Delete account URL</strong>.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Google's review does not verify declarations, but it may take enforcement action when app behavior and the form disagree, and a policy that contradicts the form is the easiest mismatch to spot. The <a href="/tools/play-data-safety-answers/">Data safety answer builder</a> walks through all 14 categories.</p>
+
+    <h2 id="play-policies">Permissions, Families and Account Deletion</h2>
+
+    <p>Three parts of the Developer Program Policy catch indie developers more often than the URL field itself.</p>
+
+    <h3>Sensitive permissions</h3>
+    <p>These need a Play Console declaration justifying the core feature, and the policy should describe the same use:</p>
+    <ul>
+      <li><code>READ_SMS</code>, <code>READ_CALL_LOG</code> and related permissions: only for the default SMS, Phone or Assistant handler.</li>
+      <li><code>ACCESS_BACKGROUND_LOCATION</code>: critical features only, never ads or analytics alone. From January 27, 2027, apps targeting API 37 must use the Android location button for one-time requests.</li>
+      <li><code>READ_MEDIA_IMAGES</code> and <code>READ_MEDIA_VIDEO</code> (API 33+): only when the system photo picker cannot do the job.</li>
+      <li><code>MANAGE_EXTERNAL_STORAGE</code> and <code>QUERY_ALL_PACKAGES</code>: only when targeted alternatives fall short.</li>
+    </ul>
+    <p>If collection would surprise users, such as location gathered while the app is closed, the Prominent Disclosure &amp; Consent requirement adds an in-app notice before the runtime prompt and an affirmative user action. The privacy policy alone does not satisfy it.</p>
+
+    <h3>Families policy</h3>
+    <p>Your <strong>Target audience and content</strong> answers decide whether it applies. If children are in the audience, disclose all personal and sensitive data collected from them, including through SDKs. Apps solely for children must not transmit the AAID, IMEI, IMSI, MAC, SSID, BSSID, SIM serial or build serial, may not request location permission, and should not request <code>AD_ID</code> on API 33+. Ads to children or users of unknown age must come from a Families Self-Certified Ads SDK, with no interest-based ads or remarketing. See the <a href="/resources/coppa-privacy-policy/">COPPA privacy policy guide</a> for parental consent.</p>
+
+    <h3>Account deletion</h3>
+    <p>If users can create an account, they must be able to request deletion in the app and on a web page that works without the app. That page goes in the <strong>Delete account URL</strong> field of the Data safety form. Freezing an account does not count, and any data you keep for security or legal reasons must be disclosed in the policy. The <a href="/account-deletion-page-generator/">account deletion page generator</a> hosts that page for free.</p>
+
+    <h2 id="sdks">SDKs That Create Disclosure Duties Android Developers Miss</h2>
+
+    <p>Data safety answers must include what your SDKs collect, so the policy must too. Google's <strong>SDK Index</strong> links to providers' own Data safety guidance. These libraries are the ones most often left out:</p>
+
+    <div class="table-scroll" role="region" aria-label="Common Android SDKs and the disclosures they create" tabindex="0">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th scope="col">SDK</th>
+            <th scope="col">What it sends</th>
+            <th scope="col">Data safety types and policy line</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">firebase-crashlytics</th>
+            <td>Stack traces, app state, device metadata, a Crashlytics installation UUID</td>
+            <td>Crash logs, Diagnostics, Device or other IDs. Name Google.</td>
+          </tr>
+          <tr>
+            <th scope="row">firebase-analytics</th>
+            <td>App instance ID, automatic events and screen views; advertising ID if <code>AD_ID</code> is declared</td>
+            <td>App interactions, Device or other IDs. Say if linked to Google Ads.</td>
+          </tr>
+          <tr>
+            <th scope="row">firebase-auth / Google Sign-In</th>
+            <td>IP address for abuse prevention; email, name, phone or user ID by sign-in method</td>
+            <td>Email address, Name, User IDs. Purposes: Account management, Fraud prevention.</td>
+          </tr>
+          <tr>
+            <th scope="row">firebase-messaging / OneSignal</th>
+            <td>Push token, app version, installation ID; OneSignal also email or SMS if used</td>
+            <td>Device or other IDs. Name the push provider.</td>
+          </tr>
+          <tr>
+            <th scope="row">Google Mobile Ads (AdMob)</th>
+            <td>Advertising ID or app set ID, IP-derived location, ad interactions, diagnostics</td>
+            <td>Device or other IDs, Approximate location, App interactions; shared for Advertising. Also complete the <strong>Advertising ID</strong> declaration.</td>
+          </tr>
+          <tr>
+            <th scope="row">Play Billing Library</th>
+            <td>Purchase tokens and order IDs if you verify on your server; card details stay with Google</td>
+            <td>Purchase history. Do not claim you collect payment card data.</td>
+          </tr>
+          <tr>
+            <th scope="row">Meta (Facebook) SDK</th>
+            <td>Automatic install and launch App Events unless <code>com.facebook.sdk.AutoLogAppEventsEnabled</code> is false; advertising ID</td>
+            <td>App interactions, Device or other IDs. Name Meta and any ad measurement.</td>
+          </tr>
+          <tr>
+            <th scope="row">AppsFlyer / Adjust / Branch</th>
+            <td>Advertising ID, install referrer, attribution events</td>
+            <td>Device or other IDs, App interactions. Name the partner.</td>
+          </tr>
+          <tr>
+            <th scope="row">RevenueCat / Sentry</th>
+            <td>App user ID and subscriptions (RevenueCat); crash data, plus IP and user details if Sentry's <code>sendDefaultPii</code> is on</td>
+            <td>Purchase history, User IDs; Crash logs, Diagnostics.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Ads and analytics SDKs can add <code>AD_ID</code> or other permissions through the merged manifest, so check it before answering the form. The <a href="/tools/sdk-disclosure-generator/">SDK disclosure generator</a> turns an SDK list into policy paragraphs.</p>
+
+    <h2 id="clauses">Copy-Ready Google Play Clauses</h2>
+
+    <p>Add these to a full app policy (see <a href="/resources/how-to-write-privacy-policy-for-app/">writing a privacy policy for a mobile app</a>), replace the brackets and drop what does not apply.</p>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-label">Google Play clauses — ready to copy</span>
+      </div>
+      <div class="copy-block-body" id="sample-policy-text">
+<p><strong>Privacy Policy for [App Name]</strong></p>
+<p>This policy applies to the [App Name] Android app published on Google Play by [developer name as shown on the store listing]. Contact us about privacy at [privacy@example.com].</p>
+<p><strong>Information we collect</strong></p>
+<p>[App Name] collects [e.g. email address and user ID when you create an account; crash logs; approximate location from your IP address] for [account management / analytics].</p>
+<p><strong>Device permissions</strong></p>
+<p>The app requests [Camera] to [scan documents you choose] and [Notifications] to [send reminders you set]. It does not access [location / contacts / SMS]. You can revoke permissions at any time in your device's Settings &gt; Apps.</p>
+<p><strong>Advertising ID</strong></p>
+<p>[We and our advertising partner Google AdMob use your device's advertising ID to show and measure ads.] You can reset or delete your advertising ID in your device's Settings &gt; Privacy &gt; Ads. [OR: The app does not use the advertising ID.]</p>
+<p><strong>Third-party SDKs</strong></p>
+<p>The app includes third-party software that processes data on our behalf: [Firebase Crashlytics (Google): crash reports; Firebase Cloud Messaging (Google): push tokens; RevenueCat: purchase history]. Data is encrypted in transit.</p>
+<p><strong>Account deletion and retention</strong></p>
+<p>Delete your account in the app under [Settings &gt; Account &gt; Delete account] or at [https://example.com/delete-account]. We delete account data within [30] days, except [transaction records], kept [7 years] for legal reasons.</p>
+      </div>
+      <button class="copy-btn" id="copy-policy-btn" type="button">Copy to clipboard</button>
+    </div>
+
+    <p>Rather not edit a template? The <a href="https://buildprivacypolicy.com/">generator on our homepage</a> writes these sections from your answers.</p>
+
+    <RelatedGuides currentSlug="resources/google-play-privacy-policy-generator" />
+
+    <h2 id="faq">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>How to generate a privacy policy for an Android app?</h3>
+        <p>List the data your app and its SDKs collect, its permissions and how users delete data, then enter them into a generator that supports Google Play. Host the result on a public page and paste the URL under App content &gt; Privacy policy.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What is a privacy policy generator?</h3>
+        <p>A tool that builds a privacy policy from your answers about data practices. A good one for Android asks about SDKs, permissions, children and account deletion.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Which privacy policy generator is the best?</h3>
+        <p>For a Play app, one whose questions match the Data safety form and that hosts the policy on a public, non-PDF page. Check the output against your app whichever tool you use.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I create my own privacy policy?</h3>
+        <p>Yes. Google does not require a lawyer, only the required contents and a clear "Privacy Policy" label. Consider legal advice if you handle children's, health or financial data.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can ChatGPT create a privacy policy?</h3>
+        <p>It can draft one, but it does not know which SDKs or permissions are in your build. Check every statement against your Data safety answers and merged manifest.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Where can I get a free privacy policy?</h3>
+        <p>Free generators, including this site's, create and host one at no cost. You can also host it on GitHub Pages or your website, as a normal web page rather than a PDF.</p>
+      </div>
+    </div>
+
+    <p class="disclaimer-note">This page summarizes Google Play's requirements as of the date above; it is not legal advice. Sources: <a href="https://support.google.com/googleplay/android-developer/answer/9859455" rel="nofollow">Prepare your app for review (Play Console Help)</a>, <a href="https://support.google.com/googleplay/android-developer/answer/10144311" rel="nofollow">User Data policy</a>, <a href="https://support.google.com/googleplay/android-developer/answer/10787469" rel="nofollow">Data safety section</a>, <a href="https://support.google.com/googleplay/android-developer/answer/9893335" rel="nofollow">Families policies</a>, <a href="https://firebase.google.com/docs/android/play-data-disclosure" rel="nofollow">Firebase data disclosure</a>.</p>
+
+  </div>
+</article>
+</main>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Google Play Privacy Policy Generator: What Play Console Checks Before Review",
+  "description": description,
+  "datePublished": publishDate,
+  "dateModified": modifiedDate,
+  "author": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buildprivacypolicy.com/resources/google-play-privacy-policy-generator/"
+  }
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How to generate a privacy policy for an Android app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "List the data your app and its SDKs collect, its permissions and how users delete data, then enter them into a generator that supports Google Play. Host the result on a public page and paste the URL under App content > Privacy policy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a privacy policy generator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A tool that builds a privacy policy from your answers about data practices. A good one for Android asks about SDKs, permissions, children and account deletion."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which privacy policy generator is the best?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For a Play app, one whose questions match the Data safety form and that hosts the policy on a public, non-PDF page. Check the output against your app whichever tool you use."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I create my own privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Google does not require a lawyer, only the required contents and a clear \"Privacy Policy\" label. Consider legal advice if you handle children's, health or financial data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can ChatGPT create a privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It can draft one, but it does not know which SDKs or permissions are in your build. Check every statement against your Data safety answers and merged manifest."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where can I get a free privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Free generators, including this site's, create and host one at no cost. You can also host it on GitHub Pages or your website, as a normal web page rather than a PDF."
+      }
+    }
+  ]
+})} />
+
+</Layout>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-link:hover {
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+  .page-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 16px 80px;
+  }
+  .page-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px 36px;
+    border: 1px solid #E5E7EB;
+  }
+  .breadcrumb {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 16px;
+  }
+  .breadcrumb a {
+    color: #6B7280;
+    text-decoration: underline;
+  }
+  .page-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .last-updated {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 24px;
+  }
+  .page-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .page-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  .page-card p {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .page-card ul, .page-card ol {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+  .page-card li {
+    margin-bottom: 8px;
+  }
+  .page-card a {
+    color: #2563EB;
+    text-decoration: underline;
+  }
+  .page-card strong {
+    font-weight: 600;
+  }
+  .page-card em {
+    font-style: italic;
+  }
+  .toc {
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 8px;
+  }
+  .toc-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .toc ol {
+    margin-bottom: 0;
+    padding-left: 20px;
+  }
+  .toc li {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .toc a {
+    color: #2563EB;
+  }
+  .faq-list {
+    margin-top: 8px;
+  }
+  .faq-item {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 20px;
+    margin-bottom: 8px;
+  }
+  .faq-item h3 {
+    margin-top: 0;
+  }
+  .faq-item p {
+    margin-bottom: 8px;
+  }
+  .copy-block {
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    margin: 20px 0;
+    overflow: hidden;
+  }
+  .copy-block-header {
+    background: #F3F4F6;
+    padding: 10px 16px;
+    border-bottom: 1px solid #D1D5DB;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .copy-block-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4B5563;
+  }
+  .copy-block-body {
+    padding: 24px 28px;
+    background: #FAFAFA;
+    max-height: 480px;
+    overflow-y: auto;
+  }
+  .copy-block-body p {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .copy-block-body ul {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    padding-left: 22px;
+  }
+  .copy-block-body li {
+    margin-bottom: 4px;
+  }
+  .copy-block-body code {
+    background: #E5E7EB;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+  .copy-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #1E3A5F;
+    color: white;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .copy-btn:hover {
+    background: #2E5A8F;
+  }
+
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 16px 0 20px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+  }
+  .table-scroll:focus {
+    outline: 2px solid #2563EB;
+    outline-offset: 2px;
+  }
+  .compare-table {
+    width: 100%;
+    min-width: 640px;
+    border-collapse: collapse;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .compare-table thead th {
+    background: #F3F4F6;
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    vertical-align: bottom;
+  }
+  .compare-table tbody th {
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #111827;
+    background: #F9FAFB;
+    border-top: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    vertical-align: top;
+    width: 150px;
+  }
+  .compare-table td {
+    padding: 10px 12px;
+    border-top: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    color: #374151;
+    vertical-align: top;
+  }
+  .compare-table th:last-child,
+  .compare-table td:last-child {
+    border-right: none;
+  }
+  .page-card code {
+    background: #E5E7EB;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+  }
+  .disclaimer-note {
+    font-size: 13px !important;
+    color: #6B7280 !important;
+    border-top: 1px solid #E5E7EB;
+    padding-top: 16px;
+    margin-top: 24px;
+  }
+  @media (max-width: 640px) {
+    .page-card {
+      padding: 28px 20px;
+    }
+    .page-card h1 {
+      font-size: 24px;
+    }
+  }
+</style>
+
+<script>
+  document.getElementById('copy-policy-btn')?.addEventListener('click', function() {
+    const el = document.getElementById('sample-policy-text');
+    if (!el) return;
+    const text = el.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copy-policy-btn');
+      if (btn) {
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy to clipboard'; }, 2000);
+      }
+    });
+  });
+</script>

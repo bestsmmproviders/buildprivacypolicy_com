@@ -48,6 +48,14 @@
       "title": "iOS Privacy Policy Generator",
       "href": "/resources/ios-privacy-policy-generator/"
     },
+    "resources/google-play-privacy-policy-generator": {
+      "title": "Google Play Privacy Policy Generator",
+      "href": "/resources/google-play-privacy-policy-generator/"
+    },
+    "account-deletion-page-generator": {
+      "title": "Account Deletion Page Generator",
+      "href": "/account-deletion-page-generator/"
+    },
     "resources/gdpr-eu-representative": {
       "title": "GDPR EU Representative Guide",
       "href": "/resources/gdpr-eu-representative/"
@@ -321,7 +329,8 @@
     "tools/play-data-safety-answers": [
       { "slug": "tools/app-store-privacy-requirements", "reason": "Covers Apple's App Store privacy requirements alongside Google Play's Data Safety form." },
       { "slug": "resources/coppa-privacy-policy", "reason": "Apps in Google Play's Families program need a COPPA-compliant children's privacy policy on top of the Data Safety form." },
-      { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "Your Data safety answers must match the privacy policy linked from your Play listing — this guide covers writing that policy." }
+      { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "Your Data safety answers must match the privacy policy linked from your Play listing — this guide covers writing that policy." },
+      { "slug": "resources/google-play-privacy-policy-generator", "reason": "Your privacy policy must agree with these Data safety answers. See where the Play Console asks for the URL and what it rejects." }
     ],
     "resources/google-ads-remarketing-privacy-policy": [
       { "slug": "tools/sdk-disclosure-generator", "reason": "List what the AdMob and Firebase SDKs collect before writing the advertising section of an app's policy." },
@@ -338,6 +347,16 @@
       { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "The iOS clauses sit inside a full app privacy policy that also covers user rights, retention and contact details." },
       { "slug": "tools/app-store-privacy-requirements", "reason": "Compare what Apple, Google Play and other stores ask for before you submit." },
       { "slug": "tools/sdk-disclosure-generator", "reason": "Turn the SDKs in your Xcode project into ready-to-paste disclosure paragraphs." }
+    ],
+    "resources/google-play-privacy-policy-generator": [
+      { "slug": "tools/play-data-safety-answers", "reason": "Build the Data safety answers your Google Play privacy policy has to match, category by category." },
+      { "slug": "account-deletion-page-generator", "reason": "Apps with accounts need a Delete account URL in the Data safety form. Generate and host that page for free." },
+      { "slug": "tools/sdk-disclosure-generator", "reason": "Turn the SDKs in your Gradle build into ready-to-paste disclosure paragraphs." }
+    ],
+    "account-deletion-page-generator": [
+      { "slug": "resources/google-play-privacy-policy-generator", "reason": "Google Play also requires a privacy policy URL that discloses your retention and deletion practices. See what Play Console checks." },
+      { "slug": "tools/play-data-safety-answers", "reason": "Answer the rest of the Data safety form, including whether users can request data deletion." },
+      { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "Write the full app privacy policy your deletion page links to." }
     ]
   }
 }
