@@ -2,10 +2,10 @@
 import Layout from '../../../layouts/Layout.astro';
 import RelatedGuides from '../../../components/RelatedGuides.astro';
 
-const title = "Telegram Bot Privacy Policy — Guide & Template";
-const description = "Learn what Telegram requires for bot and Mini App privacy policies, what data your bot collects through the Bot API, and copy a ready-made policy template.";
+const title = "Telegram Bot Privacy Policy Generator - Free Template & URL";
+const description = "Telegram bot privacy policy generator: create a free policy, get a hosted URL to set in @BotFather, and copy a template that covers chat IDs and inline queries.";
 const publishDate = "2026-10-02";
-const modifiedDate = "2026-10-02";
+const modifiedDate = "2026-11-21";
 ---
 
 <Layout title={title} description={description}>
@@ -24,11 +24,11 @@ const modifiedDate = "2026-10-02";
   <div class="page-card">
     <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
     <h1>Telegram Bot Privacy Policy: What Telegram Requires and How to Write One</h1>
-    <p class="last-updated">Published October 2, 2026</p>
+    <p class="last-updated">Published October 2, 2026 &middot; Updated November 21, 2026</p>
 
     <p>Telegram requires every bot and Mini App on the platform to have a privacy policy. The <a href="https://telegram.org/tos/bot-developers" rel="nofollow">Bot Developer Terms of Service</a> (Section 4) state that developers must maintain an accessible privacy policy detailing what data the bot stores, how it collects that data, and what it uses it for. Telegram provides a <a href="https://telegram.org/privacy-tpa" rel="nofollow">Standard Privacy Policy for Bots and Mini Apps</a> as a default, but any bot whose data practices go beyond what that template describes -- storing messages, calling third-party APIs, running payments, or collecting data the standard template does not account for -- must register a separate, custom privacy policy through <code>@BotFather</code>.</p>
 
-    <p>This guide covers what Telegram actually checks, what data your bot receives through the Bot API that you need to disclose, the additional obligations Mini Apps and payment bots carry, how to handle GDPR and data retention, and a ready-to-copy sample policy you can adapt for your own bot. If you want a finished policy instead of writing one from scratch, <a href="https://buildprivacypolicy.com/">generate a privacy policy for free</a> and host it at a permanent URL.</p>
+    <p>The quickest way to get a custom policy in place: <a href="https://buildprivacypolicy.com/">generate a privacy policy for free</a> from your bot's actual data practices, host it at a permanent URL, and register that URL in <code>@BotFather</code>. This guide covers where Telegram expects the URL, what data your bot receives through the Bot API that you need to disclose (including the data developers usually miss), the additional obligations Mini Apps and payment bots carry, how to handle GDPR and data retention, and a ready-to-copy sample policy you can adapt for your own bot.</p>
 
     <nav class="toc">
       <p class="toc-title">Contents</p>
@@ -50,7 +50,16 @@ const modifiedDate = "2026-10-02";
 
     <p>Most real-world bots outgrow it. If your bot stores conversation history, calls an external AI API with message content, logs user activity in a database, collects payments, or does anything the standard template does not describe, you need a custom policy. The Developer Terms are explicit: developers whose services conflict with or go beyond the Standard Privacy Policy <strong>must provide a separate privacy policy</strong>.</p>
 
-    <p>To register your custom policy, open a chat with <code>@BotFather</code> on Telegram and use <code>/mybots</code> to select your bot. From the bot's settings, you can set your privacy policy URL directly. Once set, the policy becomes accessible to users through a dedicated button in the bot's profile and in Mini App settings menus. The custom policy takes precedence over Telegram's standard template from that point on.</p>
+    <h3>Where Telegram expects the policy URL</h3>
+
+    <p>The Developer Terms say bots that need their own policy "must set up a Privacy Policy in @BotFather." In practice there are four places a user can meet your policy, and only the first is mandatory:</p>
+
+    <ul>
+      <li><strong>@BotFather (required for a custom policy).</strong> Open a chat with <code>@BotFather</code>, send <code>/mybots</code>, select your bot, and set the privacy policy URL from the bot's settings -- or do the same through the BotFather Mini App, which exposes the same settings. Once registered, your policy takes precedence over Telegram's Standard Policy.</li>
+      <li><strong>The Mini App Settings page (automatic).</strong> Every Mini App displays a <strong>Privacy Policy</strong> button in its Settings page. It opens the policy you registered in BotFather, or Telegram's Standard Policy if you registered none -- so a Mini App that outgrew the standard template is showing users the wrong document until you register yours.</li>
+      <li><strong>The bot's description and about text (optional, visible before first use).</strong> <code>/setdescription</code> sets the up-to-512-character text users see under "What can this bot do?" before they start the bot, and <code>/setabouttext</code> sets the up-to-120-character line on the bot's profile page. Ending either with your policy URL lets users check your data practices before they send the bot anything.</li>
+      <li><strong>A <code>/privacy</code> command (optional, good practice).</strong> Add a <code>/privacy</code> entry with <code>/setcommands</code> and have the bot reply with the policy URL. It gives users in any chat a one-tap way to find the policy, and costs a single handler.</li>
+    </ul>
 
     <p>This is the same pattern other platforms follow: Discord requires a privacy policy URL in the Developer Portal before <a href="/resources/discord-bot-privacy-policy/">bot verification at 75 servers</a>, and Google enforces one for every <a href="/resources/chrome-extension-privacy-policy/">Chrome Web Store listing</a>. The platform gatekeeps distribution behind a policy check, and the policy has to match what the bot actually does.</p>
 
@@ -66,6 +75,18 @@ const modifiedDate = "2026-10-02";
       <li><strong>Callback data.</strong> Tapping an inline keyboard button sends a <code>CallbackQuery</code> with the user's identity and the <code>data</code> string you encoded into the button. If your buttons carry user-specific payloads, that is personal data in transit.</li>
       <li><strong>Location.</strong> Bots that request location (via <code>KeyboardButton</code> with <code>request_location</code>, or inline bots with <code>/setinlinegeo</code> enabled) receive the user's latitude and longitude -- sensitive data that many policies forget to disclose.</li>
       <li><strong>Shared contacts.</strong> A user can share a phone contact through the <code>request_contact</code> keyboard button, handing the bot a phone number and name -- data that goes well beyond the default Bot API surface.</li>
+    </ul>
+
+    <h3>Data developers overlook</h3>
+
+    <p>Five data flows account for most incomplete Telegram bot policies. Each arrives through ordinary Bot API updates, so a bot can be handling them without any code that deliberately "collects" them:</p>
+
+    <ul>
+      <li><strong>Chat IDs as persistent identifiers.</strong> A private chat's <code>id</code> equals the user's own Telegram user ID, and it never changes. Any log line, analytics event, or error report that records <code>chat.id</code> is storing a personal identifier -- even if you never save a name or username.</li>
+      <li><strong>Full message payloads.</strong> A <code>Message</code> carries far more than its text: media <code>caption</code>s, <code>file_id</code>s your bot can use to download the photo, voice note, or document, <code>entities</code> containing every URL and mention, <code>reply_to_message</code> with the full message being replied to (often someone else's), and separate <code>edited_message</code> updates when a user edits a message. If you log raw updates for debugging, all of that is in your logs.</li>
+      <li><strong>Forwarded user profiles.</strong> When someone forwards a message to your bot, its <code>forward_origin</code> can include the original sender's <code>User</code> object -- the ID, name, and username of a person who may never have interacted with your bot. If that sender has restricted forwarding, Telegram sends only their display name. Your policy should cover third parties whose data reaches the bot this way.</li>
+      <li><strong>Inline query text.</strong> Inline mode delivers the <code>query</code> string as the user types it, from any chat, along with their identity. If you enable <code>/setinlinefeedback</code>, you also receive a <code>chosen_inline_result</code> recording which result they picked; with <code>/setinlinegeo</code>, the query can carry their location.</li>
+      <li><strong>Group membership.</strong> Regardless of privacy mode, bots receive all service messages in their groups -- including <code>new_chat_members</code> and <code>left_chat_member</code>, which name the users joining and leaving. Bots also get <code>my_chat_member</code> updates when they are added to or removed from a chat, and admin bots that request <code>chat_member</code> updates see membership changes for every user in the group.</li>
     </ul>
 
     <p>The takeaway: even a stateless bot that stores nothing still processes user IDs and message content in memory. "We do not store data" is a valid disclosure, but only after you account for what the Bot API delivers to your code on every event. The same principle applies to <a href="/resources/how-to-write-privacy-policy-for-app/">writing a privacy policy for any app</a> -- audit what you actually receive, not just what you save.</p>
@@ -129,7 +150,7 @@ const modifiedDate = "2026-10-02";
 <p>[Your Name / Organization] ("we," "us," or "our") operates the [Your Bot Name] Telegram bot ("the Bot"). This policy explains what data the Bot collects through the Telegram Bot API, why it collects it, who else receives it, how long it is kept, and your rights regarding that data.</p>
 
 <p><strong>2. Data We Collect</strong></p>
-<p><em>Telegram user ID, first name, and username</em> — received with every command, message, or inline query the Bot processes; used to deliver responses and maintain per-user settings. <em>Chat ID and chat type</em> — used to route responses to the correct conversation. <em>Message content</em> [if applicable] — used to [describe feature, e.g., moderate messages / generate AI responses / log support requests]; [processed in memory only / stored for (number) days]. <em>Inline query text</em> [if applicable] — the search term entered when a user types @[YourBotUsername] in any chat; used to return relevant results. <em>Location data</em> [if applicable] — requested via keyboard button or inline geo; used for [describe purpose]. <em>Payment information</em> [if applicable] — order details (name, email, shipping address) received through Telegram's payment system; stored for [number] days for transaction records and support.</p>
+<p><em>Telegram user ID, first name, and username</em> — received with every command, message, or inline query the Bot processes; used to deliver responses and maintain per-user settings. <em>Chat ID and chat type</em> — used to route responses to the correct conversation. <em>Message content</em> [if applicable] — used to [describe feature, e.g., moderate messages / generate AI responses / log support requests]; [processed in memory only / stored for (number) days]. <em>Inline query text</em> [if applicable] — the search term entered when a user types @[YourBotUsername] in any chat; used to return relevant results. <em>Forwarded messages</em> [if applicable] — when you forward a message to the Bot, it may include the original sender's Telegram ID, name, and username; used only to [describe purpose] and [not stored / stored for (number) days]. <em>Group membership events</em> [if the Bot works in groups] — the IDs and names of members who join or leave a group the Bot is in, delivered by Telegram as service messages; used to [describe purpose, e.g., send welcome messages / moderate the group] or discarded. <em>Location data</em> [if applicable] — requested via keyboard button or inline geo; used for [describe purpose]. <em>Payment information</em> [if applicable] — order details (name, email, shipping address) received through Telegram's payment system; stored for [number] days for transaction records and support.</p>
 
 <p><strong>3. Why We Use This Data</strong></p>
 <p>To operate the Bot's commands and features, maintain per-user and per-chat settings, [moderate content / generate responses / other purpose], and diagnose errors. We do not use your data for advertising, sell it to third parties, or share it with data brokers. We do not collect data for building datasets, machine learning models, or AI products through scraping, in compliance with Telegram's Developer Terms.</p>
@@ -186,7 +207,7 @@ const modifiedDate = "2026-10-02";
 
       <div class="faq-item">
         <h3>How do I set a privacy policy URL in BotFather?</h3>
-        <p>Open a chat with <code>@BotFather</code>, send <code>/mybots</code>, select your bot, and navigate to the bot's settings to set the privacy policy URL. The link becomes visible on the bot's profile and in Mini App settings menus.</p>
+        <p>Open a chat with <code>@BotFather</code>, send <code>/mybots</code>, select your bot, and set the privacy policy URL from the bot's settings (the BotFather Mini App offers the same settings). Mini Apps then show it behind the Privacy Policy button in their Settings page. You can also add the URL to the bot's description or about text and answer a <code>/privacy</code> command with it.</p>
       </div>
 
       <div class="faq-item">
@@ -267,7 +288,7 @@ const modifiedDate = "2026-10-02";
       "name": "How do I set a privacy policy URL in BotFather?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Open a chat with @BotFather, send /mybots, select your bot, and navigate to the bot's settings to set the privacy policy URL. The link becomes visible on the bot's profile and in Mini App settings menus."
+        "text": "Open a chat with @BotFather, send /mybots, select your bot, and set the privacy policy URL from the bot's settings (the BotFather Mini App offers the same settings). Mini Apps then show it behind the Privacy Policy button in their Settings page. You can also add the URL to the bot's description or about text and answer a /privacy command with it."
       }
     },
     {

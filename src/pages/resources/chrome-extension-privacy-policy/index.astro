@@ -2,10 +2,10 @@
 import Layout from '../../../layouts/Layout.astro';
 import RelatedGuides from '../../../components/RelatedGuides.astro';
 
-const title = "Chrome Extension Privacy Policy Generator — Template & URL";
-const description = "Copy a ready-made Chrome extension privacy policy or generate one free and get a hosted URL to paste into the Web Store Developer Dashboard. No signup needed.";
+const title = "Chrome Extension Privacy Policy Generator: Free + Hosted URL";
+const description = "Chrome extension privacy policy generator: build a free policy that passes Web Store review, get a hosted URL for the Privacy tab, and copy Limited Use clauses.";
 const publishDate = "2026-08-26";
-const modifiedDate = "2026-09-30";
+const modifiedDate = "2026-11-21";
 ---
 
 <Layout title={title} description={description}>
@@ -23,12 +23,22 @@ const modifiedDate = "2026-09-30";
 <article class="page-container">
   <div class="page-card">
     <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
-    <h1>Chrome Extension Privacy Policy: What Google Requires and How to Create One</h1>
-    <p class="last-updated">Published August 26, 2026 &middot; Updated September 30, 2026</p>
+    <h1>Chrome Extension Privacy Policy Generator: Pass Chrome Web Store Review</h1>
+    <p class="last-updated">Published August 26, 2026 &middot; Updated November 21, 2026</p>
 
-    <p>Every Chrome extension that handles user data needs a privacy policy URL before Google will approve it for the Chrome Web Store. The policy must be publicly accessible, describe exactly what data the extension collects and why, and match the data-use disclosures you certify in the Developer Dashboard's Privacy practices tab. Skip it and the extension fails review. Submit a vague or generic document and the review team rejects it anyway -- they read the policy, not just the URL field, and they cross-check it against the "Single purpose" description and permission justifications you filed alongside it.</p>
+    <p>If you are publishing a Chrome extension that handles user data, you need a privacy policy URL before Google will approve it for the Chrome Web Store. The fastest route is to <a href="https://buildprivacypolicy.com/">generate a free privacy policy</a> that names your extension and its permissions, host it at a permanent public URL, and paste that URL into the <strong>Privacy policy</strong> field on the <strong>Privacy practices</strong> tab of the Developer Dashboard. The policy must be publicly accessible, describe exactly what data the extension collects and why, and match the data-use disclosures you certify in the Developer Dashboard's Privacy practices tab. Skip it and the extension fails review. Submit a vague or generic document and the review team rejects it anyway -- they read the policy, not just the URL field, and they cross-check it against the "Single purpose" description and permission justifications you filed alongside it.</p>
 
     <p>This guide covers when the Chrome Web Store requires a policy, what Google's review process actually checks, how to fix the most common rejection emails, the data categories extension developers commonly overlook, how the "Single purpose" field and the Limited Use policy interact with your privacy policy, how to write permission justifications that pass review, how to complete the Data Usage certification, where to host the finished policy, and a complete sample policy you can copy. If you need a policy fast, you can <a href="https://buildprivacypolicy.com/">generate a privacy policy for free</a> and host it at no cost.</p>
+
+    <div class="publisher-checklist">
+      <p class="publisher-checklist-title">Chrome Web Store review: the four things a publisher must get right</p>
+      <ol>
+        <li><strong>The URL field.</strong> Paste a public <code>https://</code> link to the policy text into <strong>Privacy practices &rsaquo; Privacy policy</strong>. Google's own docs say your Data usage disclosures "should be consistent with the privacy policy URL" you enter there. <a href="#host-and-link">Where to paste it</a></li>
+        <li><strong>Single purpose and Limited Use.</strong> State one narrow purpose, collect only the data that purpose needs, and never sell data or use it for personalized ads. <a href="#single-purpose-limited-use">The rules in detail</a></li>
+        <li><strong>The remote-code declaration.</strong> Manifest V3 extensions cannot load and execute remotely hosted files. Answer the <strong>Remote code</strong> question honestly -- undeclared remote code is rejected. <a href="#troubleshooting-rejections">Remote-code rejections</a></li>
+        <li><strong>The Limited Use statement in your policy.</strong> Google requires an affirmative statement that your data use complies with Limited Use. <a href="#chrome-clauses">Copy the clause block</a></li>
+      </ol>
+    </div>
 
     <nav class="toc">
       <p class="toc-title">Contents</p>
@@ -41,6 +51,7 @@ const modifiedDate = "2026-09-30";
         <li><a href="#data-usage-certification">Required Disclosures and the Data Usage Certification</a></li>
         <li><a href="#host-permission-justifications">Host Permission Justifications: What to Write</a></li>
         <li><a href="#generate-policy">How to Generate a Chrome Extension Privacy Policy</a></li>
+        <li><a href="#chrome-clauses">Copy-Ready Chrome Web Store Clauses</a></li>
         <li><a href="#example-policy">Sample Chrome Extension Privacy Policy You Can Copy</a></li>
         <li><a href="#host-and-link">Hosting the URL and Where to Paste It</a></li>
         <li><a href="#august-2026-updates">August 2026 Chrome Web Store Privacy Updates</a></li>
@@ -62,7 +73,7 @@ const modifiedDate = "2026-09-30";
 
     <ul>
       <li><strong>The extension requests permissions that access user data.</strong> Permissions like <code>tabs</code>, <code>history</code>, <code>bookmarks</code>, <code>cookies</code>, <code>webRequest</code>, <code>identity</code>, and any host permissions (e.g., <code>*://*.example.com/*</code> or <code>&lt;all_urls&gt;</code>) give the extension access to browsing data, authentication tokens, or page content. Requesting any of these means the extension can access user data, and Google treats that as handling it.</li>
-      <li><strong>The extension collects any information from the user.</strong> Form inputs, email addresses, preferences, usage analytics -- if the extension captures information a user provides or generates, the Privacy policy field in the Store listing tab is mandatory.</li>
+      <li><strong>The extension collects any information from the user.</strong> Form inputs, email addresses, preferences, usage analytics -- if the extension captures information a user provides or generates, the Privacy policy field on the Privacy practices tab is mandatory.</li>
       <li><strong>The extension uses remote code or connects to external services.</strong> Extensions that fetch scripts, send data to an API, or communicate with a backend server are transmitting information outside the browser. Google requires disclosure of what data leaves the device and where it goes.</li>
     </ul>
 
@@ -73,7 +84,7 @@ const modifiedDate = "2026-09-30";
     <p>Google's Chrome Web Store review runs in two stages. An automated pipeline scans the submitted ZIP for known patterns -- permission usage, remote code references, manifest structure, obfuscated code -- and flags items for human review. A human reviewer then checks the flagged items against the Developer Program Policies. Extensions requesting sensitive permissions (<code>webRequest</code>, <code>&lt;all_urls&gt;</code>, <code>tabs</code>, <code>identity</code>, <code>cookies</code>, <code>clipboardRead</code>) are routed to human review far more often than extensions with narrow permissions like <code>activeTab</code> or <code>storage</code>. Reviewers check several specific conditions before approving an extension.</p>
 
     <ul>
-      <li><strong>The privacy policy URL loads to the actual policy text.</strong> The link entered in the <strong>Store listing</strong> tab's <strong>Privacy policy</strong> field must open directly to the policy content -- not a homepage, not a generic legal page, not a link that redirects through a login wall or returns a 404. Google's automated checks fetch the URL before human review begins and expect a 200 response that renders the policy immediately.</li>
+      <li><strong>The privacy policy URL loads to the actual policy text.</strong> The link entered in the <strong>Privacy policy</strong> field on the <strong>Privacy practices</strong> tab must open directly to the policy content -- not a homepage, not a generic legal page, not a link that redirects through a login wall or returns a 404. Google's automated checks fetch the URL before human review begins and expect a 200 response that renders the policy immediately.</li>
       <li><strong>The policy describes the extension's actual data practices.</strong> A boilerplate document about website cookies and server logs that never mentions browser extensions, permissions, or the specific data the extension accesses will be flagged. The content must be relevant to the extension being submitted, and it must name the extension.</li>
       <li><strong>Declared permissions match the policy disclosures and the "Single purpose" description.</strong> If <code>manifest.json</code> requests <code>activeTab</code>, <code>storage</code>, and host permissions for specific domains, the privacy policy must explain why those permissions are needed and what data they access, and that explanation must be consistent with the single-sentence purpose you entered on the <strong>Privacy practices</strong> tab. Mismatches among the manifest, the policy, and the stated purpose trigger rejection.</li>
       <li><strong>The Data usage certification on the Privacy practices tab is consistent with the policy.</strong> The dashboard asks you to certify which data types the extension collects (see the <a href="#data-usage-certification">certification section below</a>). If the certification says no personally identifiable information is collected but the policy mentions storing email addresses, the submission fails.</li>
@@ -88,7 +99,7 @@ const modifiedDate = "2026-09-30";
 
     <h3>Privacy policy URL missing or broken</h3>
 
-    <p>The rejection email reads: <em>"Your extension does not comply with the following Chrome Web Store policy: User Data Privacy — Prominent Disclosure. Your extension must provide a privacy policy."</em> This fires when the <strong>Privacy policy</strong> URL field on the <strong>Store listing</strong> tab is blank, or when the URL resolves to a non-200 status. Google's automated check fetches the URL before human review begins -- a 404, a redirect loop, or a login wall stops the process immediately.</p>
+    <p>The rejection email reads: <em>"Your extension does not comply with the following Chrome Web Store policy: User Data Privacy — Prominent Disclosure. Your extension must provide a privacy policy."</em> This fires when the <strong>Privacy policy</strong> URL field on the <strong>Privacy practices</strong> tab is blank, or when the URL resolves to a non-200 status. Google's automated check fetches the URL before human review begins -- a 404, a redirect loop, or a login wall stops the process immediately.</p>
 
     <p><strong>Fix:</strong> Paste a fully qualified <code>https://</code> URL that resolves directly to the policy text, and test it in an incognito window. If you do not have stable hosting, <a href="https://buildprivacypolicy.com/">generate and host a policy for free</a> at a permanent URL.</p>
 
@@ -150,12 +161,16 @@ const modifiedDate = "2026-09-30";
 
     <h3>Google's Limited Use policy</h3>
 
-    <p>Since 2021, Google has enforced a Limited Use policy for any extension that accesses user data through its permissions. The policy restricts what you may do with that data to four allowed uses tied directly to the extension's single purpose:</p>
+    <p>Since 2021, Google has enforced a Limited Use policy for any extension that accesses user data through its permissions. The policy limits your use of that data to providing or improving the extension's single purpose, and allows transfers to third parties only in four cases:</p>
 
     <ul>
-      <li>Providing or improving features that are prominently disclosed to the user as part of the extension's function.</li>
-      <li>Complying with applicable law, or protecting against fraud, abuse, or security threats.</li>
+      <li>When necessary to provide or improve the extension's single purpose.</li>
+      <li>To comply with applicable laws.</li>
+      <li>To protect against malware, spam, phishing, or other fraud or abuse.</li>
+      <li>As part of a merger, acquisition, or sale of assets, after obtaining the user's explicit prior consent.</li>
     </ul>
+
+    <p>Humans may read user data only with the user's explicit consent for specific data, when the data is aggregated and anonymized for internal operations, when necessary for security (for example, investigating abuse), or to comply with the law. Collecting web browsing activity is prohibited except where a user-facing feature that needs it is described prominently on the listing and in the extension's interface.</p>
 
     <p>And it explicitly prohibits several uses regardless of user consent or disclosure:</p>
 
@@ -288,6 +303,25 @@ const modifiedDate = "2026-09-30";
 
     <p>Whichever approach you choose, verify the finished document against the Chrome Web Store checklist before submitting: correct extension name, every permission's data use disclosed, Data usage certification consistent with the policy text, and a URL that loads on mobile and desktop without authentication.</p>
 
+    <h2 id="chrome-clauses">Copy-Ready Chrome Web Store Clauses</h2>
+
+    <p>Already have a privacy policy for your website or app? These are the Chrome-specific clauses reviewers look for. Add them to the existing policy, replace the bracketed placeholders, and delete any line that is not true of your extension. The first clause uses the wording Google suggests on its Limited Use policy page.</p>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-label">Chrome Web Store clauses — ready to copy</span>
+      </div>
+      <div class="copy-block-body" id="chrome-clauses-text">
+<p><strong>Chrome Web Store Limited Use.</strong> The use of information received from Google APIs will adhere to the Chrome Web Store User Data Policy, including the Limited Use requirements.</p>
+<p><strong>Single purpose.</strong> [Your Extension Name] has one purpose: [one sentence matching the Single purpose field in the Developer Dashboard]. We collect and use only the data needed to provide or improve that purpose.</p>
+<p><strong>Permissions.</strong> The extension requests [permission] to [what it does with the data]. [Repeat for each permission in manifest.json.]</p>
+<p><strong>No sale, advertising, or credit use.</strong> We do not sell user data, transfer it to advertising platforms, data brokers, or other information resellers, use it for personalized advertising, or use it to determine creditworthiness or for lending purposes.</p>
+<p><strong>Third-party transfers.</strong> We transfer user data only when necessary to provide or improve the extension's single purpose, to comply with applicable laws, to protect against malware, spam, phishing, or other fraud or abuse, or as part of a merger, acquisition, or sale of assets after obtaining your explicit prior consent.</p>
+<p><strong>Remote code.</strong> All code the extension executes is included in the package reviewed by the Chrome Web Store. The extension does not download or execute remotely hosted code.</p>
+      </div>
+      <button class="copy-btn" id="copy-clauses-btn" type="button">Copy to clipboard</button>
+    </div>
+
     <h2 id="example-policy">Sample Chrome Extension Privacy Policy You Can Copy</h2>
 
     <p>Below is a complete privacy policy written for a fictional Chrome extension called "[Your Extension Name]." It covers the data categories most extensions handle -- permissions-based browsing data, stored preferences, authentication, and external communications. Copy the entire block, replace the bracketed placeholders with your extension's details, and remove any sections that do not apply.</p>
@@ -316,7 +350,7 @@ const modifiedDate = "2026-09-30";
 <li>[Authenticate your account and sync data across devices]</li>
 <li>[Send error reports to improve extension reliability (if applicable)]</li>
 </ul>
-<p>We do not use your data for advertising, sell it to third parties, or use or transfer it for any purpose unrelated to the extension's single purpose, in accordance with Chrome Web Store's Limited Use requirements.</p>
+<p>We do not use your data for advertising, sell it to third parties, or use or transfer it for any purpose unrelated to the extension's single purpose, in accordance with Chrome Web Store's Limited Use requirements. The use of information received from Google APIs will adhere to the Chrome Web Store User Data Policy, including the Limited Use requirements.</p>
 
 <p><strong>4. Third Parties That Receive Your Data</strong></p>
 <ul>
@@ -365,9 +399,11 @@ const modifiedDate = "2026-09-30";
 
     <ol>
       <li>Open the <a href="https://chrome.google.com/webstore/devconsole" rel="nofollow">Chrome Web Store Developer Dashboard</a> and select your extension.</li>
-      <li>Click the <strong>Store listing</strong> tab in the left sidebar.</li>
-      <li>Scroll to the <strong>Privacy policy</strong> field. Paste your full URL including <code>https://</code>.</li>
-      <li>Click the <strong>Privacy practices</strong> tab. Fill in the <strong>Single purpose</strong> field, write a specific <strong>Justification</strong> for every permission row, and complete the <strong>Data usage</strong> certification by selecting the data types your extension handles and their purposes. Every selection must match what your privacy policy describes.</li>
+      <li>Click the <strong>Privacy practices</strong> tab in the left sidebar.</li>
+      <li>Fill in the <strong>Single purpose</strong> field and write a specific <strong>Justification</strong> for every permission row.</li>
+      <li>Answer the <strong>Remote code</strong> question. If the extension does not execute remote code, select "No, I am not using remote code" -- and make sure that is true of the package you uploaded.</li>
+      <li>Complete the <strong>Data usage</strong> certification by selecting the data types your extension handles and ticking each compliance statement. Every selection must match what your privacy policy describes.</li>
+      <li>Scroll to the <strong>Privacy policy</strong> field at the bottom of the same tab and paste your full URL including <code>https://</code>.</li>
       <li>Save all changes and submit for review.</li>
     </ol>
 
@@ -440,7 +476,7 @@ const modifiedDate = "2026-09-30";
 
       <div class="faq-item">
         <h3>Where does the privacy policy URL go in the Developer Dashboard?</h3>
-        <p>In the Chrome Web Store Developer Dashboard, select your extension, go to the Store listing tab, and paste the URL into the Privacy policy field. You also need to complete the Privacy practices tab, which includes the Single purpose field, a Justification for every permission, and the Data usage certification.</p>
+        <p>In the Chrome Web Store Developer Dashboard, select your extension, open the Privacy practices tab, and paste the URL into the Privacy policy field at the bottom of that tab. The same tab holds the Single purpose field, a Justification for every permission, the Remote code declaration, and the Data usage certification.</p>
       </div>
 
       <div class="faq-item">
@@ -486,7 +522,7 @@ const modifiedDate = "2026-09-30";
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Chrome Extension Privacy Policy: What Google Requires and How to Create One",
+  "headline": "Chrome Extension Privacy Policy Generator: Pass Chrome Web Store Review",
   "description": description,
   "datePublished": publishDate,
   "dateModified": modifiedDate,
@@ -579,7 +615,7 @@ const modifiedDate = "2026-09-30";
       "name": "Where does the privacy policy URL go in the Developer Dashboard?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "In the Chrome Web Store Developer Dashboard, select your extension, go to the Store listing tab, and paste the URL into the Privacy policy field. You also need to complete the Privacy practices tab with the Single purpose field, permission justifications, and the Data usage certification."
+        "text": "In the Chrome Web Store Developer Dashboard, select your extension, open the Privacy practices tab, and paste the URL into the Privacy policy field at the bottom of that tab. The same tab holds the Remote code declaration, the Single purpose field, permission justifications, and the Data usage certification."
       }
     },
     {
@@ -794,6 +830,24 @@ const modifiedDate = "2026-09-30";
   .faq-item p {
     margin-bottom: 8px;
   }
+  .publisher-checklist {
+    border: 1px solid #BFDBFE;
+    background: #EFF6FF;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 20px 0;
+  }
+  .publisher-checklist-title {
+    font-weight: 600;
+    margin: 0 0 8px;
+  }
+  .publisher-checklist ol {
+    margin: 0;
+    padding-left: 20px;
+  }
+  .publisher-checklist li {
+    margin-bottom: 6px;
+  }
   .copy-block {
     border: 1px solid #D1D5DB;
     border-radius: 8px;
@@ -859,6 +913,17 @@ const modifiedDate = "2026-09-30";
 </style>
 
 <script>
+  document.getElementById('copy-clauses-btn')?.addEventListener('click', function() {
+    const el = document.getElementById('chrome-clauses-text');
+    if (!el) return;
+    navigator.clipboard.writeText(el.innerText).then(() => {
+      const btn = document.getElementById('copy-clauses-btn');
+      if (btn) {
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy to clipboard'; }, 2000);
+      }
+    });
+  });
   document.getElementById('copy-policy-btn')?.addEventListener('click', function() {
     const el = document.getElementById('sample-policy-text');
     if (!el) return;
