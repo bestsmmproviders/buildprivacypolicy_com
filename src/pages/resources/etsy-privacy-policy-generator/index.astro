@@ -5,7 +5,7 @@ import RelatedGuides from '../../../components/RelatedGuides.astro';
 const title = "Free Etsy Privacy Policy Generator for Your Shop";
 const description = "Answer a few questions about your Etsy shop and get a privacy policy to paste into Shop Manager or host free at its own URL. No signup. Covers GDPR and CCPA.";
 const publishDate = "2026-07-22";
-const modifiedDate = "2026-09-11";
+const modifiedDate = "2026-11-25";
 ---
 
 <Layout title={title} description={description}>
@@ -24,19 +24,22 @@ const modifiedDate = "2026-09-11";
   <div class="page-card">
     <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
     <h1>Etsy Privacy Policy Generator</h1>
-    <p class="last-updated">Updated September 11, 2026</p>
+    <p class="last-updated">Updated November 25, 2026</p>
 
-    <p>Etsy does not provide a built-in privacy policy generator for sellers. The platform requires every shop owner to handle their own privacy disclosures, but it does not offer a tool to create one. To get a privacy policy that reflects your specific Etsy shop's data practices, you need an external generator that asks about the services you use, the data you collect through orders, and which privacy laws apply to your buyers. A <a href="https://buildprivacypolicy.com/">free privacy policy generator</a> walks you through targeted questions about your Etsy shop's setup and produces a ready-to-use policy you can paste into your shop's Privacy policy field in Shop Manager or host for free, with no signup or payment required.</p>
+    <p>An Etsy privacy policy generator turns a few answers about your shop into a privacy policy you can paste into the Privacy tab of your Etsy shop policies. Etsy does offer a basic sample privacy policy inside Shop Manager, but it is a one-size-fits-all starting point: it does not know which shipping tools, email platform, print-on-demand partner or bookkeeping app handles your buyers' data. Etsy requires a privacy policy if you are based in the EU or sell to buyers there, and recommends one for every seller. A <a href="https://buildprivacypolicy.com/">free generator that builds the policy from your own answers</a> lets you produce one that names your actual tools, then paste it into Shop Manager, host it free at its own URL, or download it, with no signup or payment.</p>
 
-    <p>This guide covers everything Etsy sellers need to know: whether Etsy requires a privacy policy, why your shop needs one even if it is not legally mandated in your jurisdiction, what your policy should include to cover buyer data and third-party services, Etsy-specific data flows like Etsy Payments and Off-Site Ads, how to add the policy through Shop Manager step by step, a ready-to-copy sample policy, and how to generate a custom one in minutes.</p>
+    <p>This guide covers when Etsy requires a seller privacy policy, exactly what buyer data Etsy hands you, Etsy's own rules on what you may do with that data, what the policy must include (including Etsy Payments, Etsy Ads and Offsite Ads), the extra obligations for EU and UK sellers, where the policy goes in Shop Manager, how Etsy's sample policy compares with a generated one, and a ready-to-copy sample.</p>
 
     <nav class="toc">
       <p class="toc-title">Contents</p>
       <ol>
         <li><a href="#etsy-requirement">Does Etsy Require Sellers to Have a Privacy Policy</a></li>
-        <li><a href="#why-needed">Why Etsy Shop Owners Need a Privacy Policy</a></li>
+        <li><a href="#buyer-data">What Buyer Data Etsy Shares With You</a></li>
+        <li><a href="#etsy-data-rules">Etsy's Rules on Using Buyer Data</a></li>
         <li><a href="#what-to-include">What to Include in an Etsy Shop Privacy Policy</a></li>
+        <li><a href="#eu-uk-sellers">Extra Obligations for EU and UK Sellers</a></li>
         <li><a href="#how-to-add">How to Add a Privacy Policy to Your Etsy Shop</a></li>
+        <li><a href="#sample-vs-generated">Etsy's Sample Policy vs a Generated Policy</a></li>
         <li><a href="#generator">Using BuildPrivacyPolicy's Generator for Etsy Sellers</a></li>
         <li><a href="#example-policy">Sample Etsy Shop Privacy Policy You Can Copy</a></li>
         <li><a href="#faq">FAQ</a></li>
@@ -45,76 +48,151 @@ const modifiedDate = "2026-09-11";
 
     <h2 id="etsy-requirement">Does Etsy Require Sellers to Have a Privacy Policy</h2>
 
-    <p>Yes. Etsy's Seller Policy states that sellers who collect, use, or process personal information from buyers must provide a privacy policy that discloses those practices. While Etsy handles much of the transaction infrastructure (payment processing through Etsy Payments, messaging through the Etsy platform, and order management through the seller dashboard), sellers are still responsible for how they handle the buyer data Etsy shares with them to fulfill orders.</p>
+    <p>It depends on where you and your buyers are. Etsy's help article on shop policies says that if you are a seller based in the EU, or you offer items to buyers in the EU, you are required to create and comply with a privacy policy that meets the GDPR. For everyone else, Etsy recommends that all sellers create one, because many countries have similar laws.</p>
 
-    <p>When a buyer places an order, Etsy provides the seller with the buyer's name, shipping address, email address (in some cases), and order details. That transfer of personal data makes the seller a data controller under laws like the GDPR. Etsy acts as a platform and processes payments on your behalf, but the moment buyer data reaches your end for fulfillment, shipping label creation, customer communication, or marketing, you are responsible for disclosing how you handle it.</p>
+    <p>Etsy's Seller Policy (the version in effect since July 9, 2026) frames it the same way. Sellers must protect other members' personal information and comply with applicable data protection law, and that law may require you to post your own privacy policy where the people you deal with can read it. If you do post one, it has to be compatible with Etsy's Terms of Use, Seller Policy and Privacy Policy, so it cannot promise buyers something Etsy's rules forbid.</p>
 
-    <p>Etsy does not generate or host a privacy policy for sellers. Unlike some e-commerce platforms that offer a built-in privacy policy template, Etsy expects sellers to create and manage their own. The platform provides a designated section in your shop's policies where you can paste a privacy policy, but the content is entirely your responsibility.</p>
+    <p>The reason is that Etsy's own privacy policy only covers what Etsy does with data. Under EU data protection law, the Seller Policy treats you as an <strong>independent controller</strong> of the buyer information you obtain through Etsy. Once a buyer's name and address reach you for fulfillment, what you do with them (printing labels, keeping order records, replying to messages, passing details to a print partner) is your processing, and your policy is what explains it.</p>
 
-    <h2 id="why-needed">Why Etsy Shop Owners Need a Privacy Policy</h2>
+    <p>In practice, even a US seller with no EU sales is in a better position with a policy than without one. State privacy laws such as the CCPA only reach businesses above certain thresholds, but buyers in the EU and UK can find and order from almost any shop that ships internationally, and a clear policy is the cheapest way to be ready when they do. If you are unsure which laws your buyer base triggers, <a href="/tools/privacy-law-checker/">a short checker that matches your audience against privacy regulations</a> settles it in a few clicks.</p>
 
-    <p>Beyond Etsy's own seller requirements, three forces make a privacy policy effectively mandatory for every Etsy shop, regardless of size.</p>
+    <h2 id="buyer-data">What Buyer Data Etsy Shares With You</h2>
 
-    <p><strong>Privacy laws apply based on where your buyers are located.</strong> If a buyer in France orders a handmade item from your shop, the GDPR applies to that transaction. A buyer from California triggers the CCPA. Canadian buyers bring PIPEDA into scope, and Brazilian buyers are covered by the LGPD. Each of these laws requires you to publish a clear privacy policy explaining what personal data you collect and why. Since Etsy shops are accessible worldwide, most sellers are subject to multiple privacy regulations simultaneously. GDPR fines for transparency failures have reached tens of millions of euros, and CCPA enforcement has targeted businesses of all sizes, including sole proprietors.</p>
+    <p>Before you write anything, list what actually reaches you. For a typical shop it is this:</p>
 
-    <p><strong>Third-party services you use outside Etsy require disclosure.</strong> Many Etsy sellers use tools and services beyond what Etsy provides. If you use Google Analytics to track shop traffic, ship through USPS, UPS, or FedEx using a service like ShipStation or Pirate Ship, send marketing emails through Mailchimp or Klaviyo, use bookkeeping tools like QuickBooks or Wave, or run advertising through Facebook, Google, or Pinterest, each of those services processes buyer data. Your privacy policy must disclose which third-party services receive personal information and explain what data they handle.</p>
+    <ul>
+      <li><strong>Order details.</strong> The buyer's name, shipping address, the items ordered, quantities, prices, and anything they typed into a personalization field or gift message.</li>
+      <li><strong>Buyer email address.</strong> Depending on the order, Etsy may show you the buyer's email address, but since 2024 it has limited the buyer email addresses it passes to third-party apps that do not need them to fulfill an order. Etsy's own guidance is that you should never copy email addresses from Etsy orders into a mailing list.</li>
+      <li><strong>Messages.</strong> When buyers write to you through Etsy Messages, you receive the message text, their Etsy username, and any photos or files they attach, which for custom orders can include sizes, names or other personal details.</li>
+      <li><strong>Payment information: none.</strong> Etsy Payments processes cards, PayPal, Apple Pay, Google Pay and Etsy gift cards on Etsy's side. You never see card numbers or bank details; you receive the order and a payout.</li>
+      <li><strong>Shop statistics.</strong> Etsy Stats shows aggregated visits, traffic sources and conversion, not data about identifiable visitors. Etsy's old Google Analytics setting worked only with Universal Analytics, which Google retired in 2023, and Etsy has no native GA4 connection, so most shops no longer run their own analytics on Etsy.</li>
+    </ul>
 
-    <p><strong>Buyers expect transparency before purchasing.</strong> A visible privacy policy signals that you take data handling seriously. For buyers entering payment information or sharing their home address with a seller they have never purchased from before, a privacy policy provides reassurance. Shops without one risk losing sales to competitors who clearly communicate their data practices, especially for higher-value items where buyer trust matters most.</p>
+    <p>Everything beyond that list is data you choose to collect: newsletter signups on your own website, Instagram DMs, order forms in Google Forms, or a print-on-demand app that receives order addresses. Each of those is a separate data flow your policy has to cover.</p>
 
-    <p>The same disclosure duties apply to sellers on other platforms: <a href="/resources/shopify-privacy-policy-generator/">a Shopify-powered storefront</a> faces nearly identical buyer-data obligations, even though the settings live in a different dashboard. If you are not sure which specific laws your buyer base triggers, <a href="/tools/privacy-law-checker/">a short tool that checks your platform and audience against applicable privacy regulations</a> can settle that in a few clicks.</p>
+    <h2 id="etsy-data-rules">Etsy's Rules on Using Buyer Data</h2>
+
+    <p>Etsy's Seller Policy sets limits that are stricter than many sellers assume, and your privacy policy should not contradict them:</p>
+
+    <ul>
+      <li><strong>Use buyer data only for Etsy transactions.</strong> Email addresses, mailing addresses and similar information may be used only for Etsy-related communications or Etsy-facilitated transactions.</li>
+      <li><strong>No mailing lists without consent.</strong> You may not add any Etsy member to an email or physical mailing list, or use their identity for marketing, without their consent. A purchase is not consent.</li>
+      <li><strong>No promotions in Messages.</strong> Etsy Messages cannot be used for unsolicited advertising or promotions, or to contact someone who has asked you to stop.</li>
+      <li><strong>You answer for your own disclosures.</strong> If you share buyer data without proper consent, including by accident, the responsibility is yours, not Etsy's.</li>
+      <li><strong>Honor rights requests for data you hold.</strong> Outside Etsy's services you may have to respond to requests to access, correct, delete or object to the use of personal data you control.</li>
+    </ul>
+
+    <p>So if you want a mailing list, build it with an explicit opt-in (a signup form on your site or a checkbox the buyer ticks) and say in your policy which tool stores the list and how to unsubscribe.</p>
 
     <h2 id="what-to-include">What to Include in an Etsy Shop Privacy Policy</h2>
 
-    <p>An Etsy shop's privacy policy needs to cover the specific data flows that occur when someone buys from your store. For a broader walkthrough of structuring each section, read our <a href="/resources/how-to-write-privacy-policy-for-app/">guide to writing a privacy policy</a>.</p>
+    <p>A good Etsy shop policy describes your data flows, not Etsy's. For a broader walkthrough of structuring each clause, see our <a href="/resources/how-to-write-privacy-policy-for-app/">guide to writing a privacy policy</a>.</p>
 
     <ul>
-      <li><strong>Types of personal data collected, including what Etsy shares with you.</strong> When a buyer places an order, Etsy shares the buyer's full name, shipping address, and order details (items, quantities, transaction amount) with you as the seller so you can fulfill the purchase. In some cases Etsy also provides the buyer's email address. If buyers contact you through Etsy Messages — for customization requests, order questions, or pre-purchase inquiries — you receive the message content along with their Etsy username, and any files or photos they attach. If you collect email addresses for a mailing list or use Google Analytics through Etsy's web analytics integration, disclose those separately. List every category of data you receive or collect, whether from Etsy directly, from buyer messages, or through third-party tools.</li>
-      <li><strong>Payment processing through Etsy Payments.</strong> Etsy requires most sellers to use Etsy Payments as the sole checkout method. Etsy Payments processes all credit card, debit card, Apple Pay, Google Pay, and gift card transactions. Sellers never receive or store buyer payment credentials — no card numbers, no bank details, no CVVs. Your privacy policy should explain that Etsy Payments handles the full payment transaction on your behalf and that you receive only order-level details (buyer name, shipping address, items, and transaction total) needed for fulfillment. If you also accept PayPal in a region where Etsy permits it, disclose that separately.</li>
-      <li><strong>How you use buyer data.</strong> Tie each data type to a specific purpose. You use shipping addresses to send orders. You use buyer names and email addresses to communicate about order status. If you use buyer data for marketing, clearly state that and explain how buyers can opt out. Vague language like "to improve your experience" does not satisfy the GDPR's transparency requirements.</li>
-      <li><strong>Third-party services.</strong> Name every external service that receives buyer data. Common examples for Etsy sellers include shipping carriers (USPS, UPS, FedEx, Royal Mail), shipping management tools (ShipStation, Pirate Ship, Shippo), email marketing platforms (Mailchimp, Klaviyo), analytics (Google Analytics), advertising platforms (Facebook Ads, Pinterest Ads, Google Ads), and bookkeeping tools (QuickBooks, Wave, TaxJar). Each must be disclosed.</li>
-      <li><strong>Cookies and tracking.</strong> Etsy itself sets cookies for session management and platform functionality. If you have enabled Google Analytics through Etsy's web analytics integration (visible in Shop Manager under Settings &gt; Options &gt; Web Analytics), those set additional tracking cookies. Your policy should explain which cookie categories apply (essential, analytics, marketing) and how buyers can manage preferences through browser settings.</li>
-      <li><strong>Etsy Ads and Off-Site Ads.</strong> If you use Etsy Ads, your listings are promoted within Etsy's search results and category pages. Etsy manages the targeting; you set a daily budget through the Advertising section in Shop Manager. More significantly, Etsy's Off-Site Ads program promotes your listings on external platforms including Google, Facebook, Instagram, Pinterest, and Bing. Sellers who earned $10,000 or more in the prior 12 months are automatically enrolled with no opt-out. Even sellers below that threshold are enrolled by default, though they can opt out through Shop Manager under Settings &gt; Off-Site Ads. When Etsy runs off-site ads for your products, it shares listing data (product images, titles, prices) with those advertising networks for targeting and attribution. If a buyer clicks an off-site ad and purchases within 30 days, Etsy attributes the sale and charges you an advertising fee. Your privacy policy should disclose that Etsy may share your listing and shop data with external advertising platforms through the Off-Site Ads program, even if you did not actively choose to participate.</li>
-      <li><strong>Buyer rights under applicable laws.</strong> Under the GDPR, buyers can access, correct, delete, and port their data, restrict processing, and withdraw consent. Under the CCPA, California residents can request disclosure of collected data, request deletion, and opt out of the sale of personal information. Note that for data Etsy holds directly, buyers should contact Etsy. For data you hold as a seller, you are responsible for responding to these requests.</li>
-      <li><strong>Data retention.</strong> State how long you keep buyer data. Order records are typically retained for tax and accounting compliance (often five to seven years depending on jurisdiction). Marketing email lists are kept until the subscriber unsubscribes. Be specific rather than stating "as long as necessary."</li>
-      <li><strong>Contact information.</strong> Provide an email address where buyers can reach you with privacy questions. If you sell to EU buyers, you may need to designate a data controller and provide their contact details.</li>
+      <li><strong>Who you are.</strong> Your shop name, your name or business name, and a contact email. EU and UK law expects you to identify yourself as the controller.</li>
+      <li><strong>What you collect and where it comes from.</strong> Order details from Etsy, message content, and any data you collect yourself (newsletter signups, custom order forms, social media).</li>
+      <li><strong>Why, and on what legal basis.</strong> Fulfilling orders and answering messages is necessary to perform the contract. Keeping order records is a legal obligation (tax and accounting). Marketing emails rely on consent. Fraud prevention or improving your products may rely on legitimate interests. Vague phrases such as "to improve your experience" do not meet the GDPR's transparency standard.</li>
+      <li><strong>Etsy Payments.</strong> State that Etsy processes payments and that you do not receive or store payment card or bank details.</li>
+      <li><strong>Who else receives data.</strong> Name the services: shipping carriers and label tools (Etsy shipping labels, Pirate Ship, ShipStation, Shippo), print-on-demand or fulfillment partners (Printful, Printify, Gelato), email platforms (Mailchimp, Klaviyo, Flodesk), and bookkeeping software (QuickBooks, Wave, Craftybase). If a supplier makes or ships items for you, it receives the buyer's name and address and must be listed.</li>
+      <li><strong>Etsy Ads and Offsite Ads.</strong> Etsy Ads promote your listings inside Etsy. Offsite Ads show them on Google, Facebook, Instagram, Pinterest, Bing, the Google Display Network and Etsy publishing partners. Etsy runs the ads and the click tracking under its own privacy policy; you receive no data about who saw or clicked an ad. A short note pointing buyers to Etsy's privacy policy for ad tracking keeps your policy accurate. For reference, Etsy charges a 15% Offsite Ads fee on attributed orders (capped at $100 per order) if your shop has sold under $10,000 in every 365-day period, and you may opt out under Shop Manager &gt; Settings &gt; Offsite Ads. Once a shop reaches $10,000 in any 365-day period, the fee drops to 12% and participation becomes mandatory for the life of the shop. Orders are attributed when a buyer clicks an ad and buys from your shop within 30 days.</li>
+      <li><strong>Cookies and analytics.</strong> Etsy sets the cookies on its own pages, and its cookie banner manages consent. You only need your own cookie disclosure if you run analytics or ad pixels on a separate website or link-in-bio page.</li>
+      <li><strong>International transfers.</strong> If you are in the EU or UK and use US-based tools, say that data is transferred outside your region and under what safeguard (the EU-US Data Privacy Framework or standard contractual clauses). Avoid older templates that still cite the EU-US Privacy Shield; it was invalidated in 2020.</li>
+      <li><strong>Retention.</strong> Give real periods: order records for the time your tax rules require (often five to seven years), messages for as long as the shop is active, newsletter data until the subscriber unsubscribes.</li>
+      <li><strong>Buyer rights and how to use them.</strong> Access, correction, deletion, objection, restriction and portability under the GDPR and UK GDPR; the right to know and delete under US state laws where they apply. Explain that requests about data Etsy holds go to Etsy, and requests about data you hold go to you.</li>
     </ul>
+
+    <h2 id="eu-uk-sellers">Extra Obligations for EU and UK Sellers</h2>
+
+    <p>EU and UK shops carry more than the privacy policy itself, and most of it overlaps with the policy's content.</p>
+
+    <ul>
+      <li><strong>A policy is mandatory, not optional.</strong> Etsy requires a GDPR-compliant privacy policy from EU-based sellers and from anyone offering items to EU buyers. UK sellers are under the UK GDPR, which mirrors the EU rules.</li>
+      <li><strong>Trader details.</strong> Etsy marks business sellers who ship to the EU or EEA as "traders" and shows buyers your trader status, business registration number and business address. You edit these under Seller details on your public shop page (Shop Manager &gt; Sales Channels &gt; your Etsy shop). Your privacy policy's contact section should match them.</li>
+      <li><strong>Consent for marketing.</strong> EU and UK e-privacy rules require express consent before you send marketing emails, including to buyers whose email you received for an order. Etsy's legal team makes the same point in its Seller Handbook guidance on privacy policies.</li>
+      <li><strong>Non-EU sellers with EU buyers.</strong> The GDPR can apply to a US, Canadian or Australian shop that offers goods to people in the EU. Such businesses may also need an EU representative, though there is an exemption for occasional, low-risk processing; our guide to <a href="/resources/gdpr-eu-representative/">when a non-EU business needs a GDPR representative</a> covers the test.</li>
+      <li><strong>Keep consumer-law terms separate.</strong> The 14-day right of withdrawal and delivery rules come from EU consumer law, not the GDPR. They belong in your returns policy, not your privacy policy.</li>
+    </ul>
+
+    <p>If you also sell from your own storefront alongside Etsy, that site needs its own policy covering checkout, cookies and payment processors directly; our walkthrough of <a href="/resources/privacy-policy-for-ecommerce-website/">what an online store's own privacy policy has to disclose</a> covers the extra clauses.</p>
 
     <h2 id="how-to-add">How to Add a Privacy Policy to Your Etsy Shop</h2>
 
-    <p>Once you have your privacy policy text ready, adding it to your Etsy shop takes just a few minutes. Etsy provides a dedicated section for shop policies that buyers can access from your shop page.</p>
+    <p>Etsy keeps the privacy policy in its own tab of your shop policies. Shop policies cannot be edited in the Etsy Seller app, so use a desktop browser or Etsy's mobile website.</p>
 
     <ol class="steps-list">
-      <li><strong>Sign in to Etsy and open Shop Manager.</strong> Go to etsy.com, sign in to your seller account, and click the Shop Manager icon (the storefront icon in the top navigation) to access your seller dashboard.</li>
-      <li><strong>Open Settings.</strong> In the left sidebar of Shop Manager, click the gear icon labeled <strong>Settings</strong>.</li>
-      <li><strong>Scroll to the Policies heading.</strong> On the Settings page, scroll down to the <strong>Policies</strong> section. Etsy displays separate text fields here: <strong>Privacy policy</strong>, <strong>Returns &amp; exchanges</strong>, <strong>Shipping</strong>, and <strong>Additional policies</strong>. Click into the <strong>Privacy policy</strong> field.</li>
-      <li><strong>Paste your privacy policy text.</strong> If there is existing placeholder text, select all and replace it with your full privacy policy. Etsy's policies editor supports basic formatting, so you can structure the text with paragraphs and line breaks.</li>
-      <li><strong>Click Save.</strong> Your privacy policy will now be visible to buyers who visit your shop and click the <strong>Policies</strong> tab on your shop page.</li>
+      <li><strong>Open Shop Manager.</strong> Sign in on Etsy.com and open Shop Manager.</li>
+      <li><strong>Go to Settings, then Policy settings.</strong> The policy page has tabs for Returns &amp; exchanges, Cancellations, Privacy, and Etsy's fixed policies.</li>
+      <li><strong>Open the Privacy tab and select Create a policy.</strong> If you already have one, edit it instead.</li>
+      <li><strong>Choose your text.</strong> Etsy offers its sample privacy policy to customize. To use your own, replace the sample with the policy you generated or adapted from the template below.</li>
+      <li><strong>Publish.</strong> Select Publish. The policy appears in the Policies section of your shop page, where buyers can read it before ordering.</li>
     </ol>
 
-    <p>Some sellers also add a brief mention of their privacy policy in their shop announcement or in the About section of their shop, with a note directing buyers to the Policies tab for the full document. If you collect email addresses through an external form or newsletter signup outside of Etsy, include a link to your privacy policy near the signup form to meet GDPR transparency requirements at the point of data collection.</p>
+    <p>It also helps to host the same policy at its own URL. Etsy's Privacy tab is only visible on Etsy, but you may need a link elsewhere: under a newsletter signup form, in an Instagram or TikTok bio shop, or in the footer of your own site. A hosted copy keeps one version in sync across all of them.</p>
+
+    <h2 id="sample-vs-generated">Etsy's Sample Policy vs a Generated Policy</h2>
+
+    <p>Etsy's sample is a reasonable floor. The gap shows up as soon as you use anything beyond Etsy itself:</p>
+
+    <div class="table-scroll" role="region" aria-label="Etsy sample privacy policy compared with a generated policy" tabindex="0">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th scope="col">What the policy covers</th>
+            <th scope="col">Etsy's sample policy</th>
+            <th scope="col">Generated policy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Order data received from Etsy</th>
+            <td>Covered in general terms</td>
+            <td>Covered, tied to purposes and legal bases</td>
+          </tr>
+          <tr>
+            <th scope="row">Your own tools (shipping apps, print-on-demand, email, bookkeeping)</th>
+            <td>Not named; you have to add them</td>
+            <td>Disclosed from the recipient categories you select</td>
+          </tr>
+          <tr>
+            <th scope="row">Marketing emails and consent</th>
+            <td>Generic</td>
+            <td>Included when you select marketing messages, with opt-out wording</td>
+          </tr>
+          <tr>
+            <th scope="row">Laws beyond the GDPR (CCPA, PIPEDA, LGPD and others)</th>
+            <td>Not tailored</td>
+            <td>Sections added for each region you select</td>
+          </tr>
+          <tr>
+            <th scope="row">Use outside Etsy</th>
+            <td>Lives only in your Etsy Privacy tab</td>
+            <td>Free hosted URL, HTML or plain-text download</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Sellers also buy "GDPR-compliant" templates as digital downloads, often on Etsy itself. They can work, but they are still static text. Whatever you start from, check it against the list in the previous sections and remove anything that does not describe your shop.</p>
 
     <h2 id="generator">Using BuildPrivacyPolicy's Generator for Etsy Sellers</h2>
 
-    <p>Writing a privacy policy from scratch requires cross-referencing GDPR articles, CCPA disclosure requirements, Etsy's seller obligations, and the data practices of every third-party tool you use. That is a lot of legal surface area for a shop owner focused on making and selling products.</p>
-
-    <p>A generator compresses that work into a guided form. You can <a href="https://buildprivacypolicy.com/">generate a privacy policy tailored to your Etsy shop</a> by answering questions that cover:</p>
+    <p>The generator is built for apps and websites, so a few answers need translating for an Etsy shop. You can <a href="https://buildprivacypolicy.com/">create your Etsy shop's policy with the generator</a> using these settings:</p>
 
     <ul>
-      <li>Your shop name and a contact email for privacy inquiries</li>
-      <li>Which platform your shop runs on (select Web App / PWA for an Etsy shop selling through the web)</li>
-      <li>The specific data types your shop collects or receives: buyer names, email addresses, shipping addresses, order details, and any additional information from direct communication</li>
-      <li>Which third-party services your shop uses: Google Analytics, shipping carriers, email marketing platforms, advertising tools, and bookkeeping software</li>
-      <li>How long you retain data and what security measures you follow</li>
-      <li>Where your buyers are located, which determines whether the GDPR, CCPA, PIPEDA, LGPD, or other regulations apply</li>
+      <li><strong>App name and contact email:</strong> your shop name and the email you want privacy requests sent to.</li>
+      <li><strong>Platforms:</strong> select <em>Web App / PWA</em>, since buyers reach your shop through the web.</li>
+      <li><strong>App profile:</strong> choose <em>E-commerce / subscription</em> to prefill sensible commerce answers.</li>
+      <li><strong>Regions:</strong> pick where your buyers are, for example <em>United States</em>, <em>EU / UK / Switzerland</em> and <em>Canada</em>, or <em>Worldwide</em> if you ship everywhere.</li>
+      <li><strong>Data collected:</strong> <em>Name</em>, <em>Email</em>, <em>Address</em>, <em>Purchases</em> and <em>Messages/chat</em>; add <em>Photos/videos</em> if buyers send reference images for custom work. Leave <em>Payment info</em> unselected, because Etsy handles payments.</li>
+      <li><strong>Recipients:</strong> <em>Payment processor</em> for Etsy Payments, plus <em>Messaging</em>, <em>Analytics</em> or <em>Other</em> for your email tool, shipping software or print partner.</li>
+      <li><strong>Retention and requests:</strong> <em>Legal/business need</em> for order records, and <em>Privacy email</em> as the way buyers contact you.</li>
     </ul>
 
-    <p>The generator produces a privacy policy you can host for free on BuildPrivacyPolicy's servers, download as HTML to paste into Etsy's policies section, or copy as plain text. No signup, no account, no payment. The process takes a few minutes from start to finished policy.</p>
-
-    <p>The output covers each required disclosure section across the GDPR, CCPA, COPPA, PIPEDA, and other major regulations. Unlike generic templates found online, the generated policy reflects the specific services, data types, and legal jurisdictions you selected. It is not a substitute for a lawyer's review if your shop handles sensitive data or sells children's products, but for the majority of Etsy sellers running standard handmade, vintage, or craft supply shops, it produces a document that is specific to your setup and far more accurate than copying a generic template.</p>
+    <p>When you generate, you get a hosted URL you can link from anywhere, plus HTML and plain-text downloads; copy the text into the Privacy tab in Shop Manager. There is no account, no email verification and no payment. The output is structured around the GDPR, CCPA and the other regions you select. It is not legal advice, and a shop selling to children or handling health-related custom orders should have it reviewed.</p>
 
     <h2 id="example-policy">Sample Etsy Shop Privacy Policy You Can Copy</h2>
 
-    <p>Below is a complete privacy policy written for a fictional Etsy shop called "[Your Shop Name]." It covers the data flows that Etsy sellers handle by default — order information shared by Etsy, Etsy Payments processing, Etsy Messages, Etsy Ads and Off-Site Ads, and common third-party integrations like Google Analytics and shipping carriers. Copy the entire block, replace the bracketed placeholders with your shop's details, and remove any sections that do not apply to your setup.</p>
+    <p>Below is a complete privacy policy for a fictional Etsy shop called "[Your Shop Name]." It covers the default Etsy data flows (order details from Etsy, Etsy Payments, Etsy Messages, Etsy Ads and Offsite Ads) and the most common outside tools. Copy the whole block, replace the bracketed placeholders, and delete any section that does not apply to your shop.</p>
 
     <div class="copy-block">
       <div class="copy-block-header">
@@ -124,62 +202,59 @@ const modifiedDate = "2026-09-11";
 <p><strong>Privacy Policy for [Your Shop Name]</strong></p>
 <p><em>Last updated: [Date]</em></p>
 
-<p><strong>1. Introduction</strong></p>
-<p>[Your Shop Name] ("I," "me," or "my") operates an Etsy shop at [your-shop-url]. This privacy policy explains what personal data I collect when you browse or purchase from my shop, why I collect it, who receives it, how long I keep it, and what rights you have over it. This policy covers only the data I handle as a seller. Etsy has its own privacy policy that governs how the platform collects and uses data at the platform level.</p>
+<p><strong>1. Who I Am</strong></p>
+<p>[Your Shop Name] is run by [your name or business name], [business address if you are a registered trader] ("I," "me," or "my"). I sell through my Etsy shop at [your-shop-url]. For personal data I receive as a seller, I am the data controller. This policy covers only the data I handle as a seller. Etsy has its own privacy policy that governs how the Etsy platform collects and uses data.</p>
 
 <p><strong>2. Data I Collect</strong></p>
-<p><em>Order and fulfillment data.</em> When you place an order, Etsy provides me with your name, shipping address, and order details (items purchased, quantity, and transaction amount) so I can fulfill your purchase. In some cases Etsy also shares your email address.</p>
-<p><em>Messages.</em> If you contact me through Etsy Messages — for example, to request a customization, ask about an order, or inquire about a product — I receive the content of those messages along with your Etsy username and any files or photos you attach.</p>
-<p><em>Payment information.</em> All payments are processed through Etsy Payments. I do not receive or store your credit card number, bank account details, or other payment credentials. Etsy Payments handles the full payment transaction, and I receive only a payout for completed orders along with the order-level details needed for fulfillment.</p>
-<p><em>Automatically collected data.</em> Etsy's platform logs visitor data such as IP addresses, browser type, pages viewed, and session duration. I can view aggregated traffic analytics through the Stats section in Shop Manager, but I do not receive individual-level browsing data unless you make a purchase or contact me.</p>
-<p>[If you have Google Analytics enabled:] <em>Analytics.</em> I use Google Analytics through Etsy's web analytics integration (configured in Shop Manager under Settings &gt; Options &gt; Web Analytics) to understand traffic patterns and how visitors find my shop. Google Analytics sets cookies (<code>_ga</code>, <code>_ga_[container]</code>) to distinguish unique visitors and track sessions.</p>
+<p><em>Order data.</em> When you place an order, Etsy provides me with your name, shipping address, the items you ordered, the price paid, and any personalization or gift message you add. Etsy may also show me your email address on the order.</p>
+<p><em>Messages.</em> If you contact me through Etsy Messages, I receive the content of your messages, your Etsy username, and any photos or files you attach.</p>
+<p><em>Payment information.</em> Payments are processed by Etsy through Etsy Payments. I never receive or store your card number, bank details or other payment credentials.</p>
+<p>[If applicable:] <em>Newsletter.</em> If you sign up for my newsletter on [where], I collect your email address and the date you subscribed.</p>
 
-<p><strong>3. How I Use Your Data</strong></p>
+<p><strong>3. How I Use Your Data and Why</strong></p>
 <ul>
-<li>Fulfill and ship your orders, print shipping labels, and send order updates</li>
-<li>Respond to your messages and handle customer support requests</li>
-<li>Comply with tax and accounting obligations by retaining order records</li>
-<li>[If applicable:] Send marketing emails if you have opted in through [Mailchimp / Klaviyo / other service]</li>
-<li>[If applicable:] Analyze shop traffic through Google Analytics to improve product offerings</li>
+<li>To make, ship and deliver your order and to send order updates (necessary to perform our contract)</li>
+<li>To answer your messages and handle returns or problems with an order (necessary to perform our contract)</li>
+<li>To keep order records for tax and accounting (legal obligation)</li>
+<li>[If applicable:] To send marketing emails, only if you have opted in (consent, which you can withdraw at any time)</li>
 </ul>
-<p>I do not sell your personal data to third parties.</p>
+<p>I do not add buyers to any mailing list without their consent, and I do not sell your personal data.</p>
 
-<p><strong>4. Third Parties That Receive Your Data</strong></p>
+<p><strong>4. Who Receives Your Data</strong></p>
 <ul>
-<li><strong>Etsy, Inc.</strong> Hosts my shop, processes payments through Etsy Payments, provides the messaging system, runs shop analytics, and handles buyer-seller dispute resolution. Etsy acts as the platform and has its own privacy policy governing its data practices.</li>
-<li><strong>Etsy Ads.</strong> [If applicable:] I use Etsy Ads to promote my listings within Etsy search results and category pages. Etsy manages targeting and display; I set a daily budget through the Advertising section in Shop Manager but do not receive individual ad viewer data.</li>
-<li><strong>Etsy Off-Site Ads.</strong> Etsy may advertise my listings on Google, Facebook, Instagram, Pinterest, and Bing through its Off-Site Ads program. If you click an off-site ad and make a purchase within 30 days, Etsy attributes the sale. Etsy shares listing data with these advertising platforms for targeting and attribution. I do not control which platforms Etsy uses or what data it shares with them for off-site advertising. [If you have opted out and are eligible to do so, remove this section.]</li>
-<li><strong>Shipping carriers.</strong> [USPS / UPS / FedEx / Royal Mail / your carrier] receives your name and shipping address to deliver your order. [If applicable:] I use [ShipStation / Pirate Ship / Shippo] to generate shipping labels, which means your name and address are also processed by that service.</li>
-<li>[If applicable:] <strong>[Mailchimp / Klaviyo].</strong> Stores subscriber email addresses and sends marketing emails. Tracks email opens and link clicks to measure campaign performance.</li>
-<li>[If applicable:] <strong>[QuickBooks / Wave / TaxJar].</strong> Receives order totals, dates, and basic buyer information for bookkeeping and tax reporting.</li>
+<li><strong>Etsy, Inc.</strong> hosts my shop, processes payments through Etsy Payments, provides Etsy Messages, and handles cases and disputes, under Etsy's own privacy policy.</li>
+<li><strong>Shipping carriers.</strong> [USPS / UPS / FedEx / Royal Mail / Canada Post] receive your name and address to deliver your order. [If applicable:] I create labels with [Etsy shipping labels / Pirate Ship / ShipStation / Shippo], which also processes your name and address.</li>
+<li>[If applicable:] <strong>[Printful / Printify / Gelato / your supplier].</strong> Produces and ships some items, and receives your name, address and order details to do so.</li>
+<li>[If applicable:] <strong>[Mailchimp / Klaviyo / Flodesk].</strong> Stores newsletter subscribers' email addresses and sends my emails.</li>
+<li>[If applicable:] <strong>[QuickBooks / Wave / Craftybase].</strong> Receives order totals, dates and basic buyer details for bookkeeping.</li>
 </ul>
-<p>I do not share your personal data with any parties beyond those listed above.</p>
+<p>I do not share your personal data with anyone else unless the law requires it.</p>
 
-<p><strong>5. Cookies and Tracking</strong></p>
-<p>Etsy sets its own cookies for session management, cart persistence, and platform functionality. [If applicable:] I have enabled Google Analytics through Etsy's web analytics integration, which sets additional analytics cookies. You can manage cookies through your browser settings; disabling certain cookies may affect Etsy's functionality.</p>
+<p><strong>5. Advertising</strong></p>
+<p>[If applicable:] I use Etsy Ads to promote my listings within Etsy. Etsy may also advertise my listings on other sites, such as Google, Facebook, Instagram, Pinterest and Bing, through its Offsite Ads program. Etsy runs these ads and any related tracking under its own privacy policy. I do not receive information about who sees or clicks them.</p>
 
-<p><strong>6. Data Retention</strong></p>
-<p>Order records (name, address, items purchased, transaction amount) are retained for [7] years to comply with tax and accounting regulations. Message history through Etsy Messages is retained for as long as my shop is active. [If applicable:] Marketing email subscriber data is retained until you unsubscribe, at which point your email is removed from active lists within [7] days. When data is no longer required, I delete or anonymize it.</p>
+<p><strong>6. International Transfers</strong></p>
+<p>[If you are in the EU or UK and use non-EU services:] Some of the services above are based outside [the EU / the UK], including in the United States. Where data is transferred, it is protected by [the EU-US Data Privacy Framework / standard contractual clauses / the UK International Data Transfer Addendum].</p>
 
-<p><strong>7. Your Rights Under GDPR</strong></p>
-<p>If you are in the European Economic Area or the United Kingdom, you have the right to: access the personal data I hold about you; request correction of inaccurate data; request deletion; object to or restrict processing; request data portability; and withdraw consent at any time. For data Etsy holds directly, contact Etsy through its Help Center. For data I hold as a seller, contact me at [your-email@example.com]. I will respond within 30 days.</p>
+<p><strong>7. How Long I Keep Data</strong></p>
+<p>Order records are kept for [6] years to meet tax and accounting rules. Messages stay in Etsy Messages for as long as my shop is open. [If applicable:] Newsletter data is kept until you unsubscribe and is removed from my list within [7] days. After that, data is deleted or anonymized.</p>
 
-<p><strong>8. Your Rights Under CCPA</strong></p>
-<p>If you are a California resident, you have the right to: know what personal information I collect and how it is used; request deletion of your personal information; and opt out of the sale of personal information. I do not sell personal information. To submit a request, contact me at [your-email@example.com].</p>
+<p><strong>8. Your Rights</strong></p>
+<p>If you are in the EU, EEA or UK, you can ask me to access, correct or delete the personal data I hold about you, to restrict or object to its use, or to give you a copy in a portable format, and you can withdraw consent at any time. You can also complain to your local data protection authority. If you live in a US state with a consumer privacy law, you may have similar rights to know about and delete your data. For data Etsy holds, contact Etsy through its Help Center. For data I hold, email me at [your-email@example.com]. I will reply within one month.</p>
 
 <p><strong>9. Security</strong></p>
-<p>Etsy provides SSL/TLS encryption across the platform and handles payment security through Etsy Payments. I do not store payment credentials. I protect my Etsy account with a strong password and two-step verification. While no method of electronic transmission is completely secure, I implement reasonable safeguards to protect your data.</p>
+<p>Etsy encrypts traffic on its platform and secures payments. I protect my Etsy account and any tools I use with strong passwords and two-factor authentication, and I only keep printed shipping details as long as I need them to send your order.</p>
 
 <p><strong>10. Changes to This Policy</strong></p>
-<p>I may update this privacy policy from time to time. When I make changes, I will update the "Last updated" date at the top of this page.</p>
+<p>If I change this policy, I will update the "Last updated" date above.</p>
 
 <p><strong>11. Contact</strong></p>
-<p>If you have questions about this privacy policy or your data, contact me at:<br />[your-email@example.com]<br />[Your Shop Name]</p>
+<p>Questions about this policy or your data:<br />[your-email@example.com]<br />[Your Shop Name], [business address if required]</p>
       </div>
       <button class="copy-btn" id="copy-policy-btn" type="button">Copy to clipboard</button>
     </div>
 
-    <p>This sample covers the most common Etsy seller data flows. If your shop handles additional data types — such as custom order forms that collect phone numbers, integration with a print-on-demand service like Printful or Printify, or SMS marketing — add dedicated disclosure sections for those services. Need to generate a policy tailored to your exact setup instead of editing a template? You can <a href="https://buildprivacypolicy.com/">build one for free with the generator</a>.</p>
+    <p>If your shop collects anything not shown here, such as phone numbers on a custom order form, SMS marketing, or sizes and measurements for made-to-order clothing, add a line for it under "Data I Collect" and name the tool that stores it. Prefer a version built around your exact setup instead of editing a template? You can <a href="https://buildprivacypolicy.com/">generate one for free in a few minutes</a>.</p>
 
     <RelatedGuides currentSlug="resources/etsy-privacy-policy-generator" />
 
@@ -188,37 +263,42 @@ const modifiedDate = "2026-09-11";
     <div class="faq-list">
       <div class="faq-item">
         <h3>Does Etsy provide a privacy policy for sellers?</h3>
-        <p>No. Etsy does not generate or provide a privacy policy template for sellers. Etsy has its own platform-level privacy policy that covers how Etsy collects and processes data, but individual sellers are responsible for creating and maintaining their own privacy policy that describes how they handle buyer data received through the platform.</p>
+        <p>Etsy offers a sample privacy policy in the Privacy tab of your shop policies (Shop Manager, then Settings, then Policy settings) that you can customize. It is a generic starting point: it does not name the shipping, email, print-on-demand or bookkeeping tools you use, so you still need to edit it, or replace it with a policy generated from your own setup. Etsy's own privacy policy covers only Etsy's processing, not yours.</p>
       </div>
 
       <div class="faq-item">
         <h3>Do I need a privacy policy for my Etsy shop?</h3>
-        <p>Yes. Etsy's Seller Policy requires sellers who collect or process personal information to have a privacy policy. Beyond Etsy's own requirement, privacy laws like the GDPR and CCPA require any business that collects personal data to publish a privacy policy. Since every Etsy seller receives buyer names, shipping addresses, and order details to fulfill orders, a privacy policy is effectively required for all sellers.</p>
+        <p>If you are based in the EU or offer items to buyers in the EU, yes: Etsy requires you to create and comply with a GDPR-compliant privacy policy. For other sellers Etsy recommends one, and laws in many places, including the UK, Canada and some US states, can require it depending on where your buyers are and how much data you handle.</p>
       </div>
 
       <div class="faq-item">
         <h3>What privacy laws apply to Etsy sellers?</h3>
-        <p>The applicable laws depend on where your buyers are located, not where your shop is based. EU buyers trigger the GDPR. California buyers trigger the CCPA. Canadian buyers bring PIPEDA into scope, and Brazilian buyers are covered by the LGPD. Since Etsy shops are accessible worldwide, most sellers are subject to multiple privacy regulations at the same time.</p>
+        <p>That depends on where your buyers are, not only where you are. EU buyers bring in the GDPR, UK buyers the UK GDPR, Canadian buyers PIPEDA and Brazilian buyers the LGPD. US state laws such as the CCPA apply only to businesses above their revenue or data thresholds. Etsy's Seller Policy also treats you as an independent controller of buyer data under EU law.</p>
       </div>
 
       <div class="faq-item">
         <h3>Where do I put my privacy policy on Etsy?</h3>
-        <p>In your Shop Manager, go to Settings and find the Policies section. Etsy provides a dedicated Privacy Policy field where you can paste your policy text. Once saved, it appears on your shop page under the Policies tab where buyers can review it before purchasing.</p>
+        <p>On Etsy.com, open Shop Manager, go to Settings, then Policy settings, and open the Privacy tab. Select Create a policy (or edit your existing one), paste your text or customize Etsy's sample, and select Publish. Shop policies cannot be edited in the Etsy Seller app, so use a desktop or mobile browser.</p>
       </div>
 
       <div class="faq-item">
-        <h3>Does Etsy handle payment data for sellers?</h3>
-        <p>Yes. Etsy processes payments through Etsy Payments, so sellers do not directly receive credit card numbers or bank details from buyers. Your privacy policy should explain that Etsy handles payment processing on your behalf and that you only receive the information necessary for order fulfillment, such as the buyer's name, shipping address, and order details.</p>
+        <h3>Can I add Etsy buyers to my email list?</h3>
+        <p>Not without their consent. Etsy's Seller Policy says you may not add any Etsy member to an email or physical mailing list without consent, and Etsy advises never copying email addresses from orders into a list. EU and UK rules also require express consent for marketing emails. Use an opt-in signup form and name your email tool in your privacy policy.</p>
       </div>
 
       <div class="faq-item">
-        <h3>Do I need to disclose Etsy Ads and Off-Site Ads in my privacy policy?</h3>
-        <p>Yes. If you use Etsy Ads, your listings are promoted within Etsy search results and you should mention that. More importantly, Etsy's Off-Site Ads program promotes your listings on Google, Facebook, Instagram, Pinterest, and Bing. Sellers earning over $10,000 annually are automatically enrolled with no opt-out. Etsy shares listing data with these external advertising platforms for targeting and attribution, so your privacy policy should disclose this even if you did not actively choose to participate. You can check your enrollment status in Shop Manager under Settings then Off-Site Ads.</p>
+        <h3>Do I need to disclose Etsy Ads and Offsite Ads in my privacy policy?</h3>
+        <p>A short note is good practice. Etsy runs Etsy Ads and Offsite Ads, and the related tracking, under its own privacy policy, and you receive no data about who sees or clicks an ad, so the note can point buyers to Etsy's policy. Offsite Ads run on Google, Facebook, Instagram, Pinterest, Bing and Etsy partner sites; shops that reach $10,000 in sales in any 365-day period cannot opt out.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Should I buy a GDPR-compliant privacy policy template for my Etsy shop?</h3>
+        <p>You do not need to. Templates sold as digital downloads are static text, and some still cite the EU-US Privacy Shield, which was invalidated in 2020. Etsy's sample policy, the free template on this page, or a free generator can all give you a starting point; what matters is that the final text names the data you actually collect and the tools you actually use.</p>
       </div>
 
       <div class="faq-item">
         <h3>Is a privacy policy generator free?</h3>
-        <p>Some generators are free, others charge a subscription. BuildPrivacyPolicy is completely free with no signup, no payment, and no word limits. You can generate a policy, host it at no cost, and download or copy the text to paste into your Etsy shop's Privacy policy field in Shop Manager.</p>
+        <p>Some generators are free and others charge a subscription. BuildPrivacyPolicy is free with no signup and no payment. You can generate a policy, host it at a free URL, and download or copy the text to paste into your Etsy shop's Privacy tab in Shop Manager.</p>
       </div>
     </div>
 
@@ -258,7 +338,7 @@ const modifiedDate = "2026-09-11";
       "name": "Does Etsy provide a privacy policy for sellers?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. Etsy does not generate or provide a privacy policy template for sellers. Etsy has its own platform-level privacy policy that covers how Etsy collects and processes data, but individual sellers are responsible for creating and maintaining their own privacy policy."
+        "text": "Etsy offers a sample privacy policy in the Privacy tab of your shop policies (Shop Manager, then Settings, then Policy settings) that you can customize. It is a generic starting point: it does not name the shipping, email, print-on-demand or bookkeeping tools you use, so you still need to edit it, or replace it with a policy generated from your own setup. Etsy's own privacy policy covers only Etsy's processing, not yours."
       }
     },
     {
@@ -266,7 +346,7 @@ const modifiedDate = "2026-09-11";
       "name": "Do I need a privacy policy for my Etsy shop?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Etsy's Seller Policy requires sellers who collect or process personal information to have a privacy policy. Beyond Etsy's own requirement, privacy laws like the GDPR and CCPA require any business that collects personal data to publish a privacy policy."
+        "text": "If you are based in the EU or offer items to buyers in the EU, yes: Etsy requires you to create and comply with a GDPR-compliant privacy policy. For other sellers Etsy recommends one, and laws in many places, including the UK, Canada and some US states, can require it depending on where your buyers are and how much data you handle."
       }
     },
     {
@@ -274,7 +354,7 @@ const modifiedDate = "2026-09-11";
       "name": "What privacy laws apply to Etsy sellers?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The applicable laws depend on where your buyers are located, not where your shop is based. EU buyers trigger the GDPR. California buyers trigger the CCPA. Canadian buyers bring PIPEDA into scope, and Brazilian buyers are covered by the LGPD."
+        "text": "That depends on where your buyers are, not only where you are. EU buyers bring in the GDPR, UK buyers the UK GDPR, Canadian buyers PIPEDA and Brazilian buyers the LGPD. US state laws such as the CCPA apply only to businesses above their revenue or data thresholds. Etsy's Seller Policy also treats you as an independent controller of buyer data under EU law."
       }
     },
     {
@@ -282,23 +362,31 @@ const modifiedDate = "2026-09-11";
       "name": "Where do I put my privacy policy on Etsy?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "In your Shop Manager, go to Settings and find the Policies section. Etsy provides a dedicated Privacy Policy field where you can paste your policy text. Once saved, it appears on your shop page under the Policies tab."
+        "text": "On Etsy.com, open Shop Manager, go to Settings, then Policy settings, and open the Privacy tab. Select Create a policy (or edit your existing one), paste your text or customize Etsy's sample, and select Publish. Shop policies cannot be edited in the Etsy Seller app, so use a desktop or mobile browser."
       }
     },
     {
       "@type": "Question",
-      "name": "Does Etsy handle payment data for sellers?",
+      "name": "Can I add Etsy buyers to my email list?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Etsy processes payments through Etsy Payments, so sellers do not directly receive credit card numbers or bank details from buyers. Your privacy policy should explain that Etsy handles payment processing on your behalf."
+        "text": "Not without their consent. Etsy's Seller Policy says you may not add any Etsy member to an email or physical mailing list without consent, and Etsy advises never copying email addresses from orders into a list. EU and UK rules also require express consent for marketing emails. Use an opt-in signup form and name your email tool in your privacy policy."
       }
     },
     {
       "@type": "Question",
-      "name": "Do I need to disclose Etsy Ads and Off-Site Ads in my privacy policy?",
+      "name": "Do I need to disclose Etsy Ads and Offsite Ads in my privacy policy?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Etsy's Off-Site Ads program promotes your listings on Google, Facebook, Instagram, Pinterest, and Bing. Sellers earning over $10,000 annually are automatically enrolled with no opt-out. Etsy shares listing data with these external advertising platforms, so your privacy policy should disclose this."
+        "text": "A short note is good practice. Etsy runs Etsy Ads and Offsite Ads, and the related tracking, under its own privacy policy, and you receive no data about who sees or clicks an ad, so the note can point buyers to Etsy's policy. Offsite Ads run on Google, Facebook, Instagram, Pinterest, Bing and Etsy partner sites; shops that reach $10,000 in sales in any 365-day period cannot opt out."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I buy a GDPR-compliant privacy policy template for my Etsy shop?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You do not need to. Templates sold as digital downloads are static text, and some still cite the EU-US Privacy Shield, which was invalidated in 2020. Etsy's sample policy, the free template on this page, or a free generator can all give you a starting point; what matters is that the final text names the data you actually collect and the tools you actually use."
       }
     },
     {
@@ -306,7 +394,7 @@ const modifiedDate = "2026-09-11";
       "name": "Is a privacy policy generator free?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Some generators are free, others charge a subscription. BuildPrivacyPolicy is completely free with no signup, no payment, and no word limits. You can generate a policy, host it at no cost, and download or copy the text to paste into your Etsy shop's Privacy policy field in Shop Manager."
+        "text": "Some generators are free and others charge a subscription. BuildPrivacyPolicy is free with no signup and no payment. You can generate a policy, host it at a free URL, and download or copy the text to paste into your Etsy shop's Privacy tab in Shop Manager."
       }
     }
   ]
@@ -543,5 +631,55 @@ const modifiedDate = "2026-09-11";
   }
   .copy-btn:hover {
     background: #2E5A8F;
+  }
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 16px 0 20px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+  }
+  .table-scroll:focus {
+    outline: 2px solid #2563EB;
+    outline-offset: 2px;
+  }
+  .compare-table {
+    width: 100%;
+    min-width: 560px;
+    border-collapse: collapse;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .compare-table thead th {
+    background: #F3F4F6;
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    vertical-align: bottom;
+  }
+  .compare-table tbody th {
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #111827;
+    background: #F9FAFB;
+    border-top: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    vertical-align: top;
+    width: 190px;
+  }
+  .compare-table td {
+    padding: 10px 12px;
+    border-top: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    color: #374151;
+    vertical-align: top;
+  }
+  .compare-table th:last-child,
+  .compare-table td:last-child {
+    border-right: none;
   }
 </style>
