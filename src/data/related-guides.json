@@ -52,6 +52,10 @@
       "title": "Google Play Privacy Policy Generator",
       "href": "/resources/google-play-privacy-policy-generator/"
     },
+    "resources/admob-privacy-policy-generator": {
+      "title": "AdMob Privacy Policy Generator",
+      "href": "/resources/admob-privacy-policy-generator/"
+    },
     "account-deletion-page-generator": {
       "title": "Account Deletion Page Generator",
       "href": "/account-deletion-page-generator/"
@@ -180,7 +184,8 @@
       { "slug": "resources/alexa-skill-certification-privacy-review", "reason": "Amazon's eight gates for child-directed Alexa skills, including the bans on personal information collection and account linking." },
       { "slug": "tools/play-data-safety-answers", "reason": "Families Policy declarations must agree with the data types you declare in Google Play's Data safety form." },
       { "slug": "resources/alexa-skill-privacy-policy", "reason": "COPPA treats a child's voice recording as personal information; see how Amazon applies that to child-directed Alexa skills." },
-      { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "The children's section sits inside a full app privacy policy that also covers adult users and store disclosures." }
+      { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "The children's section sits inside a full app privacy policy that also covers adult users and store disclosures." },
+      { "slug": "resources/admob-privacy-policy-generator", "reason": "Showing AdMob ads in a kids' app? Covers age treatment tags, Families-compliant ads and the advertising ID rules for children." }
     ],
     "resources/do-i-need-a-privacy-policy-for-my-website": [
       { "slug": "resources/how-to-add-privacy-policy-to-website", "reason": "Once you know you need one, this guide shows where and how to add it." },
@@ -324,7 +329,8 @@
       { "slug": "tools/app-store-privacy-requirements", "reason": "SDK disclosures feed directly into your app store privacy listing." },
       { "slug": "tools/privacy-policy-checker", "reason": "After updating your policy with SDK disclosures, verify it covers all required clauses." },
       { "slug": "tools/play-data-safety-answers", "reason": "SDK data collection directly determines which categories you must declare in Google Play's Data Safety form." },
-      { "slug": "resources/google-ads-remarketing-privacy-policy", "reason": "Using AdMob or Google Analytics? See the exact advertising disclosures Google's publisher and Analytics policies require." }
+      { "slug": "resources/google-ads-remarketing-privacy-policy", "reason": "Using AdMob or Google Analytics? See the exact advertising disclosures Google's publisher and Analytics policies require." },
+      { "slug": "resources/admob-privacy-policy-generator", "reason": "AdMob in your build? See Google's own list of what the Mobile Ads SDK collects and the consent and children's rules your policy must reflect." }
     ],
     "tools/play-data-safety-answers": [
       { "slug": "tools/app-store-privacy-requirements", "reason": "Covers Apple's App Store privacy requirements alongside Google Play's Data Safety form." },
@@ -336,7 +342,8 @@
       { "slug": "tools/sdk-disclosure-generator", "reason": "List what the AdMob and Firebase SDKs collect before writing the advertising section of an app's policy." },
       { "slug": "resources/privacy-policy-for-ecommerce-website", "reason": "Online stores running remarketing tags also need payment, order and shipping disclosures in the same policy." },
       { "slug": "resources/does-gdpr-apply-to-us-companies", "reason": "Google's EU user consent policy applies to EEA visitors; check whether GDPR reaches your business too." },
-      { "slug": "resources/google-oauth-consent-screen-privacy-policy", "reason": "Requesting Google API scopes through OAuth? Google's Limited Use rules bar using that data for ads and set separate policy and hosting requirements." }
+      { "slug": "resources/google-oauth-consent-screen-privacy-policy", "reason": "Requesting Google API scopes through OAuth? Google's Limited Use rules bar using that data for ads and set separate policy and hosting requirements." },
+      { "slug": "resources/admob-privacy-policy-generator", "reason": "Monetizing an app instead of a website? The AdMob guide covers the advertising ID, Privacy & messaging consent and child-directed ad settings." }
     ],
     "resources/google-oauth-consent-screen-privacy-policy": [
       { "slug": "resources/google-ads-remarketing-privacy-policy", "reason": "Running Google Ads, AdSense or Analytics on the same site? Those products need their own advertising disclosures, kept apart from Google user data." },
@@ -346,12 +353,21 @@
     "resources/ios-privacy-policy-generator": [
       { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "The iOS clauses sit inside a full app privacy policy that also covers user rights, retention and contact details." },
       { "slug": "tools/app-store-privacy-requirements", "reason": "Compare what Apple, Google Play and other stores ask for before you submit." },
-      { "slug": "tools/sdk-disclosure-generator", "reason": "Turn the SDKs in your Xcode project into ready-to-paste disclosure paragraphs." }
+      { "slug": "tools/sdk-disclosure-generator", "reason": "Turn the SDKs in your Xcode project into ready-to-paste disclosure paragraphs." },
+      { "slug": "resources/google-play-privacy-policy-generator", "reason": "Shipping on Android too? Google Play checks your policy against the Data safety form and Play's permission rules instead of Apple's privacy labels." }
     ],
     "resources/google-play-privacy-policy-generator": [
       { "slug": "tools/play-data-safety-answers", "reason": "Build the Data safety answers your Google Play privacy policy has to match, category by category." },
       { "slug": "account-deletion-page-generator", "reason": "Apps with accounts need a Delete account URL in the Data safety form. Generate and host that page for free." },
-      { "slug": "tools/sdk-disclosure-generator", "reason": "Turn the SDKs in your Gradle build into ready-to-paste disclosure paragraphs." }
+      { "slug": "tools/sdk-disclosure-generator", "reason": "Turn the SDKs in your Gradle build into ready-to-paste disclosure paragraphs." },
+      { "slug": "resources/admob-privacy-policy-generator", "reason": "Showing AdMob ads? See what the Google Mobile Ads SDK collects, where AdMob asks for the URL and how EU consent changes the ads served." },
+      { "slug": "resources/ios-privacy-policy-generator", "reason": "Shipping on iOS too? Apple's review checks your policy against your App Privacy label and ATT prompt instead of a Data safety form." }
+    ],
+    "resources/admob-privacy-policy-generator": [
+      { "slug": "resources/google-play-privacy-policy-generator", "reason": "Where the privacy policy and Advertising ID declarations sit in Play Console, and how to match your Data safety answers." },
+      { "slug": "tools/sdk-disclosure-generator", "reason": "Turn AdMob, your mediation adapters and the rest of your SDKs into ready-to-paste disclosure paragraphs." },
+      { "slug": "resources/google-ads-remarketing-privacy-policy", "reason": "Running AdSense or Google Ads remarketing on a website too? Each Google ad product's required wording, side by side." },
+      { "slug": "resources/coppa-privacy-policy", "reason": "Children in your audience? COPPA's parental consent rules apply on top of AdMob's child-directed ad settings." }
     ],
     "account-deletion-page-generator": [
       { "slug": "resources/google-play-privacy-policy-generator", "reason": "Google Play also requires a privacy policy URL that discloses your retention and deletion practices. See what Play Console checks." },

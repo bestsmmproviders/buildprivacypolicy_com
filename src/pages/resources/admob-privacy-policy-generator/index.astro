@@ -1,0 +1,589 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import RelatedGuides from '../../../components/RelatedGuides.astro';
+
+const title = "AdMob Privacy Policy Generator: What Google Requires";
+const description = "Make an AdMob privacy policy that covers the advertising ID, IP-based location, EU consent and child-directed ads, then host it free. No signup needed.";
+const publishDate = "2026-11-26";
+const modifiedDate = "2026-11-26";
+---
+
+<Layout title={title} description={description}>
+
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="128" height="128" rx="28" fill="#1E3A5F"/><path d="M64 24C64 24 40 34 32 38V62C32 82 46 98 64 104C82 98 96 82 96 62V38C88 34 64 24 64 24Z" fill="#2E5A8F" stroke="#5B9BD5" stroke-width="2.5"/><path d="M52 64L60 72L78 54" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+</div>
+
+<main>
+<article class="page-container">
+  <div class="page-card">
+    <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
+    <h1>AdMob Privacy Policy Generator: What Google Requires Before You Show Ads</h1>
+    <p class="last-updated">Published November 26, 2026 &middot; Updated November 26, 2026</p>
+
+    <p>Every app that shows AdMob ads needs a privacy policy. Google's Publisher Policies require AdMob publishers to "have and abide by a privacy policy" that discloses the data collection, sharing and use caused by Google's ads, including cookies, IP addresses and other identifiers. The Google Mobile Ads SDK collects the advertising ID, IP address, ad interactions and diagnostics as soon as it runs, so even an offline game with one banner has something to disclose.</p>
+
+    <p>To build one, open the <a href="https://buildprivacypolicy.com/">free privacy policy generator</a> and pick the <strong>Ad-supported</strong> app profile, which preselects <strong>AdMob</strong>, Firebase Analytics and Crashlytics under <strong>Third-party SDKs / services</strong>. Choose <strong>Personalized ads</strong> or <strong>Contextual ads only</strong> under <strong>Ads and tracking</strong>, tick <strong>Advertising ID</strong> under <strong>Device permissions</strong> and add <strong>EU / UK / Switzerland</strong> under <strong>Regions</strong> if you have users there. You get a hosted URL for each console below.</p>
+
+    <nav class="toc">
+      <p class="toc-title">Contents</p>
+      <ol>
+        <li><a href="#why">Why AdMob Requires a Privacy Policy URL</a></li>
+        <li><a href="#where">Where the URL Goes in AdMob, Play Console and App Store Connect</a></li>
+        <li><a href="#collects">What the Google Mobile Ads SDK Collects</a></li>
+        <li><a href="#consent">Personalized, Non-Personalized and Limited Ads: EU Consent</a></li>
+        <li><a href="#families">Families Policy and Child-Directed Apps</a></li>
+        <li><a href="#clauses">Copy-Ready AdMob Clauses</a></li>
+        <li><a href="#faq">Frequently Asked Questions</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="why">Why AdMob Requires a Privacy Policy URL</h2>
+
+    <p>The requirement comes from three Google documents you accept when you open an AdMob account, plus the store you publish on:</p>
+
+    <ul>
+      <li><strong>Google Publisher Policies, "Privacy disclosures".</strong> The policy must cover your use of "cookies, web beacons, IP addresses, or other identifiers" and tell users that third parties may place and read cookies or use web beacons or IP addresses to collect information as a result of ad serving. Google accepts a prominent link to its page <strong>"How Google uses data when you use our partners' sites or apps"</strong> as part of this.</li>
+      <li><strong>Policy requirements for Google Mobile Developer Services.</strong> Name the Google services you implemented, explain how you and third-party vendors use first-party and third-party identifiers together, and say how users opt out, including through the device's ad settings.</li>
+      <li><strong>EU user consent policy.</strong> For users in the EEA, the UK and Switzerland, disclose and obtain consent for cookies or local storage where legally required and for personal data used to personalize ads, and identify each party that receives that data.</li>
+      <li><strong>The app store.</strong> Google Play requires a privacy policy for every app, and Apple states that "a privacy policy URL is required for all apps."</li>
+    </ul>
+
+    <p>Breaking these policies can lead Google to limit or suspend ad serving. If you also run AdSense or Google Ads remarketing on a website, the <a href="/resources/google-ads-remarketing-privacy-policy/">disclosures Google requires for each of its ad products</a> sets them side by side.</p>
+
+    <h2 id="where">Where the URL Goes in AdMob, Play Console and App Store Connect</h2>
+
+    <p>In AdMob, the privacy policy URL belongs to your consent messages. It appears in the <strong>Learn more</strong> section of a message, and Google requires it for European regulations messages. To add or change it:</p>
+
+    <ol>
+      <li>Sign in to AdMob and open <strong>Privacy &amp; messaging</strong> in the sidebar.</li>
+      <li>Click <strong>Manage</strong> on a message type card, such as European regulations.</li>
+      <li>Click <strong>Create message</strong> and then <strong>Select apps</strong>, or click an app in the <strong>App</strong> column of the messages table.</li>
+      <li>Click the app's row in the <strong>Privacy policy URL</strong> column, enter the URL and click <strong>Save</strong>.</li>
+      <li>Click <strong>Confirm</strong>. The change also updates existing messages for that app.</li>
+    </ol>
+
+    <p>Google adds that the policy page itself should not load ad tags or other scripts that need consent. A plain hosted policy page meets that.</p>
+
+    <p>The same URL then goes to the store:</p>
+
+    <ul>
+      <li><strong>Google Play:</strong> <strong>App content &gt; Privacy policy</strong> in Play Console. On the same page, the <strong>Advertising ID</strong> declaration asks whether the app uses the ID, which it does whenever the Google Mobile Ads SDK can read it. The <a href="/resources/google-play-privacy-policy-generator/">Play Console walkthrough for your policy</a> covers the URL rules and Data safety form.</li>
+      <li><strong>App Store:</strong> <strong>App Privacy &gt; Privacy Policy</strong> in App Store Connect. On iOS the SDK reads the IDFA only after the user allows tracking in the App Tracking Transparency prompt.</li>
+    </ul>
+
+    <h2 id="collects">What the Google Mobile Ads SDK Collects</h2>
+
+    <p>Google's Android and iOS disclosure pages list what the SDK collects by default as of November 2026:</p>
+
+    <div class="table-scroll" role="region" aria-label="Data the Google Mobile Ads SDK collects and how to disclose it" tabindex="0">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th scope="col">Data</th>
+            <th scope="col">What Google says the SDK collects</th>
+            <th scope="col">What your policy should say</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Device identifiers</th>
+            <td>Android advertising ID and app set ID (Android); the advertising identifier or other app- or developer-scoped IDs (iOS)</td>
+            <td>Name the advertising ID, that Google uses it for advertising and analytics, and how to reset it or limit tracking.</td>
+          </tr>
+          <tr>
+            <th scope="row">IP address and coarse location</th>
+            <td>The device's IP address, which "may be used to estimate the general location of a device"</td>
+            <td>That approximate location is inferred from IP address. Play and Apple both count this as location data.</td>
+          </tr>
+          <tr>
+            <th scope="row">Product interactions</th>
+            <td>App launches, taps and video views; on iOS also the ads a user has seen</td>
+            <td>That ad and app interactions are collected to show and measure ads.</td>
+          </tr>
+          <tr>
+            <th scope="row">Diagnostics</th>
+            <td>App launch time, hang rate, energy usage and crash logs</td>
+            <td>That performance data goes to Google, which may also use it for advertising.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Google lists the purposes as "advertising, analytics, and fraud prevention" and says the data is encrypted in transit with TLS. On Android, the SDK adds the <code>AD_ID</code> permission through the merged manifest; if you remove it, say the app does not use the advertising ID. Mediation adapters collect their own data, so list every network in the mediation group. The <a href="/tools/sdk-disclosure-generator/">SDK disclosure tool</a> drafts that paragraph for AdMob and the rest of your libraries.</p>
+
+    <h2 id="consent">Personalized, Non-Personalized and Limited Ads: EU Consent</h2>
+
+    <p>For users in the EEA, the UK and Switzerland, what AdMob serves depends on the consent you collect. Google defines three serving modes:</p>
+
+    <ul>
+      <li><strong>Personalized ads</strong> infer interests from the apps and sites a person uses, and rely on identifiers for targeting. They need consent under the IAB Transparency and Consent Framework (TCF).</li>
+      <li><strong>Non-personalized ads</strong> are not based on past behavior, but Google says they "still use cookies or mobile ad identifiers" for frequency capping and aggregated reporting. They still need consent to store and access information on the device (TCF Purpose 1).</li>
+      <li><strong>Limited ads</strong> turn off personalization and any feature that needs a local identifier. AdMob falls back to them when Purpose 1 consent is missing.</li>
+    </ul>
+
+    <p>To serve personalized ads in these regions, Google requires a Google-certified consent management platform integrated with the TCF. Since January 16, 2024, publishers without one have been limited to Limited ads on EEA and UK traffic. Google's IAB-certified User Messaging Platform (UMP) SDK, set up under <strong>Privacy &amp; messaging</strong>, is the usual choice.</p>
+
+    <p>The policy should say that these users see a consent message before personalized ads load, which ad partners it names, and how to reopen it to withdraw consent; the UMP SDK provides a privacy options form for that.</p>
+
+    <h2 id="families">Families Policy and Child-Directed Apps</h2>
+
+    <p>If children are in your audience, AdMob's settings change what you disclose:</p>
+
+    <ul>
+      <li><strong>Apps only for children.</strong> Selecting only child age groups under <strong>Target audience and content</strong> in Play Console makes AdMob serve Families-compliant ads on every request. Play's Families policy bars transmitting the advertising ID for children or users of unknown age.</li>
+      <li><strong>Apps for everyone, including children.</strong> Tag requests served to children with <code>tagForAgeTreatment</code> set to <code>CHILD</code>. Google says this disables personalized ads, remarketing and third-party ad vendor requests, and the AAID and IDFA "are not transmitted." The older child-directed (TFCD) and under-age-of-consent (TFUA) tags are deprecated.</li>
+      <li><strong>Mediation.</strong> Only Google Play Families self-certified ad SDKs may serve children. AdMob blocks the others in these cases, and you remain responsible for third-party networks.</li>
+    </ul>
+
+    <p>Say in the policy that ads shown to children are not personalized and no advertising ID is sent. COPPA's parental consent rules apply on top; the <a href="/resources/coppa-privacy-policy/">COPPA guide for kids' apps</a> covers them.</p>
+
+    <h2 id="clauses">Copy-Ready AdMob Clauses</h2>
+
+    <p>Add these to a full app policy, replace the brackets and remove what does not apply.</p>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-label">AdMob clauses — ready to copy</span>
+      </div>
+      <div class="copy-block-body" id="sample-policy-text">
+<p><strong>Advertising</strong></p>
+<p>[App Name] shows ads served by Google AdMob, a service of Google LLC. The Google Mobile Ads SDK in the app collects your device's advertising ID [and app set ID], your IP address, which may be used to estimate your general location, your interactions with ads and the app, and performance and crash diagnostics. Google uses this data for advertising, analytics and fraud prevention. Data is encrypted in transit. Learn how Google uses this data at https://policies.google.com/technologies/partner-sites.</p>
+<p><strong>Third-party ad partners</strong></p>
+<p>Google and [other ad networks we use through mediation, e.g. AppLovin, Unity Ads] may place and read cookies or use device identifiers and IP addresses to show and measure ads [and to personalize ads based on your activity in other apps and websites].</p>
+<p><strong>Your choices</strong></p>
+<p>On Android, you can reset or delete your advertising ID in Settings &gt; Privacy &gt; Ads. On iOS, ads are personalized only if you allow tracking in the App Tracking Transparency prompt; you can change this in Settings &gt; Privacy &amp; Security &gt; Tracking. You can manage Google's ad personalization at https://myadcenter.google.com.</p>
+<p><strong>Users in the EEA, UK and Switzerland</strong></p>
+<p>Before personalized ads are shown, we ask for your consent through [Google's consent message]. If you do not consent, you may see non-personalized or limited ads. You can change your choice at any time in [Settings &gt; Privacy options].</p>
+<p><strong>Children</strong></p>
+<p>[The app is directed to children under 13. Ads shown in the app are not personalized, and no advertising ID is collected or shared.] [OR: The app is not directed to children under 13.]</p>
+      </div>
+      <button class="copy-btn" id="copy-policy-btn" type="button">Copy to clipboard</button>
+    </div>
+
+    <p>Rather not edit a template? The <a href="https://buildprivacypolicy.com/">BuildPrivacyPolicy generator</a> writes these sections from your answers and hosts the result.</p>
+
+    <RelatedGuides currentSlug="resources/admob-privacy-policy-generator" />
+
+    <h2 id="faq">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Does AdMob require a privacy policy?</h3>
+        <p>Yes. Google's Publisher Policies require every AdMob publisher to have a privacy policy disclosing the data collected through Google's ads, including identifiers and IP addresses, and AdMob requires a privacy policy URL for European regulations consent messages.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Where do I add a privacy policy URL in AdMob?</h3>
+        <p>Go to Privacy &amp; messaging, click Manage on a message type, open your app, then click its row in the Privacy policy URL column, enter the URL and save. Add the same URL in Play Console or App Store Connect.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Do I need a privacy policy if my app collects no data but shows ads?</h3>
+        <p>Yes. The AdMob SDK collects the advertising ID, IP address and ad interactions even if your own code collects nothing, so the policy must disclose what Google collects.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Should my privacy policy link to Google's privacy policy?</h3>
+        <p>Link to Google's page on how it uses data from partner apps. Google's Publisher Policies accept a prominent link to it as part of your disclosure, but your policy must still describe the data your app shares.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I use a free app privacy policy generator for an AdMob app?</h3>
+        <p>Yes, if it asks about ad SDKs, the advertising ID, consent and children, and hosts the result on a public page. Check the output against your mediation networks and store answers.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Do I need a separate privacy policy for AdMob?</h3>
+        <p>No. Use one policy for the app with an advertising section, and give the same URL to AdMob, Google Play and the App Store.</p>
+      </div>
+    </div>
+
+    <p class="disclaimer-note">This page summarizes Google's AdMob requirements as of the date above; it is not legal advice. Sources: <a href="https://support.google.com/publisherpolicies/answer/10437794" rel="nofollow">Google Publisher Policies: Privacy disclosures</a>, <a href="https://developers.google.com/mobile/policy" rel="nofollow">Policy requirements for Google Mobile Developer Services</a>, <a href="https://support.google.com/admob/answer/10113106" rel="nofollow">Add a privacy policy URL (AdMob Help)</a>, <a href="https://developers.google.com/admob/android/privacy/play-data-disclosure" rel="nofollow">Google Play data disclosure</a>, <a href="https://developers.google.com/admob/ios/privacy/data-disclosure" rel="nofollow">App Store data disclosure</a>, <a href="https://support.google.com/admob/answer/6219315" rel="nofollow">Tag for age treatment</a>, <a href="https://support.google.com/admob/answer/6223431" rel="nofollow">Families Policy with AdMob</a>.</p>
+
+  </div>
+</article>
+</main>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AdMob Privacy Policy Generator: What Google Requires Before You Show Ads",
+  "description": description,
+  "datePublished": publishDate,
+  "dateModified": modifiedDate,
+  "author": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buildprivacypolicy.com/resources/admob-privacy-policy-generator/"
+  }
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does AdMob require a privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Google's Publisher Policies require every AdMob publisher to have a privacy policy disclosing the data collected through Google's ads, including identifiers and IP addresses, and AdMob requires a privacy policy URL for European regulations consent messages."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where do I add a privacy policy URL in AdMob?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Go to Privacy & messaging, click Manage on a message type, open your app, then click its row in the Privacy policy URL column, enter the URL and save. Add the same URL in Play Console or App Store Connect."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a privacy policy if my app collects no data but shows ads?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The AdMob SDK collects the advertising ID, IP address and ad interactions even if your own code collects nothing, so the policy must disclose what Google collects."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should my privacy policy link to Google's privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Link to Google's page on how it uses data from partner apps. Google's Publisher Policies accept a prominent link to it as part of your disclosure, but your policy must still describe the data your app shares."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use a free app privacy policy generator for an AdMob app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, if it asks about ad SDKs, the advertising ID, consent and children, and hosts the result on a public page. Check the output against your mediation networks and store answers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a separate privacy policy for AdMob?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Use one policy for the app with an advertising section, and give the same URL to AdMob, Google Play and the App Store."
+      }
+    }
+  ]
+})} />
+
+</Layout>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-link:hover {
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+  .page-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 16px 80px;
+  }
+  .page-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px 36px;
+    border: 1px solid #E5E7EB;
+  }
+  .breadcrumb {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 16px;
+  }
+  .breadcrumb a {
+    color: #6B7280;
+    text-decoration: underline;
+  }
+  .page-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .last-updated {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 24px;
+  }
+  .page-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .page-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  .page-card p {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .page-card ul, .page-card ol {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+  .page-card li {
+    margin-bottom: 8px;
+  }
+  .page-card a {
+    color: #2563EB;
+    text-decoration: underline;
+  }
+  .page-card strong {
+    font-weight: 600;
+  }
+  .page-card em {
+    font-style: italic;
+  }
+  .toc {
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 8px;
+  }
+  .toc-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .toc ol {
+    margin-bottom: 0;
+    padding-left: 20px;
+  }
+  .toc li {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .toc a {
+    color: #2563EB;
+  }
+  .faq-list {
+    margin-top: 8px;
+  }
+  .faq-item {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 20px;
+    margin-bottom: 8px;
+  }
+  .faq-item h3 {
+    margin-top: 0;
+  }
+  .faq-item p {
+    margin-bottom: 8px;
+  }
+  .copy-block {
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    margin: 20px 0;
+    overflow: hidden;
+  }
+  .copy-block-header {
+    background: #F3F4F6;
+    padding: 10px 16px;
+    border-bottom: 1px solid #D1D5DB;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .copy-block-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4B5563;
+  }
+  .copy-block-body {
+    padding: 24px 28px;
+    background: #FAFAFA;
+    max-height: 480px;
+    overflow-y: auto;
+  }
+  .copy-block-body p {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .copy-block-body ul {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    padding-left: 22px;
+  }
+  .copy-block-body li {
+    margin-bottom: 4px;
+  }
+  .copy-block-body code {
+    background: #E5E7EB;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+  .copy-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #1E3A5F;
+    color: white;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .copy-btn:hover {
+    background: #2E5A8F;
+  }
+
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 16px 0 20px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+  }
+  .table-scroll:focus {
+    outline: 2px solid #2563EB;
+    outline-offset: 2px;
+  }
+  .compare-table {
+    width: 100%;
+    min-width: 640px;
+    border-collapse: collapse;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .compare-table thead th {
+    background: #F3F4F6;
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    vertical-align: bottom;
+  }
+  .compare-table tbody th {
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #111827;
+    background: #F9FAFB;
+    border-top: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    vertical-align: top;
+    width: 150px;
+  }
+  .compare-table td {
+    padding: 10px 12px;
+    border-top: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    color: #374151;
+    vertical-align: top;
+  }
+  .compare-table th:last-child,
+  .compare-table td:last-child {
+    border-right: none;
+  }
+  .page-card code {
+    background: #E5E7EB;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+  }
+  .disclaimer-note {
+    font-size: 13px !important;
+    color: #6B7280 !important;
+    border-top: 1px solid #E5E7EB;
+    padding-top: 16px;
+    margin-top: 24px;
+  }
+  @media (max-width: 640px) {
+    .page-card {
+      padding: 28px 20px;
+    }
+    .page-card h1 {
+      font-size: 24px;
+    }
+  }
+</style>
+
+<script>
+  document.getElementById('copy-policy-btn')?.addEventListener('click', function() {
+    const el = document.getElementById('sample-policy-text');
+    if (!el) return;
+    const text = el.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copy-policy-btn');
+      if (btn) {
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy to clipboard'; }, 2000);
+      }
+    });
+  });
+</script>
