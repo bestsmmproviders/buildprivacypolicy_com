@@ -155,6 +155,10 @@
     "tools/play-data-safety-answers": {
       "title": "Play Store Data Safety Form Helper",
       "href": "/tools/play-data-safety-answers/"
+    },
+    "resources/ai-privacy-policy-generator": {
+      "title": "AI App Privacy Policy Generator",
+      "href": "/resources/ai-privacy-policy-generator/"
     }
   },
   "related": {
@@ -217,7 +221,8 @@
     "resources/gdpr-privacy-policy-template": [
       { "slug": "resources/does-gdpr-apply-to-us-companies", "reason": "Based outside the EU? Check whether GDPR applies to you before publishing a GDPR notice." },
       { "slug": "resources/gdpr-eu-representative", "reason": "Non-EU controllers may need an Article 27 representative named in the notice." },
-      { "slug": "tools/gdpr-compliance-checklist", "reason": "A privacy notice is one GDPR obligation; this checklist covers the rest." }
+      { "slug": "tools/gdpr-compliance-checklist", "reason": "A privacy notice is one GDPR obligation; this checklist covers the rest." },
+      { "slug": "resources/ai-privacy-policy-generator", "reason": "Using an AI model provider? What prompts, training and Article 22 add to a GDPR notice." }
     ],
     "resources/gdpr-eu-representative": [
       { "slug": "resources/does-gdpr-apply-to-us-companies", "reason": "First step: confirm whether GDPR actually applies to your company." },
@@ -235,7 +240,14 @@
       { "slug": "tools/sdk-disclosure-generator", "reason": "Third-party SDKs in your app create disclosure obligations — generate them here." },
       { "slug": "resources/facebook-app-privacy-policy", "reason": "Building on Facebook's platform adds Meta-specific data handling disclosures to your app's privacy policy." },
       { "slug": "resources/google-oauth-consent-screen-privacy-policy", "reason": "If your app requests Google API scopes, OAuth verification requires a Google user data section and a Limited Use statement." },
-      { "slug": "resources/ios-privacy-policy-generator", "reason": "Shipping on the App Store? Match your policy to the App Privacy answers, the ATT prompt and the SDKs in your iOS build." }
+      { "slug": "resources/ios-privacy-policy-generator", "reason": "Shipping on the App Store? Match your policy to the App Privacy answers, the ATT prompt and the SDKs in your iOS build." },
+      { "slug": "resources/ai-privacy-policy-generator", "reason": "App sends user input to an AI model? Cover prompts, model providers, training opt-outs and log retention." }
+    ],
+    "resources/ai-privacy-policy-generator": [
+      { "slug": "resources/gdpr-privacy-policy-template", "reason": "The full Article 13 notice your AI sections slot into, including the automated decision-making clause." },
+      { "slug": "tools/sdk-disclosure-generator", "reason": "Draft disclosure paragraphs for the analytics, crash and login SDKs that sit beside your model API." },
+      { "slug": "tools/data-retention-schedule", "reason": "Set retention periods for chat history, server logs and backups category by category." },
+      { "slug": "resources/how-to-write-privacy-policy-for-app", "reason": "The rest of an app privacy policy, from data categories to store requirements." }
     ],
     "resources/platform-privacy-policy-requirements": [
       { "slug": "resources/discord-bot-privacy-policy", "reason": "Full walkthrough of the Developer Portal fields, privileged intents and checks behind Discord's App Verification." },
@@ -330,7 +342,8 @@
       { "slug": "tools/privacy-policy-checker", "reason": "After updating your policy with SDK disclosures, verify it covers all required clauses." },
       { "slug": "tools/play-data-safety-answers", "reason": "SDK data collection directly determines which categories you must declare in Google Play's Data Safety form." },
       { "slug": "resources/google-ads-remarketing-privacy-policy", "reason": "Using AdMob or Google Analytics? See the exact advertising disclosures Google's publisher and Analytics policies require." },
-      { "slug": "resources/admob-privacy-policy-generator", "reason": "AdMob in your build? See Google's own list of what the Mobile Ads SDK collects and the consent and children's rules your policy must reflect." }
+      { "slug": "resources/admob-privacy-policy-generator", "reason": "AdMob in your build? See Google's own list of what the Mobile Ads SDK collects and the consent and children's rules your policy must reflect." },
+      { "slug": "resources/ai-privacy-policy-generator", "reason": "Calling a hosted AI model too? How to disclose the provider, training use and prompt retention." }
     ],
     "tools/play-data-safety-answers": [
       { "slug": "tools/app-store-privacy-requirements", "reason": "Covers Apple's App Store privacy requirements alongside Google Play's Data Safety form." },

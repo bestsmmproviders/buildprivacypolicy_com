@@ -1,0 +1,589 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import RelatedGuides from '../../../components/RelatedGuides.astro';
+
+const title = "AI Privacy Policy Generator: What AI Apps Must Disclose";
+const description = "Write a privacy policy for an AI or LLM app: prompts as personal data, model providers, training opt-outs, chat log retention and GDPR Article 22. Free.";
+const publishDate = "2026-11-27";
+const modifiedDate = "2026-11-27";
+---
+
+<Layout title={title} description={description}>
+
+<div class="sticky-header">
+  <div class="header-left">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="128" height="128" rx="28" fill="#1E3A5F"/><path d="M64 24C64 24 40 34 32 38V62C32 82 46 98 64 104C82 98 96 82 96 62V38C88 34 64 24 64 24Z" fill="#2E5A8F" stroke="#5B9BD5" stroke-width="2.5"/><path d="M52 64L60 72L78 54" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="logo-text">BuildPrivacyPolicy</span>
+    </a>
+  </div>
+</div>
+
+<main>
+<article class="page-container">
+  <div class="page-card">
+    <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Resources</p>
+    <h1>AI Privacy Policy Generator: What an AI or LLM App Has to Disclose</h1>
+    <p class="last-updated">Published November 27, 2026 &middot; Updated November 27, 2026</p>
+
+    <p>A privacy policy for an AI app is an ordinary app privacy policy plus five disclosures that model-backed features add: what users type, upload or say to the model and what it returns; which model provider receives that content; whether anyone trains on it; how long prompts and conversation logs are kept; and whether the AI makes decisions about people. Any chatbot or assistant that sends user input to a hosted model has to answer all five.</p>
+
+    <p>To draft one, open the <a href="https://buildprivacypolicy.com/">free privacy policy generator</a> and pick the closest <strong>App profile</strong>, or <strong>Custom / not sure</strong>. Under <strong>Data Collection</strong>, add <strong>AI features</strong> to "Why is this data used?" and <strong>AI provider</strong> to "Who receives this data?", then tick <strong>AI Provider</strong> under <strong>Third-party SDKs / services</strong>. In <strong>High-Risk Checks</strong>, the <strong>AI features</strong> question asks which case you are in: <strong>No AI</strong>, <strong>On-device only</strong>, <strong>AI provider, no training</strong>, <strong>AI provider, may train</strong> or <strong>Own model training</strong>. The sections below explain what each answer has to cover.</p>
+
+    <nav class="toc">
+      <p class="toc-title">Contents</p>
+      <ol>
+        <li><a href="#what">What an AI App Discloses That an Ordinary App Does Not</a></li>
+        <li><a href="#prompts">Prompts and Outputs as Personal Data</a></li>
+        <li><a href="#providers">Third-Party Model Providers as Sub-Processors</a></li>
+        <li><a href="#training">Training on User Data and Describing the Opt-Out</a></li>
+        <li><a href="#retention">Retention of Prompt and Conversation Logs</a></li>
+        <li><a href="#article22">Automated Decision-Making Under GDPR Article 22</a></li>
+        <li><a href="#clauses">Copy-Ready AI Clauses</a></li>
+        <li><a href="#faq">Frequently Asked Questions</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="what">What an AI App Discloses That an Ordinary App Does Not</h2>
+
+    <p>An AI feature adds free-form content you do not control, a new recipient and sometimes a new use. Each disclosure maps to an existing rule:</p>
+
+    <div class="table-scroll" role="region" aria-label="Disclosures an AI app adds and where each requirement comes from" tabindex="0">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th scope="col">Disclosure</th>
+            <th scope="col">Why AI makes it new</th>
+            <th scope="col">Where the requirement comes from</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Prompts, files and outputs</th>
+            <td>Users paste names, documents and health details into a free-text box.</td>
+            <td>GDPR Art. 4(1) definition of personal data and Art. 13(1)(c) purposes; CCPA categories of personal information</td>
+          </tr>
+          <tr>
+            <th scope="row">Model provider</th>
+            <td>Content goes to a third-party API on every request.</td>
+            <td>GDPR Art. 13(1)(e) recipients and 13(1)(f) transfers; Apple App Review Guideline 5.1.2(i)</td>
+          </tr>
+          <tr>
+            <th scope="row">Training use</th>
+            <td>Content can be reused for a purpose the user did not expect.</td>
+            <td>GDPR purpose limitation (Art. 5(1)(b)) and right to object (Art. 21); FTC Act Section 5 on deceptive practices</td>
+          </tr>
+          <tr>
+            <th scope="row">Log retention</th>
+            <td>History, logs and provider copies each have their own lifetime.</td>
+            <td>GDPR Art. 13(2)(a) retention period or criteria</td>
+          </tr>
+          <tr>
+            <th scope="row">Automated decisions</th>
+            <td>A model may score or approve people, not just write text.</td>
+            <td>GDPR Art. 22 and 13(2)(f); California's CCPA automated decisionmaking rules</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Platforms now check this too. In November 2025 Apple revised Guideline 5.1.2(i) so apps must "clearly disclose where personal data will be shared with third parties, including with third-party AI" and obtain explicit permission first. In the EU, Article 50(1) of the AI Act has applied since August 2, 2026: providers must design AI systems that interact with people so those people are told they are dealing with AI, unless it is obvious. That notice belongs in the product; the policy restates it and explains what happens to the conversation.</p>
+
+    <h2 id="prompts">Prompts and Outputs as Personal Data</h2>
+
+    <p>Under GDPR Article 4(1), personal data is any information relating to an identified or identifiable person. A prompt naming a colleague, an uploaded CV or a transcribed voice note all qualify, as does an output describing a person. Treat the whole exchange as personal data.</p>
+
+    <p>In the policy, list the content types the feature accepts rather than a generic "user content" line:</p>
+
+    <ul>
+      <li><strong>Inputs:</strong> prompts and messages, uploaded files and images, audio, and context your app adds automatically, such as the open document or the user's location.</li>
+      <li><strong>Outputs:</strong> generated text, images or code, plus any ratings or feedback (thumbs up or down) the user gives on them.</li>
+      <li><strong>Metadata:</strong> timestamps, the model version and moderation flags.</li>
+    </ul>
+
+    <p>Free-text boxes also attract special category data under GDPR Article 9, such as health, religion or sexual orientation, even when you never ask for it. Say how you handle it; a "don't enter sensitive information" warning is advice to users, not a substitute for protecting what they enter. In the generator, add <strong>Messages/chat</strong>, <strong>Files/docs</strong>, <strong>Photos/videos</strong> or <strong>Audio/voice</strong> under "Which data types are collected?" to match your inputs.</p>
+
+    <h2 id="providers">Third-Party Model Providers as Sub-Processors</h2>
+
+    <p>When your app sends user content to a hosted model API so the provider can generate a response for you, the provider usually acts as your processor under GDPR Article 28, and you need a data processing agreement with it. If your customers are businesses that are themselves controllers, you are their processor and the model provider is a sub-processor, which belongs on the sub-processor list you share with them. The disclosure pattern is the same either way:</p>
+
+    <ol>
+      <li><strong>Who:</strong> name the provider, or at least the category ("third-party AI model providers"), since Article 13(1)(e) allows recipients or categories of recipients.</li>
+      <li><strong>What:</strong> the content you send (the prompt, attached files, conversation history used as context) and anything you strip out first.</li>
+      <li><strong>Why:</strong> to generate the response, plus any moderation checks.</li>
+      <li><strong>Where:</strong> the processing region, and the transfer mechanism if data leaves the EEA, per Article 13(1)(f).</li>
+      <li><strong>Their use:</strong> whether the provider may keep or use the content for its own purposes under your agreement with it.</li>
+    </ol>
+
+    <p>Write the last point from the provider's current API terms and your signed agreement, not from memory. Providers often have different terms for consumer and API accounts, and they revise them; if you cannot confirm a point, describe what your contract allows. The same applies to the analytics, crash and login SDKs that sit next to the model API; the <a href="/tools/sdk-disclosure-generator/">disclosure paragraph builder for common SDKs</a> drafts those.</p>
+
+    <h2 id="training">Training on User Data and Describing the Opt-Out</h2>
+
+    <p>State training in plain words and match it to one of three cases:</p>
+
+    <ul>
+      <li><strong>No training.</strong> "We do not use your prompts, files or outputs to train AI models, and our agreement with [provider] does not allow it to." Only write the second half if your contract says so.</li>
+      <li><strong>Training with an opt-out.</strong> Say who trains (you, the provider or both), on which data, whether it is de-identified first, and your lawful basis. Under the GDPR that is usually consent or legitimate interests; with legitimate interests, users have the Article 21 right to object, so the opt-out is how you honor it.</li>
+      <li><strong>Training your own model.</strong> Describe what is kept for training, for how long, and whether staff review samples.</li>
+    </ul>
+
+    <p>A usable opt-out description says where the setting is (for example <strong>Settings &gt; Data controls</strong>), whether it covers past conversations or only future ones, and what happens to data already used. If content cannot be removed from a model already trained on it, say so.</p>
+
+    <p>Do not move from the first case to the second by quietly editing the policy. In a February 2024 post, FTC staff warned that "it may be unfair or deceptive for a company to adopt more permissive data practices," naming AI training as an example, when the change is made only through a surreptitious, retroactive amendment. Announce the change and apply it going forward.</p>
+
+    <h2 id="retention">Retention of Prompt and Conversation Logs</h2>
+
+    <p>GDPR Article 13(2)(a) requires a retention period or the criteria used to set one. AI features keep the same conversation in several places, and each needs its own line:</p>
+
+    <ul>
+      <li><strong>Chat history</strong> the user can see and delete in the app.</li>
+      <li><strong>Server and API logs</strong> for debugging, billing or security.</li>
+      <li><strong>Provider-side copies</strong> kept under the provider's terms, such as for abuse monitoring.</li>
+      <li><strong>Flagged or reviewed content</strong>, often kept longer.</li>
+      <li><strong>Training datasets</strong>, if any, with their own period.</li>
+    </ul>
+
+    <p>Then say what "delete conversation" actually does: whether it reaches logs, backups and the provider's copy. In the generator, choose <strong>Fixed period</strong> under "How long is data kept?" to enter a specific period. The <a href="/tools/data-retention-schedule/">retention schedule builder</a> helps set periods per data category.</p>
+
+    <h2 id="article22">Automated Decision-Making Under GDPR Article 22</h2>
+
+    <p>Most chatbots and writing tools never reach Article 22. It applies to a decision "based solely on automated processing, including profiling" that produces legal effects for a person or similarly significantly affects them. Features that can fall under it include screening job applicants, approving credit or rental applications, and suspending accounts without human review.</p>
+
+    <p>If yours does, the policy must state that the automated decision-making exists and give "meaningful information about the logic involved" and its significance and envisaged consequences (Article 13(2)(f)). Where the decision is permitted because it is necessary for a contract or based on explicit consent, Article 22(3) also requires safeguards: at least the right to obtain human intervention, to express a point of view and to contest the decision. The <a href="/resources/gdpr-privacy-policy-template/">GDPR notice template</a> has a clause for this alongside the rest of Article 13.</p>
+
+    <p>California is adding a parallel layer. The California Privacy Protection Agency's updated CCPA regulations took effect on January 1, 2026, and businesses that use automated decisionmaking technology to make significant decisions must comply with those requirements from January 1, 2027.</p>
+
+    <h2 id="clauses">Copy-Ready AI Clauses</h2>
+
+    <p>Add these to a full privacy policy, replace the brackets and delete the options that do not apply.</p>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-label">AI feature clauses — ready to copy</span>
+      </div>
+      <div class="copy-block-body" id="sample-policy-text">
+<p><strong>AI features</strong></p>
+<p>[App Name] includes features powered by artificial intelligence, such as [a chat assistant / summaries / image generation]. When you use them, you are interacting with an AI system, not a person.</p>
+<p><strong>Information we process</strong></p>
+<p>When you use an AI feature, we process the content you submit, including [text prompts, messages, uploaded files, images, voice recordings], the content the AI generates in response, any feedback you give on responses, and technical data such as timestamps and the model version used. Do not include information about other people unless you have the right to share it.</p>
+<p><strong>AI model providers</strong></p>
+<p>To generate responses, we send the content of your request [and recent conversation history] to [Provider name / third-party AI model providers], which process it on our behalf under a data processing agreement. [Your content is processed in [region]. Transfers outside the EEA rely on [Standard Contractual Clauses].] [Provider name] [may / does not] retain request data [for up to [period]] [for abuse monitoring].</p>
+<p><strong>Model training</strong></p>
+<p>[We do not use your prompts, files or outputs to train AI models, and our agreement with [Provider name] does not permit it to.] OR [We use [de-identified] conversations to improve our models. You can turn this off at any time in [Settings &gt; Data controls]. Turning it off applies to [future conversations / all conversations not yet used for training]. Content already used to train a model may not be removable from that model.]</p>
+<p><strong>Retention</strong></p>
+<p>Your chat history is kept until you delete it [or for [period]]. Server logs are deleted after [period]. Deleted content is removed from backups within [period]. Content flagged for safety review may be kept for up to [period].</p>
+<p><strong>Automated decisions</strong></p>
+<p>[We do not make decisions that have legal or similarly significant effects on you based solely on automated processing.] OR [We use [system] to [decision] based on [main factors]. This may result in [effect]. You can ask for a person to review the decision, give your point of view and contest it by contacting [email].]</p>
+      </div>
+      <button class="copy-btn" id="copy-policy-btn" type="button">Copy to clipboard</button>
+    </div>
+
+    <p>Rather answer questions than edit brackets? <a href="https://buildprivacypolicy.com/">Build your policy with the BuildPrivacyPolicy generator</a>, then check the AI sections against your provider agreement before you publish.</p>
+
+    <RelatedGuides currentSlug="resources/ai-privacy-policy-generator" />
+
+    <h2 id="faq">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Can I use ChatGPT or another AI tool to write my privacy policy?</h3>
+        <p>You can use one for a first draft, but a model does not know what your app collects, which SDKs and model providers you use, or what your contracts allow. Every statement in the policy has to match your actual data practices, so check each line against your code and agreements.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What is the best free privacy policy generator for an AI app?</h3>
+        <p>Look for one that asks specifically about AI: whether content goes to a model provider, whether it is used for training, how long logs are kept and which regions you serve. It should also host the policy at a public URL you can give to the App Store, Google Play and your own site.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is AI safe for privacy?</h3>
+        <p>It depends on how the feature is built. The main risks are sending personal data to third parties, keeping conversations too long and reusing them for training; limiting each and disclosing it clearly reduces them.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What are GDPR and CCPA, and do they apply to AI apps?</h3>
+        <p>The GDPR is the EU's data protection law and the CCPA is California's consumer privacy law. Neither exempts AI. If your app has users in the EU, or your business meets the CCPA's thresholds, prompts and outputs that relate to those users are covered like any other personal data.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What is an example of an AI privacy policy clause?</h3>
+        <p>A training clause might read: "We do not use your prompts, files or outputs to train AI models." The copy-ready block on this page includes clauses for AI providers, training, retention and automated decisions.</p>
+      </div>
+    </div>
+
+    <p class="disclaimer-note">This page summarizes privacy requirements for AI features as of the date above; it is not legal advice, and it does not describe any model provider's current terms. Sources: <a href="https://eur-lex.europa.eu/eli/reg/2016/679/oj" rel="nofollow">GDPR (Regulation (EU) 2016/679)</a>, <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" rel="nofollow">EU AI Act (Regulation (EU) 2024/1689)</a>, <a href="https://developer.apple.com/app-store/review/guidelines/" rel="nofollow">Apple App Review Guidelines</a>, <a href="https://www.ftc.gov/policy/advocacy-research/tech-at-ftc/2024/02/ai-other-companies-quietly-changing-your-terms-service-could-be-unfair-or-deceptive" rel="nofollow">FTC Office of Technology, February 2024</a>, <a href="https://www.cppa.ca.gov/announcements/2025/20250923.html" rel="nofollow">CPPA announcement, September 2025</a>.</p>
+
+  </div>
+</article>
+</main>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Privacy Policy Generator: What an AI or LLM App Has to Disclose",
+  "description": description,
+  "datePublished": publishDate,
+  "dateModified": modifiedDate,
+  "author": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BuildPrivacyPolicy",
+    "url": "https://buildprivacypolicy.com/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buildprivacypolicy.com/resources/ai-privacy-policy-generator/"
+  }
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I use ChatGPT or another AI tool to write my privacy policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can use one for a first draft, but a model does not know what your app collects, which SDKs and model providers you use, or what your contracts allow. Every statement in the policy has to match your actual data practices, so check each line against your code and agreements."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the best free privacy policy generator for an AI app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Look for one that asks specifically about AI: whether content goes to a model provider, whether it is used for training, how long logs are kept and which regions you serve. It should also host the policy at a public URL you can give to the App Store, Google Play and your own site."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is AI safe for privacy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on how the feature is built. The main risks are sending personal data to third parties, keeping conversations too long and reusing them for training; limiting each and disclosing it clearly reduces them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are GDPR and CCPA, and do they apply to AI apps?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The GDPR is the EU's data protection law and the CCPA is California's consumer privacy law. Neither exempts AI. If your app has users in the EU, or your business meets the CCPA's thresholds, prompts and outputs that relate to those users are covered like any other personal data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is an example of an AI privacy policy clause?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A training clause might read: \"We do not use your prompts, files or outputs to train AI models.\" The copy-ready block on this page includes clauses for AI providers, training, retention and automated decisions."
+      }
+    }
+  ]
+})} />
+
+</Layout>
+
+<style>
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-link:hover {
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+  .page-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 16px 80px;
+  }
+  .page-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px 36px;
+    border: 1px solid #E5E7EB;
+  }
+  .breadcrumb {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 16px;
+  }
+  .breadcrumb a {
+    color: #6B7280;
+    text-decoration: underline;
+  }
+  .page-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .last-updated {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 24px;
+  }
+  .page-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .page-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  .page-card p {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .page-card ul, .page-card ol {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+  .page-card li {
+    margin-bottom: 8px;
+  }
+  .page-card a {
+    color: #2563EB;
+    text-decoration: underline;
+  }
+  .page-card strong {
+    font-weight: 600;
+  }
+  .page-card em {
+    font-style: italic;
+  }
+  .toc {
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 8px;
+  }
+  .toc-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .toc ol {
+    margin-bottom: 0;
+    padding-left: 20px;
+  }
+  .toc li {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .toc a {
+    color: #2563EB;
+  }
+  .faq-list {
+    margin-top: 8px;
+  }
+  .faq-item {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 20px;
+    margin-bottom: 8px;
+  }
+  .faq-item h3 {
+    margin-top: 0;
+  }
+  .faq-item p {
+    margin-bottom: 8px;
+  }
+  .copy-block {
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    margin: 20px 0;
+    overflow: hidden;
+  }
+  .copy-block-header {
+    background: #F3F4F6;
+    padding: 10px 16px;
+    border-bottom: 1px solid #D1D5DB;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .copy-block-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4B5563;
+  }
+  .copy-block-body {
+    padding: 24px 28px;
+    background: #FAFAFA;
+    max-height: 480px;
+    overflow-y: auto;
+  }
+  .copy-block-body p {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .copy-block-body ul {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    padding-left: 22px;
+  }
+  .copy-block-body li {
+    margin-bottom: 4px;
+  }
+  .copy-block-body code {
+    background: #E5E7EB;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+  .copy-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #1E3A5F;
+    color: white;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .copy-btn:hover {
+    background: #2E5A8F;
+  }
+
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 16px 0 20px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+  }
+  .table-scroll:focus {
+    outline: 2px solid #2563EB;
+    outline-offset: 2px;
+  }
+  .compare-table {
+    width: 100%;
+    min-width: 640px;
+    border-collapse: collapse;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .compare-table thead th {
+    background: #F3F4F6;
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    vertical-align: bottom;
+  }
+  .compare-table tbody th {
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #111827;
+    background: #F9FAFB;
+    border-top: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    vertical-align: top;
+    width: 150px;
+  }
+  .compare-table td {
+    padding: 10px 12px;
+    border-top: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    color: #374151;
+    vertical-align: top;
+  }
+  .compare-table th:last-child,
+  .compare-table td:last-child {
+    border-right: none;
+  }
+  .page-card code {
+    background: #E5E7EB;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+  }
+  .disclaimer-note {
+    font-size: 13px !important;
+    color: #6B7280 !important;
+    border-top: 1px solid #E5E7EB;
+    padding-top: 16px;
+    margin-top: 24px;
+  }
+  @media (max-width: 640px) {
+    .page-card {
+      padding: 28px 20px;
+    }
+    .page-card h1 {
+      font-size: 24px;
+    }
+  }
+</style>
+
+<script>
+  document.getElementById('copy-policy-btn')?.addEventListener('click', function() {
+    const el = document.getElementById('sample-policy-text');
+    if (!el) return;
+    const text = el.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copy-policy-btn');
+      if (btn) {
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy to clipboard'; }, 2000);
+      }
+    });
+  });
+</script>
